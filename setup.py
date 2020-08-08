@@ -7,12 +7,13 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="agspiel-python-api",
-    version="0.0.2",
+    version="0.0.3",
     author="KingKevin23",
     author_email="code@kingkevin.de",
     description="Python API für das AG-Spiel",
     long_description=long_description,
     long_description_content_type="text/markdown",
+    license="MIT License",
     url="https://github.com/KingKevin23/agspiel-python-api",
     packages=setuptools.find_packages(),
     classifiers=[
@@ -21,4 +22,5 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     python_requires='>=3.8',
+    install_requires=["webbot>=0.33"],
 )
