@@ -40,6 +40,14 @@ class Api:
                   in_agsx=data.get("in_agsx")=="true", handelsaktivitaet=int(data.get("handelsaktivitaet")), ceo=ceo,
                   aktien=aktien, anleihen=anleihen, kredite=kredite, zertifikate=zertifikate, orders=orders)
 
+    @property
+    def api_version(self) -> int:
+        return int(self._get_data().get("api_version"))
+
+    @property
+    def daten_datum(self) -> datetime:
+        return datetime.strptime(self._get_data().get("daten_datum"), "%Y-%m-%d %H:%M:%S")
+
     def _get_data(self) -> dict:
         """
         Diese Methode holt sich die aktuellen Daten aus der AGS-API.
