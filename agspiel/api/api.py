@@ -2,7 +2,7 @@
 
 from .ag import Ag
 from .ceo import Ceo
-from .aktie import Aktie, Aktionaer
+from .markt import Markt
 from datetime import datetime
 import urllib.request, json
 
@@ -39,6 +39,10 @@ class Api:
                   highscore_wachstum=int(data.get("highscore_platz_wachstum")), agsx_punkte=int(data.get("agsx_punkte")),
                   in_agsx=data.get("in_agsx")=="true", handelsaktivitaet=int(data.get("handelsaktivitaet")), ceo=ceo,
                   aktien=aktien, anleihen=anleihen, kredite=kredite, zertifikate=zertifikate, orders=orders)
+
+    def get_markt(self) -> Markt:
+        data = self._get_data().get("allgemein")
+        return Markt(ags=data.get("ags"), orders_24=data.get("24_stunden_orders"), volumen_24=data.get("24_stunden_ordervolumen"))
 
     @property
     def api_version(self) -> int:
