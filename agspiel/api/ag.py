@@ -1,0 +1,236 @@
+#  Copyright (c) 2020 | KingKevin23 (@kingkevin023)
+
+from datetime import datetime
+from .ceo import Ceo
+
+class Ag:
+    def __init__(self, wkn:int, name:str, gruendung:datetime, aktienanzahl:int, in_liquidation:bool, kurs:float,
+                 brief:float, geld:float, brief_stueckzahl:int, geld_stueckzahl:int, depotwert:float, bargeld:float,
+                 highscore:int, highscore_groesse:int, highscore_wachstum:int, highscore_newcomer:int,
+                 agsx_punkte:int, in_agsx:bool, handelsaktivitaet:int, ceo:Ceo, aktien:list, anleihen:list,
+                 kredite:list, zertifikate:list, orders:list):
+        self.wkn = wkn
+        self.name = name
+        self.gruendung = gruendung
+        self.aktienanzahl = aktienanzahl
+        self.in_liquidation = in_liquidation
+        self.kurs = kurs
+        self.brief = brief
+        self.geld = geld
+        self.brief_stueckzahl = brief_stueckzahl
+        self.geld_stueckzahl = geld_stueckzahl
+        self.depotwert = depotwert
+        self.bargeld = bargeld
+        self.highscore = highscore
+        self.highscore_groesse = highscore_groesse
+        self.highscore_wachstum = highscore_wachstum
+        self.highscore_newcomer = highscore_newcomer
+        self.agsx_punkte = agsx_punkte
+        self.in_agsx = in_agsx
+        self.handelsaktivitaet = handelsaktivitaet
+        self.ceo = ceo
+        self.aktien = aktien
+        self.anleihen = anleihen
+        self.kredite = kredite
+        self.zertifikate = zertifikate
+        self.orders = orders
+
+    @property
+    def wkn(self) -> int:
+        return self._wkn
+
+    @wkn.setter
+    def wkn(self, value:int):
+        self._wkn = value
+
+    @property
+    def name(self) -> str:
+        return self._name
+
+    @name.setter
+    def name(self, value:str):
+        self._name = value
+
+    @property
+    def gruendung(self) -> datetime:
+        return self._gruendung
+
+    @gruendung.setter
+    def gruendung(self, value:datetime):
+        self._gruendung = value
+
+    @property
+    def aktienanzahl(self) -> int:
+        return self._aktienanzahl
+
+    @aktienanzahl.setter
+    def aktienanzahl(self, value:int):
+        self._aktienanzahl = value
+
+    @property
+    def in_liquidation(self) -> bool:
+        return self._in_liquidation
+
+    @in_liquidation.setter
+    def in_liquidation(self, value:bool):
+        self._in_liquidation = value
+
+    @property
+    def kurs(self) -> float:
+        return self._kurs
+
+    @kurs.setter
+    def kurs(self, value:float):
+        self._kurs = value
+
+    @property
+    def brief(self) -> float:
+        return self._brief
+
+    @brief.setter
+    def brief(self, value:float):
+        self._brief = value
+
+    @property
+    def geld(self) -> float:
+        return self._geld
+
+    @geld.setter
+    def geld(self, value:float):
+        self._geld = value
+
+    @property
+    def brief_stueckzahl(self) -> int:
+        return self._brief_stueckzahl
+
+    @brief_stueckzahl.setter
+    def brief_stueckzahl(self, value:int):
+        self._brief_stueckzahl = value
+
+    @property
+    def geld_stueckzahl(self) -> int:
+        return self._geld_stueckzahl
+
+    @geld_stueckzahl.setter
+    def geld_stueckzahl(self, value:int):
+        self._geld_stueckzahl = value
+
+    @property
+    def depotwert(self) -> float:
+        return self._depotwert
+
+    @depotwert.setter
+    def depotwert(self, value:float):
+        self._depotwert = value
+
+    @property
+    def bargeld(self) -> float:
+        return self._bargeld
+
+    @bargeld.setter
+    def bargeld(self, value:float):
+        self._bargeld = value
+
+    @property
+    def highscore(self) -> int:
+        return self._highscore
+
+    @highscore.setter
+    def highscore(self, value:int):
+        self._highscore = value
+
+    @property
+    def highscore_groesse(self) -> int:
+        return self._highscore_groesse
+
+    @highscore_groesse.setter
+    def highscore_groesse(self, value:int):
+        self._highscore_groesse = value
+
+    @property
+    def highscore_wachstum(self) -> int:
+        return self._highscore_wachstum
+
+    @highscore_wachstum.setter
+    def highscore_wachstum(self, value:int):
+        self._highscore_wachstum = value
+
+    @property
+    def highscore_newcomer(self) -> int:
+        return self._highscore_newcomer
+
+    @highscore_newcomer.setter
+    def highscore_newcomer(self, value:int):
+        self._highscore_newcomer = value
+
+    @property
+    def agsx_punkte(self) -> int:
+        return self._agsx_punkte
+
+    @agsx_punkte.setter
+    def agsx_punkte(self, value:int):
+        self._agsx_punkte = value
+
+    @property
+    def in_agsx(self) -> bool:
+        return self._in_agsx
+
+    @in_agsx.setter
+    def in_agsx(self, value:bool):
+        self._in_agsx = value
+
+    @property
+    def handelsaktivitaet(self) -> int:
+        return self._handelsaktivitaet
+
+    @handelsaktivitaet.setter
+    def handelsaktivitaet(self, value:int):
+        self._handelsaktivitaet = value
+
+    @property
+    def ceo(self) -> Ceo:
+        return self._ceo
+
+    @ceo.setter
+    def ceo(self, value:Ceo):
+        self._ceo = value
+
+    @property
+    def aktien(self) -> list:
+        return self._aktien
+
+    @aktien.setter
+    def aktien(self, value:list):
+        self._aktien = value
+
+    @property
+    def anleihen(self) -> list:
+        return self._anleihen
+
+    @anleihen.setter
+    def anleihen(self, value:list):
+        self._anleihen = value
+
+    @property
+    def kredite(self) -> list:
+        return self._kredite
+
+    @kredite.setter
+    def kredite(self, value:list):
+        self._kredite = value
+
+    @property
+    def zertifikate(self) -> list:
+        return self._zertifikate
+
+    @zertifikate.setter
+    def zertifikate(self, value:list):
+        self._zertifikate = value
+
+    @property
+    def orders(self) -> list:
+        return self._orders
+
+    @orders.setter
+    def orders(self, value:list):
+        self._orders = value
