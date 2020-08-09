@@ -3,7 +3,7 @@
 from datetime import datetime
 from .ceo import Ceo
 from .aktie import Aktie
-from .anleihe import Anleihe
+from .anleihe import Anleihe, Kredit
 
 class Ag:
     def __init__(self, wkn:int, name:str, gruendung:datetime, aktienanzahl:int, in_liquidation:bool, kurs:float,
@@ -201,6 +201,7 @@ class Ag:
     def aktien(self) -> list:
         if type(self._aktien[0]) is not Aktie:
             temp_list = []
+            aktie: dict
             for aktie in self._aktien:
                 temp = Aktie(wkn=int(aktie.get("wkn")), stueckzahl=int(aktie.get("stueckzahl")))
                 temp_list.append(temp)
@@ -214,8 +215,9 @@ class Ag:
 
     @property
     def anleihen(self) -> list:
-        if type(self._anleihen) is not Anleihe:
+        if type(self._anleihen[0]) is not Anleihe:
             temp_list = []
+            anleihe: dict
             for anleihe in self._anleihen:
                 temp = Anleihe(betrag=int(anleihe.get("betrag")), zins=float(anleihe.get("zins")),
                                auszahlung_datum=datetime.strptime(anleihe.get("auszahlung_datum"), "%Y-%m-%d %H:%M:%S"),
@@ -231,6 +233,16 @@ class Ag:
 
     @property
     def kredite(self) -> list:
+        if type(self._kredite[0]) is not Kredit:
+            temp_list = []
+            kredit: dict
+            for kredit in self._kredite:
+                temp = Kredit(betrag=int(kredit.get("betrag")), zins=float(kredit.get("zins")),
+                               rueckzahlung_datum=datetime.strptime(kredit.get("auszahlung_datum"), "%Y-%m-%d %H:%M:%S"),
+                               laufzeit=int(kredit.get("laufzeit")))
+                temp_list.append(temp)
+            self._kredite = temp_list
+
         return self._kredite
 
     @kredite.setter

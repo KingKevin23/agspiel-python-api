@@ -3,10 +3,10 @@
 from datetime import datetime
 
 class _Superclass:
-    def __init__(self, betrag: int, zins: float, laufzeit: int):
-        self.betrag: int = betrag
-        self.zins: float = zins
-        self.laufzeit: int = laufzeit
+    def __init__(self, betrag:int, zins:float, laufzeit:int):
+        self.betrag:int = betrag
+        self.zins:float = zins
+        self.laufzeit:int = laufzeit
 
     @property
     def betrag(self) -> int:
@@ -55,5 +55,5 @@ class Kredit(_Superclass):
         return self._rueckzahlung_datum
 
     @rueckzahlung_datum.setter
-    def rueckzahlung_datum(self, value: datetime):
+    def rueckzahlung_datum(self, value:datetime):
         self._rueckzahlung_datum = value
