@@ -9,31 +9,31 @@ class Ag:
                  highscore:int, highscore_groesse:int, highscore_wachstum:int, highscore_newcomer:int,
                  agsx_punkte:int, in_agsx:bool, handelsaktivitaet:int, ceo:Ceo, aktien:list, anleihen:list,
                  kredite:list, zertifikate:list, orders:list):
-        self.wkn = wkn
-        self.name = name
-        self.gruendung = gruendung
-        self.aktienanzahl = aktienanzahl
-        self.in_liquidation = in_liquidation
-        self.kurs = kurs
-        self.brief = brief
-        self.geld = geld
-        self.brief_stueckzahl = brief_stueckzahl
-        self.geld_stueckzahl = geld_stueckzahl
-        self.depotwert = depotwert
-        self.bargeld = bargeld
-        self.highscore = highscore
-        self.highscore_groesse = highscore_groesse
-        self.highscore_wachstum = highscore_wachstum
-        self.highscore_newcomer = highscore_newcomer
-        self.agsx_punkte = agsx_punkte
-        self.in_agsx = in_agsx
-        self.handelsaktivitaet = handelsaktivitaet
-        self.ceo = ceo
-        self.aktien = aktien
-        self.anleihen = anleihen
-        self.kredite = kredite
-        self.zertifikate = zertifikate
-        self.orders = orders
+        self.wkn:int = wkn
+        self.name:str = name
+        self.gruendung:datetime = gruendung
+        self.aktienanzahl:int = aktienanzahl
+        self.in_liquidation:bool = in_liquidation
+        self.kurs:float = kurs
+        self.brief:float = brief
+        self.geld:float = geld
+        self.brief_stueckzahl:int = brief_stueckzahl
+        self.geld_stueckzahl:int = geld_stueckzahl
+        self.depotwert:float= depotwert
+        self.bargeld:float = bargeld
+        self.highscore:int = highscore
+        self.highscore_groesse:int = highscore_groesse
+        self.highscore_wachstum:int = highscore_wachstum
+        self.highscore_newcomer:int = highscore_newcomer
+        self.agsx_punkte:int = agsx_punkte
+        self.in_agsx:bool = in_agsx
+        self.handelsaktivitaet:int = handelsaktivitaet
+        self.ceo:Ceo = ceo
+        self.aktien:list = aktien
+        self.anleihen:list = anleihen
+        self.kredite:list = kredite
+        self.zertifikate:list= zertifikate
+        self.orders:list = orders
 
     @property
     def wkn(self) -> int:
