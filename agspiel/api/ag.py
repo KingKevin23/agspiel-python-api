@@ -5,6 +5,7 @@ from .ceo import Ceo
 from .aktie import Aktie
 from .anleihe import Anleihe, Kredit
 from .zertifikat import Zertifikat
+from .order import Order
 
 class Ag:
     def __init__(self, wkn:int, name:str, gruendung:datetime, aktienanzahl:int, in_liquidation:bool, kurs:float,
@@ -270,6 +271,16 @@ class Ag:
 
     @property
     def orders(self) -> list:
+        if type(self._orders[0]) is not Order:
+            temp_list = []
+            order: dict
+            for order in self._orders:
+                temp = Order(typ=order.get("typ"), limit=float(order.get("limit")), stueckzahl=int(order.get("stueckzahl")),
+                             orderregel=order.get("orderregel")=="true", systembank=order.get("systembank_order")=="true",
+                             datum=datetime.strptime(order.get("datum"), "%Y-%m-%d %H:%M:%S"))
+                temp_list.append(temp)
+            self._orders = temp_list
+
         return self._orders
 
     @orders.setter
