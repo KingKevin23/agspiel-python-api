@@ -3,6 +3,7 @@
 from datetime import datetime
 from .ceo import Ceo
 from .aktie import Aktie
+from .anleihe import Anleihe
 
 class Ag:
     def __init__(self, wkn:int, name:str, gruendung:datetime, aktienanzahl:int, in_liquidation:bool, kurs:float,
@@ -213,6 +214,15 @@ class Ag:
 
     @property
     def anleihen(self) -> list:
+        if type(self._anleihen) is not Anleihe:
+            temp_list = []
+            for anleihe in self._anleihen:
+                temp = Anleihe(betrag=int(anleihe.get("betrag")), zins=float(anleihe.get("zins")),
+                               auszahlung_datum=datetime.strptime(anleihe.get("auszahlung_datum"), "%Y-%m-%d %H:%M:%S"),
+                               laufzeit=int(anleihe.get("laufzeit")))
+                temp_list.append(temp)
+            self._anleihen = temp_list
+
         return self._anleihen
 
     @anleihen.setter
