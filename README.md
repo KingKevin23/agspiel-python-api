@@ -29,4 +29,4 @@ beachtet werden. Hierzu zählt insbesondere §5, der im folgenden nochmals zitie
 > Erweiterung/Veränderung der Webseite ist verboten.
 
 Bei Fragen zur Legalität des persönlichen Projektes mit dieser API, sollte man sich im Zweifel an die Börsenaufsicht des
-AGS wenden ([Hier](https://www.ag-spiel.de/index.php?section=support))
+AGS wenden ([Hier](https://www.ag-spiel.de/index.php?section=support)).
