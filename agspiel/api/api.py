@@ -26,11 +26,6 @@ class Api:
         ceo = Ceo(name=ceo_data.get("name"), registrierung_datum=datetime.strptime(ceo_data.get("registrierung_datum"), "%Y-%m-%d %H:%M:%S"),
                   gesperrt=ceo_data.get("gesperrt")=="true", userprojekt=ceo_data.get("ist_userprojekt_account")=="true")
         aktien = data.get("aktien")
-        temp_list = []
-        for aktie in aktien:
-            temp = Aktie(wkn=int(aktie.get("wkn")), stueckzahl=int(aktie.get("stueckzahl")))
-            temp_list.append(temp)
-        aktien = temp_list
         anleihen = data.get("anleihen")
         kredite = data.get("kredite")
         zertifikate = data.get("zertifikate")

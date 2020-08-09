@@ -2,6 +2,7 @@
 
 from datetime import datetime
 from .ceo import Ceo
+from .aktie import Aktie
 
 class Ag:
     def __init__(self, wkn:int, name:str, gruendung:datetime, aktienanzahl:int, in_liquidation:bool, kurs:float,
@@ -197,6 +198,13 @@ class Ag:
 
     @property
     def aktien(self) -> list:
+        if type(self._aktien[0]) is not Aktie:
+            temp_list = []
+            for aktie in self._aktien:
+                temp = Aktie(wkn=int(aktie.get("wkn")), stueckzahl=int(aktie.get("stueckzahl")))
+                temp_list.append(temp)
+            self._aktien = temp_list
+
         return self._aktien
 
     @aktien.setter
