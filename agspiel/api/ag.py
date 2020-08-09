@@ -4,6 +4,7 @@ from datetime import datetime
 from .ceo import Ceo
 from .aktie import Aktie
 from .anleihe import Anleihe, Kredit
+from .zertifikat import Zertifikat
 
 class Ag:
     def __init__(self, wkn:int, name:str, gruendung:datetime, aktienanzahl:int, in_liquidation:bool, kurs:float,
@@ -251,6 +252,16 @@ class Ag:
 
     @property
     def zertifikate(self) -> list:
+        if type(self._zertifikate[0]) is not Zertifikat:
+            temp_list = []
+            zertifikat: dict
+            for zertifikat in self._zertifikate:
+                temp = Zertifikat(betrag=float(zertifikat.get("betrag")), typ=zertifikat.get("typ"),
+                                  hebel=float(zertifikat.get("hebel")), punkte=int(zertifikat.get("punkte")),
+                                  ablaufdatum=datetime.strptime(zertifikat.get("ablauf_datum"), "%Y-%m-%d %H:%M:%S"))
+                temp_list.append(temp)
+            self._zertifikate = temp_list
+
         return self._zertifikate
 
     @zertifikate.setter
