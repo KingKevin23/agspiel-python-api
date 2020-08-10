@@ -1,5 +1,7 @@
 #  Copyright (c) 2020 | KingKevin23 (@kingkevin023)
 
+import re
+from bs4 import BeautifulSoup
 from datetime import datetime
 from .ceo import Ceo
 from .aktie import Aktie
@@ -8,34 +10,34 @@ from .zertifikat import Zertifikat
 from .order import Order
 
 class Ag:
-    def __init__(self, api_data:dict, web_data:str):
+    def __init__(self, api_data:dict, web_data:bytes):
         self._api_data:dict = api_data
-        self._web_data:str = web_data
-        self._wkn:int = None
-        self._name:str = None
-        self._gruendung:datetime = None
-        self._aktienanzahl:int = None
-        self._in_liquidation:bool = None
-        self._kurs:float = None
-        self._brief:float = None
-        self._geld:float = None
-        self._brief_stueckzahl:int = None
-        self._geld_stueckzahl:int = None
-        self._depotwert:float = None
-        self._bargeld:float = None
-        self._highscore:int = None
-        self._highscore_groesse:int = None
-        self._highscore_wachstum:int = None
-        self._highscore_newcomer:int = None
-        self._agsx_punkte:int = None
-        self._in_agsx:bool = None
-        self._handelsaktivitaet:int = None
-        self._ceo:Ceo = None
-        self._aktien:list = None
-        self._anleihen:list = None
-        self._kredite:list = None
-        self._zertifikate:list = None
-        self._orders:list = None
+        self._web_data:BeautifulSoup = BeautifulSoup(web_data, "html-parser")
+        self._wkn = None
+        self._name = None
+        self._gruendung = None
+        self._aktienanzahl = None
+        self._in_liquidation = None
+        self._kurs = None
+        self._brief = None
+        self._geld = None
+        self._brief_stueckzahl = None
+        self._geld_stueckzahl = None
+        self._depotwert = None
+        self._bargeld = None
+        self._highscore = None
+        self._highscore_groesse = None
+        self._highscore_wachstum = None
+        self._highscore_newcomer = None
+        self._agsx_punkte = None
+        self._in_agsx = None
+        self._handelsaktivitaet = None
+        self._ceo = None
+        self._aktien = None
+        self._anleihen = None
+        self._kredite = None
+        self._zertifikate = None
+        self._orders = None
 
     @property
     def wkn(self) -> int:

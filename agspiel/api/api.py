@@ -1,9 +1,9 @@
 #  Copyright (c) 2020 | KingKevin23 (@kingkevin023)
 
+import requests, json
 from .ag import Ag
 from .markt import Markt
 from datetime import datetime
-import urllib.request, json
 
 class Api:
     _api_url = "https://www.ag-spiel.de/api/get/data.php?version=5"
@@ -21,7 +21,8 @@ class Api:
         :return: Ein Objekt der Klasse Ag
         """
         data = self._get_data().get("ags").get(str(wkn))
-        return Ag(api_data=data, web_data="")
+        return Ag(api_data=data, web_data=requests.get("https://www.ag-spiel.de/index.php?section=profil&aktie={}".format(str(wkn)),
+                                                       cookies={"PHPSESSID":self._phpsessid}).content)
 
     def get_markt(self) -> Markt:
         data = self._get_data().get("allgemein")
@@ -42,12 +43,9 @@ class Api:
         :return: Ein Dictionary mit den API-Daten
         """
         if self._newest_data:
-            with urllib.request.urlopen(Api._api_url) as url:
-                return json.loads(url.read())
+            return json.loads(requests.get(Api._api_url).content)
         else:
             if self._data is None:
-                with urllib.request.urlopen(Api._api_url) as url:
-                    self._data = json.loads(url.read())
-                    return self._data
-            else:
-                return self._data
+                self._data = json.loads(requests.get(Api._api_url).content)
+
+            return self._data
