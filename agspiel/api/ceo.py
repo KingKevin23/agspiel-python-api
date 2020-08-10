@@ -3,8 +3,9 @@
 from datetime import datetime
 
 class Ceo:
-    def __init__(self, name:str, registrierung_datum:datetime, gesperrt:bool, userprojekt:bool):
+    def __init__(self, name:str, index:str, registrierung_datum:datetime, gesperrt:bool, userprojekt:bool):
         self.name:str = name
+        self.index:str = index
         self.registrierung_datum:datetime = registrierung_datum
         self.gesperrt:bool = gesperrt
         self.userprojekt:bool = userprojekt
@@ -16,6 +17,14 @@ class Ceo:
     @name.setter
     def name(self, value:str):
         self._name = value
+
+    @property
+    def index(self) -> str:
+        return self._index
+
+    @index.setter
+    def index(self, value: str):
+        self._index = value
 
     @property
     def registrierung_datum(self) -> datetime:
