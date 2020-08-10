@@ -11,10 +11,10 @@ from agspiel.api.order import Order
 
 class TestAg(TestCase):
     def setUp(self):
-        ceo = {"name":"KingKevin", "registrierung_datum":"2020-02-04 16:24:00", "gesperrt":"false", "ist_userprojekt_account":"false"}
+        ceo = {"name":"KingKevin23", "registrierung_datum":"2020-02-04 16:24:00", "gesperrt":"false", "ist_userprojekt_account":"false"}
         aktien = [{"wkn":"104531", "stueckzahl":"146"}, {"wkn":"105516", "stueckzahl":"23"}]
         anleihen = [{"betrag":"10000000", "zins":"0.32", "auszahlung_datum":"2020-08-14 15:01:33", "laufzeit":"5"}]
-        kredite = []
+        kredite = [{"betrag":"10000000", "zins":"0.32", "rueckzahlung_datum":"2020-08-14 15:01:33", "laufzeit":"5"}]
         zertifikate = [{"betrag":"234.43", "typ":"call", "hebel":"1.092", "punkte":"23443", "ablauf_datum":"2020-08-10 17:48:01"}]
         orders = [{"typ":"sell", "limit":"410", "stueckzahl":"303", "orderregel":"false", "systembank_order":"false", "datum":"2020-08-10 01:21:35"}]
         api_data = {"wkn":"175353", "name":"King Kompany", "gruendung":"2020-02-04 16:25:05", "aktienanzahl":"2000000",
@@ -23,7 +23,7 @@ class TestAg(TestCase):
                     "highscore_platz_groesse":"337", "highscore_platz_wachstum":"502", "highscore_platz_newcomer":"0",
                     "agsx_punkte":"1026", "in_agsx":"false", "handelsaktivitaet":"42", "ceo":ceo, "aktien":aktien,
                     "anleihen":anleihen, "kredite":kredite, "zertifikate":zertifikate, "orders":orders}
-        self.ag = Ag(api_data=api_data)
+        self.ag = Ag(api_data=api_data, web_data="")
 
     def test_wkn(self):
         self.assertEqual(self.ag.wkn, 175353)
@@ -139,6 +139,14 @@ class TestAg(TestCase):
     def test_kredite(self):
         for i in self.ag.kredite:
             self.assertIsInstance(i, Kredit)
+        self.assertEqual(self.ag.kredite[0].betrag, 10000000)
+        self.assertIsInstance(self.ag.kredite[0].betrag, int)
+        self.assertEqual(self.ag.kredite[0].zins, 0.32)
+        self.assertIsInstance(self.ag.kredite[0].zins, float)
+        self.assertEqual(self.ag.kredite[0].rueckzahlung_datum, datetime(year=2020, month=8, day=14, hour=15, minute=1, second=33))
+        self.assertIsInstance(self.ag.kredite[0].rueckzahlung_datum, datetime)
+        self.assertEqual(self.ag.kredite[0].laufzeit, 5)
+        self.assertIsInstance(self.ag.kredite[0].laufzeit, int)
 
     def test_zertifikate(self):
         for i in self.ag.zertifikate:
@@ -151,8 +159,8 @@ class TestAg(TestCase):
         self.assertIsInstance(self.ag.zertifikate[0].hebel, float)
         self.assertEqual(self.ag.zertifikate[0].punkte, 23443)
         self.assertIsInstance(self.ag.zertifikate[0].punkte, int)
-        self.assertEqual(self.ag.zertifikate[0].ablauf_datum, datetime(year=2020, month=8, day=10, hour=17, minute=48, second=1))
-        self.assertIsInstance(self.ag.zertifikate[0].ablauf_datum, datetime)
+        self.assertEqual(self.ag.zertifikate[0].ablaufdatum, datetime(year=2020, month=8, day=10, hour=17, minute=48, second=1))
+        self.assertIsInstance(self.ag.zertifikate[0].ablaufdatum, datetime)
 
     def test_orders(self):
         for i in self.ag.orders:
