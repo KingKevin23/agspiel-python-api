@@ -1,7 +1,6 @@
 #  Copyright (c) 2020 | KingKevin23 (@kingkevin023)
 
 from .ag import Ag
-from .ceo import Ceo
 from .markt import Markt
 from datetime import datetime
 import urllib.request, json
@@ -22,23 +21,7 @@ class Api:
         :return: Ein Objekt der Klasse Ag
         """
         data = self._get_data().get("ags").get(str(wkn))
-        ceo_data = data.get("ceo")
-        ceo = Ceo(name=ceo_data.get("name"), registrierung_datum=datetime.strptime(ceo_data.get("registrierung_datum"), "%Y-%m-%d %H:%M:%S"),
-                  gesperrt=ceo_data.get("gesperrt")=="true", userprojekt=ceo_data.get("ist_userprojekt_account")=="true")
-        aktien = data.get("aktien")
-        anleihen = data.get("anleihen")
-        kredite = data.get("kredite")
-        zertifikate = data.get("zertifikate")
-        orders = data.get("orders")
-        return Ag(wkn=int(data.get("wkn")), name=data.get("name"), gruendung=datetime.strptime(data.get("gruendung"), "%Y-%m-%d %H:%M:%S"),
-                  aktienanzahl=int(data.get("aktienanzahl")), in_liquidation=data.get("in_liquidation")=="true",
-                  kurs=float(data.get("kurs")), brief=float(data.get("brief")), geld=float(data.get("geld")),
-                  brief_stueckzahl=int(data.get("brief_stueckzahl")), geld_stueckzahl=int(data.get("geld_stueckzahl")),
-                  depotwert=float(data.get("depotwert")), bargeld=float(data.get("bargeld")), highscore=int(data.get("highscore_platz")),
-                  highscore_groesse=int(data.get("highscore_platz_groesse")), highscore_newcomer=int(data.get("highscore_platz_newcomer")),
-                  highscore_wachstum=int(data.get("highscore_platz_wachstum")), agsx_punkte=int(data.get("agsx_punkte")),
-                  in_agsx=data.get("in_agsx")=="true", handelsaktivitaet=int(data.get("handelsaktivitaet")), ceo=ceo,
-                  aktien=aktien, anleihen=anleihen, kredite=kredite, zertifikate=zertifikate, orders=orders)
+        return Ag(api_data=data, web_data="")
 
     def get_markt(self) -> Markt:
         data = self._get_data().get("allgemein")
