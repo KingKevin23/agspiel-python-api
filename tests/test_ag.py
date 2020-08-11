@@ -2,12 +2,13 @@
 
 from unittest import TestCase
 from datetime import datetime
-from agspiel.api.ag import Ag
 from agspiel.api.ceo import Ceo
 from agspiel.api.aktie import Aktie
 from agspiel.api.anleihe import Anleihe, Kredit
 from agspiel.api.zertifikat import Zertifikat
 from agspiel.api.order import Order
+from agspiel.api.api import Api
+from bs4 import BeautifulSoup
 
 class TestAg(TestCase):
     def setUp(self):
@@ -24,9 +25,9 @@ class TestAg(TestCase):
                     "agsx_punkte":"1026", "in_agsx":"false", "handelsaktivitaet":"42", "ceo":ceo, "aktien":aktien,
                     "anleihen":anleihen, "kredite":kredite, "zertifikate":zertifikate, "orders":orders}
         f = open("testpage.txt", "rb")
-        web_data = f.read()
+        web_data = BeautifulSoup(f.read(), "html.parser")
         f.close()
-        self.ag = Ag(api_data=api_data, web_data=web_data)
+        self.ag = Api._create_ag(api_data, web_data)
 
     def test_wkn(self):
         self.assertEqual(self.ag.wkn, 175353)
