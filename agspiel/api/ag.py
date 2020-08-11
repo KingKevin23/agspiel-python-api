@@ -12,7 +12,7 @@ from .order import Order
 class Ag:
     def __init__(self, api_data:dict, web_data:bytes):
         self._api_data:dict = api_data
-        self._web_data:BeautifulSoup = BeautifulSoup(web_data, "html-parser")
+        self._web_data:BeautifulSoup = BeautifulSoup(web_data, "html.parser")
         self._wkn = None
         self._name = None
         self._gruendung = None
@@ -176,7 +176,9 @@ class Ag:
     def ceo(self) -> Ceo:
         if self._ceo is None:
             ceo_data:dict = self._api_data.get("ceo")
-            self._ceo = Ceo(name=ceo_data.get("name"),
+            index = self._web_data.find("img", attrs={"width":"150"}).attrs.get("title")
+            index = re.compile("Spielerindex:.(.*)").findall(index)[0]
+            self._ceo = Ceo(name=ceo_data.get("name"), index=index,
                             registrierung_datum=datetime.strptime(ceo_data.get("registrierung_datum"), "%Y-%m-%d %H:%M:%S"),
                             gesperrt=ceo_data.get("gesperrt")=="true", userprojekt=ceo_data.get("ist_userprojekt_account")=="true")
 
