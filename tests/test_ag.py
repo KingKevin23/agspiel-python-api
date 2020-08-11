@@ -68,6 +68,22 @@ class TestAg(TestCase):
         self.assertEqual(self.ag.geld_stueckzahl, 0)
         self.assertIsInstance(self.ag.geld_stueckzahl, int)
 
+    def test_sw_aktie(self):
+        self.assertEqual(self.ag.sw_aktie, 52.30)
+        self.assertIsInstance(self.ag.sw_aktie, float)
+
+    def test_bbw_aktie(self):
+        self.assertEqual(self.ag.bbw_aktie, 59.01)
+        self.assertIsInstance(self.ag.bbw_aktie, float)
+
+    def test_fp_aktie(self):
+        self.assertEqual(self.ag.fp_aktie, 56.14)
+        self.assertIsInstance(self.ag.fp_aktie, float)
+
+    def test_bw_aktie(self):
+        self.assertEqual(self.ag.bw_aktie, 83.95)
+        self.assertIsInstance(self.ag.bw_aktie, float)
+
     def test_depotwert(self):
         self.assertEqual(self.ag.depotwert, 162516884.99)
         self.assertIsInstance(self.ag.depotwert, float)
