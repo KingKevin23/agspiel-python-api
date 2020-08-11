@@ -23,6 +23,17 @@ class Ag:
         self._geld = None
         self._brief_stueckzahl = None
         self._geld_stueckzahl = None
+        self._sw_aktie = None
+        self._bbw_aktie = None
+        self._fp_aktie = None
+        self._bw_aktie = None
+        self._kurs_14d = None
+        #TODO: self._kgv = None
+        #TODO: self._spread = None
+        #TODO: self._alter = None
+        #TODO: self._tagesvolumen = None
+        #TODO: self._boersenwert = None
+        self._buchwert = None
         self._depotwert = None
         self._bargeld = None
         self._highscore = None
@@ -108,6 +119,56 @@ class Ag:
             self._geld_stueckzahl = int(self._api_data.get("geld_stueckzahl"))
 
         return self._geld_stueckzahl
+
+    @property
+    def sw_aktie(self) -> float:
+        if self._sw_aktie is None:
+            self._sw_aktie = self._web_data.find("div", attrs={"id":"sw"})
+            self._sw_aktie = re.compile("\d*[.]?\d*[,]\d{2}").findall(self._sw_aktie.text)[0]
+            self._sw_aktie = float(self._sw_aktie.replace(".", "").replace(",", "."))
+
+        return self._sw_aktie
+
+    @property
+    def bbw_aktie(self) -> float:
+        if self._bbw_aktie is None:
+            self._bbw_aktie = self._web_data.find("div", attrs={"id": "bbw"})
+            self._bbw_aktie = re.compile("\d*[.]?\d*[,]\d{2}").findall(self._bbw_aktie.text)[0]
+            self._bbw_aktie = float(self._bbw_aktie.replace(".", "").replace(",", "."))
+
+        return self._bbw_aktie
+
+    @property
+    def fp_aktie(self) -> float:
+        if self._fp_aktie is None:
+            self._fp_aktie = self._web_data.find("div", attrs={"id": "fp"})
+            self._fp_aktie = re.compile("\d*[.]?\d*[,]\d{2}").findall(self._fp_aktie.text)[0]
+            self._fp_aktie = float(self._fp_aktie.replace(".", "").replace(",", "."))
+
+        return self._fp_aktie
+
+    @property
+    def bw_aktie(self) -> float:
+        if self._bw_aktie is None:
+            self._bw_aktie = round(self.buchwert / self.aktienanzahl, 2)
+
+        return self._bw_aktie
+
+    @property
+    def kurs_14d(self) -> float:
+        if self._kurs_14d is None:
+            self._kurs_14d = self._web_data.find("div", attrs={"id": "kurs14d"})
+            self._kurs_14d = re.compile("[-]?\d*[.]?\d*[,]\d*").findall(self._kurs_14d.text)[0]
+            self._kurs_14d = float(self._kurs_14d.replace(".", "").replace(",", "."))
+
+        return self._kurs_14d
+
+    @property
+    def buchwert(self) -> float:
+        if self._buchwert is None:
+            self._buchwert = self.depotwert + self.bargeld
+
+        return self._buchwert
 
     @property
     def depotwert(self) -> float:
