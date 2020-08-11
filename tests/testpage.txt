@@ -1,0 +1,1861 @@
+
+
+
+<!DOCTYPE html> 
+<html>
+<head>
+<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1' />
+<link rel='alternate' media='only screen and (max-width: 1024px)'  href='https://www.ag-spiel.de/app' >
+<title>King Kompany auf AG-Spiel.de</title>
+<meta name='keywords' content='Börsen, Aktien, Börsenspiel, Browsergame, Aktiengesellschaft, Handeln, Traden, AG'>
+<meta name='description' content='King Kompany von KingKevin23 ist eine virtuelle Aktiengesellschaft auf AG-Spiel.de' />
+<meta property="fb:page_id" content="153292014704816" />
+<meta property="og:image" content="https://www.ag-spiel.de/uploads/83275.jpg" />
+<link rel="image_src" href="/images/symbol.jpg" />
+<link rel="apple-touch-icon" href="apple-touch-icon-precomposed.png"/><link rel="stylesheet" href="min/?f=css/normalize.css,fa/css/font-awesome.min.css,css/icons.css,css/flat.css,css/forum.css,css/share.css,css/jquery.dataTables_neu.css,css/lightbox.css,css/jquery-ui.css&v=5" type="text/css"  />
+
+<script>
+var app=0;
+
+function check(url,msg) {
+Check = confirm(msg);
+if(Check == true) location.href=url;
+}
+</script>
+<script type="text/javascript">
+
+
+
+
+var Serverzeit = new Date(2020, 8, 11, 13, 48, 02);
+
+function UhrzeitAnzeigen()
+{
+    
+
+    var Stunden = Serverzeit.getHours();
+    var Minuten = Serverzeit.getMinutes();
+    var Sekunden = Serverzeit.getSeconds();
+    Serverzeit.setSeconds(Sekunden+1);
+
+    if(Stunden <= 9)
+    {
+        Stunden = "0" + Stunden;
+    }
+
+    if(Minuten <= 9)
+    {
+        Minuten = "0" + Minuten;
+    }
+
+    if(Sekunden <= 9)
+    {
+        Sekunden = "0" + Sekunden;
+    }
+
+    Uhrzeitanzeige = Stunden + ":" + Minuten + ":" + Sekunden;
+
+    
+    document.getElementById("uhr").innerHTML = Uhrzeitanzeige;
+    
+    
+
+    setTimeout("UhrzeitAnzeigen()", 1000);
+}
+
+
+</script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script><script>    google.charts.load('current', {packages: ['corechart'], 'language': 'de'});</script><script   type="text/javascript" src="min/?f=js/jquery-1.8.3.js,js/jquery-ui-1.9.2.js,js/jquery.dataTables_neu.min.js,js/dataTablesPlugins.js,js/jquery.cookie.js,js/script.js,js/main.js,js/share.js,js/forum.js,js/jquery.tablesorter.min.js,js/sorter.js&v=8"></script>
+<link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
+
+</head>
+
+<body onLoad="UhrzeitAnzeigen('jetzt');">
+<div id="fb-root"></div>
+
+
+</div><script>var lastTimestampChannel1 = 1597146482;var lastTimestampChannel2 = 1597141735;var lastTimestampChannel3 = 0;var lastTimestampChannel4 = 0;</script><div id="bg_head"></div>
+<div id="bg_menu"></div>
+<div id="main">
+    
+    <div id="multiwarning" style="display:none; padding: 5px; z-index: 2; font-weight:bold; position:absolute; left: 100px; top:20px; border:2px solid red; background-color: white;">
+        Achtung!
+        <br>Es gibt mehrere Spieler mit der gleichen IP wie du (gleicher PC / gleiches Netzwerk).
+        <br>Bitte denkt daran, dass nach §2 des <a href='index.php?section=regeln'>Regelwerks</a> kein Handelskontakt zwischen solchen Spielern bestehen darf! Sollte ein Account genutzt werden, um einem anderen Account
+        einen Vorteil zu verschaffen, werden beide Accounts unwiderruflich durch die Spielleitung gesperrt.
+        <br><br>Du kannst diese <a href="index.php?action=nowarning">Warnung ausblenden</a> <span style="font-size:80%"></span>
+    </div>    <div id="top">
+        <div id="banner" onClick="location.href = '/index.php?section=start'">
+        </div>
+        <div id="chat">
+            <script>
+    var selectedChannel = 1;
+    var getChatInverval = window.setInterval("getChat(selectedChannel,0)",7000);
+        
+    
+    $(window).blur(function() {
+        stopChatRefresh();
+    });
+    
+    function stopChatRefresh(){
+        $("#ajaxbox").addClass("inactive");
+        clearInterval(getChatInverval);
+    }
+    
+    function startChatRefresh(){
+        $("#ajaxbox").removeClass("inactive");
+        setTimeout(getChat(selectedChannel,0), 500);
+        getChatInverval = window.setInterval("getChat(selectedChannel,0)",7000);
+    }
+
+    $(window).focus(function() {
+        startChatRefresh();
+    });
+    
+    $(document).ready(function(){
+        getChat(selectedChannel);
+        $("#channel div").click(function(){
+            selectedChannel = $(this).attr("channel");
+            $(this).removeClass("newMessages");
+            $("#channel div").removeClass("selected");
+            $(this).addClass("selected");
+            $("#channel_id").val(selectedChannel);
+            getChat(selectedChannel,0);
+        });
+    });
+    function getChat(selectedChannel,f){
+        $(".chatform input").show();
+        if(selectedChannel==1){
+            t = "a2080a423efe8e8d3c52e3ca67c537159334cca6";
+        }
+        if(selectedChannel==2){
+            $(".chatform input").hide();
+            t = "8954b61ef09c9ad5b72d829815cc87e3e247de62";
+        }
+        if(selectedChannel==3){
+            t = "38e031f3513a226b620c040d86f46d70ca33e672";
+        }
+        if(selectedChannel==4){
+            t = "9f1289132bac2a6ed4d47e945304cf8572717785";
+        }
+        $.getJSON( "https://www.ag-spiel.de/api/get/chat.php?c="+selectedChannel+"&i=83275&app=0&ts=1597146482&g=2349&a=5&s=1&t="+t+"&f="+f, function( data ) {
+            $("#ajaxbox").html(""+data["html"]);
+            if(selectedChannel==1){lastTimestampChannel1 = data["timestamp"];}
+            if(selectedChannel==2){lastTimestampChannel2 = data["timestamp"];}
+            if(selectedChannel==3){lastTimestampChannel3 = data["timestamp"];}
+            if(selectedChannel==4){lastTimestampChannel3 = data["timestamp"];}
+        });
+    }   
+    function refresh(){getChat(selectedChannel,1);}
+    </script>
+        <div name='ajaxbox' id='ajaxbox' class='shoutbox'></div><form class='chatform'>
+    <input type='hidden' value='d17e3155534f7ba5748acb6fed327a95e92c9741' name='token'>
+
+<input id='shoutinput' autocomplete='off'   name='text' size='70' maxlength='300' type='text' tabindex="0">
+<input type='button' id='chat_submit' value='schreiben'>
+<input type='hidden' name='channel_id' id='channel_id' value='1'>
+<div id='channel'><div channel='3' id='channel3'>Index</div><div channel='2' id='channel2'>Handelsparkett</div><div channel='4' id='channel4'>Off-Topic</div><div channel='1' id='channel1' class='selected'>AG-Spiel</div>
+</div>
+</form>
+        </div>
+        <script type="text/javascript">
+    var $visible = 0;
+    function whosonline() {
+        if ($visible == 0) {
+            $visible = 1;
+            document.getElementById('onlinelist').className = 'onlinelist';
+        } else {
+            $visible = 0;
+            document.getElementById('onlinelist').className = 'onlinelist invis';
+        }
+    }
+
+
+</script>
+
+<div id='onlinelistbutton'>Wer ist online?</div>
+<div class="onlinelist" id='onlinelist' style="width: 600px;">
+<div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=84144'>Aktien Schredder AG</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=81152'>Austrian Broker AG</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=83642'>Axe Capital</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=84202'>Blutbank</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=69720'>butterfly</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=82587'>Dubios-24.AG</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=82212'>Helfer in der Not</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=55278'>Herb Solutions AG</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=84022'>KE-IT</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=83275'>King Kompany</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=4526'>Landmaschinen S-H AG</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=81813'>Lug & Trug AG</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=83365'>Makrotex Technologie</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=82618'>Money Camp</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=82255'>newBee Invest 3.0</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=80368'>Nuggetnauton</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=83409'>Nuub Corp AG</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=83582'>PBerg AG</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=73782'>Rauch&Sauf Logistik</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=58074'>Reifenschleuder AG</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=79512'>Senura Investment</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=60543'>Seuchen AG </a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=83076'>SHOCKWAVE AG</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=69343'>SOKOLOV</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=70836'>Statistikamt</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=84199'>Temple of Love</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=83391'>Time Bandit</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=69731'>Tom Investment</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=83682'>Trademark Exchange</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=60571'>trading-boss.de</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=31642'>Trümmer AG</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=55259'>Vaulty</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=83480'>WernerInvest </a></div></div>    </div>
+    <div id="tickerbox">
+        
+
+
+<script type="text/javascript">
+<!--
+
+tText="                <b>Latest News:</b>             <a href='index.php?section=zeitung'>&bdquo;<i>Bilanz von July 2020</i>&rdquo;</a>             <a href='index.php?section=zeitung'>&bdquo;<i>Umfrage: OR-Order Modifikator</i>&rdquo;</a>             <a href='index.php?section=zeitung'>&bdquo;<i>Nordlicht AG plant Kapitalerhöhung</i>&rdquo;</a>       <b>Latest Trades:</b>      7 Stk. <a href='index.php?section=profil&aktie=165854'>SPIDDY GROUP</a> zu 4731.88&euro; (<span class='red'>-48.2%/ -4403.63&euro;</span>)     4 Stk. <a href='index.php?section=profil&aktie=175252'>Saftladen AG</a> zu 230.00&euro; (<span class='red'>-34.27%/ -119.89&euro;</span>)     22 Stk. <a href='index.php?section=profil&aktie=169328'>Schwie Investments</a> zu 9918.00&euro; (<span class='red'>-17.34%/ -2081.04&euro;</span>)     8 Stk. <a href='index.php?section=profil&aktie=169328'>Schwie Investments</a> zu 9918.00&euro; (<span class='red'>-17.34%/ -2081.04&euro;</span>)  ";
+
+tInterval=100;
+
+tNr=4;
+
+tStop=true;
+
+if(document.getElementsByTagName('title')&&document.getElementsByTagName('title')[0].innerHTML)
+    {
+    var tGo;
+    tStop=tStop?' onmouseover="clearInterval(tGo)"onmouseout="tGo=setInterval(\'ticken()\',tInterval);"':'';
+    tCnt=0;
+    tHtml='<span>'+tText+'</span>';
+    document.write('<pre id="ticker"style="overflow:hidden;"'+tStop+'>');
+    for(i=0;i<tNr;++i){document.write(tHtml);}
+    document.write('</pre>');
+
+    function ticken()
+        {
+        tObj=document.getElementById('ticker');
+        tTxt=String(tObj.firstChild.innerHTML);
+        isTag=false;isTxt=false;
+        for(i=0;i<tTxt.length;++i)
+            {
+            if(tTxt.charAt(i)=='>')
+                {
+                isTag=false;continue;
+                }
+            if(tTxt.charAt(i)=='<')
+                {
+                isTag=true;continue;
+                }
+            if(!isTag)
+                {
+                tObj.firstChild.innerHTML=tTxt.substring(0,i)+tTxt.substring(i+1,tTxt.length);
+                isTxt=true;break;
+                }
+            }
+        if(!isTxt)
+            {
+            tObj.removeChild(tObj.firstChild);
+            tObj.innerHTML+=tHtml;
+            }
+        }
+    tGo=setInterval("ticken()",tInterval);
+    }
+// -->
+</script>
+
+
+     </div>
+    <div id="menu">
+        
+
+
+<div id="nav">
+    <ul>
+        <li><a class='menu top' href='index.php?section=profil&aktie=175353' >Meine AG<span class='newMessageCounter'></span></a>
+            <ul>
+                <li class='hide'><a class='menu' href='index.php?section=profil&aktie=175353' >Meine AG<span class='newMessageCounter'></span></a></li>
+                <li><a class='menu' href='index.php?section=nachrichten'>Nachrichten<span class='newMessageCounter'></span></a></li>
+                <li><a class='menu' href='index.php?section=start'>Überblick</a></li>
+                <li><a class='menu' href='index.php?section=agdepot'>Depot</a></li>
+                <li><a class='menu' href='index.php?section=depotanalyse&aktie=175353'>Depotanalyse</a></li>
+                <li><a class='menu' href='index.php?section=depotstruktur'>Depotstruktur</a></li>
+                <li><a class='menu' href='index.php?section=bilanzen&wkn=175353'>Bilanzen</a></li>
+                <li><a class='menu' href='index.php?section=showgroup&id=2349'>Index</a></li><li><a class='menu' href='index.php?section=forum&forum=2349' >Indexforum</a></li>
+                <li><a class='menu' href='index.php?section=trades&aktie=175353'>Trades</a></li>
+                <li><a class='menu' href='index.php?section=konto&aktie=175353'>Kontoauszug</a></li>
+                
+                <li><a class='menu' href='index.php?section=ag'>AG-Einstellungen</a></li>
+                <li><a class='menu' href='index.php?section=export'>Datenexport</a></li>
+                
+            </ul>
+        </li>
+        <li><a class='menu top' href='index.php?section=agorderbuch'>Handeln</a>
+            <ul>
+                <li><a class='menu' href='index.php?section=agorderbuch'>Aktien kaufen/verkaufen</a></li>
+                <li><a class='menu' href='index.php?section=anleihen'>Anleihen zeichnen</a></li>
+                <li><a class='menu' href='index.php?section=kredite'>Kredite aufnehmen</a></li>
+                <li><a class='menu' href='index.php?section=agsx'>Zertifikate zeichnen</a></li>
+                <li><a class='menu' href='index.php?section=orderzentrale'>Speedtrading</a></li>
+                <li><a class='menu' href='index.php?section=orderregeln'>Orderregeln</a></li>
+            </ul>
+        </li>
+        
+        <li><a class='menu top' href='index.php?section=live'>Börse</a>
+            <ul>
+                <li><a class='menu' href='index.php?section=live'>Live</a></li>
+                <li><a class='menu' href='index.php?section=news'>Newsticker</a></li>
+                <li><a class='menu' href='index.php?section=suche'>AG-Suche</a></li>
+                <li><a class='menu' href='index.php?section=beobachtungsliste'>Beobachtungsliste</a></li>
+                <li><a class='menu' href='index.php?section=neue'>Neue AGs</a></li>
+                <li><a class='menu' href='index.php?section=dertag'>Der Tag</a></li>
+                <li><a class='menu' href='index.php?section=statistiken'>Statistiken</a></li>
+                <li><a class='menu' href='index.php?section=agsx2'>AGSX</a></li>
+                <li><a class='menu' href='index.php?section=liquidationen'>Liquidationen & Strafen</a></li>
+                <li><a class='menu' href='index.php?section=zufallsprofil'>Zufallsprofil</a></li>
+                <li><a class='menu' href='index.php?section=charts'>Chartvergleich</a></li>
+                <li><a class='menu' href='index.php?section=agliste'>AG-Liste</a></li>
+                <li><a class='menu' href='index.php?section=agwall'>AG-Wand</a></li>
+            </ul>
+        </li>
+
+        <li><a class='menu top' href='index.php?section=zeitung' >Community</a>
+           <ul>
+                <li><a class='menu' href='index.php?section=zeitung'>Die Zeitung</a></li>
+                <li><a class='menu' href='index.php?section=forum&forum=0' >Forum</a></li>
+                <li><a class='menu' href='index.php?section=chat'>Chat</a></li>
+                <li><a class='menu' href='index.php?section=userprojekte'>Userprojekte</a></li>
+                <li><a class='menu' target='_blank' href='https://www.statistik-amt.de/'>Statistikamt</a></li>
+                <li><a class='menu' target='_blank' href='http://www.youtube.com/channel/UCyhMysheJi0Rx2m5TkJv4Ow/videos'>Let's Play Videos #1</a></li>
+                <li><a class='menu' target='_blank' href='https://www.youtube.com/playlist?list=PL0tcRpzPFN0lpfelfGtvNkEGvgomd94WG'>Let's Play Videos #2</a></li>
+            </ul>
+        </li>
+        
+        <li><a class='menu top' target='_blank' href='wiki/'>Hilfe</a>
+            <ul>
+                <li><a class='menu' href='wiki/'  target='_blank'>Wiki</a></li>
+                <li><a class='menu' href='wiki/index.php?title=Der_Anf%C3%A4ngerguide'  target='_blank'>Anfängerguide</a></li>
+                <li><a class='menu' href='index.php?section=tutorial'>Tutorial</a></li>
+                <li><a class='menu' href='index.php?section=support'>Support-Ticket</a></li>
+                <li><a class='menu' href='index.php?section=tutor'>Tutoren</a></li>
+                <li><a class='menu' href='index.php?section=boersenaufsicht'>Börsenaufsicht</a></li>
+                <li><a class='menu' href='index.php?section=regeln'>Regelwerk</a></li>
+            </ul>
+        </li>
+        
+            
+        <li><a class='menu top' href='index.php?section=einstellungen'>Weiteres</a>
+            <ul>
+                <li><a class='menu' href='index.php?section=einstellungen'>Einstellungen</a></li>
+                <li style='display:none'><a class='menu' href='index.php?section=adventskalender'>Adventskalender</a></li>
+                <li><a class='menu' href='index.php?section=highscore'>Highscores</a></li>
+                <li><a class='menu' href='index.php?section=premium'>Premium</a></li>
+                <li><a class='menu' href='index.php?section=sponsoren'>Sponsoren</a></li>
+                <li><a class='menu' href='index.php?section=apps'>Apps</a></li>
+                <li><a class='menu' href='index.php?section=fanshop'>Fanshop</a></li>
+                <li><a class='menu' href='index.php?section=logout'>Ausloggen</a></li>
+            </ul>
+        </li>
+        
+        <li><a class='menu top' style='color:#42C242;'  href='index.php?section=bonus'>Bonus</a></li>
+        
+
+            
+
+        
+
+
+
+
+
+
+
+
+
+ </ul></div>       </div>
+    <div id='contentside'>
+        <div id="content">
+            
+
+
+<div style="display:none" class='breakingnews'>
+    <div class='breakingnews-content'>
+        <div class='breakingnews-headlinebg'></div>
+        <div class='breakingnews-headline'>
+            <img src='https://www.ag-spiel.de/images/breakingnews_small.png'>
+        </div>
+        <div class='breakingnews-anchor'>
+            <img src='https://www.ag-spiel.de/images/anchor_small.png'>
+        </div>
+        <div class='breakingnews-title'></div>
+        <div class='breakingnews-text'></div>
+        <div class='breakingnews-link'></div>
+        <div class='breakingnews-close'>X</div>
+    </div>
+</div><style type="text/css">
+    #hauptinformationen{
+        position: relative;
+    }
+    #person,#kurs,heading{
+        display: block;
+    }
+    #heading{
+        width: 100%;
+        text-align: center;
+        font-weight: bold;
+        border-bottom: 1px solid #ddd;
+        font-size: 130%;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    #person{
+        float: left;
+        margin-left: 35px;
+    }
+    #kurs{
+        width: 450px;
+        min-height: 270px;
+        margin-left: 30px;
+        margin-bottom: 10px;
+        float: left;
+        -webkit-box-shadow:  0px 0px 1px 1px rgba(0, 0, 0, 0.25);
+        box-shadow:  0px 0px 1px 1px rgba(0, 0, 0, 0.25);
+        background: rgb(255,255,255);
+        background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(239,239,239,1) 46%);
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(46%,rgba(239,239,239,1)));
+        background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(239,239,239,1) 46%);
+        background: -o-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(239,239,239,1) 46%);
+        background: -ms-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(239,239,239,1) 46%);
+        background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%,rgba(239,239,239,1) 46%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#efefef',GradientType=0 );
+
+    }
+    #kursboxen{
+        position: relative;
+        display: block;
+    }
+    #offeneorders,#imdepot,#geldkurs,#handelskurs,#briefkurs,#bbw,#sw,#fp,#agsxp,#bwproaktie,#kurs14d,#tagesvolumen,#orderinfo,#spread,#kgv,#bwgesamt,#agalter,#handelsaktivität,#börsenwert{
+        display: block;
+        text-align: center;
+        float: left;
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
+    #offeneorders,#imdepot{
+        width: 100%;
+    }
+    #geldkurs{
+        width: 30%;
+        min-height: 90px;
+    }
+    #handelskurs{
+        width: 39%;
+    }
+    #briefkurs{
+        width: 30%;
+        min-height: 90px;
+    }
+    #sw{
+        width: 25%;
+    }
+    #fp{
+        width: 25%;
+    }
+    #bbw{
+        width: 25%;
+    }
+    #tagesvolumen{
+        width: 25%;
+    }
+    #agsxp{
+        width: 25%;
+    }
+    #kgv{
+        width: 25%;
+    }
+    #kurs14d{
+        width: 25%;
+    }
+    #bwproaktie{
+        width: 25%;
+    }
+    #spread{
+        width: 25%;
+    }
+    #bwgesamt,#agalter,#handelsaktivität,#börsenwert{
+        width: 25%;
+    }
+    #orderinfo{
+        width: 100%;
+    }
+</style>
+
+   
+	
+                  <h1>King Kompany (WKN 175353) <img style='vertical-align:text-top; cursor: help;' title='Premium-Mitglied mit mind. 100 Tagen Restlaufzeit' src='images/premium_gold.png'> <a href='index.php?section=sponsoren'><img style='vertical-align:text-top;' title='Kein Sponsor' src='ico/supporter_none.png'></a> <a href='https://www.ag-spiel.de/wiki/index.php?title=Livetrading' target='_BLANK'><img style='vertical-align:text-top;' title='Livetrading (Orders für diese AG werden sofort ausgeführt)' src='images/livetrading.png'></a> <img style='vertical-align:text-top; cursor: help;' title='Ein halber Stern symbolisiert ein halbes Jahr Mitgliedschaft im Spiel' src='ico/halberstern.png'>   <a style='float: right' title='AG/Regelverstoß Melden' href='index.php?section=support&meldung=175353'><img src='ico/error.png'></a>  <a style='float: right' href='index.php?section=agorderbuch&aktie=175353&limit=338.68' title='Order für diese AG erstellen'><img src='ico/document_a4.png'></a>
+    <a style='float: right' href='index.php?section=orderzentrale&wkn=175353' title='Schnelle Order für diese AG erstellen'><img src='ico/document_a4_add.png'></a> <a style='float: right' title='Nachricht verfassen' href='index.php?section=nachrichten_erstellen&name=KingKevin23'><img src='ico/mail_light.png'></a> <a style='float: right' title='Zu Favoriten hinzufügen' href='index.php?section=favoriten&aktie=175353&action=add'><img src='ico/star_full.png'></a> <a style='float: right' href='index.php?section=beobachtungsliste&action=add&id=175353'><img title='auf die Beobachtungsliste setzen' src='ico/eye.png'></a> <a style='float: right' title='Premium schenken' href='index.php?section=premium&u=83275'><img src='ico/heart.png'></a> <a class='profil-depotcomment' style='float: right' href='index.php?section=depotcomment&id=175353'><img src='ico/comment_alert.png'><div class='nodisplay profil-depotcomment'>Ordner: Allgemein<br>Deine Notiz:<br>#132584<br><i>01.05.2020</i></div></a> </h1>
+                  
+                  
+                
+
+        
+        
+        <div class = "textbox">
+    <h1 class='clicked'>Hauptinformationen</h1>
+    <div class='box '>
+        <div id='hauptinformationen'>
+            <div id='logospacer'>
+            <div id='logocontainer'><img width='450px' height='120px' src='uploads/83275.jpg?t=1594897'></div>
+            </div>
+                <div id='ribbon'><a href='index.php?section=auszeichnungen'><img width='80px' height='116px' title='Bronze I Highscore-Auszeichnung' src='https://www.ag-spiel.de/images/ribbon_bronze_i.png'></a></div>
+                <div id='highscore'><a href='index.php?section=auszeichnungen'>Highscore</a><br><span>515. Platz</span><br></div>
+            <div id='kurs'>
+            
+                <div id='heading'>Datenblatt WKN 175353</div>
+                <div id='kursboxen'>
+                    <div id='geldkurs'>
+                        <b>Geld</b><br>
+                        <span style='font-size:130%' class='green'>n.a.</span>&euro;<br>n.a. Stk.<br> 
+                    </div>
+                    <div id='handelskurs'>
+                        <b>Kurs</b><br>
+                        <span style='font-size:130%' >338,68&euro;</span>(B)<br><span class='small'>letzter Handelskurs: 423.35 &euro;</span><br>1 Stk.<br>08.08.2020 um 09:43:16 
+                    </div>
+                    <div id='briefkurs'>
+                          <b>Brief</b><br>
+                          <span style='font-size:130%' class='red'>338,68</span>&euro;<br>119.473 Stk.<br><a href='index.php?section=agorderbuch&aktie=175353&limit=338.68&anzahl=119473&privat=1'>kaufen</a> 
+                    </div>
+                    <div id='sw'>
+                        <b>SW/Aktie</b><a href = 'wiki/index.php?title=Substanzwert_(SW)' target = '_blank'>(?)</a><br > 52,30 &euro;
+                    </div>
+                    <div id='bbw'>
+                       <b>BBW</b><a href = 'wiki/index.php?title=Buchwert_(BW)#BBW' target = '_blank'>(?)</a><br>59,01 &euro;
+                    </div>
+                     <div id='fp'>
+                        <b>FP/Aktie</b><a href = 'wiki/index.php?title=Fairer_Preis_(FP)' target = '_blank'>(?)</a><br > 56,14 &euro;
+                    </div>
+                     <div id='bwproaktie'>
+                        <b>BW/Aktie</b><a href = 'https://www.ag-spiel.de/wiki/index.php?title=Buchwert_(BW)' target = '_blank'>(?)</a><br > 88,52 &euro;
+        
+                    </div>
+                   
+                   
+                     <div id='kurs14d'><b>Kurs 14d</b><br>
+                        38,24%
+                    </div>
+                     <div id='kgv'>
+                        <b>KGV</b><a href = 'wiki/index.php?title=Kurs-Gewinn-Verhältnis_(KGV)' target = '_blank'>(?)</a><br>115,59
+                    </div>
+                    <div id='spread'><b>Spread</b><a href='wiki/index.php?title=S' target='_blank'>(?)</a><br>
+                        n.a.%
+                    </div>
+                          <div id='agalter'>
+                        <b>Alter</b><br>189 Tage
+                    </div>
+                               
+                    <div id='tagesvolumen'>
+                        <b>Tagesvolumen</b></br>
+                        0,00&euro;
+                    </div>
+                   
+                    <div id='börsenwert'>
+                        <b>Börsenwert</b><a href = 'wiki/index.php?title=Fachbegriffe_und_Abkürzungen#B' target = '_blank'>(?)</a><br > 677,36 Mio.  &euro;
+        
+                    </div>
+                 <div id='bwgesamt'>
+                        <b>Buchwert</b><a href = 'wiki/index.php?title=Buchwert_(BW)' target = '_blank'>(?)</a><br > 177,04 Mio.  &euro;
+        
+                    </div>
+                    <div id='handelsaktivität'>
+                        <b>Aktivität</b><a href = 'index.php?section=highscore_aktivitaet'>(?)</a><br>44%
+                    </div>
+                    
+            
+                    
+                        
+                </div>
+                
+
+            </div>
+            <div id='person'>
+                
+                CEO: </b></td><td><span class='big'>KingKevin23</span> 
+                <br>Jetzt online!
+                <br>
+                <div class='member_of'>
+                    <br><a href='index.php?section=highscore_indizes'><img  width='28px' height='40px' title='Silberne Highscore-Auszeichnung' src='https://www.ag-spiel.de/images/ribbon_silver_28_40.png'></a> <a href='index.php?section=showgroup&id=2349'>
+                        <img width='150' title='Spielerindex: Freibeuter' height='40' src='uploads/index_2349.jpg'>
+                    </a>
+                </div>
+                <div class='profil_links'>
+          <div class='profil_link'><a class='button paperwarning' href='index.php?section=orders&wkn=175353'>Orderbuch</a></div>
+          <div class='profil_link'><a class='button folderpaper' href='index.php?section=depot_log&aktie=175353'>Depot</a></div>
+          <div class='profil_link'><a class='button paper' href='index.php?section=konto&aktie=175353'>Kontoauszug</a></div>
+          <div class='profil_link'><a class='button folder_modernist_type_document' href='index.php?section=depotanalyse&aktie=175353'>Depotanalyse</a></div>
+          <div class='profil_link'><a class='button info' href='index.php?section=chronik&wkn=175353'>Chronik</a></div>
+          <div class='profil_link'><a class='button group' href='index.php?section=agstruktur&WKN=175353'>Aktionärsstruktur</a></div>
+          <div class='profil_link'><a class='button doc_people' href='index.php?section=kaeufer&aktie=175353'>Käufer/Verkäufer</a></div>    
+          <div class='profil_link'><a class='button bilanz' href='index.php?section=bilanzen&wkn=175353'>Bilanzen</a></div><div class='profil_link'><a class='button documents' href='index.php?section=trades&aktie=175353'>Trades</a></div>
+          </div>
+                
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+            
+
+
+<div class="textbox">
+    <h1 class='clicked'>Charts</h1>
+    
+    <div class='box '>
+<div class='profilchartbox'><a class='profilchartswitcher active' chartid='profilchart1'>Kombi 30d</a><a class='profilchartswitcher' chartid='profilchart2'>Kombi ges.</a><a class='profilchartswitcher' chartid='profilchart3'>FP 30d</a><a class='profilchartswitcher' chartid='profilchart4'>FP ges</a><a class='profilchartswitcher' chartid='profilchart13'>BW 30d</a><div id='profilchart1' class='profilchart'>
+            <script type="text/javascript">
+  google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        
+        var data = new google.visualization.DataTable();
+        data.addColumn('date', 'Tag');data.addColumn('number', 'Kurs');data.addColumn('number', 'Buchwert');data.addColumn('number', 'BBW');data.addColumn('number', 'FP');
+        
+        data.addRows([
+        [new Date(2020, 6, 11), 286.73, 74.262595345, 54.49, 53.54]
+,[new Date(2020, 6, 12), 340.00, 84.049856555, 54.24, 53.21]
+,[new Date(2020, 6, 13), 339.00, 82.954718985, 54.25, 53.21]
+,[new Date(2020, 6, 14), 339.00, 83.12394807, 54.23, 52.68]
+,[new Date(2020, 6, 15), 339.00, 80.026729605, 55.19, 53.61]
+,[new Date(2020, 6, 16), 338.66, 80.019167085, 54.26, 52.29]
+,[new Date(2020, 6, 17), 305.00, 79.03124385, 54.22, 52.24]
+,[new Date(2020, 6, 18), 304.99, 79.21574173, 54.20, 52.25]
+,[new Date(2020, 6, 19), 244.00, 78.51666903, 54.27, 52.27]
+,[new Date(2020, 6, 20), 305.29, 78.97549993, 55.44, 53.40]
+,[new Date(2020, 6, 21), 305.29, 77.28879055, 55.40, 53.33]
+,[new Date(2020, 6, 22), 351.19, 81.568480535, 55.70, 53.64]
+,[new Date(2020, 6, 23), 337.30, 83.031689465, 55.69, 53.71]
+,[new Date(2020, 6, 24), 300.47, 97.646806715, 55.70, 53.74]
+,[new Date(2020, 6, 25), 300.47, 95.19817373, 56.46, 54.50]
+,[new Date(2020, 6, 26), 230.00, 107.667195765, 56.34, 54.36]
+,[new Date(2020, 6, 27), 226.50, 105.84777997, 56.34, 54.10]
+,[new Date(2020, 6, 28), 245.00, 100.40069046, 59.14, 54.04]
+,[new Date(2020, 6, 29), 245.00, 98.38270929, 59.75, 54.91]
+,[new Date(2020, 6, 30), 299.00, 98.590251795, 59.57, 55.54]
+,[new Date(2020, 6, 31), 299.00, 97.566500655, 57.84, 55.44]
+,[new Date(2020, 7, 1), 298.55, 96.27639744, 57.78, 55.15]
+,[new Date(2020, 7, 2), 250.00, 98.964557285, 57.76, 55.10]
+,[new Date(2020, 7, 3), 248.05, 93.156491955, 57.78, 55.10]
+,[new Date(2020, 7, 4), 245.45, 89.72545374, 58.58, 55.83]
+,[new Date(2020, 7, 5), 277.69, 90.98990938, 58.62, 55.87]
+,[new Date(2020, 7, 6), 277.69, 87.388098825, 58.33, 55.50]
+,[new Date(2020, 7, 7), 423.35, 84.115389255, 58.80, 56.02]
+,[new Date(2020, 7, 8), 410.00, 80.931042555, 58.83, 56.01]
+,[new Date(2020, 7, 9), 338.68, 85.46776293, 59.67, 56.87]
+,[new Date(2020, 7, 10), 338.68, 88.030338315, 58.99, 56.14]
+
+        ]);
+
+        var options = {
+          width: 300, height: 200,
+          title: '',
+          legend: {position: 'top'},
+          chartArea:{left:50,top:20,width:"100%",100:"60%"},
+          colors: ['#114477', '#009900', '#f99704', '#BB0000'],
+          vAxis: {direction: 1, logScale: false},
+          
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('chart-profilchart10990'));
+        
+        
+        var formatter = new google.visualization.NumberFormat({decimalSymbol: ',', fractionDigits: '2', groupingSymbol: '.'});
+        formatter.format(data, 1);formatter.format(data, 2);formatter.format(data, 3);formatter.format(data, 4);
+        
+        chart.draw(data, options);
+      }
+    </script>
+
+    <div style="display: inline-block;" id="chart-profilchart10990"></div></div><div id='profilchart2' class='profilchart hidden'>
+            <script type="text/javascript">
+  google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        
+        var data = new google.visualization.DataTable();
+        data.addColumn('date', 'Tag');data.addColumn('number', 'Kurs');data.addColumn('number', 'Buchwert');data.addColumn('number', 'BBW');data.addColumn('number', 'FP');
+        
+        data.addRows([
+        [new Date(2020, 1, 4), 9.00, 1.00076876, 0.98, 0.98]
+,[new Date(2020, 1, 11), 8.49, 1.06540666, 1.01, 1.00]
+,[new Date(2020, 1, 18), 18.80, 1.15949581, 1.03, 1.03]
+,[new Date(2020, 1, 25), 21.91, 1.29577922, 1.14, 1.12]
+,[new Date(2020, 2, 3), 23.97, 1.4228056, 1.19, 1.13]
+,[new Date(2020, 2, 10), 35.00, 1.57045351, 1.29, 1.21]
+,[new Date(2020, 2, 17), 21.76, 1.69967547, 1.40, 1.32]
+,[new Date(2020, 2, 24), 31.32, 1.88246809, 1.48, 1.41]
+,[new Date(2020, 2, 31), 40.00, 2.34857205, 1.81, 1.74]
+,[new Date(2020, 3, 7), 50.00, 2.86531616, 2.02, 1.92]
+,[new Date(2020, 3, 14), 50.43, 3.74510117, 2.47, 2.32]
+,[new Date(2020, 3, 21), 70.56, 4.0333821, 2.53, 2.39]
+,[new Date(2020, 3, 28), 105.12, 4.67329929, 2.90, 2.79]
+,[new Date(2020, 4, 5), 115.08, 50.90282674, 49.31, 49.41]
+,[new Date(2020, 4, 12), 250.00, 51.86901576, 49.06, 48.61]
+,[new Date(2020, 4, 19), 247.50, 54.8030083, 50.26, 49.81]
+,[new Date(2020, 4, 26), 245.00, 57.26803509, 51.59, 50.86]
+,[new Date(2020, 5, 2), 245.00, 66.92603601, 51.12, 49.98]
+,[new Date(2020, 5, 9), 239.81, 67.424455535, 52.80, 51.38]
+,[new Date(2020, 5, 16), 210.99, 73.715770355, 51.81, 50.43]
+,[new Date(2020, 5, 23), 180.00, 75.62797759, 50.94, 49.68]
+,[new Date(2020, 5, 30), 187.00, 77.87393756, 54.56, 53.18]
+,[new Date(2020, 6, 7), 220.18, 83.462287925, 54.74, 53.83]
+,[new Date(2020, 6, 14), 339.00, 83.12394807, 54.23, 52.68]
+,[new Date(2020, 6, 21), 305.29, 77.28879055, 55.40, 53.33]
+,[new Date(2020, 6, 28), 245.00, 100.40069046, 59.14, 54.04]
+,[new Date(2020, 7, 4), 245.45, 89.72545374, 58.58, 55.83]
+
+        ]);
+
+        var options = {
+          width: 300, height: 200,
+          title: '',
+          legend: {position: 'top'},
+          chartArea:{left:50,top:20,width:"100%",100:"60%"},
+          colors: ['#114477', '#009900', '#f99704', '#BB0000'],
+          vAxis: {direction: 1, logScale: false},
+          
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('chart-profilchart48574'));
+        
+        
+        var formatter = new google.visualization.NumberFormat({decimalSymbol: ',', fractionDigits: '2', groupingSymbol: '.'});
+        formatter.format(data, 1);formatter.format(data, 2);formatter.format(data, 3);formatter.format(data, 4);
+        
+        chart.draw(data, options);
+      }
+    </script>
+
+    <div style="display: inline-block;" id="chart-profilchart48574"></div></div><div id='profilchart3' class='profilchart hidden'>
+        
+    <script type="text/javascript">
+  google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        
+        var data = new google.visualization.DataTable();
+        data.addColumn('date', 'Tag');
+        data.addColumn('number', 'FP 175353');
+        data.addRows([
+        [new Date(2020, 6, 11), 53.54, ],[new Date(2020, 6, 12), 53.21, ],[new Date(2020, 6, 13), 53.21, ],[new Date(2020, 6, 14), 52.68, ],[new Date(2020, 6, 15), 53.61, ],[new Date(2020, 6, 16), 52.29, ],[new Date(2020, 6, 17), 52.24, ],[new Date(2020, 6, 18), 52.25, ],[new Date(2020, 6, 19), 52.27, ],[new Date(2020, 6, 20), 53.40, ],[new Date(2020, 6, 21), 53.33, ],[new Date(2020, 6, 22), 53.64, ],[new Date(2020, 6, 23), 53.71, ],[new Date(2020, 6, 24), 53.74, ],[new Date(2020, 6, 25), 54.50, ],[new Date(2020, 6, 26), 54.36, ],[new Date(2020, 6, 27), 54.10, ],[new Date(2020, 6, 28), 54.04, ],[new Date(2020, 6, 29), 54.91, ],[new Date(2020, 6, 30), 55.54, ],[new Date(2020, 6, 31), 55.44, ],[new Date(2020, 7, 1), 55.15, ],[new Date(2020, 7, 2), 55.10, ],[new Date(2020, 7, 3), 55.10, ],[new Date(2020, 7, 4), 55.83, ],[new Date(2020, 7, 5), 55.87, ],[new Date(2020, 7, 6), 55.50, ],[new Date(2020, 7, 7), 56.02, ],[new Date(2020, 7, 8), 56.01, ],[new Date(2020, 7, 9), 56.87, ],[new Date(2020, 7, 10), 56.14, ]
+        ]);
+
+        var options = {
+          width: 300, height: 200,
+          title: 'FP 30 Tage',
+          legend: {position: 'none'},
+          chartArea:{left:40,top:30,width:"80%",height:"60%"},
+          vAxis: {},
+          colors: ['#FF9900']
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('chart175353-175353-53650'));
+            
+        var formatter = new google.visualization.NumberFormat(
+        {decimalSymbol: ',', fractionDigits: '2', groupingSymbol: '.'});
+        formatter.format(data, 1);chart.draw(data, options);
+      }
+    </script>
+
+    <div style="display: inline-block;" id="chart175353-175353-53650"></div></div><div id='profilchart4' class='profilchart hidden'>
+        
+    <script type="text/javascript">
+  google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        
+        var data = new google.visualization.DataTable();
+        data.addColumn('date', 'Tag');
+        data.addColumn('number', 'FP 175353');
+        data.addRows([
+        [new Date(2020, 1, 4), 0.98, ],[new Date(2020, 1, 11), 1.00, ],[new Date(2020, 1, 18), 1.03, ],[new Date(2020, 1, 25), 1.12, ],[new Date(2020, 2, 3), 1.13, ],[new Date(2020, 2, 10), 1.21, ],[new Date(2020, 2, 17), 1.32, ],[new Date(2020, 2, 24), 1.41, ],[new Date(2020, 2, 31), 1.74, ],[new Date(2020, 3, 7), 1.92, ],[new Date(2020, 3, 14), 2.32, ],[new Date(2020, 3, 21), 2.39, ],[new Date(2020, 3, 28), 2.79, ],[new Date(2020, 4, 5), 49.41, ],[new Date(2020, 4, 12), 48.61, ],[new Date(2020, 4, 19), 49.81, ],[new Date(2020, 4, 26), 50.86, ],[new Date(2020, 5, 2), 49.98, ],[new Date(2020, 5, 9), 51.38, ],[new Date(2020, 5, 16), 50.43, ],[new Date(2020, 5, 23), 49.68, ],[new Date(2020, 5, 30), 53.18, ],[new Date(2020, 6, 7), 53.83, ],[new Date(2020, 6, 14), 52.68, ],[new Date(2020, 6, 21), 53.33, ],[new Date(2020, 6, 28), 54.04, ],[new Date(2020, 7, 4), 55.83, ]
+        ]);
+
+        var options = {
+          width: 300, height: 200,
+          title: 'FP gesamt',
+          legend: {position: 'none'},
+          chartArea:{left:40,top:30,width:"80%",height:"60%"},
+          vAxis: {},
+          colors: ['#FF9900']
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('chart175353-175353-52187'));
+            
+        var formatter = new google.visualization.NumberFormat(
+        {decimalSymbol: ',', fractionDigits: '2', groupingSymbol: '.'});
+        formatter.format(data, 1);chart.draw(data, options);
+      }
+    </script>
+
+    <div style="display: inline-block;" id="chart175353-175353-52187"></div></div><div id='profilchart13' class='profilchart hidden'>
+        
+    <script type="text/javascript">
+  google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        
+        var data = new google.visualization.DataTable();
+        data.addColumn('date', 'Tag');
+        data.addColumn('number', 'BW 175353');
+        data.addRows([
+        [new Date(2020, 6, 11), 74.26, ],[new Date(2020, 6, 12), 84.05, ],[new Date(2020, 6, 13), 82.95, ],[new Date(2020, 6, 14), 83.12, ],[new Date(2020, 6, 15), 80.03, ],[new Date(2020, 6, 16), 80.02, ],[new Date(2020, 6, 17), 79.03, ],[new Date(2020, 6, 18), 79.22, ],[new Date(2020, 6, 19), 78.52, ],[new Date(2020, 6, 20), 78.98, ],[new Date(2020, 6, 21), 77.29, ],[new Date(2020, 6, 22), 81.57, ],[new Date(2020, 6, 23), 83.03, ],[new Date(2020, 6, 24), 97.65, ],[new Date(2020, 6, 25), 95.2, ],[new Date(2020, 6, 26), 107.67, ],[new Date(2020, 6, 27), 105.85, ],[new Date(2020, 6, 28), 100.4, ],[new Date(2020, 6, 29), 98.38, ],[new Date(2020, 6, 30), 98.59, ],[new Date(2020, 6, 31), 97.57, ],[new Date(2020, 7, 1), 96.28, ],[new Date(2020, 7, 2), 98.96, ],[new Date(2020, 7, 3), 93.16, ],[new Date(2020, 7, 4), 89.73, ],[new Date(2020, 7, 5), 90.99, ],[new Date(2020, 7, 6), 87.39, ],[new Date(2020, 7, 7), 84.12, ],[new Date(2020, 7, 8), 80.93, ],[new Date(2020, 7, 9), 85.47, ],[new Date(2020, 7, 10), 88.03, ]
+        ]);
+
+        var options = {
+          width: 300, height: 200,
+          title: 'Buchwert 30 Tage ',
+          legend: {position: 'none'},
+          chartArea:{left:40,top:30,width:"80%",height:"60%"},
+          vAxis: {},
+          colors: ['#009900']
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('chart175353-175353-94788'));
+            
+        var formatter = new google.visualization.NumberFormat(
+        {decimalSymbol: ',', fractionDigits: '2', groupingSymbol: '.'});
+        formatter.format(data, 1);chart.draw(data, options);
+      }
+    </script>
+
+    <div style="display: inline-block;" id="chart175353-175353-94788"></div></div></div><div class='profilchartbox'><a class='profilchartswitcher active' chartid='profilchart5'>Kurs 48h</a><a class='profilchartswitcher' chartid='profilchart6'>Kurs 30d</a><a class='profilchartswitcher' chartid='profilchart7'>Kurs ges.</a><a class='profilchartswitcher' chartid='profilchart12'>BBW 30d</a><a class='profilchartswitcher' chartid='profilchart8'>Candlestick</a><div id='profilchart5' class='profilchart'>
+        
+    <script type="text/javascript">
+  google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('datetime', 'Stunde');
+        data.addColumn('number', 'Kurs');
+        
+        data.addRows([
+        [new Date(2020, 7, 9, 13, 55, 0), 338.68],[new Date(2020, 7, 9, 14, 55, 0), 338.68],[new Date(2020, 7, 9, 15, 55, 0), 338.68],[new Date(2020, 7, 9, 16, 55, 0), 338.68],[new Date(2020, 7, 9, 17, 55, 0), 338.68],[new Date(2020, 7, 9, 18, 55, 0), 338.68],[new Date(2020, 7, 9, 19, 55, 0), 338.68],[new Date(2020, 7, 9, 20, 55, 0), 338.68],[new Date(2020, 7, 9, 21, 55, 0), 338.68],[new Date(2020, 7, 9, 22, 55, 0), 338.68],[new Date(2020, 7, 9, 23, 55, 0), 338.68],[new Date(2020, 7, 10, 00, 55, 0), 338.68],[new Date(2020, 7, 10, 01, 55, 0), 338.68],[new Date(2020, 7, 10, 02, 55, 0), 338.68],[new Date(2020, 7, 10, 03, 55, 0), 338.68],[new Date(2020, 7, 10, 04, 55, 0), 338.68],[new Date(2020, 7, 10, 05, 55, 0), 338.68],[new Date(2020, 7, 10, 06, 55, 0), 338.68],[new Date(2020, 7, 10, 07, 55, 0), 338.68],[new Date(2020, 7, 10, 08, 55, 0), 338.68],[new Date(2020, 7, 10, 09, 55, 0), 338.68],[new Date(2020, 7, 10, 10, 55, 0), 338.68],[new Date(2020, 7, 10, 11, 55, 0), 338.68],[new Date(2020, 7, 10, 12, 55, 0), 338.68],[new Date(2020, 7, 10, 13, 55, 0), 338.68],[new Date(2020, 7, 10, 14, 55, 0), 338.68],[new Date(2020, 7, 10, 15, 55, 0), 338.68],[new Date(2020, 7, 10, 16, 55, 0), 338.68],[new Date(2020, 7, 10, 17, 55, 0), 338.68],[new Date(2020, 7, 10, 18, 55, 0), 338.68],[new Date(2020, 7, 10, 19, 55, 0), 338.68],[new Date(2020, 7, 10, 20, 55, 0), 338.68],[new Date(2020, 7, 10, 21, 55, 0), 338.68],[new Date(2020, 7, 10, 22, 55, 0), 338.68],[new Date(2020, 7, 10, 23, 55, 0), 338.68],[new Date(2020, 7, 11, 00, 55, 0), 338.68],[new Date(2020, 7, 11, 01, 55, 0), 338.68],[new Date(2020, 7, 11, 02, 55, 0), 338.68],[new Date(2020, 7, 11, 03, 55, 0), 338.68],[new Date(2020, 7, 11, 04, 55, 0), 338.68],[new Date(2020, 7, 11, 05, 55, 0), 338.68],[new Date(2020, 7, 11, 06, 55, 0), 338.68],[new Date(2020, 7, 11, 07, 55, 0), 338.68],[new Date(2020, 7, 11, 08, 55, 0), 338.68],[new Date(2020, 7, 11, 09, 55, 0), 338.68],[new Date(2020, 7, 11, 10, 55, 0), 338.68],[new Date(2020, 7, 11, 11, 55, 0), 338.68],[new Date(2020, 7, 11, 12, 55, 0), 338.68],[new Date(2020, 7, 11, 13, 39, 0), 338.68]
+        ]);
+
+        var options = {
+          width: 300, height: 200,
+          title: 'Kurs 48 Stunden.',
+          legend: {position: 'none'},
+          chartArea:{left:40,top:30,width:"80%",height:"60%"},
+          colors: ['#114477']
+          
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('chart175353-62456'));
+        var formatter = new google.visualization.NumberFormat(
+        {decimalSymbol: ',', fractionDigits: '2', groupingSymbol: '.'});
+        formatter.format(data, 1);
+        chart.draw(data, options);
+      }
+    </script>
+
+    <div style="display: inline-block;" id="chart175353-62456"></div></div><div id='profilchart6' class='profilchart hidden'>
+        
+    <script type="text/javascript">
+  google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        
+        var data = new google.visualization.DataTable();
+        data.addColumn('date', 'Tag');
+        data.addColumn('number', 'Kurs 175353');
+        data.addRows([
+        [new Date(2020, 6, 11), 286.73, ],[new Date(2020, 6, 12), 340.00, ],[new Date(2020, 6, 13), 339.00, ],[new Date(2020, 6, 14), 339.00, ],[new Date(2020, 6, 15), 339.00, ],[new Date(2020, 6, 16), 338.66, ],[new Date(2020, 6, 17), 305.00, ],[new Date(2020, 6, 18), 304.99, ],[new Date(2020, 6, 19), 244.00, ],[new Date(2020, 6, 20), 305.29, ],[new Date(2020, 6, 21), 305.29, ],[new Date(2020, 6, 22), 351.19, ],[new Date(2020, 6, 23), 337.30, ],[new Date(2020, 6, 24), 300.47, ],[new Date(2020, 6, 25), 300.47, ],[new Date(2020, 6, 26), 230.00, ],[new Date(2020, 6, 27), 226.50, ],[new Date(2020, 6, 28), 245.00, ],[new Date(2020, 6, 29), 245.00, ],[new Date(2020, 6, 30), 299.00, ],[new Date(2020, 6, 31), 299.00, ],[new Date(2020, 7, 1), 298.55, ],[new Date(2020, 7, 2), 250.00, ],[new Date(2020, 7, 3), 248.05, ],[new Date(2020, 7, 4), 245.45, ],[new Date(2020, 7, 5), 277.69, ],[new Date(2020, 7, 6), 277.69, ],[new Date(2020, 7, 7), 423.35, ],[new Date(2020, 7, 8), 410.00, ],[new Date(2020, 7, 9), 338.68, ],[new Date(2020, 7, 10), 338.68, ]
+        ]);
+
+        var options = {
+          width: 300, height: 200,
+          title: 'Kurs 30 Tage',
+          legend: {position: 'none'},
+          chartArea:{left:40,top:30,width:"80%",height:"60%"},
+          vAxis: {},
+          colors: ['#114477']
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('chart175353-175353-64443'));
+            
+        var formatter = new google.visualization.NumberFormat(
+        {decimalSymbol: ',', fractionDigits: '2', groupingSymbol: '.'});
+        formatter.format(data, 1);chart.draw(data, options);
+      }
+    </script>
+
+    <div style="display: inline-block;" id="chart175353-175353-64443"></div></div><div id='profilchart7' class='profilchart hidden'>
+        
+    <script type="text/javascript">
+  google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        
+        var data = new google.visualization.DataTable();
+        data.addColumn('date', 'Tag');
+        data.addColumn('number', 'Kurs 175353');
+        data.addRows([
+        [new Date(2020, 1, 4), 9.00, ],[new Date(2020, 1, 11), 8.49, ],[new Date(2020, 1, 18), 18.80, ],[new Date(2020, 1, 25), 21.91, ],[new Date(2020, 2, 3), 23.97, ],[new Date(2020, 2, 10), 35.00, ],[new Date(2020, 2, 17), 21.76, ],[new Date(2020, 2, 24), 31.32, ],[new Date(2020, 2, 31), 40.00, ],[new Date(2020, 3, 7), 50.00, ],[new Date(2020, 3, 14), 50.43, ],[new Date(2020, 3, 21), 70.56, ],[new Date(2020, 3, 28), 105.12, ],[new Date(2020, 4, 5), 115.08, ],[new Date(2020, 4, 12), 250.00, ],[new Date(2020, 4, 19), 247.50, ],[new Date(2020, 4, 26), 245.00, ],[new Date(2020, 5, 2), 245.00, ],[new Date(2020, 5, 9), 239.81, ],[new Date(2020, 5, 16), 210.99, ],[new Date(2020, 5, 23), 180.00, ],[new Date(2020, 5, 30), 187.00, ],[new Date(2020, 6, 7), 220.18, ],[new Date(2020, 6, 14), 339.00, ],[new Date(2020, 6, 21), 305.29, ],[new Date(2020, 6, 28), 245.00, ],[new Date(2020, 7, 4), 245.45, ]
+        ]);
+
+        var options = {
+          width: 300, height: 200,
+          title: 'Kurs gesamt',
+          legend: {position: 'none'},
+          chartArea:{left:40,top:30,width:"80%",height:"60%"},
+          vAxis: {},
+          colors: ['#114477']
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('chart175353-175353-17113'));
+            
+        var formatter = new google.visualization.NumberFormat(
+        {decimalSymbol: ',', fractionDigits: '2', groupingSymbol: '.'});
+        formatter.format(data, 1);chart.draw(data, options);
+      }
+    </script>
+
+    <div style="display: inline-block;" id="chart175353-175353-17113"></div></div><div id='profilchart12' class='profilchart hidden'>
+        
+    <script type="text/javascript">
+  google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        
+        var data = new google.visualization.DataTable();
+        data.addColumn('date', 'Tag');
+        data.addColumn('number', 'BBW 175353');
+        data.addRows([
+        [new Date(2020, 6, 11), 54.49, ],[new Date(2020, 6, 12), 54.24, ],[new Date(2020, 6, 13), 54.25, ],[new Date(2020, 6, 14), 54.23, ],[new Date(2020, 6, 15), 55.19, ],[new Date(2020, 6, 16), 54.26, ],[new Date(2020, 6, 17), 54.22, ],[new Date(2020, 6, 18), 54.20, ],[new Date(2020, 6, 19), 54.27, ],[new Date(2020, 6, 20), 55.44, ],[new Date(2020, 6, 21), 55.40, ],[new Date(2020, 6, 22), 55.70, ],[new Date(2020, 6, 23), 55.69, ],[new Date(2020, 6, 24), 55.70, ],[new Date(2020, 6, 25), 56.46, ],[new Date(2020, 6, 26), 56.34, ],[new Date(2020, 6, 27), 56.34, ],[new Date(2020, 6, 28), 59.14, ],[new Date(2020, 6, 29), 59.75, ],[new Date(2020, 6, 30), 59.57, ],[new Date(2020, 6, 31), 57.84, ],[new Date(2020, 7, 1), 57.78, ],[new Date(2020, 7, 2), 57.76, ],[new Date(2020, 7, 3), 57.78, ],[new Date(2020, 7, 4), 58.58, ],[new Date(2020, 7, 5), 58.62, ],[new Date(2020, 7, 6), 58.33, ],[new Date(2020, 7, 7), 58.80, ],[new Date(2020, 7, 8), 58.83, ],[new Date(2020, 7, 9), 59.67, ],[new Date(2020, 7, 10), 58.99, ]
+        ]);
+
+        var options = {
+          width: 300, height: 200,
+          title: 'BBW 30 Tage ',
+          legend: {position: 'none'},
+          chartArea:{left:40,top:30,width:"80%",height:"60%"},
+          vAxis: {},
+          colors: ['#f99704']
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('chart175353-175353-61410'));
+            
+        var formatter = new google.visualization.NumberFormat(
+        {decimalSymbol: ',', fractionDigits: '2', groupingSymbol: '.'});
+        formatter.format(data, 1);chart.draw(data, options);
+      }
+    </script>
+
+    <div style="display: inline-block;" id="chart175353-175353-61410"></div></div><div id='profilchart8' class='profilchart hidden'><script type="text/javascript">
+      function drawVisualization() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('datetime', 'Datum');
+        data.addColumn('number', '1');
+        data.addColumn('number', '2');
+        data.addColumn('number', '3');
+        data.addColumn('number', '4');
+    data.addRows([
+    [new Date(2020, 6, 22),305.29,305.29,351.19,360.09],[new Date(2020, 6, 23),337.30,351.19,337.30,351.19],[new Date(2020, 6, 24),300.47,337.30,300.47,351.19],[new Date(2020, 6, 25),300.47,300.47,300.47,306.57],[new Date(2020, 6, 26),230.00,300.47,230.00,300.47],[new Date(2020, 6, 27),226.50,230.00,226.50,299.00],[new Date(2020, 6, 28),226.50,226.50,245.00,299.00],[new Date(2020, 6, 29),245.00,245.00,245.00,299.00],[new Date(2020, 6, 30),235.38,245.00,299.00,299.00],[new Date(2020, 6, 31),299.00,299.00,299.00,299.00],[new Date(2020, 7, 1),298.55,299.00,298.55,299.00],[new Date(2020, 7, 2),250.00,298.55,250.00,299.00],[new Date(2020, 7, 3),248.05,250.00,248.05,299.00],[new Date(2020, 7, 4),245.45,248.05,245.45,248.57],[new Date(2020, 7, 5),196.36,245.45,277.69,277.69],[new Date(2020, 7, 6),277.69,277.69,277.69,277.69],[new Date(2020, 7, 7),277.69,277.69,423.35,423.35],[new Date(2020, 7, 8),342.91,423.35,410.00,423.35],[new Date(2020, 7, 9),338.68,410.00,338.68,423.35],[new Date(2020, 7, 10),338.68,338.68,338.68,423.35]
+        ]);
+
+        var options = {
+          width: 300, height: 200,
+          title: 'Candlestickchart',
+          legend: {position: 'none'},
+          chartArea:{left:40,top:30,width:"80%",height:"60%"},
+          colors: ['#114477'],
+          candlestick: {hollowIsRising: true}
+        };
+
+        var chart = new google.visualization.CandlestickChart(document.getElementById('chart-candle-175353'));
+        var formatter = new google.visualization.NumberFormat(
+        {decimalSymbol: ',', fractionDigits: '2', groupingSymbol: '.'});
+        formatter.format(data, 1);
+        formatter.format(data, 2);
+        formatter.format(data, 3);
+        formatter.format(data, 4);
+        chart.draw(data, options);
+      }
+
+      google.setOnLoadCallback(drawVisualization);
+    </script>
+    <div style="display: inline-block;" id="chart-candle-175353"></div></div></div><div class='profilchartbox'><a class='profilchartswitcher active' chartid='profilchart9'>Volumen für 30d</a><a class='profilchartswitcher' chartid='profilchart10'>Volumen für ges.</a><a class='profilchartswitcher' chartid='profilchart11'>Volumen von 30d</a><div id='profilchart9' class='profilchart'>
+        
+    <script type="text/javascript">
+  google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        
+        var data = new google.visualization.DataTable();
+        data.addColumn('date', 'Tag');
+        data.addColumn('number', 'volumen 175353');
+        data.addRows([
+        [new Date(2020, 6, 11), 0, ],[new Date(2020, 6, 12), 26, ],[new Date(2020, 6, 13), 0, ],[new Date(2020, 6, 14), 2, ],[new Date(2020, 6, 15), 63, ],[new Date(2020, 6, 16), 0, ],[new Date(2020, 6, 17), 3482, ],[new Date(2020, 6, 18), 0, ],[new Date(2020, 6, 19), 6948, ],[new Date(2020, 6, 20), 175, ],[new Date(2020, 6, 21), 0, ],[new Date(2020, 6, 22), 4, ],[new Date(2020, 6, 23), 0, ],[new Date(2020, 6, 24), 156, ],[new Date(2020, 6, 25), 4, ],[new Date(2020, 6, 26), 355, ],[new Date(2020, 6, 27), 1835, ],[new Date(2020, 6, 28), 864, ],[new Date(2020, 6, 29), 0, ],[new Date(2020, 6, 30), 58, ],[new Date(2020, 6, 31), 0, ],[new Date(2020, 7, 1), 0, ],[new Date(2020, 7, 2), 0, ],[new Date(2020, 7, 3), 4, ],[new Date(2020, 7, 4), 100, ],[new Date(2020, 7, 5), 206, ],[new Date(2020, 7, 6), 0, ],[new Date(2020, 7, 7), 1130, ],[new Date(2020, 7, 8), 209, ],[new Date(2020, 7, 9), 0, ],[new Date(2020, 7, 10), 0, ]
+        ]);
+
+        var options = {
+          width: 300, height: 200,
+          title: 'Volumen für #175353 30 Tage (in tsd. Euro)',
+          legend: {position: 'none'},
+          chartArea:{left:40,top:30,width:"80%",height:"60%"},
+          vAxis: {},
+          colors: ['#114477']
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('chart175353-175353-11913'));
+            
+        var formatter = new google.visualization.NumberFormat(
+        {decimalSymbol: ',', fractionDigits: '2', groupingSymbol: '.'});
+        formatter.format(data, 1);chart.draw(data, options);
+      }
+    </script>
+
+    <div style="display: inline-block;" id="chart175353-175353-11913"></div></div><div id='profilchart10' class='profilchart hidden'>
+        
+    <script type="text/javascript">
+  google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        
+        var data = new google.visualization.DataTable();
+        data.addColumn('date', 'Tag');
+        data.addColumn('number', 'volumen 175353');
+        data.addRows([
+        [new Date(2020, 1, 4), 1290, ],[new Date(2020, 1, 11), 451, ],[new Date(2020, 1, 18), 261, ],[new Date(2020, 1, 25), 176, ],[new Date(2020, 2, 3), 180, ],[new Date(2020, 2, 10), 369, ],[new Date(2020, 2, 17), 0, ],[new Date(2020, 2, 24), 635, ],[new Date(2020, 2, 31), 10, ],[new Date(2020, 3, 7), 0, ],[new Date(2020, 3, 14), 2157, ],[new Date(2020, 3, 21), 5773, ],[new Date(2020, 3, 28), 0, ],[new Date(2020, 4, 5), 1725, ],[new Date(2020, 4, 12), 0, ],[new Date(2020, 4, 19), 99, ],[new Date(2020, 4, 26), 3, ],[new Date(2020, 5, 2), 9724, ],[new Date(2020, 5, 9), 4164, ],[new Date(2020, 5, 16), 691, ],[new Date(2020, 5, 23), 31005, ],[new Date(2020, 5, 30), 21756, ],[new Date(2020, 6, 7), 0, ],[new Date(2020, 6, 14), 2, ],[new Date(2020, 6, 21), 0, ],[new Date(2020, 6, 28), 864, ],[new Date(2020, 7, 4), 100, ]
+        ]);
+
+        var options = {
+          width: 300, height: 200,
+          title: 'Volumen für #175353 gesamt (in tsd. Euro)',
+          legend: {position: 'none'},
+          chartArea:{left:40,top:30,width:"80%",height:"60%"},
+          vAxis: {},
+          colors: ['#114477']
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('chart175353-175353-2439'));
+            
+        var formatter = new google.visualization.NumberFormat(
+        {decimalSymbol: ',', fractionDigits: '2', groupingSymbol: '.'});
+        formatter.format(data, 1);chart.draw(data, options);
+      }
+    </script>
+
+    <div style="display: inline-block;" id="chart175353-175353-2439"></div></div><div id='profilchart11' class='profilchart hidden'><script type="text/javascript">
+  google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('datetime', '');
+        data.addColumn('number', 'Sell');
+        data.addColumn('number', 'Buy');
+        data.addColumn('number', 'Gesamt');
+        data.addRows([
+        [new Date(2020, 7, 10, 23, 51, 0), 43, 1537, 1580],[new Date(2020, 7, 9, 23, 51, 0), 711, 846, 1557],[new Date(2020, 7, 8, 23, 51, 0), 217, 399, 616],[new Date(2020, 7, 7, 23, 51, 0), 1511, 1018, 2529],[new Date(2020, 7, 6, 23, 51, 0), 199, 1082, 1281],[new Date(2020, 7, 5, 23, 51, 0), 570, 503, 1073],[new Date(2020, 7, 4, 23, 51, 0), 416, 728, 1144],[new Date(2020, 7, 3, 23, 51, 0), 207, 315, 522],[new Date(2020, 7, 2, 23, 51, 0), 21, 0, 21],[new Date(2020, 7, 1, 23, 51, 0), 103, 399, 502],[new Date(2020, 6, 31, 23, 51, 0), 90, 220, 310],[new Date(2020, 6, 30, 23, 51, 0), 91, 1044, 1135],[new Date(2020, 6, 29, 23, 51, 0), 1851, 94, 1945],[new Date(2020, 6, 28, 23, 51, 0), 0, 0, 0],[new Date(2020, 6, 27, 23, 51, 0), 0, 0, 0],[new Date(2020, 6, 26, 23, 51, 0), 0, 256, 256],[new Date(2020, 6, 25, 23, 51, 0), 0, 451, 451],[new Date(2020, 6, 24, 23, 51, 0), 16, 8, 24],[new Date(2020, 6, 23, 23, 51, 0), 0, 0, 0],[new Date(2020, 6, 22, 23, 51, 0), 660, 0, 660],[new Date(2020, 6, 21, 23, 51, 0), 0, 0, 0],[new Date(2020, 6, 20, 23, 51, 0), 0, 0, 0],[new Date(2020, 6, 19, 23, 51, 0), 0, 0, 0],[new Date(2020, 6, 18, 23, 51, 0), 0, 0, 0],[new Date(2020, 6, 17, 23, 55, 0), 0, 0, 0],[new Date(2020, 6, 16, 23, 51, 0), 0, 6308, 6308],[new Date(2020, 6, 15, 23, 51, 0), 0, 0, 0],[new Date(2020, 6, 14, 23, 51, 0), 0, 1640, 1640],[new Date(2020, 6, 13, 23, 52, 0), 0, 0, 0],[new Date(2020, 6, 12, 23, 51, 0), 102, 699, 801]
+        ]);
+
+        var options = {
+          width: 300, height: 200,
+          title: 'Volumen von #175353 (in tsd. Euro)',
+          legend: {position: 'top'},
+          chartArea:{left:40,top:30,width:"80%",height:"60%"},
+          colors: ['#BB0000','#009900','#114477','orange']
+          
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('volumenvon-chart175353'));
+        var formatter = new google.visualization.NumberFormat(
+        {decimalSymbol: ',', fractionDigits: '2', groupingSymbol: '.'});
+        formatter.format(data, 1);
+        formatter.format(data, 2);
+        formatter.format(data, 3);
+        chart.draw(data, options);
+      }
+    </script>
+
+    <div style="display: inline-block;" id="volumenvon-chart175353"></div></div></div> <a style='position: absolute; left: 905px;' title='Popup mit großen Charts öffnen' href='chartpopup.php?wkn=175353' class='popup'><img title='Popup mit großen Charts öffnen' src='ico/applications_windows.png'></a>
+</div></div>  
+<div class="textbox">
+    <h1 class='clicked'>Letzte Handelsaktivitäten</h1>
+    <div class='box '><table id='handel'  class='display cell-border compact'>
+    <thead>
+    <tr>
+            <th>Zeitpunkt</th>
+            <th>Aktie</th>
+            <th>Order</th>
+            <th>Stückzahl</th>
+            <th>Preis</th>
+            <th>Volumen</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr><td>vor 4 Std. 31 Min.</td><td><a href='index.php?section=profil&aktie=175540'>RSK</a></td><td><span class='red'>SELL</span></td><td class="text-align-right">2 Stk.</td><td class="text-align-right">1.528,18&euro;</td><td class="text-align-right">3.056&euro;</td></tr><tr><td>vor 5 Std. 21 Min.</td><td><a href='index.php?section=profil&aktie=102682'>ZZ Bananenhaus AG</a></td><td><span class='green'>BUY</span></td><td class="text-align-right">20 Stk.</td><td class="text-align-right">9.814,98&euro;</td><td class="text-align-right">196.300&euro;</td></tr><tr><td>vor 7 Std. 33 Min.</td><td><a href='index.php?section=profil&aktie=114597'>Bierkastenstapel AG</a></td><td><span class='red'>SELL</span></td><td class="text-align-right">10 Stk.</td><td class="text-align-right">15.769,89&euro;</td><td class="text-align-right">157.699&euro;</td></tr><tr><td>vor 14 Std. 17 Min.</td><td><a href='index.php?section=profil&aktie=176221'>Temple of Love</a></td><td><span class='green'>BUY</span></td><td class="text-align-right">20.619 Stk.</td><td class="text-align-right">17,29&euro;</td><td class="text-align-right">356.503&euro;</td></tr><tr><td>vor 14 Std. 27 Min.</td><td><a href='index.php?section=profil&aktie=176221'>Temple of Love</a></td><td><span class='green'>BUY</span></td><td class="text-align-right">54.082 Stk.</td><td class="text-align-right">17,24&euro;</td><td class="text-align-right">932.374&euro;</td></tr><tr><td>vor 14 Std. 57 Min.</td><td><a href='index.php?section=profil&aktie=176221'>Temple of Love</a></td><td><span class='green'>BUY</span></td><td class="text-align-right">2.500 Stk.</td><td class="text-align-right">12,01&euro;</td><td class="text-align-right">30.025&euro;</td></tr><tr><td>vor 15 Std. 12 Min.</td><td><a href='index.php?section=profil&aktie=176221'>Temple of Love</a></td><td><span class='green'>BUY</span></td><td class="text-align-right">7.000 Stk.</td><td class="text-align-right">10,01&euro;</td><td class="text-align-right">70.070&euro;</td></tr><tr><td>vor 15 Std. 17 Min.</td><td><a href='index.php?section=profil&aktie=176221'>Temple of Love</a></td><td><span class='green'>BUY</span></td><td class="text-align-right">17.156 Stk.</td><td class="text-align-right">8,62&euro;</td><td class="text-align-right">147.885&euro;</td></tr><tr><td>vor 21 Std. 3 Min.</td><td><a href='index.php?section=profil&aktie=109941'>KooL AG </a></td><td><span class='red'>SELL</span></td><td class="text-align-right">1 Stk.</td><td class="text-align-right">43.489,99&euro;</td><td class="text-align-right">43.490&euro;</td></tr><tr><td>vor 1 Tag 14 Std.</td><td><a href='index.php?section=profil&aktie=109941'>KooL AG </a></td><td><span class='green'>BUY</span></td><td class="text-align-right">4 Stk.</td><td class="text-align-right">42.100,00&euro;</td><td class="text-align-right">168.400&euro;</td></tr>
+    </tbody>
+    </table>
+    </div>
+</div>
+ <div class="textbox" style='position:relative;'>
+    <h1 class='clicked'>Performance & Vermögensstruktur</h1>
+    <div class='box '>
+    <div style='float:left; margin-right: 40px'>
+    <table class='normalborder'>
+<tr>
+    <th>Kennzahl</th>
+            <th>Zeitraum</th>
+            <th>Änderung</th>
+</tr>
+
+<tr>
+    <td rowspan='4'>Kurs</td>
+    <td>14 Tage</td>
+    <td><span class='green'>38,24</span>%</td>
+</tr>
+<tr>
+    <td>30 Tage</td>
+    <td><span class='red'>-0,39</span>%</td>
+</tr>
+<tr>
+    <td>60 Tage</td>
+    <td><span class='green'>47,26</span>%</td>
+</tr>
+<tr>
+    <td>90 Tage</td>
+    <td><span class='green'>35,47</span>%</td>
+</tr>
+<tr><td colspan='3'></td></tr>
+
+<tr>
+    <td rowspan='4'>BW/Aktie</td>
+    <td>14 Tage</td>
+    <td><span class='red'>-12,32</span>%</td>
+</tr>
+<tr>
+    <td>30 Tage</td>
+    <td><span class='green'>4,74</span>%</td>
+</tr>
+<tr>
+    <td>60 Tage</td>
+    <td><span class='green'>28,03</span>%</td>
+</tr>
+<tr>
+    <td>90 Tage</td>
+    <td><span class='green'>68,96</span>%</td>
+</tr>
+<tr><td colspan='3'></td></tr>
+
+<tr>
+    <td rowspan='4'>FP/Aktie</td>
+    <td>14 Tage</td>
+    <td><span class='green'>3,89</span>%</td>
+</tr>
+<tr>
+    <td>30 Tage</td>
+    <td><span class='green'>5,51</span>%</td>
+</tr>
+<tr>
+    <td>60 Tage</td>
+    <td><span class='green'>11,74</span>%</td>
+</tr>
+<tr>
+    <td>90 Tage</td>
+    <td><span class='green'>16,59</span>%</td>
+</tr>
+</table><div style='position: absolute;    top: 136px;    left: 482px; text-align: center;'>
+    <h2 style='font-size:10px'>Eigenkapitalanteil</h2>
+    
+      
+      <script type="text/javascript">
+  google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Posten');
+        data.addColumn('number', 'Buchwert');
+        data.addRows([
+        ['Eigenkapital',177043852.8],
+        ['Fremdkapital',0.00]
+
+        ]);
+
+        var options = {
+          backgroundColor: 'transparent',
+          title: '',
+          legend: {position: 'none'},
+          tooltip: {trigger: 'none'},
+          chartArea: {'width': '95%', 'height': '95%'},
+          colors: ['#009900','#bb0000'],
+          pieSliceTextStyle: {fontSize: 10},
+          enableInteractivity: false,
+          pieSliceBorderColor: 'transparent',
+          width: 80,
+          height: 80
+          };
+
+        var chart = new google.visualization.PieChart(document.getElementById('kapitalchart'));
+        
+        var formatter = new google.visualization.NumberFormat(
+        {decimalSymbol: ',', fractionDigits: '0', groupingSymbol: '.'});
+        formatter.format(data, 1);
+        
+        chart.draw(data, options);
+      }
+    </script><div id="kapitalchart" style=" display: inline-block; width: 80px; height: 80px;"></div></div></div><div style='float:left; margin-right: 20px;'>
+    <h2>Vermögensstruktur</h2>
+    
+      
+      <script type="text/javascript">
+  google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Posten');
+        data.addColumn('number', 'Buchwert');
+        data.addRows([
+        ['Bargeld',3849908.25],
+        ['Aktien',73193944.55],
+        ['Anleihen',100000000.00],
+        ['Zertifikate',0.00]
+
+        ]);
+
+        var options = {
+          backgroundColor: 'transparent',
+          title: '',
+          chartArea: {'width': '95%', 'height': '95%'},
+          colors: ['#666','#114477','#009900','#bb0000','orange'],
+          width: 300,
+          height: 200
+          };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        
+        var formatter = new google.visualization.NumberFormat(
+        {decimalSymbol: ',', fractionDigits: '0', groupingSymbol: '.'});
+        formatter.format(data, 1);
+        
+        chart.draw(data, options);
+      }
+    </script><div id="piechart" style="width: 300px; height: 200px;"></div></div><div style='float:left;'>
+    <h2>Aktiendepot</h2>
+    
+      
+      <script type="text/javascript">
+  google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'AG');
+        data.addColumn('number', 'Buchwert');
+        data.addRows([
+        ['Kleinspar eV&Co KGaA',19200041],['Nordlicht AG',12158100],['Holos AG',11078365],['Alternativ Trade',8452050],['Kingsley Financial',3546583],['Ramone Industries',3492528],['Pik Ass',3277138],['CuK Dododex',2123766],['Temple of Love',1968353],['ImmoWurst Deluxe AG',1679438],['Thionville Ltd',808380],['Housemaid AG',781540],['Sonstige (<1%)',4623800]
+
+        ]);
+
+        var options = {
+           backgroundColor: 'transparent',
+           chartArea: {'width': '95%', 'height': '85%'},
+           width: 300,
+           height: 200,
+           title: 'Buchwertanteile'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('depotcake124'));
+        
+        var formatter = new google.visualization.NumberFormat(
+        {decimalSymbol: ',', fractionDigits: '0', groupingSymbol: '.'});
+        formatter.format(data, 1);
+        chart.draw(data, options);
+      }
+    </script><div id="depotcake124" style="display:inline-block; width: 300px; height: 200px;"></div></div>   </div>
+</div>
+<div class="textbox">
+    <h1 class='clicked'>Weitere Informationen</h1>
+    <div class='box '>
+<table class='padding5'>
+   <tr><td><b>Spieler-Registrierung</b></td><td>04.02.2020</td></tr>
+   <tr><td><b>AG-Gründungsdatum</b></td><td>04.02.2020</td></tr>
+   <tr><td><b>Aktien-Stückzahl</b></td><td>2.000.000 Stk.</td></tr>
+   <tr><td><b>Dividende</b></td><td>0%</td></tr>
+   <tr><td><b>Max. Zertifikatevol.</b></td><td>5% vom Buchwert <span style='font-size:70%'>(jederzeit änderbar)</span></td></tr>
+   <tr><td><b>Wachstumshighscore</b></td><td>483. Platz</td></tr>
+   <tr><td><b>Größenhighscore</b></td><td>337. Platz</td></tr>
+   <tr><td><b>Beste Gesamtplatzierung</b></td><td>25. Platz</td></tr>
+   <tr><td><b>Hat Übernahmeschutz?</b></td><td>nein</td></tr>
+   <tr><td><b>Tageshoch</b></td><td>423,35&euro;</td></tr>
+   <tr><td><b>Tagestief</b></td><td>338,68&euro;</td></tr>
+   <tr><td><b>AGSX-Punkte</b></td><td>1.041</td></tr>
+
+</table>
+    </div>
+</div>                
+<div class="textbox">
+    <h1 class='clicked'>Beschreibung</h1>
+    <div class='box '>
+                  <b><span style='font-size:130%'>King Kompany - Ihr Geld in königlichen Händen!</span></b><br><br>Die King Kompany ist eine im Jahr 2020 gegründete Aktiengesellschaft, die sich auf die Maximierung ihres Geldes spezialisiert hat. Durch ein ausgeklügeltes Schneeballsystem und massive Steuerhinterziehungen können jedes Jahr mehrere Milliarden Euro an Gewinn erzielt werden. <br><br>Dabei unterstehen der King Kompany die folgenden Tochtergesellschaften:<br><br>- King Research Foundation<br>- King Advertisment Group<br>- King Komputer Inc.<br>- King Holding SE<br><br>________________________| PREMIUM-WERTE |________________________<br><br>SW/Aktie: 47,16 €<br>BBW: 49,04 €<br>FP/Aktie: 48,86 €<br>KGV: 5,36<br><br>(Stand: 12.5.20)<br><br>____________________________| LOGOS |_____________________________<br><br>Für die folgenden AGs wurden bereits Logos erstellt:<br><br>- Wissens-Marktplatz (<a class='wkn' href="index.php?section=profil&aktie=176019">#176019</a>)<br>- Jäger Group (<a class='wkn' href="index.php?section=profil&aktie=176119">#176119</a>)<br>- SpiesAirtec (<a class='wkn' href="index.php?section=profil&aktie=176164">#176164</a>)<br><br>Weitere Logos erstelle ich auf Anfrage per PN.<br><br>________________________| DANKSAGUNGEN |_________________________<br><br>Ich bedanke mich bei einem anonymen Spender, der mir 300 Tage Premium geschenkt hat. Außerdem bedanke ich mich bei der TBA und AltrichterChris, die mich zu Beginn meiner Zeit hier intensiv begleitet haben.<br><br>_______________________| ZUM SCHMUNZELN |________________________<br><br>Rady (Rady, Admin) vor 2 Min.  »  Das ist zumindest kein Spiel, das man 8 Stunden am Tag spielt und dann zum nächsten  <br>Rady (Rady, Admin) vor 2 Min.  »  wechselt . Das ist eher eine Art Hobby für Jahre, eher wie Gartenpflege in der  <br>Rady (Rady, Admin) vor 2 Min.  »  Kleingartenkolonie :) 
+    </div>
+</div>
+<div class="textbox">
+    <h1 class='clickable'>Presse</h1>
+    <div class='box nodisplay'>
+                  Zeitungsartikel der letzten 12 Monate:
+                  <br>20.05.2020 um 13:57:00: <a href='index.php?section=zeitung&showarticle=24569'>Einzug in den AGSX</a><br>21.03.2020 um 22:54:32: <a href='index.php?section=zeitung&showarticle=24393'>King Kompany informiert</a><br>11.02.2020 um 13:49:01: <a href='index.php?section=zeitung&showarticle=24294'>Ein Feldversuch</a><br>08.02.2020 um 23:10:00: <a href='index.php?section=zeitung&showarticle=24284'>King Research Foundation startet</a>
+    </div>
+</div>
+
+<div class="textbox">
+    <h1 class='clickable'>Entwicklung der letzten Tage</h1>
+    <div class='box nodisplay'>
+    <table id='tagesBilanz'  class='display cell-border compact'>
+    <thead>
+    <tr>
+            <th>Tag</th>
+            <th>Depotwert</th>
+            <th>Bargeld</th>
+            <th>Buchwert</th>
+            <th>Dividende</th>
+            <th>Buchwert/Aktie</th>
+            <th>FP</th>
+            <th>Kurs/BW</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr><td>11.08.2020</td><td>173.193.945&euro;</td><td>3.849.908&euro;</td><td>177.043.853&euro;</td><td>TBA</td><td>88,52&euro;</td><td>TBA</td><td>383%</td></tr>
+    
+<tr>
+	<td>10.08.2020</td>
+	<td>172.175.224&euro;</td>
+        <td>3.885.453&euro;</td>
+        <td>176.060.677&euro;</td>
+        <td>0,00 (0%)</td>
+        <td>88,03&euro;</td>
+        <td>56,14&euro;</td>
+        <td>384,73%</td>
+        
+</tr>
+<tr>
+	<td>09.08.2020</td>
+	<td>165.556.963&euro;</td>
+        <td>5.378.563&euro;</td>
+        <td>170.935.526&euro;</td>
+        <td>0,00 (0%)</td>
+        <td>85,47&euro;</td>
+        <td>56,87&euro;</td>
+        <td>396,26%</td>
+        
+</tr>
+<tr>
+	<td>08.08.2020</td>
+	<td>158.009.766&euro;</td>
+        <td>3.852.320&euro;</td>
+        <td>161.862.085&euro;</td>
+        <td>0,00 (0%)</td>
+        <td>80,93&euro;</td>
+        <td>56,01&euro;</td>
+        <td>506,61%</td>
+        
+</tr>
+<tr>
+	<td>07.08.2020</td>
+	<td>164.196.252&euro;</td>
+        <td>4.034.526&euro;</td>
+        <td>168.230.779&euro;</td>
+        <td>0,00 (0%)</td>
+        <td>84,12&euro;</td>
+        <td>56,02&euro;</td>
+        <td>503,27%</td>
+        
+</tr>
+<tr>
+	<td>06.08.2020</td>
+	<td>171.234.996&euro;</td>
+        <td>3.541.202&euro;</td>
+        <td>174.776.198&euro;</td>
+        <td>0,00 (0%)</td>
+        <td>87,39&euro;</td>
+        <td>55,50&euro;</td>
+        <td>317,76%</td>
+        
+</tr>
+<tr>
+	<td>05.08.2020</td>
+	<td>177.598.056&euro;</td>
+        <td>4.381.763&euro;</td>
+        <td>181.979.819&euro;</td>
+        <td>0,00 (0%)</td>
+        <td>90,99&euro;</td>
+        <td>55,87&euro;</td>
+        <td>305,19%</td>
+        
+</tr>
+<tr>
+	<td>04.08.2020</td>
+	<td>175.136.549&euro;</td>
+        <td>4.314.359&euro;</td>
+        <td>179.450.907&euro;</td>
+        <td>0,00 (0%)</td>
+        <td>89,73&euro;</td>
+        <td>55,83&euro;</td>
+        <td>273,54%</td>
+        
+</tr>
+<tr>
+	<td>03.08.2020</td>
+	<td>183.246.591&euro;</td>
+        <td>3.066.393&euro;</td>
+        <td>186.312.984&euro;</td>
+        <td>0,00 (0%)</td>
+        <td>93,16&euro;</td>
+        <td>55,10&euro;</td>
+        <td>266,26%</td>
+        
+</tr>
+<tr>
+	<td>02.08.2020</td>
+	<td>194.754.333&euro;</td>
+        <td>3.174.781&euro;</td>
+        <td>197.929.115&euro;</td>
+        <td>0,00 (0%)</td>
+        <td>98,96&euro;</td>
+        <td>55,10&euro;</td>
+        <td>252,63%</td>
+        
+</tr>
+<tr>
+	<td>01.08.2020</td>
+	<td>189.399.035&euro;</td>
+        <td>3.153.760&euro;</td>
+        <td>192.552.795&euro;</td>
+        <td>0,00 (0%)</td>
+        <td>96,28&euro;</td>
+        <td>55,15&euro;</td>
+        <td>310,09%</td>
+        
+</tr>
+<tr>
+	<td>31.07.2020</td>
+	<td>191.683.430&euro;</td>
+        <td>3.449.571&euro;</td>
+        <td>195.133.001&euro;</td>
+        <td>0,00 (0%)</td>
+        <td>97,57&euro;</td>
+        <td>55,44&euro;</td>
+        <td>306,45%</td>
+        
+</tr>
+<tr>
+	<td>30.07.2020</td>
+	<td>193.601.072&euro;</td>
+        <td>3.579.431&euro;</td>
+        <td>197.180.504&euro;</td>
+        <td>0,00 (0%)</td>
+        <td>98,59&euro;</td>
+        <td>55,54&euro;</td>
+        <td>303,28%</td>
+        
+</tr>
+<tr>
+	<td>29.07.2020</td>
+	<td>194.096.803&euro;</td>
+        <td>2.668.616&euro;</td>
+        <td>196.765.419&euro;</td>
+        <td>0,00 (0%)</td>
+        <td>98,38&euro;</td>
+        <td>54,91&euro;</td>
+        <td>249,03%</td>
+        
+</tr>
+<tr>
+	<td>28.07.2020</td>
+	<td>199.889.455&euro;</td>
+        <td>911.925&euro;</td>
+        <td>200.801.381&euro;</td>
+        <td>0,00 (0%)</td>
+        <td>100,40&euro;</td>
+        <td>54,04&euro;</td>
+        <td>244,02%</td>
+        
+</tr>
+<tr>
+	<td>27.07.2020</td>
+	<td>210.783.634&euro;</td>
+        <td>911.925&euro;</td>
+        <td>211.695.560&euro;</td>
+        <td>0,00 (0%)</td>
+        <td>105,85&euro;</td>
+        <td>54,10&euro;</td>
+        <td>213,98%</td>
+        
+</tr>
+<tr>
+	<td>26.07.2020</td>
+	<td>214.422.466&euro;</td>
+        <td>911.925&euro;</td>
+        <td>215.334.392&euro;</td>
+        <td>0,00 (0%)</td>
+        <td>107,67&euro;</td>
+        <td>54,36&euro;</td>
+        <td>213,62%</td>
+        
+</tr>
+<tr>
+	<td>25.07.2020</td>
+	<td>186.169.246&euro;</td>
+        <td>4.227.102&euro;</td>
+        <td>190.396.347&euro;</td>
+        <td>0,00 (0%)</td>
+        <td>95,20&euro;</td>
+        <td>54,50&euro;</td>
+        <td>315,62%</td>
+        
+</tr>
+<tr>
+	<td>24.07.2020</td>
+	<td>192.478.768&euro;</td>
+        <td>2.814.845&euro;</td>
+        <td>195.293.613&euro;</td>
+        <td>0,00 (0%)</td>
+        <td>97,65&euro;</td>
+        <td>53,74&euro;</td>
+        <td>307,70%</td>
+        
+</tr>
+<tr>
+	<td>23.07.2020</td>
+	<td>163.285.153&euro;</td>
+        <td>2.778.226&euro;</td>
+        <td>166.063.379&euro;</td>
+        <td>0,00 (0%)</td>
+        <td>83,03&euro;</td>
+        <td>53,71&euro;</td>
+        <td>406,24%</td>
+        
+</tr>
+<tr>
+	<td>22.07.2020</td>
+	<td>160.358.725&euro;</td>
+        <td>2.778.237&euro;</td>
+        <td>163.136.961&euro;</td>
+        <td>0,00 (0%)</td>
+        <td>81,57&euro;</td>
+        <td>53,64&euro;</td>
+        <td>430,54%</td>
+        
+</tr>
+<tr>
+	<td>21.07.2020</td>
+	<td>152.458.825&euro;</td>
+        <td>2.118.756&euro;</td>
+        <td>154.577.581&euro;</td>
+        <td>0,00 (0%)</td>
+        <td>77,29&euro;</td>
+        <td>53,33&euro;</td>
+        <td>394,99%</td>
+        
+</tr>
+<tr>
+	<td>20.07.2020</td>
+	<td>155.832.243&euro;</td>
+        <td>2.118.756&euro;</td>
+        <td>157.951.000&euro;</td>
+        <td>0,00 (0%)</td>
+        <td>78,98&euro;</td>
+        <td>53,40&euro;</td>
+        <td>386,54%</td>
+        
+</tr>
+<tr>
+	<td>19.07.2020</td>
+	<td>157.032.296&euro;</td>
+        <td>1.042&euro;</td>
+        <td>157.033.338&euro;</td>
+        <td>0,00 (0%)</td>
+        <td>78,52&euro;</td>
+        <td>52,27&euro;</td>
+        <td>310,75%</td>
+        
+</tr>
+<tr>
+	<td>18.07.2020</td>
+	<td>158.431.462&euro;</td>
+        <td>21&euro;</td>
+        <td>158.431.483&euro;</td>
+        <td>0,00 (0%)</td>
+        <td>79,22&euro;</td>
+        <td>52,25&euro;</td>
+        <td>384,99%</td>
+        
+</tr>
+<tr>
+	<td>17.07.2020</td>
+	<td>158.062.467&euro;</td>
+        <td>21&euro;</td>
+        <td>158.062.488&euro;</td>
+        <td>0,00 (0%)</td>
+        <td>79,03&euro;</td>
+        <td>52,24&euro;</td>
+        <td>385,93%</td>
+        
+</tr>
+<tr>
+	<td>16.07.2020</td>
+	<td>160.037.836&euro;</td>
+        <td>498&euro;</td>
+        <td>160.038.334&euro;</td>
+        <td>0,00 (0%)</td>
+        <td>80,02&euro;</td>
+        <td>52,29&euro;</td>
+        <td>423,22%</td>
+        
+</tr>
+<tr>
+	<td>15.07.2020</td>
+	<td>156.745.461&euro;</td>
+        <td>3.307.998&euro;</td>
+        <td>160.053.459&euro;</td>
+        <td>0,00 (0%)</td>
+        <td>80,03&euro;</td>
+        <td>53,61&euro;</td>
+        <td>423,59%</td>
+        
+</tr>
+<tr>
+	<td>14.07.2020</td>
+	<td>165.317.697&euro;</td>
+        <td>930.199&euro;</td>
+        <td>166.247.896&euro;</td>
+        <td>0,00 (0%)</td>
+        <td>83,12&euro;</td>
+        <td>52,68&euro;</td>
+        <td>407,84%</td>
+        
+</tr>
+<tr>
+	<td>13.07.2020</td>
+	<td>163.214.538&euro;</td>
+        <td>2.694.900&euro;</td>
+        <td>165.909.438&euro;</td>
+        <td>0,00 (0%)</td>
+        <td>82,95&euro;</td>
+        <td>53,21&euro;</td>
+        <td>408,68%</td>
+        
+</tr>
+<tr>
+	<td>12.07.2020</td>
+	<td>165.677.299&euro;</td>
+        <td>2.422.414&euro;</td>
+        <td>168.099.713&euro;</td>
+        <td>0,00 (0%)</td>
+        <td>84,05&euro;</td>
+        <td>53,21&euro;</td>
+        <td>404,52%</td>
+        
+</tr>
+<tr>
+	<td>11.07.2020</td>
+	<td>145.506.346&euro;</td>
+        <td>3.018.844&euro;</td>
+        <td>148.525.191&euro;</td>
+        <td>0,00 (0%)</td>
+        <td>74,26&euro;</td>
+        <td>53,54&euro;</td>
+        <td>386,12%</td>
+        
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#tagesBilanz').dataTable({
+            "aaSorting": [],
+            "aoColumns": [
+                null,
+                {"sType": "formatted-num"},
+                {"sType": "formatted-num"},
+                {"sType": "formatted-num"},
+                null,
+                {"sType": "formatted-num"},
+                {"sType": "formatted-num"},
+                {"sType": "formatted-num"}
+            ],
+            "aoColumnDefs": [
+                {'bSortable': false, 'aTargets': [0, 3]}
+            ],
+            "oLanguage": {
+                "sUrl": "js/txt/dataTables.german.txt"
+            },
+            "aLengthMenu": [
+                [10, -1],
+                [10, "Alle"]
+            ],
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('#handel').dataTable({
+            "aaSorting": [],
+            "aoColumns": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                {"sType": "formatted-num"}
+            ],
+            "aoColumnDefs": [
+                {'bSortable': false, 'aTargets': [0, 1, 2, 3, 4]}
+            ],
+            "oLanguage": {
+                "sUrl": "js/txt/dataTables.german.txt"
+            },
+            "bFilter": false,
+            "bLengthChange": false,
+            "bPaginate": false,
+            "bInfo": false
+        });
+    });
+</script>
+        </div>
+        <div id="sidebar" 
+        >
+                 
+                <style type='text/css'>
+                        #content{
+                            width: 920px;
+                        }
+                    </style>
+            
+<table class='menu2'>
+
+<tr><td class='menu2' colspan='2'>
+<div id="holder" style='width:auto;'> 
+<img src='ico/zoom.png' style='vertical-align:middle; margin-bottom: 4px; margin-right: 4px;'><input onKeyDown="sub(event)" type="text" id="keyword" size='26' placeholder='Suche (WKN/AG/Spieler)' >
+</div>
+<div id="ajax_response"></div>
+</td></tr><tr><td class='menu2'>Serverzeit</td><td class='menu2' style='text-align:right'><div id="uhr"></div></td></tr><tr><td class='menu2'>Bargeld</td><td class='menu2' style='text-align:right'>3,8&nbsp;Mio.&nbsp;&euro;</td></tr>
+<tr>
+        <th  class='menu2' colspan='2'>Order-Liveticker</th>
+    </tr>
+<tr><td class='menu2' colspan='2'><div id='liveTickerContainer'></div></td></tr>
+
+
+    <tr>
+        <th  class='menu2' colspan='2'>Favoriten</th>
+    </tr>
+    
+            <tr>
+        <td align='left' class='menu2'><a href='index.php?section=profil&aktie=175934'>Nordlicht AG</a></td><td align='right' class='menu2'><span class='green'>5,56</span>%</td>
+            </tr>
+        
+            <tr>
+        <td align='left' class='menu2'><a href='index.php?section=profil&aktie=106505'>Argo</a></td><td align='right' class='menu2'><span>0,00</span>%</td>
+            </tr>
+        
+            <tr>
+        <td align='left' class='menu2'><a href='index.php?section=profil&aktie=167669'>AG-Spiel API</a></td><td align='right' class='menu2'><span>0,00</span>%</td>
+            </tr>
+        
+    <tr>
+        <th  class='menu2' colspan='2'>Gewinner & Verlierer FP</th>
+    </tr>
+    
+        <tr>
+    <td align='left' class='menu2'><a href='index.php?section=profil&aktie=176111'>Slim Investment</a></td><td align='right' class='menu2'><span class='green'>629,36</span>%</td>
+        </tr>
+    
+        <tr>
+    <td align='left' class='menu2'><a href='index.php?section=profil&aktie=176067'>holding company nb</a></td><td align='right' class='menu2'><span class='green'>447,42</span>%</td>
+        </tr>
+    
+        <tr>
+    <td align='left' class='menu2'><a href='index.php?section=profil&aktie=174930'>Sunday Express</a></td><td align='right' class='menu2'><span class='green'>74,44</span>%</td>
+        </tr>
+    
+        <tr>
+    <td align='left' class='menu2'><a href='index.php?section=profil&aktie=176025'>Qmount Inc.</a></td><td align='right' class='menu2'><span class='red'>-20,93</span>%</td>
+        </tr>
+    
+        <tr>
+    <td align='left' class='menu2'><a href='index.php?section=profil&aktie=154221'>Emsland AG</a></td><td align='right' class='menu2'><span class='red'>-19,11</span>%</td>
+        </tr>
+    
+        <tr>
+    <td align='left' class='menu2'><a href='index.php?section=profil&aktie=175746'>Nissago</a></td><td align='right' class='menu2'><span class='red'>-10,46</span>%</td>
+        </tr>
+    
+    <tr>
+        <th  class='menu2' colspan='2'>neue Aktien</th>
+    </tr>
+    
+        <tr>
+    <td align='left' class='menu2'><a href='index.php?section=profil&aktie=176224'>Blutbank</a></td><td align='right' class='menu2'><span class='green'>73,00</span>%</td>
+        </tr>
+    
+        <tr>
+    <td align='left' class='menu2'><a href='index.php?section=profil&aktie=176223'>Investment Group</a></td><td align='right' class='menu2'><span class='green'>73,00</span>%</td>
+        </tr>
+    
+        <tr>
+    <td align='left' class='menu2'><a href='index.php?section=profil&aktie=176222'>Harrison AG</a></td><td align='right' class='menu2'><span class='green'>38,30</span>%</td>
+        </tr>
+    
+        <tr>
+    <td align='left' class='menu2'><a href='index.php?section=profil&aktie=176221'>Temple of Love</a></td><td align='right' class='menu2'><span class='green'>871,00</span>%</td>
+        </tr>
+    
+        <tr>
+    <td align='left' class='menu2'><a href='index.php?section=profil&aktie=176220'>bitte löschen</a></td><td align='right' class='menu2'><span class='red'>-0,50</span>%</td>
+        </tr>
+    
+    <tr>
+        <th  class='menu2' colspan='2'>Top Tagesvolumen</th>
+    </tr>
+    
+        <tr>
+    <td align='left' class='menu2'><a href='index.php?section=profil&aktie=102216'>CAMILLE HOLDING AG</a></td><td align='right' class='menu2'>249 Mio. &euro;</td>
+        </tr>
+    
+        <tr>
+    <td align='left' class='menu2'><a href='index.php?section=profil&aktie=173636'>Kingsley Financial</a></td><td align='right' class='menu2'>75 Mio. &euro;</td>
+        </tr>
+    
+        <tr>
+    <td align='left' class='menu2'><a href='index.php?section=profil&aktie=172113'>RuhrAG</a></td><td align='right' class='menu2'>19 Mio. &euro;</td>
+        </tr>
+    
+        <tr>
+    <td align='left' class='menu2'><a href='index.php?section=profil&aktie=172593'>Nuggetnauton</a></td><td align='right' class='menu2'>15 Mio. &euro;</td>
+        </tr>
+    
+        <tr>
+    <td align='left' class='menu2'><a href='index.php?section=profil&aktie=110375'>German Carpenters</a></td><td align='right' class='menu2'>14 Mio. &euro;</td>
+        </tr>
+    <tr>
+        <th  class='menu2' colspan='2'>AGSX & Anleihen</th>
+    </tr>
+    <tr>
+    <td align='left' class='menu2'>Punktestand</td>
+    <td align='right' class='menu2'>23.390</td>
+    </tr>
+    <tr>
+    <td align='left' class='menu2'>Änderung</td>
+    <td align='right' class='menu2'><img style='vertical-align:bottom' src='images/arrow_down.png'></img> -67</td>
+    </tr>
+    <tr>
+    <td align='left' class='menu2'>Put / Call</td>
+    <td align='right' class='menu2'><span class='red'>1.02</span> / <span class='green'>6.06</span></td>
+    </tr>
+    <tr>
+    <td align='left' class='menu2'>Anleihezins</td>
+    <td align='right' class='menu2'>2.13%</td>
+    </tr>
+    <tr>
+        <th  class='menu2' colspan='2'>Statistiken</th>
+    </tr>
+    <tr>
+    <td align='left' class='menu2'>AGs am Markt</td>
+    <td align='right' class='menu2'>759</td>
+    </tr>
+    <tr>
+    <td align='left' class='menu2'>24 Std. neue AGs</td>
+    <td align='right' class='menu2'>4</td>
+    </tr>
+    <tr>
+    <td align='left' class='menu2'>24 Std. online</td>
+    <td align='right' class='menu2'>606</td>
+    </tr>
+    <tr>
+    <td align='left' class='menu2'>10 Min. online</td>
+    <td align='right' class='menu2'>78</td>
+    </tr>
+    
+    
+</table>   
+
+        </div>
+    </div>
+    <div id="footer">
+        
+        <br><a class='menu' href='index.php?section=regeln'>Regelwerk</a>  | <a class='menu' href='index.php?section=agb'>AGB</a>  | <a class='menu' href='index.php?section=datenschutz'>Datenschutz</a> | <a class='menu' href='index.php?section=impressum'>Impressum</a>
+            
+        
+        
+    </div>
+</div>
+    
+</body>
+</html>
+
+
+
+
+
+
+
+
