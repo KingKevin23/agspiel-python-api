@@ -23,7 +23,10 @@ class TestAg(TestCase):
                     "highscore_platz_groesse":"337", "highscore_platz_wachstum":"502", "highscore_platz_newcomer":"0",
                     "agsx_punkte":"1026", "in_agsx":"false", "handelsaktivitaet":"42", "ceo":ceo, "aktien":aktien,
                     "anleihen":anleihen, "kredite":kredite, "zertifikate":zertifikate, "orders":orders}
-        self.ag = Ag(api_data=api_data, web_data="")
+        f = open("testpage.txt", "rb")
+        web_data = f.read()
+        f.close()
+        self.ag = Ag(api_data=api_data, web_data=web_data)
 
     def test_wkn(self):
         self.assertEqual(self.ag.wkn, 175353)
@@ -105,6 +108,8 @@ class TestAg(TestCase):
         self.assertIsInstance(self.ag.ceo, Ceo)
         self.assertEqual(self.ag.ceo.name, "KingKevin23")
         self.assertIsInstance(self.ag.ceo.name, str)
+        self.assertEqual(self.ag.ceo.index, "Freibeuter")
+        self.assertIsInstance(self.ag.ceo.index, str)
         self.assertEqual(self.ag.ceo.registrierung_datum, datetime(year=2020, month=2, day=4, hour=16, minute=24))
         self.assertIsInstance(self.ag.ceo.registrierung_datum, datetime)
         self.assertEqual(self.ag.ceo.gesperrt, False)
