@@ -1,13 +1,7 @@
 #  Copyright (c) 2020 | KingKevin23 (@kingkevin023)
 
-import re
-from bs4 import BeautifulSoup
 from datetime import datetime
 from .ceo import Ceo
-from .aktie import Aktie
-from .anleihe import Anleihe, Kredit
-from .zertifikat import Zertifikat
-from .order import Order
 
 class Ag:
     def __init__(self):
@@ -50,9 +44,6 @@ class Ag:
 
     @property
     def wkn(self) -> int:
-        if self._wkn is None:
-            self._wkn = int(self._api_data.get("wkn"))
-
         return self._wkn
 
     @wkn.setter
@@ -61,9 +52,6 @@ class Ag:
 
     @property
     def name(self) -> str:
-        if self._name is None:
-            self._name = self._api_data.get("name")
-
         return self._name
 
     @name.setter
@@ -72,9 +60,6 @@ class Ag:
 
     @property
     def gruendung(self) -> datetime:
-        if self._gruendung is None:
-            self._gruendung = datetime.strptime(self._api_data.get("gruendung"), "%Y-%m-%d %H:%M:%S")
-
         return self._gruendung
 
     @gruendung.setter
@@ -83,9 +68,6 @@ class Ag:
 
     @property
     def aktienanzahl(self) -> int:
-        if self._aktienanzahl is None:
-            self._aktienanzahl = int(self._api_data.get("aktienanzahl"))
-
         return self._aktienanzahl
 
     @aktienanzahl.setter
@@ -94,9 +76,6 @@ class Ag:
 
     @property
     def in_liquidation(self) -> bool:
-        if self._in_liquidation is None:
-            self._in_liquidation = self._api_data.get("in_liquidation") == "true"
-
         return self._in_liquidation
 
     @in_liquidation.setter
@@ -105,9 +84,6 @@ class Ag:
 
     @property
     def kurs(self) -> float:
-        if self._kurs is None:
-            self._kurs = float(self._api_data.get("kurs"))
-
         return self._kurs
 
     @kurs.setter
@@ -116,9 +92,6 @@ class Ag:
 
     @property
     def brief(self) -> float:
-        if self._brief is None:
-            self._brief = float(self._api_data.get("brief"))
-
         return self._brief
 
     @brief.setter
@@ -127,9 +100,6 @@ class Ag:
 
     @property
     def geld(self) -> float:
-        if self._geld is None:
-            self._geld = float(self._api_data.get("geld"))
-
         return self._geld
 
     @geld.setter
@@ -138,9 +108,6 @@ class Ag:
 
     @property
     def brief_stueckzahl(self) -> int:
-        if self._brief_stueckzahl is None:
-            self._brief_stueckzahl = int(self._api_data.get("brief_stueckzahl"))
-
         return self._brief_stueckzahl
 
     @brief_stueckzahl.setter
@@ -149,9 +116,6 @@ class Ag:
 
     @property
     def geld_stueckzahl(self) -> int:
-        if self._geld_stueckzahl is None:
-            self._geld_stueckzahl = int(self._api_data.get("geld_stueckzahl"))
-
         return self._geld_stueckzahl
 
     @geld_stueckzahl.setter
@@ -160,11 +124,6 @@ class Ag:
 
     @property
     def sw_aktie(self) -> float:
-        if self._sw_aktie is None:
-            self._sw_aktie = self._web_data.find("div", attrs={"id":"sw"})
-            self._sw_aktie = re.compile("\d*[.]?\d*[,]\d{2}").findall(self._sw_aktie.text)[0]
-            self._sw_aktie = float(self._sw_aktie.replace(".", "").replace(",", "."))
-
         return self._sw_aktie
 
     @sw_aktie.setter
@@ -173,11 +132,6 @@ class Ag:
 
     @property
     def bbw_aktie(self) -> float:
-        if self._bbw_aktie is None:
-            self._bbw_aktie = self._web_data.find("div", attrs={"id": "bbw"})
-            self._bbw_aktie = re.compile("\d*[.]?\d*[,]\d{2}").findall(self._bbw_aktie.text)[0]
-            self._bbw_aktie = float(self._bbw_aktie.replace(".", "").replace(",", "."))
-
         return self._bbw_aktie
 
     @bbw_aktie.setter
@@ -186,11 +140,6 @@ class Ag:
 
     @property
     def fp_aktie(self) -> float:
-        if self._fp_aktie is None:
-            self._fp_aktie = self._web_data.find("div", attrs={"id": "fp"})
-            self._fp_aktie = re.compile("\d*[.]?\d*[,]\d{2}").findall(self._fp_aktie.text)[0]
-            self._fp_aktie = float(self._fp_aktie.replace(".", "").replace(",", "."))
-
         return self._fp_aktie
 
     @fp_aktie.setter
@@ -199,9 +148,6 @@ class Ag:
 
     @property
     def bw_aktie(self) -> float:
-        if self._bw_aktie is None:
-            self._bw_aktie = round(self.buchwert / self.aktienanzahl, 2)
-
         return self._bw_aktie
 
     @bw_aktie.setter
@@ -210,22 +156,14 @@ class Ag:
 
     @property
     def kurs_14d(self) -> float:
-        if self._kurs_14d is None:
-            self._kurs_14d = self._web_data.find("div", attrs={"id": "kurs14d"})
-            self._kurs_14d = re.compile("[-]?\d*[.]?\d*[,]\d*").findall(self._kurs_14d.text)[0]
-            self._kurs_14d = float(self._kurs_14d.replace(".", "").replace(",", "."))
-
         return self._kurs_14d
 
     @kurs_14d.setter
-    def kurs_14d(self, value: str):
+    def kurs_14d(self, value:float):
         self._kurs_14d = value
 
     @property
     def buchwert(self) -> float:
-        if self._buchwert is None:
-            self._buchwert = self.depotwert + self.bargeld
-
         return self._buchwert
 
     @buchwert.setter
@@ -234,9 +172,6 @@ class Ag:
 
     @property
     def depotwert(self) -> float:
-        if self._depotwert is None:
-            self._depotwert = float(self._api_data.get("depotwert"))
-
         return self._depotwert
 
     @depotwert.setter
@@ -245,9 +180,6 @@ class Ag:
 
     @property
     def bargeld(self) -> float:
-        if self._bargeld is None:
-            self._bargeld = float(self._api_data.get("bargeld"))
-
         return self._bargeld
 
     @bargeld.setter
@@ -256,9 +188,6 @@ class Ag:
 
     @property
     def highscore(self) -> int:
-        if self._highscore is None:
-            self._highscore = int(self._api_data.get("highscore_platz"))
-
         return self._highscore
 
     @highscore.setter
@@ -267,9 +196,6 @@ class Ag:
 
     @property
     def highscore_groesse(self) -> int:
-        if self._highscore_groesse is None:
-            self._highscore_groesse = int(self._api_data.get("highscore_platz_groesse"))
-
         return self._highscore_groesse
 
     @highscore_groesse.setter
@@ -278,9 +204,6 @@ class Ag:
 
     @property
     def highscore_wachstum(self) -> int:
-        if self._highscore_wachstum is None:
-            self._highscore_wachstum = int(self._api_data.get("highscore_platz_wachstum"))
-
         return self._highscore_wachstum
 
     @highscore_wachstum.setter
@@ -289,9 +212,6 @@ class Ag:
 
     @property
     def highscore_newcomer(self) -> int:
-        if self._highscore_newcomer is None:
-            self._highscore_newcomer = int(self._api_data.get("highscore_platz_newcomer"))
-
         return self._highscore_newcomer
 
     @highscore_newcomer.setter
@@ -300,9 +220,6 @@ class Ag:
 
     @property
     def agsx_punkte(self) -> int:
-        if self._agsx_punkte is None:
-            self._agsx_punkte = int(self._api_data.get("agsx_punkte"))
-
         return self._agsx_punkte
 
     @agsx_punkte.setter
@@ -311,9 +228,6 @@ class Ag:
 
     @property
     def in_agsx(self) -> bool:
-        if self._in_agsx is None:
-            self._in_agsx = self._api_data.get("in_agsx") == "true"
-
         return self._in_agsx
 
     @in_agsx.setter
@@ -322,9 +236,6 @@ class Ag:
 
     @property
     def handelsaktivitaet(self) -> int:
-        if self._handelsaktivitaet is None:
-            self._handelsaktivitaet = int(self._api_data.get("handelsaktivitaet"))
-
         return self._handelsaktivitaet
 
     @handelsaktivitaet.setter
@@ -333,14 +244,6 @@ class Ag:
 
     @property
     def ceo(self) -> Ceo:
-        if self._ceo is None:
-            ceo_data:dict = self._api_data.get("ceo")
-            index = self._web_data.find("img", attrs={"width":"150"}).attrs.get("title")
-            index = re.compile("Spielerindex:.(.*)").findall(index)[0]
-            self._ceo = Ceo(name=ceo_data.get("name"), index=index,
-                            registrierung_datum=datetime.strptime(ceo_data.get("registrierung_datum"), "%Y-%m-%d %H:%M:%S"),
-                            gesperrt=ceo_data.get("gesperrt")=="true", userprojekt=ceo_data.get("ist_userprojekt_account")=="true")
-
         return self._ceo
 
     @ceo.setter
@@ -349,13 +252,6 @@ class Ag:
 
     @property
     def aktien(self) -> list:
-        if self._aktien is None:
-            self._aktien = []
-            aktie: dict
-            for aktie in self._api_data.get("aktien"):
-                temp = Aktie(wkn=int(aktie.get("wkn")), stueckzahl=int(aktie.get("stueckzahl")))
-                self._aktien.append(temp)
-
         return self._aktien
 
     @aktien.setter
@@ -364,15 +260,6 @@ class Ag:
 
     @property
     def anleihen(self) -> list:
-        if self._anleihen is None:
-            self._anleihen = []
-            anleihe: dict
-            for anleihe in self._api_data.get("anleihen"):
-                temp = Anleihe(betrag=int(anleihe.get("betrag")), zins=float(anleihe.get("zins")),
-                               auszahlung_datum=datetime.strptime(anleihe.get("auszahlung_datum"), "%Y-%m-%d %H:%M:%S"),
-                               laufzeit=int(anleihe.get("laufzeit")))
-                self._anleihen.append(temp)
-
         return self._anleihen
 
     @anleihen.setter
@@ -381,15 +268,6 @@ class Ag:
 
     @property
     def kredite(self) -> list:
-        if self._kredite is None:
-            self._kredite = []
-            kredit: dict
-            for kredit in self._api_data.get("kredite"):
-                temp = Kredit(betrag=int(kredit.get("betrag")), zins=float(kredit.get("zins")),
-                              rueckzahlung_datum=datetime.strptime(kredit.get("rueckzahlung_datum"), "%Y-%m-%d %H:%M:%S"),
-                              laufzeit=int(kredit.get("laufzeit")))
-                self._kredite.append(temp)
-
         return self._kredite
 
     @kredite.setter
@@ -398,15 +276,6 @@ class Ag:
 
     @property
     def zertifikate(self) -> list:
-        if self._zertifikate is None:
-            self._zertifikate = []
-            zertifikat: dict
-            for zertifikat in self._api_data.get("zertifikate"):
-                temp = Zertifikat(betrag=float(zertifikat.get("betrag")), typ=zertifikat.get("typ"),
-                                  hebel=float(zertifikat.get("hebel")), punkte=int(zertifikat.get("punkte")),
-                                  ablaufdatum=datetime.strptime(zertifikat.get("ablauf_datum"), "%Y-%m-%d %H:%M:%S"))
-                self._zertifikate.append(temp)
-
         return self._zertifikate
 
     @zertifikate.setter
@@ -415,17 +284,6 @@ class Ag:
 
     @property
     def orders(self) -> list:
-        if self._orders is None:
-            self._orders = []
-            order: dict
-            for order in self._api_data.get("orders"):
-                temp = Order(typ=order.get("typ"), limit=float(order.get("limit")),
-                             stueckzahl=int(order.get("stueckzahl")),
-                             orderregel=order.get("orderregel") == "true",
-                             systembank=order.get("systembank_order") == "true",
-                             datum=datetime.strptime(order.get("datum"), "%Y-%m-%d %H:%M:%S"))
-                self._orders.append(temp)
-
         return self._orders
 
     @orders.setter
