@@ -1,4 +1,4 @@
-# AG-Spiel API für Python [![Build Status](https://travis-ci.com/KingKevin23/agspiel-python-api.svg?token=uz7gmp6JJKKxfKpx7Nv3&branch=master)](https://travis-ci.com/KingKevin23/agspiel-python-api)
+# AG-Spiel API für Python [![Build Status](https://travis-ci.com/KingKevin23/agspiel-python-api.svg?token=uz7gmp6JJKKxfKpx7Nv3&branch=master)](https://travis-ci.com/KingKevin23/agspiel-python-api) ![GitHub](https://img.shields.io/github/license/KingKevin23/agspiel-python-api)
 
 Die ultimative Python API für das [AG-Spiel](http://www.ag-spiel.de/?bonus=83275). Made by KingKevin23.
 
