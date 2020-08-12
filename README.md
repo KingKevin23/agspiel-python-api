@@ -6,6 +6,7 @@ Die ultimative Python API für das [AG-Spiel](http://www.ag-spiel.de/?bonus=8327
 
 * [Features](#features)
 * [Installation](#installation) 
+* [Beispiele](#beispiele) 
 * [Hinweise](#hinweise)
 
 ### Features:
@@ -17,6 +18,25 @@ Die ultimative Python API für das [AG-Spiel](http://www.ag-spiel.de/?bonus=8327
 ### Installation:
 
 `pip install agspiel-python-api`
+
+### Beispiele:
+
+AG-Namen und CEO-Namen ausgeben lassen:
+
+```python
+import agspiel-python-api as agspiel
+
+api = agspiel.api.Api(agspiel.utils.get_php_session_id(email="deine@mail.de", password="DeinPasswort"))
+ag = api.get_ag(175353)
+
+print(ag.name)
+print(ag.ceo.name)
+
+> King Kompany
+> KingKevin23
+```
+
+Weitere Beispiele und Hilfestellungen findest du im [Wiki](https://github.com/KingKevin23/agspiel-python-api/wiki).
 
 ### Hinweise:
 
