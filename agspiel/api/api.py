@@ -59,6 +59,13 @@ class Api:
 
     @staticmethod
     def _create_ag(api_data:dict, web_data:BeautifulSoup) -> Ag:
+        """
+        Diese Methode erstellt ein Objekt der Klasse AG und befüllt dieses mit den übergebenen Werten.
+
+        :param api_data: Ein Dictionary, welches die Daten aus der API enthält
+        :param web_data: Ein BeatifulSoup Objekt, welches die Website der AG enthält
+        :return: Ein Objekt der Klasse AG, welches die gewünschten Werte enthält
+        """
         ag = Ag()
         ag.wkn = int(api_data.get("wkn"))
         ag.name = api_data.get("name")
@@ -132,6 +139,13 @@ class Api:
 
     @staticmethod
     def _create_ceo(ceo_data:dict, web_data:BeautifulSoup) -> Ceo:
+        """
+        Diese Methode erstellt ein Objekt der Klasse CEO und befüllt dieses mit den übergebenen Werten.
+
+        :param ceo_data: Ein Dictionary, welches die Daten aus der API über den CEO enthält
+        :param web_data: Ein BeatifulSoup Objekt, welches die Website der AG des CEO enthält
+        :return: Ein Objekt der Klasse CEO, welches die gewünschten Werte enthält
+        """
         name = ceo_data.get("name")
         index = re.compile("Spielerindex:.(.*)").findall(web_data.find("img", attrs={"width":"150"}).attrs.get("title"))[0]
         registrierung_datum = datetime.strptime(ceo_data.get("registrierung_datum"), "%Y-%m-%d %H:%M:%S")
