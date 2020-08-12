@@ -4,43 +4,51 @@ from datetime import datetime
 from .ceo import Ceo
 
 class Ag:
-    def __init__(self):
-        self.wkn = None
-        self.name = None
-        self.gruendung = None
-        self.aktienanzahl = None
-        self.in_liquidation = None
-        self.kurs = None
-        self.brief = None
-        self.geld = None
-        self.brief_stueckzahl = None
-        self.geld_stueckzahl = None
-        self.sw_aktie = None
-        self.bbw_aktie = None
-        self.fp_aktie = None
-        self.bw_aktie = None
-        self.kurs_14d = None
-        #TODO: self._kgv = None
-        #TODO: self._spread = None
-        #TODO: self._alter = None
-        #TODO: self._tagesvolumen = None
-        #TODO: self._boersenwert = None
-        self.buchwert = None
-        self.depotwert = None
-        self.bargeld = None
-        self.highscore = None
-        self.highscore_groesse = None
-        self.highscore_wachstum = None
-        self.highscore_newcomer = None
-        self.agsx_punkte = None
-        self.in_agsx = None
-        self.handelsaktivitaet = None
-        self.ceo = None
-        self.aktien = None
-        self.anleihen = None
-        self.kredite = None
-        self.zertifikate = None
-        self.orders = None
+    def __init__(self, wkn:int=None, name:str=None, gruendung:datetime=None, aktienanzahl:int=None,
+                 in_liquidation:bool=None, kurs:float=None, brief:float=None, geld:float=None, brief_stueckzahl:int=None,
+                 geld_stueckzahl:int=None, sw_aktie:float=None, bbw_aktie:float=None, fp_aktie:float=None,
+                 bw_aktie:float=None, kurs_14d:float=None, kgv:float=None, spread:float=None, alter:int=None,
+                 tagesvolumen:float=None, boersenwert:float=None, buchwert:float=None, depotwert:float=None,
+                 bargeld:float=None, highscore:int=None,  highscore_groesse:int=None, highscore_wachstum:int=None,
+                 highscore_newcomer:int=None, agsx_punkte:int=None, in_agsx:bool=None, handelsaktivitaet:int=None,
+                 ceo:Ceo=None, aktien:list=None, anleihen:list=None, kredite:list=None, zertifikate:list=None,
+                 orders:list=None):
+        self.wkn:int = wkn
+        self.name:str = name
+        self.gruendung:datetime = gruendung
+        self.aktienanzahl:int = aktienanzahl
+        self.in_liquidation:bool = in_liquidation
+        self.kurs:float = kurs
+        self.brief:float = brief
+        self.geld:float = geld
+        self.brief_stueckzahl:int = brief_stueckzahl
+        self.geld_stueckzahl:int = geld_stueckzahl
+        self.sw_aktie:float = sw_aktie
+        self.bbw_aktie:float = bbw_aktie
+        self.fp_aktie:float = fp_aktie
+        self.bw_aktie:float = bw_aktie
+        self.kurs_14d:float = kurs_14d
+        #TODO: self._kgv:float = None
+        #TODO: self._spread:float = None
+        #TODO: self._alter:int = None
+        #TODO: self._tagesvolumen:float = None
+        #TODO: self._boersenwert:float = None
+        self.buchwert:float = buchwert
+        self.depotwert:float = depotwert
+        self.bargeld:float = bargeld
+        self.highscore:int = highscore
+        self.highscore_groesse:int = highscore_groesse
+        self.highscore_wachstum:int = highscore_wachstum
+        self.highscore_newcomer:int = highscore_newcomer
+        self.agsx_punkte:int = agsx_punkte
+        self.in_agsx:bool = in_agsx
+        self.handelsaktivitaet:int = handelsaktivitaet
+        self.ceo:Ceo = ceo
+        self.aktien:list = aktien
+        self.anleihen:list = anleihen
+        self.kredite:list = kredite
+        self.zertifikate:list = zertifikate
+        self.orders:list = orders
 
     @property
     def wkn(self) -> int:
