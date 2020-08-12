@@ -28,9 +28,9 @@ class Ag:
         self.fp_aktie:float = fp_aktie
         self.bw_aktie:float = bw_aktie
         self.kurs_14d:float = kurs_14d
-        #TODO: self._kgv:float = None
-        #TODO: self._spread:float = None
-        #TODO: self._alter:int = None
+        self.kgv:float = kgv
+        self.spread:float = spread
+        self.alter:int = alter
         #TODO: self._tagesvolumen:float = None
         #TODO: self._boersenwert:float = None
         self.buchwert:float = buchwert
@@ -169,6 +169,30 @@ class Ag:
     @kurs_14d.setter
     def kurs_14d(self, value:float):
         self._kurs_14d = value
+
+    @property
+    def kgv(self) -> float:
+        return self._kgv
+
+    @kgv.setter
+    def kgv(self, value: float):
+        self._kgv = value
+
+    @property
+    def spread(self) -> float:
+        return self._spread
+
+    @spread.setter
+    def spread(self, value: float):
+        self._spread = value
+
+    @property
+    def alter(self) -> int:
+        return self._alter
+
+    @alter.setter
+    def alter(self, value: int):
+        self._alter = value
 
     @property
     def buchwert(self) -> float:

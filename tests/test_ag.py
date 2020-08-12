@@ -89,6 +89,18 @@ class TestAg(TestCase):
         self.assertEqual(self.ag.kurs_14d, 38.24)
         self.assertIsInstance(self.ag.kurs_14d, float)
 
+    def test_kgv(self):
+        self.assertEqual(self.ag.kgv, 115.59)
+        self.assertIsInstance(self.ag.kgv, float)
+
+    def test_spread(self):
+        self.assertEqual(self.ag.spread, 0)
+        self.assertIsInstance(self.ag.spread, float)
+
+    def test_alter(self):
+        self.assertEqual(self.ag.alter, 190)
+        self.assertIsInstance(self.ag.alter, int)
+
     def test_buchwert(self):
         self.assertEqual(self.ag.buchwert, 167895447.5)
         self.assertIsInstance(self.ag.buchwert, float)

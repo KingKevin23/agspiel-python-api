@@ -14,7 +14,7 @@ from .order import Order
 class Api:
     _api_url = "https://www.ag-spiel.de/api/get/data.php?version=5"
 
-    def __init__(self, phpsessid:str, newest_data:bool=True):
+    def __init__(self, phpsessid:str, newest_data:bool=False):
         self._phpsessid = phpsessid
         self._newest_data = newest_data
         self._data = None
@@ -78,6 +78,10 @@ class Api:
                             .replace(".", "").replace(",", "."))
         ag.kurs_14d = float(re.compile("[-]?\d*[.]?\d*[,]\d*").findall(web_data.find("div", attrs={"id": "kurs14d"}).
                                                                        text)[0].replace(".", "").replace(",", "."))
+        ag.kgv = float(re.compile("\d*[,]\d*").findall(web_data.find("div", attrs={"id":"kgv"}).text)[0].
+                       replace(",", "."))
+        ag.spread = 1 - (ag.geld / ag.brief)
+        ag.alter = (datetime.now() - ag.gruendung).days
         ag.depotwert = float(api_data.get("depotwert"))
         ag.bargeld = float(api_data.get("bargeld"))
         ag.buchwert = ag.depotwert + ag.bargeld
