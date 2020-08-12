@@ -105,6 +105,14 @@ class TestAg(TestCase):
         self.assertEqual(self.ag.alter, 190)
         self.assertIsInstance(self.ag.alter, int)
 
+    def test_tagesvolumen(self):
+        self.assertEqual(self.ag.tagesvolumen, 0)
+        self.assertIsInstance(self.ag.tagesvolumen, float)
+
+    def test_boersenwert(self):
+        self.assertEqual(self.ag.boersenwert, 677360000)
+        self.assertIsInstance(self.ag.boersenwert, float)
+
     def test_buchwert(self):
         self.assertEqual(self.ag.buchwert, 167895447.5)
         self.assertIsInstance(self.ag.buchwert, float)
