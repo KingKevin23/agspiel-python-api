@@ -7,11 +7,14 @@ class Ag:
     def __init__(self, wkn:int=None, name:str=None, gruendung:datetime=None, aktienanzahl:int=None,
                  in_liquidation:bool=None, kurs:float=None, brief:float=None, geld:float=None, brief_stueckzahl:int=None,
                  geld_stueckzahl:int=None, sw_aktie:float=None, bbw_aktie:float=None, fp_aktie:float=None,
-                 kurs_14d:float=None, kgv:float=None, tagesvolumen:float=None, depotwert:float=None,
-                 bargeld:float=None, highscore:int=None,  highscore_groesse:int=None, highscore_wachstum:int=None,
-                 highscore_newcomer:int=None, agsx_punkte:int=None, in_agsx:bool=None, handelsaktivitaet:int=None,
-                 ceo:Ceo=None, aktien:list=None, anleihen:list=None, kredite:list=None, zertifikate:list=None,
-                 orders:list=None):
+                 kgv:float=None, tagesvolumen:float=None, depotwert:float=None, bargeld:float=None, highscore:int=None,
+                 highscore_groesse:int=None, highscore_wachstum:int=None, highscore_newcomer:int=None,
+                 agsx_punkte:int=None, in_agsx:bool=None, handelsaktivitaet:int=None, ceo:Ceo=None, aktien:list=None,
+                 anleihen:list=None, kredite:list=None, zertifikate:list=None, orders:list=None, dividende:float=None,
+                 max_zertis:int=None, tages_hoch:float=None, tages_tief:float=None, kurs_14d:float=None,
+                 kurs_30d:float=None, kurs_60d:float=None, kurs_90d:float=None, bw_14d:float=None, bw_30d:float=None,
+                 bw_60d:float=None, bw_90d:float=None, fp_14d:float=None, fp_30d:float=None, fp_60d:float=None,
+                 fp_90d:float=None):
         self.wkn:int = wkn
         self.name:str = name
         self.gruendung:datetime = gruendung
@@ -25,7 +28,6 @@ class Ag:
         self.sw_aktie:float = sw_aktie
         self.bbw_aktie:float = bbw_aktie
         self.fp_aktie:float = fp_aktie
-        self.kurs_14d:float = kurs_14d
         self.kgv:float = kgv
         self.tagesvolumen:float = tagesvolumen
         self.depotwert:float = depotwert
@@ -43,6 +45,22 @@ class Ag:
         self.kredite:list = kredite
         self.zertifikate:list = zertifikate
         self.orders:list = orders
+        self.dividende:float = dividende #TODO
+        self.max_zertis:int = max_zertis #TODO
+        self.tages_hoch:float = tages_hoch #TODO
+        self.tages_tief:float = tages_tief #TODO
+        self.kurs_14d:float = kurs_14d
+        self.kurs_30d:float = kurs_30d
+        self.kurs_60d:float = kurs_60d
+        self.kurs_90d:float = kurs_90d
+        self.bw_14d:float = bw_14d
+        self.bw_30d:float = bw_30d
+        self.bw_60d:float = bw_60d
+        self.bw_90d:float = bw_90d
+        self.fp_14d:float = fp_14d
+        self.fp_30d:float = fp_30d
+        self.fp_60d:float = fp_60d
+        self.fp_90d:float = fp_90d
 
         # Hier werden alle Kennzahlen initialisiert, die aus anderen berechnet werden können.
         # Genaue Berechnung erfolgt dann im Getter
@@ -163,14 +181,6 @@ class Ag:
     @bw_aktie.setter
     def bw_aktie(self, value:float):
         self._bw_aktie = value
-
-    @property
-    def kurs_14d(self) -> float:
-        return self._kurs_14d
-
-    @kurs_14d.setter
-    def kurs_14d(self, value:float):
-        self._kurs_14d = value
 
     @property
     def kgv(self) -> float:
@@ -342,3 +352,99 @@ class Ag:
     @orders.setter
     def orders(self, value:list):
         self._orders = value
+
+    @property
+    def kurs_14d(self) -> float:
+        return self._kurs_14d
+
+    @kurs_14d.setter
+    def kurs_14d(self, value:float):
+        self._kurs_14d = value
+
+    @property
+    def kurs_30d(self) -> float:
+        return self._kurs_30d
+
+    @kurs_30d.setter
+    def kurs_30d(self, value:float):
+        self._kurs_30d = value
+
+    @property
+    def kurs_60d(self) -> float:
+        return self._kurs_60d
+
+    @kurs_60d.setter
+    def kurs_60d(self, value:float):
+        self._kurs_60d = value
+
+    @property
+    def kurs_90d(self) -> float:
+        return self._kurs_90d
+
+    @kurs_90d.setter
+    def kurs_90d(self, value:float):
+        self._kurs_90d = value
+
+    @property
+    def bw_14d(self) -> float:
+        return self._bw_14d
+
+    @bw_14d.setter
+    def bw_14d(self, value:float):
+        self._bw_14d = value
+
+    @property
+    def bw_30d(self) -> float:
+        return self._bw_30d
+
+    @bw_30d.setter
+    def bw_30d(self, value:float):
+        self._bw_30d = value
+
+    @property
+    def bw_60d(self) -> float:
+        return self._bw_60d
+
+    @bw_60d.setter
+    def bw_60d(self, value:float):
+        self._bw_60d = value
+
+    @property
+    def bw_90d(self) -> float:
+        return self._bw_90d
+
+    @bw_90d.setter
+    def bw_90d(self, value:float):
+        self._bw_90d = value
+
+    @property
+    def fp_14d(self) -> float:
+        return self._fp_14d
+
+    @fp_14d.setter
+    def fp_14d(self, value:float):
+        self._fp_14d = value
+
+    @property
+    def fp_30d(self) -> float:
+        return self._fp_30d
+
+    @fp_30d.setter
+    def fp_30d(self, value:float):
+        self._fp_30d = value
+
+    @property
+    def fp_60d(self) -> float:
+        return self._fp_60d
+
+    @fp_60d.setter
+    def fp_60d(self, value:float):
+        self._fp_60d = value
+
+    @property
+    def fp_90d(self) -> float:
+        return self._fp_90d
+
+    @fp_90d.setter
+    def fp_90d(self, value:float):
+        self._fp_90d = value
