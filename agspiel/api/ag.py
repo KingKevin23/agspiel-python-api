@@ -44,12 +44,13 @@ class Ag:
         self.zertifikate:list = zertifikate
         self.orders:list = orders
 
-        # Hier werden alle Kennzahlen initialisiert, die aus anderen berechnet werden können:
-        self.alter:int = (datetime.now() - self.gruendung).days
-        self.boersenwert:float = self.kurs * self.aktienanzahl
-        self.buchwert: float = self.depotwert + self.bargeld
-        self.spread: float = 1 - (self.geld / self.brief)
-        self.bw_aktie: float = round(self.buchwert / self.aktienanzahl, 2)
+        # Hier werden alle Kennzahlen initialisiert, die aus anderen berechnet werden können.
+        # Genaue Berechnung erfolgt dann im Getter
+        self.alter:int
+        self.boersenwert:float
+        self.buchwert:float
+        self.spread:float
+        self.bw_aktie:float
 
     @property
     def wkn(self) -> int:
@@ -157,7 +158,7 @@ class Ag:
 
     @property
     def bw_aktie(self) -> float:
-        return self._bw_aktie
+        return round(self.buchwert / self.aktienanzahl, 2)
 
     @bw_aktie.setter
     def bw_aktie(self, value:float):
@@ -181,7 +182,10 @@ class Ag:
 
     @property
     def spread(self) -> float:
-        return self._spread
+        if self.geld == 0 or self.brief == 0:
+            return 0
+        else:
+            return 1 - (self.geld / self.brief)
 
     @spread.setter
     def spread(self, value:float):
@@ -189,7 +193,7 @@ class Ag:
 
     @property
     def alter(self) -> int:
-        return self._alter
+        return (datetime.now() - self.gruendung).days
 
     @alter.setter
     def alter(self, value:int):
@@ -205,7 +209,7 @@ class Ag:
 
     @property
     def boersenwert(self) -> float:
-        return self._tagesvolumen
+        return self.kurs * self.aktienanzahl
 
     @boersenwert.setter
     def boersenwert(self, value:float):
@@ -213,7 +217,7 @@ class Ag:
 
     @property
     def buchwert(self) -> float:
-        return self._buchwert
+        return self.depotwert + self.bargeld
 
     @buchwert.setter
     def buchwert(self, value:float):
