@@ -83,8 +83,6 @@ class Api:
                              .replace(".", "").replace(",", "."))
         ag.fp_aktie = float(re.compile("\d*[.]?\d*[,]\d{2}").findall(web_data.find("div", attrs={"id": "fp"}).text)[0]
                             .replace(".", "").replace(",", "."))
-        ag.kurs_14d = float(re.compile("[-]?\d*[.]?\d*[,]\d*").findall(web_data.find("div", attrs={"id": "kurs14d"}).
-                                                                       text)[0].replace(".", "").replace(",", "."))
         ag.kgv = float(re.compile("\d*[,]\d*").findall(web_data.find("div", attrs={"id":"kgv"}).text)[0].
                        replace(",", "."))
         ag.tagesvolumen = Api._convert_number(web_data.find("div", attrs={"id":"tagesvolumen"}).text)
@@ -120,8 +118,12 @@ class Api:
 
         ag.zertifikate = []
         for i in api_data.get("zertifikate"):
-            temp = Zertifikat(betrag=float(i.get("betrag")), typ=i.get("typ"),
-                              hebel=float(i.get("hebel")), punkte=int(i.get("punkte")),
+            try:
+                hebel = float(i.get("hebel"))
+            except TypeError:
+                hebel = 0
+            typ = i.get("typ")
+            temp = Zertifikat(betrag=float(i.get("betrag")), typ=typ, hebel=hebel, punkte=int(i.get("punkte")),
                               ablaufdatum=datetime.strptime(i.get("ablauf_datum"), "%Y-%m-%d %H:%M:%S"))
             ag.zertifikate.append(temp)
 
@@ -131,6 +133,30 @@ class Api:
                          orderregel=i.get("orderregel") == "true", systembank=i.get("systembank_order") == "true",
                          datum=datetime.strptime(i.get("datum"), "%Y-%m-%d %H:%M:%S"))
             ag.orders.append(temp)
+
+        table_data = []
+        rows = web_data.find('table', attrs={'class': 'normalborder'}).find_all('tr')
+        for row in rows:
+            cols = row.find_all("td")
+            for col in cols:
+                inhalt = col.find_all("span")
+                try:
+                    table_data.append(float(inhalt[0].text.replace(",", ".")))
+                except IndexError:
+                    pass
+
+        ag.kurs_14d = table_data[0]
+        ag.kurs_30d = table_data[1]
+        ag.kurs_60d = table_data[2]
+        ag.kurs_90d = table_data[3]
+        ag.bw_14d = table_data[4]
+        ag.bw_30d = table_data[5]
+        ag.bw_60d = table_data[6]
+        ag.bw_90d = table_data[7]
+        ag.fp_14d = table_data[8]
+        ag.fp_30d = table_data[9]
+        ag.fp_60d = table_data[10]
+        ag.fp_90d = table_data[11]
 
         return ag
 
