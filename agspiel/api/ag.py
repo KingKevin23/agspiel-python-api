@@ -7,8 +7,7 @@ class Ag:
     def __init__(self, wkn:int=None, name:str=None, gruendung:datetime=None, aktienanzahl:int=None,
                  in_liquidation:bool=None, kurs:float=None, brief:float=None, geld:float=None, brief_stueckzahl:int=None,
                  geld_stueckzahl:int=None, sw_aktie:float=None, bbw_aktie:float=None, fp_aktie:float=None,
-                 bw_aktie:float=None, kurs_14d:float=None, kgv:float=None, spread:float=None, alter:int=None,
-                 tagesvolumen:float=None, boersenwert:float=None, buchwert:float=None, depotwert:float=None,
+                 kurs_14d:float=None, kgv:float=None, tagesvolumen:float=None, depotwert:float=None,
                  bargeld:float=None, highscore:int=None,  highscore_groesse:int=None, highscore_wachstum:int=None,
                  highscore_newcomer:int=None, agsx_punkte:int=None, in_agsx:bool=None, handelsaktivitaet:int=None,
                  ceo:Ceo=None, aktien:list=None, anleihen:list=None, kredite:list=None, zertifikate:list=None,
@@ -26,14 +25,9 @@ class Ag:
         self.sw_aktie:float = sw_aktie
         self.bbw_aktie:float = bbw_aktie
         self.fp_aktie:float = fp_aktie
-        self.bw_aktie:float = bw_aktie
         self.kurs_14d:float = kurs_14d
         self.kgv:float = kgv
-        self.spread:float = spread
-        self.alter:int = alter
-        #TODO: self._tagesvolumen:float = None
-        #TODO: self._boersenwert:float = None
-        self.buchwert:float = buchwert
+        self.tagesvolumen:float = tagesvolumen
         self.depotwert:float = depotwert
         self.bargeld:float = bargeld
         self.highscore:int = highscore
@@ -49,6 +43,13 @@ class Ag:
         self.kredite:list = kredite
         self.zertifikate:list = zertifikate
         self.orders:list = orders
+
+        # Hier werden alle Kennzahlen initialisiert, die aus anderen berechnet werden können:
+        self.alter:int = (datetime.now() - self.gruendung).days
+        self.boersenwert:float = self.kurs * self.aktienanzahl
+        self.buchwert: float = self.depotwert + self.bargeld
+        self.spread: float = 1 - (self.geld / self.brief)
+        self.bw_aktie: float = round(self.buchwert / self.aktienanzahl, 2)
 
     @property
     def wkn(self) -> int:
@@ -175,7 +176,7 @@ class Ag:
         return self._kgv
 
     @kgv.setter
-    def kgv(self, value: float):
+    def kgv(self, value:float):
         self._kgv = value
 
     @property
@@ -183,7 +184,7 @@ class Ag:
         return self._spread
 
     @spread.setter
-    def spread(self, value: float):
+    def spread(self, value:float):
         self._spread = value
 
     @property
@@ -191,8 +192,24 @@ class Ag:
         return self._alter
 
     @alter.setter
-    def alter(self, value: int):
+    def alter(self, value:int):
         self._alter = value
+
+    @property
+    def tagesvolumen(self) -> float:
+        return self._tagesvolumen
+
+    @tagesvolumen.setter
+    def tagesvolumen(self, value:float):
+        self._tagesvolumen = value
+
+    @property
+    def boersenwert(self) -> float:
+        return self._tagesvolumen
+
+    @boersenwert.setter
+    def boersenwert(self, value:float):
+        self._boersenwert = value
 
     @property
     def buchwert(self) -> float:

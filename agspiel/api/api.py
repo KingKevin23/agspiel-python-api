@@ -87,12 +87,9 @@ class Api:
                                                                        text)[0].replace(".", "").replace(",", "."))
         ag.kgv = float(re.compile("\d*[,]\d*").findall(web_data.find("div", attrs={"id":"kgv"}).text)[0].
                        replace(",", "."))
-        ag.spread = 1 - (ag.geld / ag.brief)
-        ag.alter = (datetime.now() - ag.gruendung).days
+        ag.tagesvolumen = Api._convert_number(web_data.find("div", attrs={"id":"tagesvolumen"}).text)
         ag.depotwert = float(api_data.get("depotwert"))
         ag.bargeld = float(api_data.get("bargeld"))
-        ag.buchwert = ag.depotwert + ag.bargeld
-        ag.bw_aktie = round(ag.buchwert / ag.aktienanzahl, 2)
         ag.highscore = int(api_data.get("highscore_platz"))
         ag.highscore_groesse = int(api_data.get("highscore_platz_groesse"))
         ag.highscore_wachstum = int(api_data.get("highscore_platz_wachstum"))
@@ -152,3 +149,26 @@ class Api:
         gesperrt = ceo_data.get("gesperrt")=="true"
         userprojekt = ceo_data.get("ist_userprojekt_account")=="true"
         return Ceo(name=name, index=index, registrierung_datum=registrierung_datum, gesperrt=gesperrt, userprojekt=userprojekt)
+
+    @staticmethod
+    def _convert_number(number:str) -> float:
+        """
+        Diese Methode wandelt Zahlen in der Form "5,6 Mio." in Gleitkommazahlen um.
+
+        :param number: Die umzuwandelnde Zahl
+        :return: Die umgewandelte Gleitkommazahl
+        """
+        ergebnis = float(re.compile("\d+[,]?\d*").findall(number)[0].replace(",", "."))
+        multiplier = re.compile("\d*[,]?\d*.(:Mrd\.|Mio\.|Tsd\.)").findall(number)
+        if multiplier:
+            multiplier = multiplier[0]
+            if multiplier == "Mrd.":
+                ergebnis *= 1000000000
+            elif multiplier == "Mio.":
+                ergebnis *= 1000000
+            elif multiplier == "Tsd.":
+                ergebnis *= 1000
+            else:
+                raise ValueError()
+
+        return ergebnis
