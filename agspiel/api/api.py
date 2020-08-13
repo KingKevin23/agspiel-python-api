@@ -102,11 +102,11 @@ class Api:
         ag.geld = float(api_data.get("geld"))
         ag.brief_stueckzahl = int(api_data.get("brief_stueckzahl"))
         ag.geld_stueckzahl = int(api_data.get("geld_stueckzahl"))
-        ag.sw_aktie = float(re.compile("\d*[.]?\d*[,]\d{2}").findall(web_data.find("div", attrs={"id":"sw"}).text)[0]
+        ag.sw_aktie = float(re.compile("-?\d*[.]?\d*[,]\d{2}").findall(web_data.find("div", attrs={"id":"sw"}).text)[0]
                             .replace(".", "").replace(",", "."))
-        ag.bbw_aktie = float(re.compile("\d*[.]?\d*[,]\d{2}").findall(web_data.find("div", attrs={"id": "bbw"}).text)[0]
+        ag.bbw_aktie = float(re.compile("-?\d*[.]?\d*[,]\d{2}").findall(web_data.find("div", attrs={"id": "bbw"}).text)[0]
                              .replace(".", "").replace(",", "."))
-        ag.fp_aktie = float(re.compile("\d*[.]?\d*[,]\d{2}").findall(web_data.find("div", attrs={"id": "fp"}).text)[0]
+        ag.fp_aktie = float(re.compile("-?\d*[.]?\d*[,]\d{2}").findall(web_data.find("div", attrs={"id": "fp"}).text)[0]
                             .replace(".", "").replace(",", "."))
         ag.kgv = float(re.compile("\d*[,]\d*").findall(web_data.find("div", attrs={"id":"kgv"}).text)[0].
                        replace(",", "."))
@@ -169,8 +169,6 @@ class Api:
                     table_data.append(float(inhalt[0].text.replace(",", ".")))
                 except IndexError:
                     pass
-
-        print(table_data)
 
         offset = int(len(table_data) / 3) - 1 # Die Länge sollte immer glatt durch 3 teilbar sein
 
