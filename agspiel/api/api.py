@@ -208,7 +208,10 @@ class Api:
         :return: Ein Objekt der Klasse CEO, welches die gewünschten Werte enthält
         """
         name = ceo_data.get("name")
-        index = re.compile("Spielerindex:.(.*)").findall(web_data.find("img", attrs={"width":"150"}).attrs.get("title"))[0]
+        try:
+            index = re.compile("Spielerindex:.(.*)").findall(web_data.find("img", attrs={"width":"150"}).attrs.get("title"))[0]
+        except AttributeError: # Für den Fall das Spieler in keinem Index ist
+            index = None
         registrierung_datum = datetime.strptime(ceo_data.get("registrierung_datum"), "%Y-%m-%d %H:%M:%S")
         gesperrt = ceo_data.get("gesperrt")=="true"
         userprojekt = ceo_data.get("ist_userprojekt_account")=="true"
