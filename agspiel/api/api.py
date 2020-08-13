@@ -170,18 +170,28 @@ class Api:
                 except IndexError:
                     pass
 
-        ag.kurs_14d = table_data[0]
-        ag.kurs_30d = table_data[1]
-        ag.kurs_60d = table_data[2]
-        ag.kurs_90d = table_data[3]
-        ag.bw_14d = table_data[4]
-        ag.bw_30d = table_data[5]
-        ag.bw_60d = table_data[6]
-        ag.bw_90d = table_data[7]
-        ag.fp_14d = table_data[8]
-        ag.fp_30d = table_data[9]
-        ag.fp_60d = table_data[10]
-        ag.fp_90d = table_data[11]
+        print(table_data)
+
+        offset = int(len(table_data) / 3) - 1 # Die Länge sollte immer glatt durch 3 teilbar sein
+
+        # Fall das len = 0 ist muss nicht beachtet werden, da Werte standardmäßig None
+        if len(table_data) >= 3:
+            ag.kurs_14d = table_data[0]
+            ag.bw_14d = table_data[1 + offset]
+            ag.fp_14d = table_data[2 + offset * 2]
+        if len(table_data) >= 6:
+            ag.kurs_30d = table_data[1]
+            ag.bw_30d = table_data[2 + offset]
+            ag.fp_30d = table_data[3 + offset * 2]
+        if len(table_data) >= 9:
+            ag.kurs_60d = table_data[2]
+            ag.bw_60d = table_data[3 + offset]
+            ag.fp_60d = table_data[4 + offset * 2]
+        if len(table_data) >= 12:
+            ag.kurs_90d = table_data[3]
+            ag.bw_90d = table_data[4 + offset]
+            ag.fp_90d = table_data[5 + offset * 2]
+
 
         table_data = {}
         rows = web_data.find('table', attrs={'class': 'padding5'}).find_all('tr')
