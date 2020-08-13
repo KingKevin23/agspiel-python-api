@@ -102,11 +102,11 @@ class Api:
         ag.geld = float(api_data.get("geld"))
         ag.brief_stueckzahl = int(api_data.get("brief_stueckzahl"))
         ag.geld_stueckzahl = int(api_data.get("geld_stueckzahl"))
-        ag.sw_aktie = float(re.compile("\d*[.]?\d*[,]\d{2}").findall(web_data.find("div", attrs={"id":"sw"}).text)[0]
+        ag.sw_aktie = float(re.compile("-?\d*[.]?\d*[,]\d{2}").findall(web_data.find("div", attrs={"id":"sw"}).text)[0]
                             .replace(".", "").replace(",", "."))
-        ag.bbw_aktie = float(re.compile("\d*[.]?\d*[,]\d{2}").findall(web_data.find("div", attrs={"id": "bbw"}).text)[0]
+        ag.bbw_aktie = float(re.compile("-?\d*[.]?\d*[,]\d{2}").findall(web_data.find("div", attrs={"id": "bbw"}).text)[0]
                              .replace(".", "").replace(",", "."))
-        ag.fp_aktie = float(re.compile("\d*[.]?\d*[,]\d{2}").findall(web_data.find("div", attrs={"id": "fp"}).text)[0]
+        ag.fp_aktie = float(re.compile("-?\d*[.]?\d*[,]\d{2}").findall(web_data.find("div", attrs={"id": "fp"}).text)[0]
                             .replace(".", "").replace(",", "."))
         ag.kgv = float(re.compile("\d*[,]\d*").findall(web_data.find("div", attrs={"id":"kgv"}).text)[0].
                        replace(",", "."))
@@ -170,18 +170,26 @@ class Api:
                 except IndexError:
                     pass
 
-        ag.kurs_14d = table_data[0]
-        ag.kurs_30d = table_data[1]
-        ag.kurs_60d = table_data[2]
-        ag.kurs_90d = table_data[3]
-        ag.bw_14d = table_data[4]
-        ag.bw_30d = table_data[5]
-        ag.bw_60d = table_data[6]
-        ag.bw_90d = table_data[7]
-        ag.fp_14d = table_data[8]
-        ag.fp_30d = table_data[9]
-        ag.fp_60d = table_data[10]
-        ag.fp_90d = table_data[11]
+        offset = int(len(table_data) / 3) - 1 # Die Länge sollte immer glatt durch 3 teilbar sein
+
+        # Fall das len = 0 ist muss nicht beachtet werden, da Werte standardmäßig None
+        if len(table_data) >= 3:
+            ag.kurs_14d = table_data[0]
+            ag.bw_14d = table_data[1 + offset]
+            ag.fp_14d = table_data[2 + offset * 2]
+        if len(table_data) >= 6:
+            ag.kurs_30d = table_data[1]
+            ag.bw_30d = table_data[2 + offset]
+            ag.fp_30d = table_data[3 + offset * 2]
+        if len(table_data) >= 9:
+            ag.kurs_60d = table_data[2]
+            ag.bw_60d = table_data[3 + offset]
+            ag.fp_60d = table_data[4 + offset * 2]
+        if len(table_data) >= 12:
+            ag.kurs_90d = table_data[3]
+            ag.bw_90d = table_data[4 + offset]
+            ag.fp_90d = table_data[5 + offset * 2]
+
 
         table_data = {}
         rows = web_data.find('table', attrs={'class': 'padding5'}).find_all('tr')
@@ -208,7 +216,10 @@ class Api:
         :return: Ein Objekt der Klasse CEO, welches die gewünschten Werte enthält
         """
         name = ceo_data.get("name")
-        index = re.compile("Spielerindex:.(.*)").findall(web_data.find("img", attrs={"width":"150"}).attrs.get("title"))[0]
+        try:
+            index = re.compile("Spielerindex:.(.*)").findall(web_data.find("img", attrs={"width":"150"}).attrs.get("title"))[0]
+        except AttributeError: # Für den Fall das Spieler in keinem Index ist
+            index = None
         registrierung_datum = datetime.strptime(ceo_data.get("registrierung_datum"), "%Y-%m-%d %H:%M:%S")
         gesperrt = ceo_data.get("gesperrt")=="true"
         userprojekt = ceo_data.get("ist_userprojekt_account")=="true"

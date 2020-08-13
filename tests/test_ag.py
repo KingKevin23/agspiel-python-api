@@ -98,7 +98,7 @@ class TestAg(TestCase):
             self.assertIsInstance(self.ag.spread, int)
 
     def test_alter(self):
-        self.assertEqual(self.ag.alter, 190)
+        self.assertEqual(self.ag.alter, (datetime.now() - self.ag.gruendung).days)
         self.assertIsInstance(self.ag.alter, int)
 
     def test_tagesvolumen(self):
