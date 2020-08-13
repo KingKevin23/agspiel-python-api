@@ -24,7 +24,7 @@ Die ultimative Python API für das [AG-Spiel](http://www.ag-spiel.de/?bonus=8327
 AG-Namen und CEO-Namen ausgeben lassen:
 
 ```python
-import agspiel-python-api as agspiel
+import agspiel
 
 api = agspiel.api.Api(agspiel.utils.get_php_session_id(email="deine@mail.de", password="DeinPasswort"))
 ag = api.get_ag(175353)
