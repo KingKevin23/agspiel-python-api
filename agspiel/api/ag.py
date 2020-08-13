@@ -45,10 +45,10 @@ class Ag:
         self.kredite:list = kredite
         self.zertifikate:list = zertifikate
         self.orders:list = orders
-        self.dividende:float = dividende #TODO
-        self.max_zertis:int = max_zertis #TODO
-        self.tages_hoch:float = tages_hoch #TODO
-        self.tages_tief:float = tages_tief #TODO
+        self.dividende:float = dividende
+        self.max_zertis:int = max_zertis
+        self.tages_hoch:float = tages_hoch
+        self.tages_tief:float = tages_tief
         self.kurs_14d:float = kurs_14d
         self.kurs_30d:float = kurs_30d
         self.kurs_60d:float = kurs_60d
@@ -352,6 +352,38 @@ class Ag:
     @orders.setter
     def orders(self, value:list):
         self._orders = value
+
+    @property
+    def dividende(self) -> float:
+        return self._dividende
+
+    @dividende.setter
+    def dividende(self, value:float):
+        self._dividende = value
+
+    @property
+    def max_zertis(self) -> int:
+        return self._max_zertis
+
+    @max_zertis.setter
+    def max_zertis(self, value:int):
+        self._max_zertis = value
+
+    @property
+    def tages_hoch(self) -> float:
+        return self._tages_hoch
+
+    @tages_hoch.setter
+    def tages_hoch(self, value:float):
+        self._tages_hoch = value
+
+    @property
+    def tages_tief(self) -> float:
+        return self._tages_tief
+
+    @tages_tief.setter
+    def tages_tief(self, value:float):
+        self._tages_tief = value
 
     @property
     def kurs_14d(self) -> float:

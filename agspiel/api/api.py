@@ -158,6 +158,19 @@ class Api:
         ag.fp_60d = table_data[10]
         ag.fp_90d = table_data[11]
 
+        table_data = {}
+        rows = web_data.find('table', attrs={'class': 'padding5'}).find_all('tr')
+        for row in rows:
+            cols = row.find_all("td")
+            table_data[cols[0].text] = cols[1].text
+
+        ag.dividende = float(re.compile("(0\.?\d{0,2})%").findall(table_data.get("Dividende"))[0])
+        ag.max_zertis = int(re.compile("(\d{1,2})%").findall(table_data.get("Max. Zertifikatevol."))[0])
+        ag.tages_hoch = float(re.compile("\d*\.?\d*,?\d*").findall(table_data.get("Tageshoch"))[0].replace(".", "").
+                              replace(",", "."))
+        ag.tages_tief = float(re.compile("\d*\.?\d*,?\d*").findall(table_data.get("Tagestief"))[0].replace(".", "").
+                              replace(",", "."))
+
         return ag
 
     @staticmethod

@@ -228,6 +228,22 @@ class TestAg(TestCase):
         self.assertEqual(self.ag.orders[0].datum, datetime(year=2020, month=8, day=10, hour=1, minute=21, second=35))
         self.assertIsInstance(self.ag.orders[0].datum, datetime)
 
+    def test_dividende(self):
+        self.assertEqual(self.ag.dividende, 0)
+        self.assertIsInstance(self.ag.dividende, float)
+
+    def test_max_zertis(self):
+        self.assertEqual(self.ag.max_zertis, 5)
+        self.assertIsInstance(self.ag.max_zertis, int)
+
+    def test_tages_hoch(self):
+        self.assertEqual(self.ag.tages_hoch, 423.35)
+        self.assertIsInstance(self.ag.tages_hoch, float)
+
+    def test_tages_tief(self):
+        self.assertEqual(self.ag.tages_tief, 338.68)
+        self.assertIsInstance(self.ag.tages_tief, float)
+
     def test_kurs_14d(self):
         self.assertEqual(self.ag.kurs_14d, 38.24)
         self.assertIsInstance(self.ag.kurs_14d, float)
