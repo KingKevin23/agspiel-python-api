@@ -85,9 +85,29 @@ class TestAg(TestCase):
         self.assertEqual(self.ag.bw_aktie, 83.95)
         self.assertIsInstance(self.ag.bw_aktie, float)
 
-    def test_kurs_14d(self):
-        self.assertEqual(self.ag.kurs_14d, 38.24)
-        self.assertIsInstance(self.ag.kurs_14d, float)
+    def test_kgv(self):
+        self.assertEqual(self.ag.kgv, 115.59)
+        self.assertIsInstance(self.ag.kgv, float)
+
+    def test_spread(self):
+        self.assertEqual(self.ag.spread, 0)
+        try:
+            self.assertIsInstance(self.ag.spread, float)
+        except AssertionError:
+            self.assertEqual(self.ag.spread, 0)
+            self.assertIsInstance(self.ag.spread, int)
+
+    def test_alter(self):
+        self.assertEqual(self.ag.alter, 190)
+        self.assertIsInstance(self.ag.alter, int)
+
+    def test_tagesvolumen(self):
+        self.assertEqual(self.ag.tagesvolumen, 0)
+        self.assertIsInstance(self.ag.tagesvolumen, float)
+
+    def test_boersenwert(self):
+        self.assertEqual(self.ag.boersenwert, 677360000)
+        self.assertIsInstance(self.ag.boersenwert, float)
 
     def test_buchwert(self):
         self.assertEqual(self.ag.buchwert, 167895447.5)
@@ -207,3 +227,67 @@ class TestAg(TestCase):
         self.assertIsInstance(self.ag.orders[0].systembank, bool)
         self.assertEqual(self.ag.orders[0].datum, datetime(year=2020, month=8, day=10, hour=1, minute=21, second=35))
         self.assertIsInstance(self.ag.orders[0].datum, datetime)
+
+    def test_dividende(self):
+        self.assertEqual(self.ag.dividende, 0)
+        self.assertIsInstance(self.ag.dividende, float)
+
+    def test_max_zertis(self):
+        self.assertEqual(self.ag.max_zertis, 5)
+        self.assertIsInstance(self.ag.max_zertis, int)
+
+    def test_tages_hoch(self):
+        self.assertEqual(self.ag.tages_hoch, 423.35)
+        self.assertIsInstance(self.ag.tages_hoch, float)
+
+    def test_tages_tief(self):
+        self.assertEqual(self.ag.tages_tief, 338.68)
+        self.assertIsInstance(self.ag.tages_tief, float)
+
+    def test_kurs_14d(self):
+        self.assertEqual(self.ag.kurs_14d, 38.24)
+        self.assertIsInstance(self.ag.kurs_14d, float)
+
+    def test_kurs_30d(self):
+        self.assertEqual(self.ag.kurs_30d, -0.39)
+        self.assertIsInstance(self.ag.kurs_30d, float)
+
+    def test_kurs_60d(self):
+        self.assertEqual(self.ag.kurs_60d, 47.26)
+        self.assertIsInstance(self.ag.kurs_60d, float)
+
+    def test_kurs_90d(self):
+        self.assertEqual(self.ag.kurs_90d, 35.47)
+        self.assertIsInstance(self.ag.kurs_90d, float)
+
+    def test_bw_14d(self):
+        self.assertEqual(self.ag.bw_14d, -12.32)
+        self.assertIsInstance(self.ag.bw_14d, float)
+
+    def test_bw_30d(self):
+        self.assertEqual(self.ag.bw_30d, 4.74)
+        self.assertIsInstance(self.ag.bw_30d, float)
+
+    def test_bw_60d(self):
+        self.assertEqual(self.ag.bw_60d, 28.03)
+        self.assertIsInstance(self.ag.bw_60d, float)
+
+    def test_bw_90d(self):
+        self.assertEqual(self.ag.bw_90d, 68.96)
+        self.assertIsInstance(self.ag.bw_90d, float)
+
+    def test_fp_14d(self):
+        self.assertEqual(self.ag.fp_14d, 3.89)
+        self.assertIsInstance(self.ag.fp_14d, float)
+
+    def test_fp_30d(self):
+        self.assertEqual(self.ag.fp_30d, 5.51)
+        self.assertIsInstance(self.ag.fp_30d, float)
+
+    def test_fp_60d(self):
+        self.assertEqual(self.ag.fp_60d, 11.74)
+        self.assertIsInstance(self.ag.fp_60d, float)
+
+    def test_fp_90d(self):
+        self.assertEqual(self.ag.fp_90d, 16.59)
+        self.assertIsInstance(self.ag.fp_90d, float)
