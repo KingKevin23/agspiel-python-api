@@ -33,7 +33,8 @@ class Api:
 
     def get_markt(self) -> Markt:
         data = self._get_data().get("allgemein")
-        return Markt(ags=data.get("ags"), orders_24=data.get("24_stunden_orders"), volumen_24=data.get("24_stunden_ordervolumen"))
+        web = requests.get("https://www.ag-spiel.de/index.php?section=login").content
+        return Api._create_markt(api_data=data, web_data=BeautifulSoup(web, "html.parser"))
 
     @property
     def api_version(self) -> int:
@@ -56,6 +57,30 @@ class Api:
                 self._data = json.loads(requests.get(Api._api_url).content)
 
             return self._data
+
+    @staticmethod
+    def _create_markt(api_data:dict, web_data:BeautifulSoup) -> Markt:
+        markt = Markt()
+        markt.ags = int(api_data.get("ags"))
+        markt.orders_24 = int(api_data.get("24_stunden_orders"))
+        markt.volumen_24 = float(api_data.get("24_stunden_ordervolumen"))
+
+        table_data = {}
+        rows = web_data.find('table', attrs={'class': 'menu2'}).find_all('tr')
+        for row in rows:
+            cols = row.find_all("td")
+            try:
+                table_data[cols[0].text] = cols[1].text
+            except IndexError:
+                pass
+
+        markt.agsx_punkte = int(table_data.get("Punktestand").replace(".", ""))
+        markt.agsx_aenderung = int(table_data.get("Änderung"))
+        markt.put_hebel = float(re.compile("(\d\.?\d*)\s/\s\d\.?\d*").findall(table_data.get("Put / Call"))[0])
+        markt.call_hebel = float(re.compile("\d\.?\d*\s/\s(\d\.?\d*)").findall(table_data.get("Put / Call"))[0])
+        markt.anleihenzins = float(re.compile("(\d\.?\d*)%").findall(table_data.get("Anleihezins"))[0])
+
+        return markt
 
     @staticmethod
     def _create_ag(api_data:dict, web_data:BeautifulSoup) -> Ag:

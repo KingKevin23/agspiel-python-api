@@ -1,0 +1,331 @@
+
+
+
+<!DOCTYPE html> 
+<html>
+<head>
+<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1' />
+<link rel='alternate' media='only screen and (max-width: 1024px)'  href='https://www.ag-spiel.de/app' >
+<title>AG-Spiel.de Börsenspiel - Deine virtuelle Aktiengesellschaft</title>
+<meta name='keywords' content='Börsen, Aktien, Börsenspiel, Browsergame, Aktiengesellschaft, Handeln, Traden, AG'>
+<meta name='description' content='Spiele mit deiner eigenen Aktiengesellschaft kostenlos an der Börse von www.AG-Spiel.de. Melde dich an und starte sofort zu handeln!' />
+<meta property="fb:page_id" content="153292014704816" />
+
+<link rel="image_src" href="/images/symbol.jpg" />
+<link rel="apple-touch-icon" href="apple-touch-icon-precomposed.png"/><link rel="stylesheet" href="min/?f=css/normalize.css,fa/css/font-awesome.min.css,css/icons.css,css/flat.css,css/forum.css,css/share.css,css/jquery.dataTables_neu.css,css/lightbox.css,css/jquery-ui.css&v=5" type="text/css"  />
+
+<script>
+var app=0;
+
+function check(url,msg) {
+Check = confirm(msg);
+if(Check == true) location.href=url;
+}
+</script>
+<script type="text/javascript">
+
+
+
+
+var Serverzeit = new Date(2020, 8, 13, 15, 23, 26);
+
+function UhrzeitAnzeigen()
+{
+    
+
+    var Stunden = Serverzeit.getHours();
+    var Minuten = Serverzeit.getMinutes();
+    var Sekunden = Serverzeit.getSeconds();
+    Serverzeit.setSeconds(Sekunden+1);
+
+    if(Stunden <= 9)
+    {
+        Stunden = "0" + Stunden;
+    }
+
+    if(Minuten <= 9)
+    {
+        Minuten = "0" + Minuten;
+    }
+
+    if(Sekunden <= 9)
+    {
+        Sekunden = "0" + Sekunden;
+    }
+
+    Uhrzeitanzeige = Stunden + ":" + Minuten + ":" + Sekunden;
+
+    
+    document.getElementById("uhr").innerHTML = Uhrzeitanzeige;
+    
+    
+
+    setTimeout("UhrzeitAnzeigen()", 1000);
+}
+
+
+</script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script><script>    google.charts.load('current', {packages: ['corechart'], 'language': 'de'});</script><script   type="text/javascript" src="min/?f=js/jquery-1.8.3.js,js/jquery-ui-1.9.2.js,js/jquery.dataTables_neu.min.js,js/dataTablesPlugins.js,js/jquery.cookie.js,js/script.js,js/main.js,js/share.js,js/forum.js,js/jquery.tablesorter.min.js,js/sorter.js&v=8"></script>
+<script   src="js/lightbox.js"></script>
+ 
+<link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
+
+</head>
+
+<body onLoad="UhrzeitAnzeigen('jetzt');">
+<div id="fb-root"></div>
+
+
+</div><script>var lastTimestampChannel1 = 0;var lastTimestampChannel2 = 0;var lastTimestampChannel3 = 0;var lastTimestampChannel4 = 0;</script><div id="bg_head"></div>
+<div id="bg_menu"></div>
+<div id="main">
+        <div id="top">
+        <div id="banner" onClick="location.href = '/index.php?section=start'">
+        </div>
+        <div id="chat">
+                    </div>
+        <script type="text/javascript">
+    var $visible = 0;
+    function whosonline() {
+        if ($visible == 0) {
+            $visible = 1;
+            document.getElementById('onlinelist').className = 'onlinelist';
+        } else {
+            $visible = 0;
+            document.getElementById('onlinelist').className = 'onlinelist invis';
+        }
+    }
+
+
+</script>
+
+<div id='onlinelistbutton'>Wer ist online?</div>
+<div class="onlinelist" id='onlinelist' style="width: 600px;">
+<div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=4429'>AlPharm AG</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=82893'>Bankraub AG</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=67364'>bigbob Inc.</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=70135'>CNC Industrie</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=83588'>Gold AG</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=83787'>Handelsföderation</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=82212'>Helfer in der Not</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=55278'>Herb Solutions AG</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=84027'>holding company nb</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=52725'>IAS-TECHNOLOGIES</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=83379'>Investment Unit </a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=61880'>Irish Beer Ltd.</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=84022'>KE-IT</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=83275'>King Kompany</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=83518'>Königsburg</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=81813'>Lug & Trug AG</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=83365'>Makrotex Technologie</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=79479'>Methanhyd  Corp </a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=82618'>Money Camp</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=82255'>newBee Invest 3.0</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=84169'>Nicht AG</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=74041'>nothing</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=80368'>Nuggetnauton</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=51775'>Oaktown Activity</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=64047'>Okesy AG</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=83979'>ParaGROUP Ag</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=84204'>PK Corporation</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=84091'>Ramone Industries</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=73782'>Rauch&Sauf Logistik</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=58074'>Reifenschleuder AG</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=83473'>RSK</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=55042'>Schulz Edelmetalle</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=83076'>SHOCKWAVE AG</a></div><div style='float:left; width:25%;'><a style='color:#00DD00;' href='index.php?section=profil&userid=46178'>Smith AG</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=67212'>Starfighter SA</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=70836'>Statistikamt</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=84105'>Tihas Soft GmbH</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=69731'>Tom Investment</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=60571'>trading-boss.de</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=31642'>Trümmer AG</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=55259'>Vaulty</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=6438'>ZZ Bananenhaus AG</a></div></div>    </div>
+    <div id="tickerbox">
+        
+
+
+<script type="text/javascript">
+<!--
+
+tText="                <b>Latest News:</b>             <a href='index.php?section=zeitung'>&bdquo;<i>Erhöhung der Monatsprognose</i>&rdquo;</a>             <a href='index.php?section=zeitung'>&bdquo;<i>Erhöhung der Monatsprognose</i>&rdquo;</a>             <a href='index.php?section=zeitung'>&bdquo;<i>Bilanz von July 2020</i>&rdquo;</a>       <b>Latest Trades:</b>      149 Stk. <a href='index.php?section=profil&aktie=176151'>Energy Supply</a> zu 280.73&euro; (<span class='green'>+0.05% / 0.13&euro;</span>)     1 Stk. <a href='index.php?section=profil&aktie=157541'>HSB AG</a> zu 28000.00&euro; (<span class='green'>+0% / 0&euro;</span>)     1 Stk. <a href='index.php?section=profil&aktie=175195'>Catalyst Corp. </a> zu 1639.44&euro; (<span class='green'>+16.99% / 238.04&euro;</span>)     200 Stk. <a href='index.php?section=profil&aktie=175551'>Umbrella Corp.</a> zu 99.31&euro; (<span class='red'>-28.47%/ -39.52&euro;</span>)  ";
+
+tInterval=100;
+
+tNr=4;
+
+tStop=true;
+
+if(document.getElementsByTagName('title')&&document.getElementsByTagName('title')[0].innerHTML)
+    {
+    var tGo;
+    tStop=tStop?' onmouseover="clearInterval(tGo)"onmouseout="tGo=setInterval(\'ticken()\',tInterval);"':'';
+    tCnt=0;
+    tHtml='<span>'+tText+'</span>';
+    document.write('<pre id="ticker"style="overflow:hidden;"'+tStop+'>');
+    for(i=0;i<tNr;++i){document.write(tHtml);}
+    document.write('</pre>');
+
+    function ticken()
+        {
+        tObj=document.getElementById('ticker');
+        tTxt=String(tObj.firstChild.innerHTML);
+        isTag=false;isTxt=false;
+        for(i=0;i<tTxt.length;++i)
+            {
+            if(tTxt.charAt(i)=='>')
+                {
+                isTag=false;continue;
+                }
+            if(tTxt.charAt(i)=='<')
+                {
+                isTag=true;continue;
+                }
+            if(!isTag)
+                {
+                tObj.firstChild.innerHTML=tTxt.substring(0,i)+tTxt.substring(i+1,tTxt.length);
+                isTxt=true;break;
+                }
+            }
+        if(!isTxt)
+            {
+            tObj.removeChild(tObj.firstChild);
+            tObj.innerHTML+=tHtml;
+            }
+        }
+    tGo=setInterval("ticken()",tInterval);
+    }
+// -->
+</script>
+
+
+     </div>
+    <div id="menu">
+        
+
+<div id="nav">
+    <ul>
+        <li><a class='menu top' href='index.php'>Startseite</a></li>
+        <li><a class='menu top' href='index.php?section=live'>Börse Live</a></li>
+        <li><a class='menu' href='index.php?section=agwall'>AG-Wand</a></li>
+        <li><a class='menu' href='index.php?section=agliste'>AG-Liste</a></li>
+        <li><a class='menu top' href='index.php?section=login'>Einloggen</a></li>
+        <li><a class='menu top' href='index.php?section=register'>AG Gründen</a></li>
+    </ul>
+</div>
+      </div>
+    <div id='contentside'>
+        <div id="content">
+            
+
+
+<div style="display:none" class='breakingnews'>
+    <div class='breakingnews-content'>
+        <div class='breakingnews-headlinebg'></div>
+        <div class='breakingnews-headline'>
+            <img src='https://www.ag-spiel.de/images/breakingnews_small.png'>
+        </div>
+        <div class='breakingnews-anchor'>
+            <img src='https://www.ag-spiel.de/images/anchor_small.png'>
+        </div>
+        <div class='breakingnews-title'></div>
+        <div class='breakingnews-text'></div>
+        <div class='breakingnews-link'></div>
+        <div class='breakingnews-close'>X</div>
+    </div>
+</div><h1>Login</h1>
+<form method="post" action="index.php?section=login">
+<label>E-Mail:</label><br> <input name="email" type="email"><br />
+<label>Passwort:</label> <br><input name="userpass" type="password" id="userpass"><br />
+<input type="checkbox" name="permanent" value="1"> Eingeloggt bleiben<br>
+<input name="login" type="submit" id="login" value="Einloggen">
+</form>
+<br><a href='index.php?section=pwvergessen'>Passwort vergessen?</a>        </div>
+        <div id="sidebar" 
+        >
+                 
+                <style type='text/css'>
+                        #content{
+                            width: 920px;
+                        }
+                    </style>
+            
+<table class='menu2'>
+
+<tr><td class='menu2' colspan='2'>
+<div id="holder" style='width:auto;'> 
+<img src='ico/zoom.png' style='vertical-align:middle; margin-bottom: 4px; margin-right: 4px;'><input onKeyDown="sub(event)" type="text" id="keyword" size='26' placeholder='Suche (WKN/AG/Spieler)' >
+</div>
+<div id="ajax_response"></div>
+</td></tr>
+    <tr>
+        <th  class='menu2' colspan='2'>neue Aktien</th>
+    </tr>
+    
+        <tr>
+    <td align='left' class='menu2'><a href='index.php?section=profil&aktie=176234'>BlueHorizon AG</a></td><td align='right' class='menu2'><span class='green'>72,76</span>%</td>
+        </tr>
+    
+        <tr>
+    <td align='left' class='menu2'><a href='index.php?section=profil&aktie=176233'>Cavas 58</a></td><td align='right' class='menu2'><span class='green'>107,50</span>%</td>
+        </tr>
+    
+        <tr>
+    <td align='left' class='menu2'><a href='index.php?section=profil&aktie=176232'>Neurax-Pharm-Int. </a></td><td align='right' class='menu2'><span class='green'>265,39</span>%</td>
+        </tr>
+    
+        <tr>
+    <td align='left' class='menu2'><a href='index.php?section=profil&aktie=176231'>Nikola Motor Company</a></td><td align='right' class='menu2'><span class='green'>183,10</span>%</td>
+        </tr>
+    
+        <tr>
+    <td align='left' class='menu2'><a href='index.php?section=profil&aktie=176230'>Transportunion</a></td><td align='right' class='menu2'><span class='green'>691,00</span>%</td>
+        </tr>
+    
+    <tr>
+        <th  class='menu2' colspan='2'>Top Tagesvolumen</th>
+    </tr>
+    
+        <tr>
+    <td align='left' class='menu2'><a href='index.php?section=profil&aktie=100352'>MLM System AG</a></td><td align='right' class='menu2'>1.171 Mio. &euro;</td>
+        </tr>
+    
+        <tr>
+    <td align='left' class='menu2'><a href='index.php?section=profil&aktie=108819'>Braun & Co</a></td><td align='right' class='menu2'>505 Mio. &euro;</td>
+        </tr>
+    
+        <tr>
+    <td align='left' class='menu2'><a href='index.php?section=profil&aktie=102555'>REenergie Systems SE</a></td><td align='right' class='menu2'>69 Mio. &euro;</td>
+        </tr>
+    
+        <tr>
+    <td align='left' class='menu2'><a href='index.php?section=profil&aktie=175328'>Guitarplayer01</a></td><td align='right' class='menu2'>40 Mio. &euro;</td>
+        </tr>
+    
+        <tr>
+    <td align='left' class='menu2'><a href='index.php?section=profil&aktie=158446'>DotComNet AG</a></td><td align='right' class='menu2'>39 Mio. &euro;</td>
+        </tr>
+    <tr>
+        <th  class='menu2' colspan='2'>AGSX & Anleihen</th>
+    </tr>
+    <tr>
+    <td align='left' class='menu2'>Punktestand</td>
+    <td align='right' class='menu2'>23.332</td>
+    </tr>
+    <tr>
+    <td align='left' class='menu2'>Änderung</td>
+    <td align='right' class='menu2'><img style='vertical-align:bottom' src='images/arrow_down.png'></img> -42</td>
+    </tr>
+    <tr>
+    <td align='left' class='menu2'>Put / Call</td>
+    <td align='right' class='menu2'><span class='red'>4.3</span> / <span class='green'>1.04</span></td>
+    </tr>
+    <tr>
+    <td align='left' class='menu2'>Anleihezins</td>
+    <td align='right' class='menu2'>1.5%</td>
+    </tr>
+    <tr>
+        <th  class='menu2' colspan='2'>Statistiken</th>
+    </tr>
+    <tr>
+    <td align='left' class='menu2'>AGs am Markt</td>
+    <td align='right' class='menu2'>767</td>
+    </tr>
+    <tr>
+    <td align='left' class='menu2'>24 Std. neue AGs</td>
+    <td align='right' class='menu2'>5</td>
+    </tr>
+    <tr>
+    <td align='left' class='menu2'>24 Std. online</td>
+    <td align='right' class='menu2'>613</td>
+    </tr>
+    <tr>
+    <td align='left' class='menu2'>10 Min. online</td>
+    <td align='right' class='menu2'>84</td>
+    </tr>
+    
+    
+</table>   
+
+        </div>
+    </div>
+    <div id="footer">
+        
+        <br><a class='menu' href='index.php?section=regeln'>Regelwerk</a>  | <a class='menu' href='index.php?section=agb'>AGB</a>  | <a class='menu' href='index.php?section=datenschutz'>Datenschutz</a> | <a class='menu' href='index.php?section=impressum'>Impressum</a>
+            
+        
+        
+    </div>
+</div>
+    
+</body>
+</html>
+
+
+
+
+
+
+
+
