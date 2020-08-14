@@ -12,7 +12,6 @@ Die ultimative Python API für das [AG-Spiel](http://www.ag-spiel.de/?bonus=8327
 ### Features:
 
 * AG Kennzahlen ausgeben
-* Premium Informationen ausgeben
 * Marktdaten ausgeben
 
 ### Installation:
