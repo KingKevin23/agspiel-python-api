@@ -1,4 +1,4 @@
-# AG-Spiel API für Python ![GitHub](https://img.shields.io/github/license/KingKevin23/agspiel-python-api)
+# AG-Spiel API für Python ![GitHub](https://img.shields.io/github/license/KingKevin23/agspiel-python-api) [![Python 3.6](https://img.shields.io/badge/python-3.6-blue.svg)](https://www.python.org/downloads/release/python-360/)
 
 Die ultimative Python API für das [AG-Spiel](http://www.ag-spiel.de/?bonus=83275). Made by KingKevin23. (Aktuell benötigt man einen Premiumaccount um die API fehlerfrei zu benutzen. Bei entsprechender Nachfrage kann ich dies in zukünftigen Versionen beheben)
 
