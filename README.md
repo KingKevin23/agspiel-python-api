@@ -25,7 +25,7 @@ AG-Namen und CEO-Namen ausgeben lassen:
 ```python
 import agspiel
 
-api = agspiel.api.Api(agspiel.utils.get_php_session_id(email="deine@mail.de", password="DeinPasswort"))
+api = agspiel.api.Api("DEINE PHPSESSID")
 ag = api.get_ag(175353)
 
 print(ag.name)
