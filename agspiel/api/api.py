@@ -10,14 +10,17 @@ from .aktie import Aktie
 from .anleihe import Anleihe, Kredit
 from .zertifikat import Zertifikat
 from .order import Order
+from .data import Data
 
 class Api:
     _api_url = "https://www.ag-spiel.de/api/get/data.php?version=5"
 
-    def __init__(self, phpsessid:str="", newest_data:bool=False):
+    def __init__(self, phpsessid:str="", premium:bool=True):
         self._phpsessid = phpsessid
-        self._newest_data = newest_data
-        self._data = None
+        self.premium = premium
+        def update_api_data():
+            return json.loads(requests.get(Api._api_url).content)
+        self._data = Data(data=json.loads(requests.get(Api._api_url).content), update=update_api_data)
 
     def get_ag(self, wkn:int) -> Ag:
         """
@@ -26,45 +29,31 @@ class Api:
         :param wkn: Die WKN der gewünschten Ag
         :return: Ein Objekt der Klasse Ag
         """
-        data = self._get_data().get("ags").get(str(wkn))
+        data = self._data().get("ags").get(str(wkn))
         web = requests.get("https://www.ag-spiel.de/index.php?section=profil&aktie={}".format(str(wkn)),
                                                        cookies={"PHPSESSID":self._phpsessid}).content
         return Api._create_ag(api_data=data, web_data=BeautifulSoup(web, "html.parser"))
 
     def get_all_ags(self) -> list:
         ergebnis = []
-        for i in self._get_data().get("ags"):
+        for i in self._data().get("ags"):
             print(i)
             ergebnis.append(self.get_ag(int(i)))
 
         return ergebnis
 
     def get_markt(self) -> Markt:
-        data = self._get_data().get("allgemein")
+        data = self._data().get("allgemein")
         web = requests.get("https://www.ag-spiel.de/index.php?section=login").content
         return Api._create_markt(api_data=data, web_data=BeautifulSoup(web, "html.parser"))
 
     @property
     def api_version(self) -> int:
-        return int(self._get_data().get("api_version"))
+        return int(self._data().get("api_version"))
 
     @property
     def daten_datum(self) -> datetime:
-        return datetime.strptime(self._get_data().get("daten_datum"), "%Y-%m-%d %H:%M:%S")
-
-    def _get_data(self) -> dict:
-        """
-        Diese Methode holt sich die aktuellen Daten aus der AGS-API.
-
-        :return: Ein Dictionary mit den API-Daten
-        """
-        if self._newest_data:
-            return json.loads(requests.get(Api._api_url).content)
-        else:
-            if self._data is None:
-                self._data = json.loads(requests.get(Api._api_url).content)
-
-            return self._data
+        return datetime.strptime(self._data().get("daten_datum"), "%Y-%m-%d %H:%M:%S")
 
     @staticmethod
     def _create_markt(api_data:dict, web_data:BeautifulSoup) -> Markt:

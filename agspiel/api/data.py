@@ -41,3 +41,6 @@ class Data:
     @timestamp.setter
     def timestamp(self, value:datetime):
         self._timestamp = value
+
+    def __call__(self, *args, **kwargs):
+        return self.data
