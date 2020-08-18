@@ -14,7 +14,7 @@ from .order import Order
 class Api:
     _api_url = "https://www.ag-spiel.de/api/get/data.php?version=5"
 
-    def __init__(self, phpsessid:str, newest_data:bool=False):
+    def __init__(self, phpsessid:str="", newest_data:bool=False):
         self._phpsessid = phpsessid
         self._newest_data = newest_data
         self._data = None
@@ -30,6 +30,14 @@ class Api:
         web = requests.get("https://www.ag-spiel.de/index.php?section=profil&aktie={}".format(str(wkn)),
                                                        cookies={"PHPSESSID":self._phpsessid}).content
         return Api._create_ag(api_data=data, web_data=BeautifulSoup(web, "html.parser"))
+
+    def get_all_ags(self) -> list:
+        ergebnis = []
+        for i in self._get_data().get("ags"):
+            print(i)
+            ergebnis.append(self.get_ag(int(i)))
+
+        return ergebnis
 
     def get_markt(self) -> Markt:
         data = self._get_data().get("allgemein")
@@ -166,7 +174,7 @@ class Api:
             for col in cols:
                 inhalt = col.find_all("span")
                 try:
-                    table_data.append(float(inhalt[0].text.replace(",", ".")))
+                    table_data.append(float(inhalt[0].text.replace(".", "").replace(",", ".")))
                 except IndexError:
                     pass
 
