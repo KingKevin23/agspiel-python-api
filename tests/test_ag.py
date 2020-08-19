@@ -6,7 +6,7 @@ from datetime import datetime
 from agspiel.api.ag import Ag
 from agspiel.api.data import Data
 from agspiel.api.ceo import Ceo
-from agspiel.api.aktie import Aktie
+from agspiel.api.aktie import Aktie, Aktionaer
 from agspiel.api.anleihe import Anleihe, Kredit
 from agspiel.api.zertifikat import Zertifikat
 from agspiel.api.order import Order
@@ -216,6 +216,16 @@ class TestAg(TestCase):
         self.assertIsInstance(self.ag.orders[0].systembank, bool)
         self.assertEqual(self.ag.orders[0].datum, datetime(year=2020, month=8, day=16, hour=18, minute=33, second=7))
         self.assertIsInstance(self.ag.orders[0].datum, datetime)
+
+    def test_aktionaere(self):
+        temp = self.ag.aktionaere
+        for i in temp:
+            self.assertIsInstance(i, Aktionaer)
+        self.assertEqual(len(temp), 48)
+        self.assertEqual(temp[0].wkn, 103279)
+        self.assertIsInstance(temp[0].wkn, int)
+        self.assertEqual(temp[0].stueckzahl, 121495)
+        self.assertIsInstance(temp[0].stueckzahl, int)
 
     def test_dividende(self):
         self.assertEqual(self.ag.dividende, 0)
