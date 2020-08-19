@@ -18,9 +18,7 @@ class Api:
     def __init__(self, phpsessid:str="", premium:bool=True):
         self._phpsessid = phpsessid
         self.premium = premium
-        def update_api_data():
-            return json.loads(requests.get(Api._api_url).content)
-        self._data = Data(data=json.loads(requests.get(Api._api_url).content), update=update_api_data)
+        self._api_data = Data(update=lambda: json.loads(requests.get(Api._api_url).content))
 
     def get_ag(self, wkn:int) -> Ag:
         """
@@ -29,31 +27,34 @@ class Api:
         :param wkn: Die WKN der gewünschten Ag
         :return: Ein Objekt der Klasse Ag
         """
-        data = self._data().get("ags").get(str(wkn))
+        # Klasse data um timestamp param erweitern, der standardmäßig auf datetime.now() iat.
+        # für web daten dann den timestamp auf vor 5 minuten setzten und daten = None. somit
+        # wird bei nächster benutzung aktualisiert.
+        data = self._api_data().get("ags").get(str(wkn))
         web = requests.get("https://www.ag-spiel.de/index.php?section=profil&aktie={}".format(str(wkn)),
                                                        cookies={"PHPSESSID":self._phpsessid}).content
         return Api._create_ag(api_data=data, web_data=BeautifulSoup(web, "html.parser"))
 
     def get_all_ags(self) -> list:
         ergebnis = []
-        for i in self._data().get("ags"):
+        for i in self._api_data().get("ags"):
             print(i)
             ergebnis.append(self.get_ag(int(i)))
 
         return ergebnis
 
     def get_markt(self) -> Markt:
-        data = self._data().get("allgemein")
+        data = self._api_data().get("allgemein")
         web = requests.get("https://www.ag-spiel.de/index.php?section=login").content
         return Api._create_markt(api_data=data, web_data=BeautifulSoup(web, "html.parser"))
 
     @property
     def api_version(self) -> int:
-        return int(self._data().get("api_version"))
+        return int(self._api_data().get("api_version"))
 
     @property
     def daten_datum(self) -> datetime:
-        return datetime.strptime(self._data().get("daten_datum"), "%Y-%m-%d %H:%M:%S")
+        return datetime.strptime(self._api_data().get("daten_datum"), "%Y-%m-%d %H:%M:%S")
 
     @staticmethod
     def _create_markt(api_data:dict, web_data:BeautifulSoup) -> Markt:
