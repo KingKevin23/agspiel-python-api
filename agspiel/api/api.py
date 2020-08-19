@@ -34,7 +34,6 @@ class Api:
     def get_all_ags(self) -> list:
         ergebnis = []
         for i in self._api_data().get("ags"):
-            print(i)
             ergebnis.append(self.get_ag(int(i)))
 
         return ergebnis
