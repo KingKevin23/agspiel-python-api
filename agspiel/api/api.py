@@ -32,6 +32,11 @@ class Api:
             raise AgNotFoundError("Die AG mit der WKN " + str(wkn) + " wurde nicht gefunden.")
 
     def get_all_ags(self) -> list:
+        """
+        Diese Methode gibt eine Liste mit allen Ag-Objekten aus, die es im AG-Spiel gibt.
+
+        :return: Die Liste aller AGs
+        """
         ergebnis = []
         for i in self._api_data().get("ags"):
             ergebnis.append(self.get_ag(int(i)))
