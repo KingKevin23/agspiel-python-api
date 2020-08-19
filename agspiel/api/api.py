@@ -22,7 +22,7 @@ class Api:
         :param wkn: Die WKN der gewünschten Ag
         :return: Ein Objekt der Klasse Ag
         """
-        if str(wkn) in self._api_data:
+        if str(wkn) in self._api_data().get("ags"):
             web_data = Data(
                 update=lambda: BeautifulSoup(requests.get("https://www.ag-spiel.de/index.php?section=profil&aktie={}"
                                                           .format(str(wkn)), cookies={"PHPSESSID": self._phpsessid})
