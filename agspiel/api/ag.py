@@ -213,7 +213,13 @@ class Ag:
 
     @property
     def aktionaere(self) -> list:
-        return None #TODO
+        aktionaere = []
+        for ag in self._api_data().get("ags").values():
+            for aktie in ag.get("aktien"):
+                if self.wkn in aktie.values():
+                    aktionaere.append(Aktionaer(wkn=ag.get("wkn"), stueckzahl=aktie.get("stueckzahl")))
+
+        return aktionaere
 
     @property
     def dividende(self) -> float:
