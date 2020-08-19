@@ -1,33 +1,25 @@
 #  Copyright (c) 2020 | KingKevin23 (@kingkevin023)
 
+import json
 from unittest import TestCase
 from datetime import datetime
+from agspiel.api.ag import Ag
+from agspiel.api.data import Data
 from agspiel.api.ceo import Ceo
 from agspiel.api.aktie import Aktie
 from agspiel.api.anleihe import Anleihe, Kredit
 from agspiel.api.zertifikat import Zertifikat
 from agspiel.api.order import Order
-from agspiel.api.api import Api
 from bs4 import BeautifulSoup
 
 class TestAg(TestCase):
     def setUp(self):
-        ceo = {"name":"KingKevin23", "registrierung_datum":"2020-02-04 16:24:00", "gesperrt":"false", "ist_userprojekt_account":"false"}
-        aktien = [{"wkn":"104531", "stueckzahl":"146"}, {"wkn":"105516", "stueckzahl":"23"}]
-        anleihen = [{"betrag":"10000000", "zins":"0.32", "auszahlung_datum":"2020-08-14 15:01:33", "laufzeit":"5"}]
-        kredite = [{"betrag":"10000000", "zins":"0.32", "rueckzahlung_datum":"2020-08-14 15:01:33", "laufzeit":"5"}]
-        zertifikate = [{"betrag":"234.43", "typ":"call", "hebel":"1.092", "punkte":"23443", "ablauf_datum":"2020-08-10 17:48:01"}]
-        orders = [{"typ":"sell", "limit":"410", "stueckzahl":"303", "orderregel":"false", "systembank_order":"false", "datum":"2020-08-10 01:21:35"}]
-        api_data = {"wkn":"175353", "name":"King Kompany", "gruendung":"2020-02-04 16:25:05", "aktienanzahl":"2000000",
-                    "in_liquidation":"false", "kurs":"338.68", "brief":"338.68", "brief_stueckzahl":"117391", "geld":"0",
-                    "geld_stueckzahl":"0", "depotwert":"162516884.99", "bargeld":"5378562.51", "highscore_platz":"528",
-                    "highscore_platz_groesse":"337", "highscore_platz_wachstum":"502", "highscore_platz_newcomer":"0",
-                    "agsx_punkte":"1026", "in_agsx":"false", "handelsaktivitaet":"42", "ceo":ceo, "aktien":aktien,
-                    "anleihen":anleihen, "kredite":kredite, "zertifikate":zertifikate, "orders":orders}
-        f = open("testpage.txt", "rb")
-        web_data = BeautifulSoup(f.read(), "html.parser")
+        f = open("testag.txt", "rb")
+        web_data = Data(data=BeautifulSoup(f.read(), "html.parser"), update=lambda: self.data)
         f.close()
-        self.ag = Api._create_ag(api_data, web_data)
+        f = open("testapi.txt", "r")
+        api_data = Data(data=json.loads(f.read()), update=lambda: self.data)
+        self.ag = Ag(wkn=175353, api_data=api_data, web_data=web_data)
 
     def test_wkn(self):
         self.assertEqual(self.ag.wkn, 175353)
