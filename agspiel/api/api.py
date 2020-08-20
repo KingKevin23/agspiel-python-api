@@ -7,6 +7,8 @@ from datetime import datetime
 from bs4 import BeautifulSoup
 from .data import Data
 
+class AgNotFoundError(Exception): pass
+
 class Api:
     _api_url = "https://www.ag-spiel.de/api/get/data.php?version=5"
 
@@ -55,5 +57,3 @@ class Api:
     @property
     def daten_datum(self) -> datetime:
         return datetime.strptime(self._api_data().get("daten_datum"), "%Y-%m-%d %H:%M:%S")
-
-class AgNotFoundError(Exception): pass
