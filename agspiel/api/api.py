@@ -1,6 +1,6 @@
 #  Copyright (c) 2020 | KingKevin23 (@kingkevin023)
 
-import requests, json, re
+import requests, json
 from .ag import Ag
 from .markt import Markt
 from datetime import datetime
@@ -44,9 +44,9 @@ class Api:
         return ergebnis
 
     def get_markt(self) -> Markt:
-        data = self._api_data().get("allgemein")
-        web = requests.get("https://www.ag-spiel.de/index.php?section=login").content
-        return Api._create_markt(api_data=data, web_data=BeautifulSoup(web, "html.parser"))
+        web_data = Data(update=lambda: BeautifulSoup(requests.get("https://www.ag-spiel.de/index.php?section=statistiken",
+                                                                  cookies={"PHPSESSID": self._phpsessid}).content, "html.parser"))
+        return Markt(api_data=self._api_data, web_data=web_data)
 
     @property
     def api_version(self) -> int:
@@ -55,29 +55,5 @@ class Api:
     @property
     def daten_datum(self) -> datetime:
         return datetime.strptime(self._api_data().get("daten_datum"), "%Y-%m-%d %H:%M:%S")
-
-    @staticmethod
-    def _create_markt(api_data:dict, web_data:BeautifulSoup) -> Markt:
-        markt = Markt()
-        markt.ags = int(api_data.get("ags"))
-        markt.orders_24 = int(api_data.get("24_stunden_orders"))
-        markt.volumen_24 = float(api_data.get("24_stunden_ordervolumen"))
-
-        table_data = {}
-        rows = web_data.find('table', attrs={'class': 'menu2'}).find_all('tr')
-        for row in rows:
-            cols = row.find_all("td")
-            try:
-                table_data[cols[0].text] = cols[1].text
-            except IndexError:
-                pass
-
-        markt.agsx_punkte = int(table_data.get("Punktestand").replace(".", ""))
-        markt.agsx_aenderung = int(table_data.get("Änderung"))
-        markt.put_hebel = float(re.compile("(\d\.?\d*)\s/\s\d\.?\d*").findall(table_data.get("Put / Call"))[0])
-        markt.call_hebel = float(re.compile("\d\.?\d*\s/\s(\d\.?\d*)").findall(table_data.get("Put / Call"))[0])
-        markt.anleihenzins = float(re.compile("(\d\.?\d*)%").findall(table_data.get("Anleihezins"))[0])
-
-        return markt
 
 class AgNotFoundError(Exception): pass

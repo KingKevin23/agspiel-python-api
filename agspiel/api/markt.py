@@ -1,77 +1,87 @@
 #  Copyright (c) 2020 | KingKevin23 (@kingkevin023)
 
+import re
+from .data import Data
+
 class Markt:
-    def __init__(self, ags:int=None, orders_24:int=None, volumen_24:float=None, agsx_punkte:int=None,
-                 agsx_aenderung:int=None, put_hebel:float=None, call_hebel:float=None, anleihenzins:float=None):
-        self.ags:int = ags
-        self.orders_24:int = orders_24
-        self.volumen_24:float = volumen_24
-        self.agsx_punkte:int = agsx_punkte
-        self.agsx_aenderung:int = agsx_aenderung
-        self.put_hebel:float = put_hebel
-        self.call_hebel:float = call_hebel
-        self.anleihenzins:float = anleihenzins
+    def __init__(self, api_data:Data, web_data:Data):
+        self._api_data = api_data
+        self._web_data = web_data
+        self._markt_data = lambda: self._api_data().get("allgemein")
 
     @property
     def ags(self) -> int:
-        return self._ags
-
-    @ags.setter
-    def ags(self, value:int):
-        self._ags = value
+        return int(self._markt_data().get("ags"))
 
     @property
     def orders_24(self) -> int:
-        return self._orders_24
-
-    @orders_24.setter
-    def orders_24(self, value:int):
-        self._orders_24 = value
+        return int(self._markt_data().get("24_stunden_orders"))
 
     @property
     def volumen_24(self) -> float:
-        return self._volumen_24
-
-    @volumen_24.setter
-    def volumen_24(self, value:float):
-        self._volumen_24 = value
+        return float(self._markt_data().get("24_stunden_ordervolumen"))
 
     @property
     def agsx_punkte(self) -> int:
-        return self._agsx_punkte
+        table_data = {}
+        rows = self._web_data().find('table', attrs={'class': 'menu2'}).find_all('tr')
+        for row in rows:
+            cols = row.find_all("td")
+            try:
+                table_data[cols[0].text] = cols[1].text
+            except IndexError:
+                pass
 
-    @agsx_punkte.setter
-    def agsx_punkte(self, value:int):
-        self._agsx_punkte = value
+        return int(table_data.get("Punktestand").replace(".", ""))
 
     @property
     def agsx_aenderung(self) -> int:
-        return self._agsx_aenderung
+        table_data = {}
+        rows = self._web_data().find('table', attrs={'class': 'menu2'}).find_all('tr')
+        for row in rows:
+            cols = row.find_all("td")
+            try:
+                table_data[cols[0].text] = cols[1].text
+            except IndexError:
+                pass
 
-    @agsx_aenderung.setter
-    def agsx_aenderung(self, value:int):
-        self._agsx_aenderung = value
+        return int(table_data.get("Änderung"))
 
     @property
     def put_hebel(self) -> float:
-        return self._put_hebel
+        table_data = {}
+        rows = self._web_data().find('table', attrs={'class': 'menu2'}).find_all('tr')
+        for row in rows:
+            cols = row.find_all("td")
+            try:
+                table_data[cols[0].text] = cols[1].text
+            except IndexError:
+                pass
 
-    @put_hebel.setter
-    def put_hebel(self, value:float):
-        self._put_hebel = value
+        return float(re.compile("(\d\.?\d*)\s/\s\d\.?\d*").findall(table_data.get("Put / Call"))[0])
 
     @property
     def call_hebel(self) -> float:
-        return self._call_hebel
+        table_data = {}
+        rows = self._web_data().find('table', attrs={'class': 'menu2'}).find_all('tr')
+        for row in rows:
+            cols = row.find_all("td")
+            try:
+                table_data[cols[0].text] = cols[1].text
+            except IndexError:
+                pass
 
-    @call_hebel.setter
-    def call_hebel(self, value:float):
-        self._call_hebel = value
+        return float(re.compile("\d\.?\d*\s/\s(\d\.?\d*)").findall(table_data.get("Put / Call"))[0])
 
     @property
     def anleihenzins(self) -> float:
-        return self._anleihenzins
+        table_data = {}
+        rows = self._web_data().find('table', attrs={'class': 'menu2'}).find_all('tr')
+        for row in rows:
+            cols = row.find_all("td")
+            try:
+                table_data[cols[0].text] = cols[1].text
+            except IndexError:
+                pass
 
-    @anleihenzins.setter
-    def anleihenzins(self, value:float):
-        self._anleihenzins = value
+        return float(re.compile("(\d\.?\d*)%").findall(table_data.get("Anleihezins"))[0])
