@@ -1,194 +1,85 @@
 #  Copyright (c) 2020 | KingKevin23 (@kingkevin023)
 
+import re
+from bs4 import BeautifulSoup
 from datetime import datetime
 from .ceo import Ceo
+from .aktie import Aktie, Aktionaer
+from .anleihe import Anleihe, Kredit
+from .zertifikat import Zertifikat
+from .order import Order
+from .data import Data
 
 class Ag:
-    def __init__(self, wkn:int=None, name:str=None, gruendung:datetime=None, aktienanzahl:int=None,
-                 in_liquidation:bool=None, kurs:float=None, brief:float=None, geld:float=None, brief_stueckzahl:int=None,
-                 geld_stueckzahl:int=None, sw_aktie:float=None, bbw_aktie:float=None, fp_aktie:float=None,
-                 kgv:float=None, tagesvolumen:float=None, depotwert:float=None, bargeld:float=None, highscore:int=None,
-                 highscore_groesse:int=None, highscore_wachstum:int=None, highscore_newcomer:int=None,
-                 agsx_punkte:int=None, in_agsx:bool=None, handelsaktivitaet:int=None, ceo:Ceo=None, aktien:list=None,
-                 anleihen:list=None, kredite:list=None, zertifikate:list=None, orders:list=None, dividende:float=None,
-                 max_zertis:int=None, tages_hoch:float=None, tages_tief:float=None, kurs_14d:float=None,
-                 kurs_30d:float=None, kurs_60d:float=None, kurs_90d:float=None, bw_14d:float=None, bw_30d:float=None,
-                 bw_60d:float=None, bw_90d:float=None, fp_14d:float=None, fp_30d:float=None, fp_60d:float=None,
-                 fp_90d:float=None):
-        self.wkn:int = wkn
-        self.name:str = name
-        self.gruendung:datetime = gruendung
-        self.aktienanzahl:int = aktienanzahl
-        self.in_liquidation:bool = in_liquidation
-        self.kurs:float = kurs
-        self.brief:float = brief
-        self.geld:float = geld
-        self.brief_stueckzahl:int = brief_stueckzahl
-        self.geld_stueckzahl:int = geld_stueckzahl
-        self.sw_aktie:float = sw_aktie
-        self.bbw_aktie:float = bbw_aktie
-        self.fp_aktie:float = fp_aktie
-        self.kgv:float = kgv
-        self.tagesvolumen:float = tagesvolumen
-        self.depotwert:float = depotwert
-        self.bargeld:float = bargeld
-        self.highscore:int = highscore
-        self.highscore_groesse:int = highscore_groesse
-        self.highscore_wachstum:int = highscore_wachstum
-        self.highscore_newcomer:int = highscore_newcomer
-        self.agsx_punkte:int = agsx_punkte
-        self.in_agsx:bool = in_agsx
-        self.handelsaktivitaet:int = handelsaktivitaet
-        self.ceo:Ceo = ceo
-        self.aktien:list = aktien
-        self.anleihen:list = anleihen
-        self.kredite:list = kredite
-        self.zertifikate:list = zertifikate
-        self.orders:list = orders
-        self.dividende:float = dividende
-        self.max_zertis:int = max_zertis
-        self.tages_hoch:float = tages_hoch
-        self.tages_tief:float = tages_tief
-        self.kurs_14d:float = kurs_14d
-        self.kurs_30d:float = kurs_30d
-        self.kurs_60d:float = kurs_60d
-        self.kurs_90d:float = kurs_90d
-        self.bw_14d:float = bw_14d
-        self.bw_30d:float = bw_30d
-        self.bw_60d:float = bw_60d
-        self.bw_90d:float = bw_90d
-        self.fp_14d:float = fp_14d
-        self.fp_30d:float = fp_30d
-        self.fp_60d:float = fp_60d
-        self.fp_90d:float = fp_90d
-
-        # Hier werden alle Kennzahlen initialisiert, die aus anderen berechnet werden können.
-        # Genaue Berechnung erfolgt dann im Getter
-        self.alter:int
-        self.boersenwert:float
-        self.buchwert:float
-        self.spread:float
-        self.bw_aktie:float
+    def __init__(self, wkn:int, api_data:Data, web_data:Data):
+        self._wkn:int = wkn
+        self._api_data:Data = api_data
+        self._web_data:Data = web_data
+        self._ag_data = lambda: self._api_data().get("ags").get(str(self.wkn))
 
     @property
     def wkn(self) -> int:
         return self._wkn
 
-    @wkn.setter
-    def wkn(self, value:int):
-        self._wkn = value
-
     @property
     def name(self) -> str:
-        return self._name
-
-    @name.setter
-    def name(self, value:str):
-        self._name = value
+        return self._ag_data().get("name")
 
     @property
     def gruendung(self) -> datetime:
-        return self._gruendung
-
-    @gruendung.setter
-    def gruendung(self, value:datetime):
-        self._gruendung = value
+        return datetime.strptime(self._ag_data().get("gruendung"), "%Y-%m-%d %H:%M:%S")
 
     @property
     def aktienanzahl(self) -> int:
-        return self._aktienanzahl
-
-    @aktienanzahl.setter
-    def aktienanzahl(self, value:int):
-        self._aktienanzahl = value
+        return int(self._ag_data().get("aktienanzahl"))
 
     @property
     def in_liquidation(self) -> bool:
-        return self._in_liquidation
-
-    @in_liquidation.setter
-    def in_liquidation(self, value:bool):
-        self._in_liquidation = value
+        return self._ag_data().get("in_liquidation") == "true"
 
     @property
     def kurs(self) -> float:
-        return self._kurs
-
-    @kurs.setter
-    def kurs(self, value:float):
-        self._kurs = value
+        return float(self._ag_data().get("kurs"))
 
     @property
     def brief(self) -> float:
-        return self._brief
-
-    @brief.setter
-    def brief(self, value:float):
-        self._brief = value
+        return float(self._ag_data().get("brief"))
 
     @property
     def geld(self) -> float:
-        return self._geld
-
-    @geld.setter
-    def geld(self, value:float):
-        self._geld = value
+        return float(self._ag_data().get("geld"))
 
     @property
     def brief_stueckzahl(self) -> int:
-        return self._brief_stueckzahl
-
-    @brief_stueckzahl.setter
-    def brief_stueckzahl(self, value:int):
-        self._brief_stueckzahl = value
+        return int(self._ag_data().get("brief_stueckzahl"))
 
     @property
     def geld_stueckzahl(self) -> int:
-        return self._geld_stueckzahl
-
-    @geld_stueckzahl.setter
-    def geld_stueckzahl(self, value:int):
-        self._geld_stueckzahl = value
+        return int(self._ag_data().get("geld_stueckzahl"))
 
     @property
     def sw_aktie(self) -> float:
-        return self._sw_aktie
-
-    @sw_aktie.setter
-    def sw_aktie(self, value:float):
-        self._sw_aktie = value
+        return float(re.compile("-?\d*[.]?\d*[,]\d{2}").findall(self._web_data().find("div", attrs={"id":"sw"}).text)[0]
+                            .replace(".", "").replace(",", "."))
 
     @property
     def bbw_aktie(self) -> float:
-        return self._bbw_aktie
-
-    @bbw_aktie.setter
-    def bbw_aktie(self, value:float):
-        self._bbw_aktie = value
+        return float(re.compile("-?\d*[.]?\d*[,]\d{2}").findall(self._web_data().find("div", attrs={"id": "bbw"}).text)[0]
+                             .replace(".", "").replace(",", "."))
 
     @property
     def fp_aktie(self) -> float:
-        return self._fp_aktie
-
-    @fp_aktie.setter
-    def fp_aktie(self, value:float):
-        self._fp_aktie = value
+        return float(re.compile("-?\d*[.]?\d*[,]\d{2}").findall(self._web_data().find("div", attrs={"id": "fp"}).text)[0]
+                            .replace(".", "").replace(",", "."))
 
     @property
     def bw_aktie(self) -> float:
         return round(self.buchwert / self.aktienanzahl, 2)
 
-    @bw_aktie.setter
-    def bw_aktie(self, value:float):
-        self._bw_aktie = value
-
     @property
     def kgv(self) -> float:
-        return self._kgv
-
-    @kgv.setter
-    def kgv(self, value:float):
-        self._kgv = value
+        return float(re.compile("\d*[,]\d*").findall(self._web_data().find("div", attrs={"id":"kgv"}).text)[0].
+                       replace(",", "."))
 
     @property
     def spread(self) -> float:
@@ -197,286 +88,452 @@ class Ag:
         else:
             return 1 - (self.geld / self.brief)
 
-    @spread.setter
-    def spread(self, value:float):
-        self._spread = value
-
     @property
     def alter(self) -> int:
         return (datetime.now() - self.gruendung).days
 
-    @alter.setter
-    def alter(self, value:int):
-        self._alter = value
-
     @property
     def tagesvolumen(self) -> float:
-        return self._tagesvolumen
-
-    @tagesvolumen.setter
-    def tagesvolumen(self, value:float):
-        self._tagesvolumen = value
+        return Ag._convert_number(self._web_data().find("div", attrs={"id":"tagesvolumen"}).text)
 
     @property
     def boersenwert(self) -> float:
         return self.kurs * self.aktienanzahl
 
-    @boersenwert.setter
-    def boersenwert(self, value:float):
-        self._boersenwert = value
-
     @property
     def buchwert(self) -> float:
         return self.depotwert + self.bargeld
 
-    @buchwert.setter
-    def buchwert(self, value:float):
-        self._buchwert = value
-
     @property
     def depotwert(self) -> float:
-        return self._depotwert
-
-    @depotwert.setter
-    def depotwert(self, value:float):
-        self._depotwert = value
+        return float(self._ag_data().get("depotwert"))
 
     @property
     def bargeld(self) -> float:
-        return self._bargeld
-
-    @bargeld.setter
-    def bargeld(self, value:float):
-        self._bargeld = value
+        return float(self._ag_data().get("bargeld"))
 
     @property
     def highscore(self) -> int:
-        return self._highscore
-
-    @highscore.setter
-    def highscore(self, value:int):
-        self._highscore = value
+        return int(self._ag_data().get("highscore_platz"))
 
     @property
     def highscore_groesse(self) -> int:
-        return self._highscore_groesse
-
-    @highscore_groesse.setter
-    def highscore_groesse(self, value:int):
-        self._highscore_groesse = value
+        return int(self._ag_data().get("highscore_platz_groesse"))
 
     @property
     def highscore_wachstum(self) -> int:
-        return self._highscore_wachstum
-
-    @highscore_wachstum.setter
-    def highscore_wachstum(self, value:int):
-        self._highscore_wachstum = value
+        return int(self._ag_data().get("highscore_platz_wachstum"))
 
     @property
     def highscore_newcomer(self) -> int:
-        return self._highscore_newcomer
-
-    @highscore_newcomer.setter
-    def highscore_newcomer(self, value:int):
-        self._highscore_newcomer = value
+        return int(self._ag_data().get("highscore_platz_newcomer"))
 
     @property
     def agsx_punkte(self) -> int:
-        return self._agsx_punkte
-
-    @agsx_punkte.setter
-    def agsx_punkte(self, value:int):
-        self._agsx_punkte = value
+        return int(self._ag_data().get("agsx_punkte"))
 
     @property
     def in_agsx(self) -> bool:
-        return self._in_agsx
-
-    @in_agsx.setter
-    def in_agsx(self, value:bool):
-        self._in_agsx = value
+        return self._ag_data().get("in_agsx") == "true"
 
     @property
     def handelsaktivitaet(self) -> int:
-        return self._handelsaktivitaet
-
-    @handelsaktivitaet.setter
-    def handelsaktivitaet(self, value:int):
-        self._handelsaktivitaet = value
+        return int(self._ag_data().get("handelsaktivitaet"))
 
     @property
     def ceo(self) -> Ceo:
-        return self._ceo
-
-    @ceo.setter
-    def ceo(self, value:Ceo):
-        self._ceo = value
+        name = self._ag_data().get("ceo").get("name")
+        try:
+            index = re.compile("Spielerindex:.(.*)").findall(self._web_data().find("img", attrs={"width": "150"})
+                                                             .attrs.get("title"))[0]
+        except AttributeError:  # Für den Fall das Spieler in keinem Index ist
+            index = None
+        registrierung_datum = datetime.strptime(self._ag_data().get("ceo").get("registrierung_datum"), "%Y-%m-%d %H:%M:%S")
+        gesperrt = self._ag_data().get("ceo").get("gesperrt") == "true"
+        userprojekt = self._ag_data().get("ceo").get("ist_userprojekt_account") == "true"
+        return Ceo(name=name, index=index, registrierung_datum=registrierung_datum, gesperrt=gesperrt, 
+                   userprojekt=userprojekt)
 
     @property
     def aktien(self) -> list:
-        return self._aktien
+        aktien = []
+        for i in self._ag_data().get("aktien"):
+            temp = Aktie(wkn=int(i.get("wkn")), stueckzahl=int(i.get("stueckzahl")))
+            aktien.append(temp)
 
-    @aktien.setter
-    def aktien(self, value:list):
-        self._aktien = value
+        return aktien
 
     @property
     def anleihen(self) -> list:
-        return self._anleihen
+        anleihen = []
+        for i in self._ag_data().get("anleihen"):
+            temp = Anleihe(betrag=int(i.get("betrag")), zins=float(i.get("zins")),
+                           auszahlung_datum=datetime.strptime(i.get("auszahlung_datum"), "%Y-%m-%d %H:%M:%S"),
+                           laufzeit=int(i.get("laufzeit")))
+            anleihen.append(temp)
 
-    @anleihen.setter
-    def anleihen(self, value:list):
-        self._anleihen = value
+        return anleihen
 
     @property
     def kredite(self) -> list:
-        return self._kredite
+        kredite = []
+        for i in self._ag_data().get("kredite"):
+            temp = Kredit(betrag=int(i.get("betrag")), zins=float(i.get("zins")),
+                          rueckzahlung_datum=datetime.strptime(i.get("rueckzahlung_datum"), "%Y-%m-%d %H:%M:%S"),
+                          laufzeit=int(i.get("laufzeit")))
+            kredite.append(temp)
 
-    @kredite.setter
-    def kredite(self, value:list):
-        self._kredite = value
+        return kredite
 
     @property
     def zertifikate(self) -> list:
-        return self._zertifikate
+        zertifikate = []
+        for i in self._ag_data().get("zertifikate"):
+            try:
+                hebel = float(i.get("hebel"))
+            except TypeError: # falls hebel noch nicht bekannt
+                hebel = 0
+            typ = i.get("typ")
+            temp = Zertifikat(betrag=float(i.get("betrag")), typ=typ, hebel=hebel, punkte=int(i.get("punkte")),
+                              ablaufdatum=datetime.strptime(i.get("ablauf_datum"), "%Y-%m-%d %H:%M:%S"))
+            zertifikate.append(temp)
 
-    @zertifikate.setter
-    def zertifikate(self, value:list):
-        self._zertifikate = value
+        return zertifikate
 
     @property
     def orders(self) -> list:
-        return self._orders
+        orders = []
+        for i in self._ag_data().get("orders"):
+            temp = Order(typ=i.get("typ"), limit=float(i.get("limit")), stueckzahl=int(i.get("stueckzahl")),
+                         orderregel=i.get("orderregel") == "true", systembank=i.get("systembank_order") == "true",
+                         datum=datetime.strptime(i.get("datum"), "%Y-%m-%d %H:%M:%S"))
+            orders.append(temp)
 
-    @orders.setter
-    def orders(self, value:list):
-        self._orders = value
+        return orders
+
+    @property
+    def aktionaere(self) -> list:
+        aktionaere = []
+        for ag in self._api_data().get("ags").values():
+            for aktie in ag.get("aktien"):
+                if self.wkn in aktie.values():
+                    aktionaere.append(Aktionaer(wkn=ag.get("wkn"), stueckzahl=aktie.get("stueckzahl")))
+
+        return aktionaere
 
     @property
     def dividende(self) -> float:
-        return self._dividende
+        table_data = {}
+        rows = self._web_data().find('table', attrs={'class': 'padding5'}).find_all('tr')
+        for row in rows:
+            cols = row.find_all("td")
+            table_data[cols[0].text] = cols[1].text
 
-    @dividende.setter
-    def dividende(self, value:float):
-        self._dividende = value
+        return float(re.compile("(0\.?\d{0,2})%").findall(table_data.get("Dividende"))[0])
 
     @property
     def max_zertis(self) -> int:
-        return self._max_zertis
+        table_data = {}
+        rows = self._web_data().find('table', attrs={'class': 'padding5'}).find_all('tr')
+        for row in rows:
+            cols = row.find_all("td")
+            table_data[cols[0].text] = cols[1].text
 
-    @max_zertis.setter
-    def max_zertis(self, value:int):
-        self._max_zertis = value
+        return int(re.compile("(\d{1,2})%").findall(table_data.get("Max. Zertifikatevol."))[0])
 
     @property
     def tages_hoch(self) -> float:
-        return self._tages_hoch
+        table_data = {}
+        rows = self._web_data().find('table', attrs={'class': 'padding5'}).find_all('tr')
+        for row in rows:
+            cols = row.find_all("td")
+            table_data[cols[0].text] = cols[1].text
 
-    @tages_hoch.setter
-    def tages_hoch(self, value:float):
-        self._tages_hoch = value
+        return float(re.compile("\d*\.?\d*,?\d*").findall(table_data.get("Tageshoch"))[0].replace(".", "").
+                              replace(",", "."))
 
     @property
     def tages_tief(self) -> float:
-        return self._tages_tief
+        table_data = {}
+        rows = self._web_data().find('table', attrs={'class': 'padding5'}).find_all('tr')
+        for row in rows:
+            cols = row.find_all("td")
+            table_data[cols[0].text] = cols[1].text
 
-    @tages_tief.setter
-    def tages_tief(self, value:float):
-        self._tages_tief = value
+        return float(re.compile("\d*\.?\d*,?\d*").findall(table_data.get("Tagestief"))[0].replace(".", "").
+                              replace(",", "."))
 
     @property
     def kurs_14d(self) -> float:
-        return self._kurs_14d
+        table_data = []
+        rows = self._web_data().find('table', attrs={'class': 'normalborder'}).find_all('tr')
+        for row in rows:
+            cols = row.find_all("td")
+            for col in cols:
+                inhalt = col.find_all("span")
+                try:
+                    table_data.append(float(inhalt[0].text.replace(".", "").replace(",", ".")))
+                except IndexError:
+                    pass
 
-    @kurs_14d.setter
-    def kurs_14d(self, value:float):
-        self._kurs_14d = value
+        offset = int(len(table_data) / 3) - 1
+        if len(table_data) >= 3:
+            kurs_14d = table_data[0]
+        else:
+            kurs_14d = None
+
+        return kurs_14d
 
     @property
     def kurs_30d(self) -> float:
-        return self._kurs_30d
+        table_data = []
+        rows = self._web_data().find('table', attrs={'class': 'normalborder'}).find_all('tr')
+        for row in rows:
+            cols = row.find_all("td")
+            for col in cols:
+                inhalt = col.find_all("span")
+                try:
+                    table_data.append(float(inhalt[0].text.replace(".", "").replace(",", ".")))
+                except IndexError:
+                    pass
 
-    @kurs_30d.setter
-    def kurs_30d(self, value:float):
-        self._kurs_30d = value
+        offset = int(len(table_data) / 3) - 1
+        if len(table_data) >= 6:
+            kurs_30d = table_data[1]
+        else:
+            kurs_30d = None
+
+        return kurs_30d
 
     @property
     def kurs_60d(self) -> float:
-        return self._kurs_60d
+        table_data = []
+        rows = self._web_data().find('table', attrs={'class': 'normalborder'}).find_all('tr')
+        for row in rows:
+            cols = row.find_all("td")
+            for col in cols:
+                inhalt = col.find_all("span")
+                try:
+                    table_data.append(float(inhalt[0].text.replace(".", "").replace(",", ".")))
+                except IndexError:
+                    pass
 
-    @kurs_60d.setter
-    def kurs_60d(self, value:float):
-        self._kurs_60d = value
+        offset = int(len(table_data) / 3) - 1
+        if len(table_data) >= 9:
+            kurs_60d = table_data[2]
+        else:
+            kurs_60d = None
+
+        return kurs_60d
 
     @property
     def kurs_90d(self) -> float:
-        return self._kurs_90d
+        table_data = []
+        rows = self._web_data().find('table', attrs={'class': 'normalborder'}).find_all('tr')
+        for row in rows:
+            cols = row.find_all("td")
+            for col in cols:
+                inhalt = col.find_all("span")
+                try:
+                    table_data.append(float(inhalt[0].text.replace(".", "").replace(",", ".")))
+                except IndexError:
+                    pass
 
-    @kurs_90d.setter
-    def kurs_90d(self, value:float):
-        self._kurs_90d = value
+        offset = int(len(table_data) / 3) - 1
+        if len(table_data) >= 12:
+            kurs_90d = table_data[3]
+        else:
+            kurs_90d = None
+
+        return kurs_90d
 
     @property
     def bw_14d(self) -> float:
-        return self._bw_14d
+        table_data = []
+        rows = self._web_data().find('table', attrs={'class': 'normalborder'}).find_all('tr')
+        for row in rows:
+            cols = row.find_all("td")
+            for col in cols:
+                inhalt = col.find_all("span")
+                try:
+                    table_data.append(float(inhalt[0].text.replace(".", "").replace(",", ".")))
+                except IndexError:
+                    pass
 
-    @bw_14d.setter
-    def bw_14d(self, value:float):
-        self._bw_14d = value
+        offset = int(len(table_data) / 3) - 1
+        if len(table_data) >= 3:
+            bw_14d = table_data[1 + offset]
+        else:
+            bw_14d = None
+
+        return bw_14d
 
     @property
     def bw_30d(self) -> float:
-        return self._bw_30d
+        table_data = []
+        rows = self._web_data().find('table', attrs={'class': 'normalborder'}).find_all('tr')
+        for row in rows:
+            cols = row.find_all("td")
+            for col in cols:
+                inhalt = col.find_all("span")
+                try:
+                    table_data.append(float(inhalt[0].text.replace(".", "").replace(",", ".")))
+                except IndexError:
+                    pass
 
-    @bw_30d.setter
-    def bw_30d(self, value:float):
-        self._bw_30d = value
+        offset = int(len(table_data) / 3) - 1
+        if len(table_data) >= 6:
+            bw_30d = table_data[2 + offset]
+        else:
+            bw_30d = None
+
+        return bw_30d
 
     @property
     def bw_60d(self) -> float:
-        return self._bw_60d
+        table_data = []
+        rows = self._web_data().find('table', attrs={'class': 'normalborder'}).find_all('tr')
+        for row in rows:
+            cols = row.find_all("td")
+            for col in cols:
+                inhalt = col.find_all("span")
+                try:
+                    table_data.append(float(inhalt[0].text.replace(".", "").replace(",", ".")))
+                except IndexError:
+                    pass
 
-    @bw_60d.setter
-    def bw_60d(self, value:float):
-        self._bw_60d = value
+        offset = int(len(table_data) / 3) - 1
+        if len(table_data) >= 9:
+            bw_60d = table_data[3 + offset]
+        else:
+            bw_60d = None
+
+        return bw_60d
 
     @property
     def bw_90d(self) -> float:
-        return self._bw_90d
+        table_data = []
+        rows = self._web_data().find('table', attrs={'class': 'normalborder'}).find_all('tr')
+        for row in rows:
+            cols = row.find_all("td")
+            for col in cols:
+                inhalt = col.find_all("span")
+                try:
+                    table_data.append(float(inhalt[0].text.replace(".", "").replace(",", ".")))
+                except IndexError:
+                    pass
 
-    @bw_90d.setter
-    def bw_90d(self, value:float):
-        self._bw_90d = value
+        offset = int(len(table_data) / 3) - 1
+        if len(table_data) >= 12:
+            bw_90d = table_data[4 + offset]
+        else:
+            bw_90d = None
+
+        return bw_90d
 
     @property
     def fp_14d(self) -> float:
-        return self._fp_14d
+        table_data = []
+        rows = self._web_data().find('table', attrs={'class': 'normalborder'}).find_all('tr')
+        for row in rows:
+            cols = row.find_all("td")
+            for col in cols:
+                inhalt = col.find_all("span")
+                try:
+                    table_data.append(float(inhalt[0].text.replace(".", "").replace(",", ".")))
+                except IndexError:
+                    pass
 
-    @fp_14d.setter
-    def fp_14d(self, value:float):
-        self._fp_14d = value
+        offset = int(len(table_data) / 3) - 1
+        if len(table_data) >= 3:
+            fp_14d = table_data[2 + offset * 2]
+        else:
+            fp_14d = None
+
+        return fp_14d
 
     @property
     def fp_30d(self) -> float:
-        return self._fp_30d
+        table_data = []
+        rows = self._web_data().find('table', attrs={'class': 'normalborder'}).find_all('tr')
+        for row in rows:
+            cols = row.find_all("td")
+            for col in cols:
+                inhalt = col.find_all("span")
+                try:
+                    table_data.append(float(inhalt[0].text.replace(".", "").replace(",", ".")))
+                except IndexError:
+                    pass
 
-    @fp_30d.setter
-    def fp_30d(self, value:float):
-        self._fp_30d = value
+        offset = int(len(table_data) / 3) - 1
+        if len(table_data) >= 6:
+            fp_30d = table_data[3 + offset * 2]
+        else:
+            fp_30d = None
+
+        return fp_30d
 
     @property
     def fp_60d(self) -> float:
-        return self._fp_60d
+        table_data = []
+        rows = self._web_data().find('table', attrs={'class': 'normalborder'}).find_all('tr')
+        for row in rows:
+            cols = row.find_all("td")
+            for col in cols:
+                inhalt = col.find_all("span")
+                try:
+                    table_data.append(float(inhalt[0].text.replace(".", "").replace(",", ".")))
+                except IndexError:
+                    pass
 
-    @fp_60d.setter
-    def fp_60d(self, value:float):
-        self._fp_60d = value
+        offset = int(len(table_data) / 3) - 1
+        if len(table_data) >= 9:
+            fp_60d = table_data[4 + offset * 2]
+        else:
+            fp_60d = None
+
+        return fp_60d
 
     @property
     def fp_90d(self) -> float:
-        return self._fp_90d
+        table_data = []
+        rows = self._web_data().find('table', attrs={'class': 'normalborder'}).find_all('tr')
+        for row in rows:
+            cols = row.find_all("td")
+            for col in cols:
+                inhalt = col.find_all("span")
+                try:
+                    table_data.append(float(inhalt[0].text.replace(".", "").replace(",", ".")))
+                except IndexError:
+                    pass
 
-    @fp_90d.setter
-    def fp_90d(self, value:float):
-        self._fp_90d = value
+        offset = int(len(table_data) / 3) - 1
+        if len(table_data) >= 12:
+            fp_90d = table_data[5 + offset * 2]
+        else:
+            fp_90d = None
+
+        return fp_90d
+
+    @staticmethod
+    def _convert_number(number: str) -> float:
+        """
+        Diese Methode wandelt Zahlen in der Form "5,6 Mio." in Gleitkommazahlen um.
+
+        :param number: Die umzuwandelnde Zahl
+        :return: Die umgewandelte Gleitkommazahl
+        """
+        ergebnis = float(re.compile("\d+[,]?\d*").findall(number)[0].replace(",", "."))
+        multiplier = re.compile("\d*[,]?\d*.(:Mrd\.|Mio\.|Tsd\.)").findall(number)
+        if multiplier:
+            multiplier = multiplier[0]
+            if multiplier == "Mrd.":
+                ergebnis *= 1000000000
+            elif multiplier == "Mio.":
+                ergebnis *= 1000000
+            elif multiplier == "Tsd.":
+                ergebnis *= 1000
+            else:
+                raise ValueError()
+
+        return ergebnis

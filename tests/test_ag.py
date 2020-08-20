@@ -1,33 +1,26 @@
 #  Copyright (c) 2020 | KingKevin23 (@kingkevin023)
 
+import json
 from unittest import TestCase
 from datetime import datetime
+from agspiel.api.ag import Ag
+from agspiel.api.data import Data
 from agspiel.api.ceo import Ceo
-from agspiel.api.aktie import Aktie
+from agspiel.api.aktie import Aktie, Aktionaer
 from agspiel.api.anleihe import Anleihe, Kredit
 from agspiel.api.zertifikat import Zertifikat
 from agspiel.api.order import Order
-from agspiel.api.api import Api
 from bs4 import BeautifulSoup
 
 class TestAg(TestCase):
     def setUp(self):
-        ceo = {"name":"KingKevin23", "registrierung_datum":"2020-02-04 16:24:00", "gesperrt":"false", "ist_userprojekt_account":"false"}
-        aktien = [{"wkn":"104531", "stueckzahl":"146"}, {"wkn":"105516", "stueckzahl":"23"}]
-        anleihen = [{"betrag":"10000000", "zins":"0.32", "auszahlung_datum":"2020-08-14 15:01:33", "laufzeit":"5"}]
-        kredite = [{"betrag":"10000000", "zins":"0.32", "rueckzahlung_datum":"2020-08-14 15:01:33", "laufzeit":"5"}]
-        zertifikate = [{"betrag":"234.43", "typ":"call", "hebel":"1.092", "punkte":"23443", "ablauf_datum":"2020-08-10 17:48:01"}]
-        orders = [{"typ":"sell", "limit":"410", "stueckzahl":"303", "orderregel":"false", "systembank_order":"false", "datum":"2020-08-10 01:21:35"}]
-        api_data = {"wkn":"175353", "name":"King Kompany", "gruendung":"2020-02-04 16:25:05", "aktienanzahl":"2000000",
-                    "in_liquidation":"false", "kurs":"338.68", "brief":"338.68", "brief_stueckzahl":"117391", "geld":"0",
-                    "geld_stueckzahl":"0", "depotwert":"162516884.99", "bargeld":"5378562.51", "highscore_platz":"528",
-                    "highscore_platz_groesse":"337", "highscore_platz_wachstum":"502", "highscore_platz_newcomer":"0",
-                    "agsx_punkte":"1026", "in_agsx":"false", "handelsaktivitaet":"42", "ceo":ceo, "aktien":aktien,
-                    "anleihen":anleihen, "kredite":kredite, "zertifikate":zertifikate, "orders":orders}
-        f = open("testpage.txt", "rb")
-        web_data = BeautifulSoup(f.read(), "html.parser")
+        f = open("testag.txt", "rb")
+        web_data = Data(data=BeautifulSoup(f.read(), "html.parser"), update=lambda: self.data)
         f.close()
-        self.ag = Api._create_ag(api_data, web_data)
+        f = open("testapi.txt", "r")
+        api_data = Data(data=json.loads(f.read()), update=lambda: self.data)
+        f.close()
+        self.ag = Ag(wkn=175353, api_data=api_data, web_data=web_data)
 
     def test_wkn(self):
         self.assertEqual(self.ag.wkn, 175353)
@@ -50,23 +43,23 @@ class TestAg(TestCase):
         self.assertIsInstance(self.ag.in_liquidation, bool)
 
     def test_kurs(self):
-        self.assertEqual(self.ag.kurs, 338.68)
+        self.assertEqual(self.ag.kurs, 262)
         self.assertIsInstance(self.ag.kurs, float)
 
     def test_brief(self):
-        self.assertEqual(self.ag.brief, 338.68)
+        self.assertEqual(self.ag.brief, 262)
         self.assertIsInstance(self.ag.brief, float)
 
     def test_geld(self):
-        self.assertEqual(self.ag.geld, 0)
+        self.assertEqual(self.ag.geld, 212.8)
         self.assertIsInstance(self.ag.geld, float)
 
     def test_brief_stueckzahl(self):
-        self.assertEqual(self.ag.brief_stueckzahl, 117391)
+        self.assertEqual(self.ag.brief_stueckzahl, 30499)
         self.assertIsInstance(self.ag.brief_stueckzahl, int)
 
     def test_geld_stueckzahl(self):
-        self.assertEqual(self.ag.geld_stueckzahl, 0)
+        self.assertEqual(self.ag.geld_stueckzahl, 281)
         self.assertIsInstance(self.ag.geld_stueckzahl, int)
 
     def test_sw_aktie(self):
@@ -82,7 +75,7 @@ class TestAg(TestCase):
         self.assertIsInstance(self.ag.fp_aktie, float)
 
     def test_bw_aktie(self):
-        self.assertEqual(self.ag.bw_aktie, 83.95)
+        self.assertEqual(self.ag.bw_aktie, 107.65)
         self.assertIsInstance(self.ag.bw_aktie, float)
 
     def test_kgv(self):
@@ -90,12 +83,8 @@ class TestAg(TestCase):
         self.assertIsInstance(self.ag.kgv, float)
 
     def test_spread(self):
-        self.assertEqual(self.ag.spread, 0)
-        try:
-            self.assertIsInstance(self.ag.spread, float)
-        except AssertionError:
-            self.assertEqual(self.ag.spread, 0)
-            self.assertIsInstance(self.ag.spread, int)
+        self.assertEqual(self.ag.spread, 0.1877862595419847)
+        self.assertIsInstance(self.ag.spread, float)
 
     def test_alter(self):
         self.assertEqual(self.ag.alter, (datetime.now() - self.ag.gruendung).days)
@@ -106,31 +95,31 @@ class TestAg(TestCase):
         self.assertIsInstance(self.ag.tagesvolumen, float)
 
     def test_boersenwert(self):
-        self.assertEqual(self.ag.boersenwert, 677360000)
+        self.assertEqual(self.ag.boersenwert, 524000000)
         self.assertIsInstance(self.ag.boersenwert, float)
 
     def test_buchwert(self):
-        self.assertEqual(self.ag.buchwert, 167895447.5)
+        self.assertEqual(self.ag.buchwert, 215306536.68)
         self.assertIsInstance(self.ag.buchwert, float)
 
     def test_depotwert(self):
-        self.assertEqual(self.ag.depotwert, 162516884.99)
+        self.assertEqual(self.ag.depotwert, 163698677.84)
         self.assertIsInstance(self.ag.depotwert, float)
 
     def test_bargeld(self):
-        self.assertEqual(self.ag.bargeld, 5378562.51)
+        self.assertEqual(self.ag.bargeld, 51607858.84)
         self.assertIsInstance(self.ag.bargeld, float)
 
     def test_highscore(self):
-        self.assertEqual(self.ag.highscore, 528)
+        self.assertEqual(self.ag.highscore, 381)
         self.assertIsInstance(self.ag.highscore, int)
 
     def test_highscore_groesse(self):
-        self.assertEqual(self.ag.highscore_groesse, 337)
+        self.assertEqual(self.ag.highscore_groesse, 329)
         self.assertIsInstance(self.ag.highscore_groesse, int)
 
     def test_highscore_wachstum(self):
-        self.assertEqual(self.ag.highscore_wachstum, 502)
+        self.assertEqual(self.ag.highscore_wachstum, 366)
         self.assertIsInstance(self.ag.highscore_wachstum, int)
 
     def test_highscore_newcomer(self):
@@ -138,7 +127,7 @@ class TestAg(TestCase):
         self.assertIsInstance(self.ag.highscore_newcomer, int)
 
     def test_agsx_punkte(self):
-        self.assertEqual(self.ag.agsx_punkte, 1026)
+        self.assertEqual(self.ag.agsx_punkte, 1224)
         self.assertIsInstance(self.ag.agsx_punkte, int)
 
     def test_in_agsx(self):
@@ -146,7 +135,7 @@ class TestAg(TestCase):
         self.assertIsInstance(self.ag.in_agsx, bool)
 
     def test_handelsaktivitaet(self):
-        self.assertEqual(self.ag.handelsaktivitaet, 42)
+        self.assertEqual(self.ag.handelsaktivitaet, 46)
         self.assertIsInstance(self.ag.handelsaktivitaet, int)
 
     def test_ceo(self):
@@ -179,9 +168,9 @@ class TestAg(TestCase):
             self.assertIsInstance(i, Anleihe)
         self.assertEqual(self.ag.anleihen[0].betrag, 10000000)
         self.assertIsInstance(self.ag.anleihen[0].betrag, int)
-        self.assertEqual(self.ag.anleihen[0].zins, 0.32)
+        self.assertEqual(self.ag.anleihen[0].zins, 0.34)
         self.assertIsInstance(self.ag.anleihen[0].zins, float)
-        self.assertEqual(self.ag.anleihen[0].auszahlung_datum, datetime(year=2020, month=8, day=14, hour=15, minute=1, second=33))
+        self.assertEqual(self.ag.anleihen[0].auszahlung_datum, datetime(year=2020, month=8, day=19, hour=15, minute=34, second=14))
         self.assertIsInstance(self.ag.anleihen[0].auszahlung_datum, datetime)
         self.assertEqual(self.ag.anleihen[0].laufzeit, 5)
         self.assertIsInstance(self.ag.anleihen[0].laufzeit, int)
@@ -225,8 +214,18 @@ class TestAg(TestCase):
         self.assertIsInstance(self.ag.orders[0].orderregel, bool)
         self.assertEqual(self.ag.orders[0].systembank, False)
         self.assertIsInstance(self.ag.orders[0].systembank, bool)
-        self.assertEqual(self.ag.orders[0].datum, datetime(year=2020, month=8, day=10, hour=1, minute=21, second=35))
+        self.assertEqual(self.ag.orders[0].datum, datetime(year=2020, month=8, day=16, hour=18, minute=33, second=7))
         self.assertIsInstance(self.ag.orders[0].datum, datetime)
+
+    def test_aktionaere(self):
+        temp = self.ag.aktionaere
+        for i in temp:
+            self.assertIsInstance(i, Aktionaer)
+        self.assertEqual(len(temp), 48)
+        self.assertEqual(temp[0].wkn, 103279)
+        self.assertIsInstance(temp[0].wkn, int)
+        self.assertEqual(temp[0].stueckzahl, 121495)
+        self.assertIsInstance(temp[0].stueckzahl, int)
 
     def test_dividende(self):
         self.assertEqual(self.ag.dividende, 0)
