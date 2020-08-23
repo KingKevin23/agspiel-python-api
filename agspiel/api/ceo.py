@@ -1,11 +1,12 @@
 #  Copyright (c) 2020 | KingKevin23 (@kingkevin023)
 
 from datetime import datetime
+from .index import Index
 
 class Ceo:
-    def __init__(self, name:str, index:str, registrierung_datum:datetime, gesperrt:bool, userprojekt:bool):
+    def __init__(self, name:str, index:Index, registrierung_datum:datetime, gesperrt:bool, userprojekt:bool):
         self._name:str = name
-        self._index:str = index
+        self._index:Index = index
         self._registrierung_datum:datetime = registrierung_datum
         self._gesperrt:bool = gesperrt
         self._userprojekt:bool = userprojekt
@@ -15,7 +16,7 @@ class Ceo:
         return self._name
 
     @property
-    def index(self) -> str:
+    def index(self) -> Index:
         return self._index
 
     @property
