@@ -10,6 +10,7 @@ from agspiel.api.aktie import Aktie, Aktionaer
 from agspiel.api.anleihe import Anleihe, Kredit
 from agspiel.api.zertifikat import Zertifikat
 from agspiel.api.order import Order
+from agspiel.api.index import Index
 from bs4 import BeautifulSoup
 
 class TestAg(TestCase):
@@ -47,19 +48,19 @@ class TestAg(TestCase):
         self.assertIsInstance(self.ag.kurs, float)
 
     def test_brief(self):
-        self.assertEqual(self.ag.brief, 262)
+        self.assertEqual(self.ag.brief, 299)
         self.assertIsInstance(self.ag.brief, float)
 
     def test_geld(self):
-        self.assertEqual(self.ag.geld, 212.8)
+        self.assertEqual(self.ag.geld, 0)
         self.assertIsInstance(self.ag.geld, float)
 
     def test_brief_stueckzahl(self):
-        self.assertEqual(self.ag.brief_stueckzahl, 30499)
+        self.assertEqual(self.ag.brief_stueckzahl, 112291)
         self.assertIsInstance(self.ag.brief_stueckzahl, int)
 
     def test_geld_stueckzahl(self):
-        self.assertEqual(self.ag.geld_stueckzahl, 281)
+        self.assertEqual(self.ag.geld_stueckzahl, 0)
         self.assertIsInstance(self.ag.geld_stueckzahl, int)
 
     def test_sw_aktie(self):
@@ -75,7 +76,7 @@ class TestAg(TestCase):
         self.assertIsInstance(self.ag.fp_aktie, float)
 
     def test_bw_aktie(self):
-        self.assertEqual(self.ag.bw_aktie, 107.65)
+        self.assertEqual(self.ag.bw_aktie, 114.47)
         self.assertIsInstance(self.ag.bw_aktie, float)
 
     def test_kgv(self):
@@ -83,8 +84,8 @@ class TestAg(TestCase):
         self.assertIsInstance(self.ag.kgv, float)
 
     def test_spread(self):
-        self.assertEqual(self.ag.spread, 0.1877862595419847)
-        self.assertIsInstance(self.ag.spread, float)
+        self.assertEqual(self.ag.spread, 0)
+        self.assertIsInstance(self.ag.spread, int)
 
     def test_alter(self):
         self.assertEqual(self.ag.alter, (datetime.now() - self.ag.gruendung).days)
@@ -99,27 +100,27 @@ class TestAg(TestCase):
         self.assertIsInstance(self.ag.boersenwert, float)
 
     def test_buchwert(self):
-        self.assertEqual(self.ag.buchwert, 215306536.68)
+        self.assertEqual(self.ag.buchwert, 228945121.15)
         self.assertIsInstance(self.ag.buchwert, float)
 
     def test_depotwert(self):
-        self.assertEqual(self.ag.depotwert, 163698677.84)
+        self.assertEqual(self.ag.depotwert, 179176731.12)
         self.assertIsInstance(self.ag.depotwert, float)
 
     def test_bargeld(self):
-        self.assertEqual(self.ag.bargeld, 51607858.84)
+        self.assertEqual(self.ag.bargeld, 49768390.03)
         self.assertIsInstance(self.ag.bargeld, float)
 
     def test_highscore(self):
-        self.assertEqual(self.ag.highscore, 381)
+        self.assertEqual(self.ag.highscore, 245)
         self.assertIsInstance(self.ag.highscore, int)
 
     def test_highscore_groesse(self):
-        self.assertEqual(self.ag.highscore_groesse, 329)
+        self.assertEqual(self.ag.highscore_groesse, 320)
         self.assertIsInstance(self.ag.highscore_groesse, int)
 
     def test_highscore_wachstum(self):
-        self.assertEqual(self.ag.highscore_wachstum, 366)
+        self.assertEqual(self.ag.highscore_wachstum, 282)
         self.assertIsInstance(self.ag.highscore_wachstum, int)
 
     def test_highscore_newcomer(self):
@@ -127,7 +128,7 @@ class TestAg(TestCase):
         self.assertIsInstance(self.ag.highscore_newcomer, int)
 
     def test_agsx_punkte(self):
-        self.assertEqual(self.ag.agsx_punkte, 1224)
+        self.assertEqual(self.ag.agsx_punkte, 1200)
         self.assertIsInstance(self.ag.agsx_punkte, int)
 
     def test_in_agsx(self):
@@ -135,15 +136,27 @@ class TestAg(TestCase):
         self.assertIsInstance(self.ag.in_agsx, bool)
 
     def test_handelsaktivitaet(self):
-        self.assertEqual(self.ag.handelsaktivitaet, 46)
+        self.assertEqual(self.ag.handelsaktivitaet, 43)
         self.assertIsInstance(self.ag.handelsaktivitaet, int)
 
     def test_ceo(self):
         self.assertIsInstance(self.ag.ceo, Ceo)
         self.assertEqual(self.ag.ceo.name, "KingKevin23")
         self.assertIsInstance(self.ag.ceo.name, str)
-        self.assertEqual(self.ag.ceo.index, "Freibeuter")
-        self.assertIsInstance(self.ag.ceo.index, str)
+
+        # Tests zum Index
+        self.assertIsInstance(self.ag.ceo.index, Index)
+        self.assertEqual(self.ag.ceo.index.id, 2349)
+        self.assertIsInstance(self.ag.ceo.index.id, int)
+        self.assertEqual(self.ag.ceo.index.name, "Freibeuter")
+        self.assertIsInstance(self.ag.ceo.index.name, str)
+        self.assertEqual(self.ag.ceo.index.highscore, 8)
+        self.assertIsInstance(self.ag.ceo.index.highscore, int)
+        self.assertEqual(self.ag.ceo.index.punkte, 381)
+        self.assertIsInstance(self.ag.ceo.index.punkte, int)
+        self.assertEqual(self.ag.ceo.index.gruendung_datum, datetime(year=2019, month=11, day=19, hour=0, minute=10, second=12))
+        self.assertIsInstance(self.ag.ceo.index.gruendung_datum, datetime)
+
         self.assertEqual(self.ag.ceo.registrierung_datum, datetime(year=2020, month=2, day=4, hour=16, minute=24))
         self.assertIsInstance(self.ag.ceo.registrierung_datum, datetime)
         self.assertEqual(self.ag.ceo.gesperrt, False)
@@ -154,13 +167,13 @@ class TestAg(TestCase):
     def test_aktien(self):
         for i in self.ag.aktien:
             self.assertIsInstance(i, Aktie)
-        self.assertEqual(self.ag.aktien[0].wkn, 104531)
+        self.assertEqual(self.ag.aktien[0].wkn, 146244)
         self.assertIsInstance(self.ag.aktien[0].wkn, int)
-        self.assertEqual(self.ag.aktien[0].stueckzahl, 146)
+        self.assertEqual(self.ag.aktien[0].stueckzahl, 5)
         self.assertIsInstance(self.ag.aktien[0].stueckzahl, int)
-        self.assertEqual(self.ag.aktien[1].wkn, 105516)
+        self.assertEqual(self.ag.aktien[1].wkn, 175541)
         self.assertIsInstance(self.ag.aktien[1].wkn, int)
-        self.assertEqual(self.ag.aktien[1].stueckzahl, 23)
+        self.assertEqual(self.ag.aktien[1].stueckzahl, 12615)
         self.assertIsInstance(self.ag.aktien[1].stueckzahl, int)
 
     def test_anleihen(self):
@@ -168,9 +181,9 @@ class TestAg(TestCase):
             self.assertIsInstance(i, Anleihe)
         self.assertEqual(self.ag.anleihen[0].betrag, 10000000)
         self.assertIsInstance(self.ag.anleihen[0].betrag, int)
-        self.assertEqual(self.ag.anleihen[0].zins, 0.34)
+        self.assertEqual(self.ag.anleihen[0].zins, 0.36)
         self.assertIsInstance(self.ag.anleihen[0].zins, float)
-        self.assertEqual(self.ag.anleihen[0].auszahlung_datum, datetime(year=2020, month=8, day=19, hour=15, minute=34, second=14))
+        self.assertEqual(self.ag.anleihen[0].auszahlung_datum, datetime(year=2020, month=8, day=24, hour=15, minute=36, second=2))
         self.assertIsInstance(self.ag.anleihen[0].auszahlung_datum, datetime)
         self.assertEqual(self.ag.anleihen[0].laufzeit, 5)
         self.assertIsInstance(self.ag.anleihen[0].laufzeit, int)
@@ -206,22 +219,22 @@ class TestAg(TestCase):
             self.assertIsInstance(i, Order)
         self.assertEqual(self.ag.orders[0].typ, "sell")
         self.assertIsInstance(self.ag.orders[0].typ, str)
-        self.assertEqual(self.ag.orders[0].limit, 410)
+        self.assertEqual(self.ag.orders[0].limit, 299)
         self.assertIsInstance(self.ag.orders[0].limit, float)
-        self.assertEqual(self.ag.orders[0].stueckzahl, 303)
+        self.assertEqual(self.ag.orders[0].stueckzahl, 112291)
         self.assertIsInstance(self.ag.orders[0].stueckzahl, int)
         self.assertEqual(self.ag.orders[0].orderregel, False)
         self.assertIsInstance(self.ag.orders[0].orderregel, bool)
         self.assertEqual(self.ag.orders[0].systembank, False)
         self.assertIsInstance(self.ag.orders[0].systembank, bool)
-        self.assertEqual(self.ag.orders[0].datum, datetime(year=2020, month=8, day=16, hour=18, minute=33, second=7))
+        self.assertEqual(self.ag.orders[0].datum, datetime(year=2020, month=8, day=23, hour=13, minute=3, second=25))
         self.assertIsInstance(self.ag.orders[0].datum, datetime)
 
     def test_aktionaere(self):
         temp = self.ag.aktionaere
         for i in temp:
             self.assertIsInstance(i, Aktionaer)
-        self.assertEqual(len(temp), 48)
+        self.assertEqual(len(temp), 53)
         self.assertEqual(temp[0].wkn, 103279)
         self.assertIsInstance(temp[0].wkn, int)
         self.assertEqual(temp[0].stueckzahl, 121495)
@@ -290,3 +303,15 @@ class TestAg(TestCase):
     def test_fp_90d(self):
         self.assertEqual(self.ag.fp_90d, 16.59)
         self.assertIsInstance(self.ag.fp_90d, float)
+
+    def test_ordner(self):
+        self.assertEqual(self.ag.ordner, "Allgemein")
+        self.assertIsInstance(self.ag.ordner, str)
+
+    def test_kauf_kurs(self):
+        self.assertEqual(self.ag.kauf_kurs, None)
+        self.assertIsInstance(self.ag.kauf_kurs, type(None))
+
+    def test_kauf_anzahl(self):
+        self.assertEqual(self.ag.kauf_anzahl, 0)
+        self.assertIsInstance(self.ag.kauf_anzahl, int)

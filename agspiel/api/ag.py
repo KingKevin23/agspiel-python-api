@@ -9,6 +9,7 @@ from .anleihe import Anleihe, Kredit
 from .zertifikat import Zertifikat
 from .order import Order
 from .data import Data
+from .index import Index
 
 class Ag:
     def __init__(self, wkn:int, api_data:Data, web_data:Data):
@@ -143,11 +144,16 @@ class Ag:
     @property
     def ceo(self) -> Ceo:
         name = self._ag_data().get("ceo").get("name")
-        try:
-            index = re.compile("Spielerindex:.(.*)").findall(self._web_data().find("img", attrs={"width": "150"})
-                                                             .attrs.get("title"))[0]
-        except AttributeError:  # Für den Fall das Spieler in keinem Index ist
-            index = None
+
+        # Alles zum Index
+        index_id = int(self._ag_data().get("index_id"))
+        index_data = self._api_data().get("indizes").get(str(index_id))
+        index_name = index_data.get("name")
+        index_highscore = int(index_data.get("highscore_platz"))
+        index_punkte = int(index_data.get("punkte"))
+        index_gruendung = datetime.strptime(index_data.get("gruendung_datum"), "%Y-%m-%d %H:%M:%S")
+        index = Index(nummer=index_id, name=index_name, highscore=index_highscore, punkte=index_punkte, gruendung_datum=index_gruendung)
+
         registrierung_datum = datetime.strptime(self._ag_data().get("ceo").get("registrierung_datum"), "%Y-%m-%d %H:%M:%S")
         gesperrt = self._ag_data().get("ceo").get("gesperrt") == "true"
         userprojekt = self._ag_data().get("ceo").get("ist_userprojekt_account") == "true"
@@ -514,6 +520,30 @@ class Ag:
             fp_90d = None
 
         return fp_90d
+
+    @property
+    def ordner(self) -> str:
+        try:
+            return re.compile("Ordner:\s(.*)Deine\sNotiz:").findall(self._web_data().find("div", attrs={"class":"nodisplay profil-depotcomment"})
+                                                                    .text)[0]
+        except AttributeError:
+            return "Allgemein"
+
+    @property
+    def kauf_kurs(self) -> float:
+        try:
+            return float(re.compile("Kauf:\s((?:\d*[.,]?)*)\s€").findall(self._web_data().find("div", attrs={"id":"imdepot"})
+                                                                        .text)[0].replace(".", "").replace(",", "."))
+        except AttributeError:
+            return None
+
+    @property
+    def kauf_anzahl(self) -> int:
+        try:
+            return int(re.compile("In\sdeinem\sDepot:((?:\d*\.?)*)\sStk\.").findall(self._web_data().find("div", attrs={"id": "imdepot"})
+                                                                                    .text)[0].replace(".", ""))
+        except AttributeError:
+            return 0
 
     @staticmethod
     def _convert_number(number: str) -> float:

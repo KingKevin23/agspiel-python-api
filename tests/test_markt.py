@@ -17,15 +17,15 @@ class TestMarkt(TestCase):
         self.markt = Markt(api_data=api_data, web_data=web_data)
 
     def test_ags(self):
-        self.assertEqual(self.markt.ags, 756)
+        self.assertEqual(self.markt.ags, 750)
         self.assertIsInstance(self.markt.ags, int)
 
     def test_orders_24(self):
-        self.assertEqual(self.markt.orders_24, 2696)
+        self.assertEqual(self.markt.orders_24, 2598)
         self.assertIsInstance(self.markt.orders_24, int)
 
     def test_volumen_24(self):
-        self.assertEqual(self.markt.volumen_24, 762733417.37)
+        self.assertEqual(self.markt.volumen_24, 957984387.62)
         self.assertIsInstance(self.markt.volumen_24, float)
 
     def test_agsx_punkte(self):
