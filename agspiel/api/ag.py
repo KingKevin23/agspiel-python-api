@@ -146,13 +146,17 @@ class Ag:
         name = self._ag_data().get("ceo").get("name")
 
         # Alles zum Index
-        index_id = int(self._ag_data().get("index_id"))
-        index_data = self._api_data().get("indizes").get(str(index_id))
-        index_name = index_data.get("name")
-        index_highscore = int(index_data.get("highscore_platz"))
-        index_punkte = int(index_data.get("punkte"))
-        index_gruendung = datetime.strptime(index_data.get("gruendung_datum"), "%Y-%m-%d %H:%M:%S")
-        index = Index(nummer=index_id, name=index_name, highscore=index_highscore, punkte=index_punkte, gruendung_datum=index_gruendung)
+        try:
+            index_id = int(self._ag_data().get("index_id"))
+            index_data = self._api_data().get("indizes").get(str(index_id))
+            index_name = index_data.get("name")
+            index_highscore = int(index_data.get("highscore_platz"))
+            index_punkte = int(index_data.get("punkte"))
+            index_gruendung = datetime.strptime(index_data.get("gruendung_datum"), "%Y-%m-%d %H:%M:%S")
+            index = Index(nummer=index_id, name=index_name, highscore=index_highscore, punkte=index_punkte,
+                          gruendung_datum=index_gruendung)
+        except TypeError: # Wenn Spieler in keinem Index
+            index = None
 
         registrierung_datum = datetime.strptime(self._ag_data().get("ceo").get("registrierung_datum"), "%Y-%m-%d %H:%M:%S")
         gesperrt = self._ag_data().get("ceo").get("gesperrt") == "true"
