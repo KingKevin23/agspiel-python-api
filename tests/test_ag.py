@@ -10,6 +10,7 @@ from agspiel.api.aktie import Aktie, Aktionaer
 from agspiel.api.anleihe import Anleihe, Kredit
 from agspiel.api.zertifikat import Zertifikat
 from agspiel.api.order import Order
+from agspiel.api.index import Index
 from bs4 import BeautifulSoup
 
 class TestAg(TestCase):
@@ -142,8 +143,20 @@ class TestAg(TestCase):
         self.assertIsInstance(self.ag.ceo, Ceo)
         self.assertEqual(self.ag.ceo.name, "KingKevin23")
         self.assertIsInstance(self.ag.ceo.name, str)
-        self.assertEqual(self.ag.ceo.index, "Freibeuter")
-        self.assertIsInstance(self.ag.ceo.index, str)
+
+        # Tests zum Index
+        self.assertIsInstance(self.ag.ceo.index, Index)
+        self.assertEqual(self.ag.ceo.index.id, 2349)
+        self.assertIsInstance(self.ag.ceo.index.id, int)
+        self.assertEqual(self.ag.ceo.index.name, "Freibeuter")
+        self.assertIsInstance(self.ag.ceo.index.name, str)
+        self.assertEqual(self.ag.ceo.index.highscore, 8)
+        self.assertIsInstance(self.ag.ceo.index.highscore, int)
+        self.assertEqual(self.ag.ceo.index.punkte, 381)
+        self.assertIsInstance(self.ag.ceo.index.punkte, int)
+        self.assertEqual(self.ag.ceo.index.gruendung_datum, datetime(year=2019, month=11, day=19, hour=0, minute=10, second=12))
+        self.assertIsInstance(self.ag.ceo.index.gruendung_datum, datetime)
+
         self.assertEqual(self.ag.ceo.registrierung_datum, datetime(year=2020, month=2, day=4, hour=16, minute=24))
         self.assertIsInstance(self.ag.ceo.registrierung_datum, datetime)
         self.assertEqual(self.ag.ceo.gesperrt, False)
@@ -290,3 +303,15 @@ class TestAg(TestCase):
     def test_fp_90d(self):
         self.assertEqual(self.ag.fp_90d, 16.59)
         self.assertIsInstance(self.ag.fp_90d, float)
+
+    def test_ordner(self):
+        self.assertEqual(self.ag.ordner, "Allgemein")
+        self.assertIsInstance(self.ag.ordner, str)
+
+    def test_kauf_kurs(self):
+        self.assertEqual(self.ag.kauf_kurs, None)
+        self.assertIsInstance(self.ag.kauf_kurs, type(None))
+
+    def test_kauf_anzahl(self):
+        self.assertEqual(self.ag.kauf_anzahl, 0)
+        self.assertIsInstance(self.ag.kauf_anzahl, int)
