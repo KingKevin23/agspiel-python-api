@@ -25,11 +25,13 @@ class Api:
         :return: Ein Objekt der Klasse Ag
         """
         if str(wkn) in self._api_data().get("ags"):
-            web_data = Data(
-                update=lambda: BeautifulSoup(requests.get("https://www.ag-spiel.de/index.php?section=profil&aktie={}"
+            web_data = Data(update=lambda: BeautifulSoup(requests.get("https://www.ag-spiel.de/index.php?section=profil&aktie={}"
                                                           .format(str(wkn)), cookies={"PHPSESSID": self._phpsessid})
                                              .content, "html.parser"))
-            return Ag(wkn=wkn, api_data=self._api_data, web_data=web_data)
+            chronik_data = Data(update=lambda: BeautifulSoup(requests.get("https://www.ag-spiel.de/index.php?section=chronik&aktie={}"
+                                                          .format(str(wkn)), cookies={"PHPSESSID": self._phpsessid})
+                                             .content, "html.parser"))
+            return Ag(wkn=wkn, api_data=self._api_data, web_data=web_data, chronik_data=chronik_data)
         else:
             raise AgNotFoundError("Die AG mit der WKN " + str(wkn) + " wurde nicht gefunden.")
 
