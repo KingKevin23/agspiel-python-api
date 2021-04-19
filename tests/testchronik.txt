@@ -1,0 +1,4323 @@
+
+
+
+<!DOCTYPE html> 
+<html>
+<head>
+<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1' />
+<link rel='alternate' media='only screen and (max-width: 1024px)'  href='https://www.ag-spiel.de/app' >
+<title>AG-Spiel.de Börsenspiel - Deine virtuelle Aktiengesellschaft</title>
+<meta name='keywords' content='Börsen, Aktien, Börsenspiel, Browsergame, Aktiengesellschaft, Handeln, Traden, AG'>
+<meta name='description' content='Spiele mit deiner eigenen Aktiengesellschaft kostenlos an der Börse von www.AG-Spiel.de. Melde dich an und starte sofort zu handeln!' />
+<meta property="fb:page_id" content="153292014704816" />
+
+<link rel="image_src" href="/images/symbol.jpg" />
+<link rel="apple-touch-icon" href="apple-touch-icon-precomposed.png"/><link rel="stylesheet" href="min/?f=css/normalize.css,fa/css/font-awesome.min.css,css/icons.css,css/flat.css,css/forum.css,css/share.css,css/jquery.dataTables_neu.css,css/lightbox.css,css/jquery-ui.css&v=5" type="text/css"  />
+
+<script>
+var app=0;
+
+function check(url,msg) {
+Check = confirm(msg);
+if(Check == true) location.href=url;
+}
+</script>
+<script type="text/javascript">
+
+
+
+
+var Serverzeit = new Date(2021, 4, 19, 18, 38, 55);
+
+function UhrzeitAnzeigen()
+{
+
+
+    var Stunden = Serverzeit.getHours();
+    var Minuten = Serverzeit.getMinutes();
+    var Sekunden = Serverzeit.getSeconds();
+    Serverzeit.setSeconds(Sekunden+1);
+
+    if(Stunden <= 9)
+    {
+        Stunden = "0" + Stunden;
+    }
+
+    if(Minuten <= 9)
+    {
+        Minuten = "0" + Minuten;
+    }
+
+    if(Sekunden <= 9)
+    {
+        Sekunden = "0" + Sekunden;
+    }
+
+    Uhrzeitanzeige = Stunden + ":" + Minuten + ":" + Sekunden;
+
+
+    document.getElementById("uhr").innerHTML = Uhrzeitanzeige;
+
+
+
+    setTimeout("UhrzeitAnzeigen()", 1000);
+}
+
+
+</script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script><script>    google.charts.load('current', {packages: ['corechart'], 'language': 'de'});</script><script   type="text/javascript" src="min/?f=js/jquery-1.8.3.js,js/jquery-ui-1.9.2.js,js/jquery.dataTables_neu.min.js,js/dataTablesPlugins.js,js/jquery.cookie.js,js/script.js,js/main.js,js/share.js,js/forum.js,js/jquery.tablesorter.min.js,js/sorter.js&v=8"></script>
+<link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
+
+</head>
+
+<body onLoad="UhrzeitAnzeigen('jetzt');">
+<div id="fb-root"></div>
+
+<script>var lastTimestampChannel1 = 1618850335;var lastTimestampChannel2 = 0;var lastTimestampChannel3 = 0;var lastTimestampChannel4 = 1618846735;</script><div id="bg_head"></div>
+<div id="bg_menu"></div>
+<div id="main">
+
+    <div id="multiwarning" style="display:none; padding: 5px; z-index: 2; font-weight:bold; position:absolute; left: 100px; top:20px; border:2px solid red; background-color: white;">
+        Achtung!
+        <br>Es gibt mehrere Spieler mit der gleichen IP wie du (gleicher PC / gleiches Netzwerk).
+        <br>Bitte denkt daran, dass nach §2 des <a href='index.php?section=regeln'>Regelwerks</a> kein Handelskontakt zwischen solchen Spielern bestehen darf! Sollte ein Account genutzt werden, um einem anderen Account
+        einen Vorteil zu verschaffen, werden beide Accounts unwiderruflich durch die Spielleitung gesperrt.
+        <br><br>Du kannst diese <a href="index.php?action=nowarning">Warnung ausblenden</a> <span style="font-size:80%"></span>
+    </div>    <div id="top">
+        <div id="banner" onClick="location.href = '/index.php?section=start'">
+        </div>
+        <div id="chat">
+            <script>
+    var selectedChannel = 1;
+    var getChatInverval = window.setInterval("getChat(selectedChannel,0)",7000);
+
+
+    $(window).blur(function() {
+        stopChatRefresh();
+    });
+
+    function stopChatRefresh(){
+        $("#ajaxbox").addClass("inactive");
+        clearInterval(getChatInverval);
+    }
+
+    function startChatRefresh(){
+        $("#ajaxbox").removeClass("inactive");
+        setTimeout(getChat(selectedChannel,0), 500);
+        getChatInverval = window.setInterval("getChat(selectedChannel,0)",7000);
+    }
+
+    $(window).focus(function() {
+        startChatRefresh();
+    });
+
+    $(document).ready(function(){
+        getChat(selectedChannel);
+        $("#channel div").click(function(){
+            selectedChannel = $(this).attr("channel");
+            $(this).removeClass("newMessages");
+            $("#channel div").removeClass("selected");
+            $(this).addClass("selected");
+            $("#channel_id").val(selectedChannel);
+            getChat(selectedChannel,0);
+        });
+    });
+    function getChat(selectedChannel,f){
+        $(".chatform input").show();
+        if(selectedChannel==1){
+            t = "2117dad5926ff05db3548482019ea3a8a91cd5a2";
+        }
+        if(selectedChannel==2){
+            $(".chatform input").hide();
+            t = "e30e0d4b2856ba3cc0538cf4d4f0bd70f5660436";
+        }
+        if(selectedChannel==3){
+            t = "8913571c96174fd02ee6078009ef8f239e658aaa";
+        }
+        if(selectedChannel==4){
+            t = "84481ee60dbf4948acf744003a2375ffc36af82a";
+        }
+        $.getJSON( "https://www.ag-spiel.de/api/get/chat.php?c="+selectedChannel+"&i=83275&app=0&ts=1618850335&g=2349&a=5&s=1&t="+t+"&f="+f, function( data ) {
+            $("#ajaxbox").html(""+data["html"]);
+            if(selectedChannel==1){lastTimestampChannel1 = data["timestamp"];}
+            if(selectedChannel==2){lastTimestampChannel2 = data["timestamp"];}
+            if(selectedChannel==3){lastTimestampChannel3 = data["timestamp"];}
+            if(selectedChannel==4){lastTimestampChannel3 = data["timestamp"];}
+        });
+    }
+    function refresh(){getChat(selectedChannel,1);}
+    </script>
+        <div name='ajaxbox' id='ajaxbox' class='shoutbox'></div><form class='chatform'>
+    <input type='hidden' value='d17e3155534f7ba5748acb6fed327a95e92c9741' name='token'>
+
+<input id='shoutinput' autocomplete='off'   name='text' size='70' maxlength='300' type='text' tabindex="0">
+<input type='button' id='chat_submit' value='schreiben'>
+<input type='hidden' name='channel_id' id='channel_id' value='1'>
+<div id='channel'><div channel='3' id='channel3'>Index</div><div channel='2' id='channel2'>Handelsparkett</div><div channel='4' id='channel4'>Off-Topic</div><div channel='1' id='channel1' class='selected'>AG-Spiel</div>
+</div>
+</form>
+        </div>
+        <script type="text/javascript">
+    var $visible = 0;
+    function whosonline() {
+        if ($visible == 0) {
+            $visible = 1;
+            document.getElementById('onlinelist').className = 'onlinelist';
+        } else {
+            $visible = 0;
+            document.getElementById('onlinelist').className = 'onlinelist invis';
+        }
+    }
+
+
+</script>
+
+<div id='onlinelistbutton'>Wer ist online?</div>
+<div class="onlinelist" id='onlinelist' style="width: 600px;">
+<div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=68122'>AKB Invest </a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=85090'>Belfort Holding Ltd</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=85387'>Bike AG </a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=84617'>Black-Stone</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=85122'>brooker ag</a></div><div style='float:left; width:25%;'><a style='color:#00DD00;' href='index.php?section=profil&userid=79721'>Clipper</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=70135'>CNC Industrie</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=85082'>Credit de Lyon</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=84335'>DIONYSOS</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=84854'>Feldschloss AG</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=84788'>Firlefanz AG</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=85160'>Forex Trading</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=72190'>Germania Stahl AG</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=71563'>Goldy Invest</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=83379'>Investment Unit </a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=83275'>King Kompany</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=84509'>Koko AG</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=84110'>Königreich Preußen</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=4526'>Landmaschinen S-H AG</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=71970'>Lord of War</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=83365'>Makrotex Technologie</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=84531'>MASSIMO AG</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=71569'>Minatron LTD</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=79812'>Monopol AG</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=85371'>MoonTV</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=84476'>Mozzarella Cartel</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=84267'>New-Move</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=82255'>newBee Invest</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=59387'>NewCorp AG</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=84338'>NK AG</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=85327'>Paragon</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=83979'>ParaGROUP Ag</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=85336'>PHO AG</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=85037'>Phoenix Investments</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=73782'>Rauch&Sauf Logistik</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=60543'>Rentnerkanal</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=82875'>Schnitzel Company AG</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=70836'>Statistikamt</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=66947'>Steeltec AG</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=67319'>T.S.A.</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=85281'>Tamcoin Krypto AG</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=83200'>Thai Wok Inn</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=69731'>Tom Investment</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=55259'>Vaulty</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=51920'>W-Lan Kabel AG</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=84357'>Waltons AG</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=85283'>Windy City Energy</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=85284'>XXL Transport AG</a></div><div style='float:left; width:25%;'><a  href='index.php?section=profil&userid=6438'>ZZ Bananenhaus AG</a></div></div>    </div>
+    <div id="tickerbox">
+
+
+
+<script type="text/javascript">
+<!--
+
+tText="                <b>Latest News:</b>             <a href='index.php?section=zeitung'>&bdquo;<i>Börsenstart der XXL Transport AG</i>&rdquo;</a>             <a href='index.php?section=zeitung'>&bdquo;<i>Der neue THIEL Tower</i>&rdquo;</a>             <a href='index.php?section=zeitung'>&bdquo;<i>AAA - Astro an Aktionäre - April 2021 </i>&rdquo;</a>       <b>Latest Trades:</b>      14 Stk. <a href='index.php?section=profil&aktie=124897'>Trustcomp. AG</a> zu 63061.24&euro; (<span class='green'>+0% / 0&euro;</span>)     1 Stk. <a href='index.php?section=profil&aktie=124897'>Trustcomp. AG</a> zu 63061.24&euro; (<span class='green'>+0% / 0&euro;</span>)     66 Stk. <a href='index.php?section=profil&aktie=145496'>W-Lan Kabel AG</a> zu 15136.36&euro; (<span class='green'>+0% / 0&euro;</span>)     184 Stk. <a href='index.php?section=profil&aktie=122928'>Graham & Morgan PLC </a> zu 3563.64&euro; (<span class='red'>-0.1%/ -3.58&euro;</span>)  ";
+
+tInterval=100;
+
+tNr=4;
+
+tStop=true;
+
+if(document.getElementsByTagName('title')&&document.getElementsByTagName('title')[0].innerHTML)
+    {
+    var tGo;
+    tStop=tStop?' onmouseover="clearInterval(tGo)"onmouseout="tGo=setInterval(\'ticken()\',tInterval);"':'';
+    tCnt=0;
+    tHtml='<span>'+tText+'</span>';
+    document.write('<pre id="ticker"style="overflow:hidden;"'+tStop+'>');
+    for(i=0;i<tNr;++i){document.write(tHtml);}
+    document.write('</pre>');
+
+    function ticken()
+        {
+        tObj=document.getElementById('ticker');
+        tTxt=String(tObj.firstChild.innerHTML);
+        isTag=false;isTxt=false;
+        for(i=0;i<tTxt.length;++i)
+            {
+            if(tTxt.charAt(i)=='>')
+                {
+                isTag=false;continue;
+                }
+            if(tTxt.charAt(i)=='<')
+                {
+                isTag=true;continue;
+                }
+            if(!isTag)
+                {
+                tObj.firstChild.innerHTML=tTxt.substring(0,i)+tTxt.substring(i+1,tTxt.length);
+                isTxt=true;break;
+                }
+            }
+        if(!isTxt)
+            {
+            tObj.removeChild(tObj.firstChild);
+            tObj.innerHTML+=tHtml;
+            }
+        }
+    tGo=setInterval("ticken()",tInterval);
+    }
+// -->
+</script>
+
+
+     </div>
+    <div id="menu">
+
+
+<div id="nav">
+    <ul>
+        <li><a class='menu top' href='index.php?section=profil&aktie=175353' >Meine AG<span class='newMessageCounter'></span></a>
+            <ul>
+                <li class='hide'><a class='menu' href='index.php?section=profil&aktie=175353' >Meine AG<span class='newMessageCounter'></span></a></li>
+                <li><a class='menu' href='index.php?section=nachrichten'>Nachrichten<span class='newMessageCounter'></span></a></li>
+                <li><a class='menu' href='index.php?section=start'>Überblick</a></li>
+                <li><a class='menu' href='index.php?section=agdepot'>Depot</a></li>
+                <li><a class='menu' href='index.php?section=depotanalyse&aktie=175353'>Depotanalyse</a></li>
+                <li><a class='menu' href='index.php?section=depotstruktur'>Depotstruktur</a></li>
+                <li><a class='menu' href='index.php?section=bilanzen&wkn=175353'>Bilanzen</a></li>
+                <li><a class='menu' href='index.php?section=showgroup&id=2349'>Index</a></li><li><a class='menu' href='index.php?section=forum&forum=2349' >Indexforum</a></li>
+                <li><a class='menu' href='index.php?section=trades&aktie=175353'>Trades</a></li>
+                <li><a class='menu' href='index.php?section=konto&aktie=175353'>Kontoauszug</a></li>
+
+                <li><a class='menu' href='index.php?section=ag'>AG-Einstellungen</a></li>
+                <li><a class='menu' href='index.php?section=export'>Datenexport</a></li>
+
+            </ul>
+        </li>
+        <li><a class='menu top' href='index.php?section=agorderbuch'>Handeln</a>
+            <ul>
+                <li><a class='menu' href='index.php?section=agorderbuch'>Aktien kaufen/verkaufen</a></li>
+                <li><a class='menu' href='index.php?section=anleihen'>Anleihen zeichnen</a></li>
+                <li><a class='menu' href='index.php?section=kredite'>Kredite aufnehmen</a></li>
+                <li><a class='menu' href='index.php?section=agsx'>Zertifikate zeichnen</a></li>
+                <li><a class='menu' href='index.php?section=orderzentrale'>Speedtrading</a></li>
+                <li><a class='menu' href='index.php?section=orderregeln'>Orderregeln</a></li>
+            </ul>
+        </li>
+
+        <li><a class='menu top' href='index.php?section=live'>Börse</a>
+            <ul>
+                <li><a class='menu' href='index.php?section=live'>Live</a></li>
+                <li><a class='menu' href='index.php?section=news'>Newsticker</a></li>
+                <li><a class='menu' href='index.php?section=suche'>AG-Suche</a></li>
+                <li><a class='menu' href='index.php?section=beobachtungsliste'>Beobachtungsliste</a></li>
+                <li><a class='menu' href='index.php?section=neue'>Neue AGs</a></li>
+                <li><a class='menu' href='index.php?section=dertag'>Der Tag</a></li>
+                <li><a class='menu' href='index.php?section=statistiken'>Statistiken</a></li>
+                <li><a class='menu' href='index.php?section=agsx2'>AGSX</a></li>
+                <li><a class='menu' href='index.php?section=liquidationen'>Liquidationen & Strafen</a></li>
+                <li><a class='menu' href='index.php?section=zufallsprofil'>Zufallsprofil</a></li>
+                <li><a class='menu' href='index.php?section=charts'>Chartvergleich</a></li>
+                <li><a class='menu' href='index.php?section=agliste'>AG-Liste</a></li>
+                <li><a class='menu' href='index.php?section=agwall'>AG-Wand</a></li>
+            </ul>
+        </li>
+
+        <li><a class='menu top' href='index.php?section=zeitung' >Community</a>
+           <ul>
+                <li><a class='menu' href='index.php?section=zeitung'>Die Zeitung</a></li>
+                <li><a class='menu' href='index.php?section=forum&forum=0' >Forum</a></li>
+                <li><a class='menu' href='index.php?section=chat'>Chat</a></li>
+                <li><a class='menu' href='index.php?section=userprojekte'>Userprojekte</a></li>
+                <li><a class='menu' target='_blank' href='https://www.statistik-amt.de/'>Statistikamt (extern)</a></li>
+                <li><a class='menu' target='_blank' href='https://james-smith-ags.github.io/stats'>AGS-Stats (extern)</a></li>
+                <li><a class='menu' target='_blank' href='https://ags-datacenter.shinyapps.io/DataCenter/'>DataCenter (extern)</a></li>
+                <li><a class='menu' target='_blank' href='http://www.youtube.com/channel/UCyhMysheJi0Rx2m5TkJv4Ow/videos'>Let's Play Videos #1 (extern)</a></li>
+                <li><a class='menu' target='_blank' href='https://www.youtube.com/playlist?list=PL0tcRpzPFN0lpfelfGtvNkEGvgomd94WG'>Let's Play Videos #2 (extern)</a></li>
+            </ul>
+        </li>
+
+        <li><a class='menu top' target='_blank' href='wiki/'>Hilfe</a>
+            <ul>
+                <li><a class='menu' href='wiki/'  target='_blank'>Wiki</a></li>
+                <li><a class='menu' href='wiki/index.php?title=Der_Anf%C3%A4ngerguide'  target='_blank'>Anfängerguide</a></li>
+                <li><a class='menu' href='index.php?section=tutorial'>Tutorial</a></li>
+                <li><a class='menu' href='index.php?section=support'>Support-Ticket</a></li>
+                <li><a class='menu' href='index.php?section=tutor'>Tutoren</a></li>
+                <li><a class='menu' href='index.php?section=boersenaufsicht'>Börsenaufsicht</a></li>
+                <li><a class='menu' href='index.php?section=regeln'>Regelwerk</a></li>
+            </ul>
+        </li>
+
+
+        <li><a class='menu top' href='index.php?section=einstellungen'>Weiteres</a>
+            <ul>
+                <li><a class='menu' href='index.php?section=einstellungen'>Einstellungen</a></li>
+                <li><a style='display:none;' class='menu' href='index.php?section=adventskalender'>Adventskalender</a></li>
+                <li><a class='menu' href='index.php?section=highscore'>Highscores</a></li>
+                <li><a class='menu' href='index.php?section=premium'>Premium</a></li>
+                <li><a class='menu' href='index.php?section=sponsoren'>Sponsoren</a></li>
+                <li><a class='menu' href='index.php?section=apps'>Apps</a></li>
+                <li><a class='menu' href='index.php?section=fanshop'>Fanshop</a></li>
+                <li><a class='menu' href='index.php?section=logout'>Ausloggen</a></li>
+            </ul>
+        </li>
+
+        <li><a class='menu top' style='color:#42C242;'  href='index.php?section=bonus'>Bonus</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ </ul></div>       </div>
+    <div id='contentside'>
+        <div id="content">
+
+
+
+<div style="display:none" class='breakingnews'>
+    <div class='breakingnews-content'>
+        <div class='breakingnews-headlinebg'></div>
+        <div class='breakingnews-headline'>
+            <img src='https://www.ag-spiel.de/images/breakingnews_small.png'>
+        </div>
+        <div class='breakingnews-anchor'>
+            <img src='https://www.ag-spiel.de/images/anchor_small.png'>
+        </div>
+        <div class='breakingnews-title'></div>
+        <div class='breakingnews-text'></div>
+        <div class='breakingnews-link'></div>
+        <div class='breakingnews-close'>X</div>
+    </div>
+</div>
+<h1>Chronik WKN 100352</h1>
+<a class='arrowleft button' href='index.php?section=profil&aktie=100352'>zurück Profil der AG</a>
+<table id='chronik'  class='display cell-border compact'>
+<thead>
+<tr>
+	<th>Datum</th>
+        <th>Ereignis</th>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+        <td>11.04.2021</td>
+        <td>Kapitalherabsetzung durchgeführt (1.473 Stk., 255.020.490&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>07.04.2021</td>
+        <td>Kapitalherabsetzung durchgeführt (1.000 Stk., 172.900.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>06.04.2021</td>
+        <td>Kapitalherabsetzung durchgeführt (25 Stk., 4.225.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>04.04.2021</td>
+        <td>Kapitalherabsetzung durchgeführt (450 Stk., 76.194.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>21.03.2021</td>
+        <td>Kapitalherabsetzung durchgeführt (320 Stk., 54.398.521&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>19.03.2021</td>
+        <td>Kapitalherabsetzung durchgeführt (200 Stk., 33.148.148&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>15.03.2021</td>
+        <td>Kapitalherabsetzung durchgeführt (167 Stk., 26.720.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>12.03.2021</td>
+        <td>Kapitalherabsetzung durchgeführt (234 Stk., 36.215.618&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>10.03.2021</td>
+        <td>Kapitalherabsetzung durchgeführt (843 Stk., 128.071.241&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>02.03.2021</td>
+        <td>Kapitalherabsetzung durchgeführt (69 Stk., 10.326.243&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>23.02.2021</td>
+        <td>Kapitalherabsetzung durchgeführt (82 Stk., 13.196.889&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>21.02.2021</td>
+        <td>Kapitalherabsetzung durchgeführt (396 Stk., 62.812.490&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>19.02.2021</td>
+        <td>Kapitalherabsetzung durchgeführt (39 Stk., 6.279.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>12.02.2021</td>
+        <td>Kapitalherabsetzung durchgeführt (1.898 Stk., 301.022.781&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>05.02.2021</td>
+        <td>Kapitalherabsetzung durchgeführt (160 Stk., 25.600.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>30.01.2021</td>
+        <td>Kapitalherabsetzung durchgeführt (600 Stk., 98.400.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>29.01.2021</td>
+        <td>Kapitalherabsetzung durchgeführt (458 Stk., 71.906.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>27.01.2021</td>
+        <td>Kapitalherabsetzung durchgeführt (421 Stk., 62.308.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>26.01.2021</td>
+        <td>Kapitalherabsetzung durchgeführt (980 Stk., 137.358.152&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>23.01.2021</td>
+        <td>Kapitalherabsetzung durchgeführt (515 Stk., 76.219.995&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>12.01.2021</td>
+        <td>Kapitalherabsetzung durchgeführt (1.563 Stk., 226.635.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>11.01.2021</td>
+        <td>AG hat WKN <a class='wkn' href="index.php?section=profil&aktie=173655">#173655</a> &uuml;bernommen und dadurch die Anzahl der Aktien seiner AG um 0 Stk. reduziert.</td>
+            </tr>
+
+<tr>
+        <td>11.01.2021</td>
+        <td>Kapitalherabsetzung durchgeführt (96 Stk., 13.833.533&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>10.01.2021</td>
+        <td>Kapitalherabsetzung durchgeführt (539 Stk., 76.538.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>08.01.2021</td>
+        <td>Kapitalherabsetzung durchgeführt (200 Stk., 28.099.800&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>31.12.2020</td>
+        <td>Kapitalherabsetzung durchgeführt (432 Stk., 59.576.904&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>21.12.2020</td>
+        <td>Kapitalherabsetzung durchgeführt (39 Stk., 5.553.600&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>20.12.2020</td>
+        <td>Kapitalherabsetzung durchgeführt (425 Stk., 59.500.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>17.12.2020</td>
+        <td>Kapitalherabsetzung durchgeführt (4.196 Stk., 553.851.020&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>31.10.2020</td>
+        <td>Kapitalherabsetzung durchgeführt (86 Stk., 14.611.400&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>23.09.2020</td>
+        <td>Kapitalherabsetzung durchgeführt (3.778 Stk., 566.700.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>22.09.2020</td>
+        <td>Kapitalherabsetzung durchgeführt (6.400 Stk., 960.000.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>21.09.2020</td>
+        <td>Kapitalherabsetzung durchgeführt (6.740 Stk., 1.011.000.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>18.09.2020</td>
+        <td>Kapitalherabsetzung durchgeführt (6.874 Stk., 1.031.100.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>17.09.2020</td>
+        <td>Kapitalherabsetzung durchgeführt (7.455 Stk., 1.118.250.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>16.09.2020</td>
+        <td>Kapitalherabsetzung durchgeführt (7.849 Stk., 1.177.350.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>15.09.2020</td>
+        <td>Kapitalherabsetzung durchgeführt (8.250 Stk., 1.237.500.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>14.09.2020</td>
+        <td>Kapitalherabsetzung durchgeführt (8.600 Stk., 1.290.000.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>13.09.2020</td>
+        <td>Kapitalherabsetzung durchgeführt (5.000 Stk., 700.000.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>13.08.2020</td>
+        <td>Kapitalherabsetzung durchgeführt (3.713 Stk., 452.986.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>21.07.2020</td>
+        <td>Kapitalherabsetzung durchgeführt (5.002 Stk., 750.300.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>16.07.2020</td>
+        <td>Kapitalherabsetzung durchgeführt (2.423 Stk., 342.691.093&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>04.07.2020</td>
+        <td>AG hat WKN <a class='wkn' href="index.php?section=profil&aktie=174725">#174725</a> &uuml;bernommen und dadurch die Anzahl der Aktien seiner AG um 0 Stk. reduziert.</td>
+            </tr>
+
+<tr>
+        <td>26.06.2020</td>
+        <td>Kapitalherabsetzung durchgeführt (1.793 Stk., 283.294.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>14.06.2020</td>
+        <td>Kapitalherabsetzung durchgeführt (670 Stk., 105.153.626&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>06.06.2020</td>
+        <td>Name wurde durch einen Admin von <i>Schuld an Allem AG</i> in <i>MLM System AG</i> geändert.</td>
+            </tr>
+
+<tr>
+        <td>19.05.2020</td>
+        <td>Name wurde durch einen Admin von <i>MLM System AG</i> in <i>Schuld an Allem AG</i> geändert.</td>
+            </tr>
+
+<tr>
+        <td>14.05.2020</td>
+        <td>Name wurde von <i>Kapitalkrake AG</i> in <i>MLM System AG</i> geändert.</td>
+            </tr>
+
+<tr>
+        <td>12.05.2020</td>
+        <td>Kapitalerhöhung wurde durchgeführt (96.000 junge Aktien verkauft im Gesamtwert von 17.337.600.000,00&euro;).</td>
+            </tr>
+
+<tr>
+        <td>03.05.2020</td>
+        <td>Kapitalherabsetzung durchgeführt (1.887 Stk., 341.547.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>02.05.2020</td>
+        <td>Kapitalherabsetzung durchgeführt (5.100 Stk., 969.000.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>28.04.2020</td>
+        <td>Kapitalherabsetzung durchgeführt (1.584 Stk., 300.960.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>20.04.2020</td>
+        <td>Kapitalherabsetzung durchgeführt (257 Stk., 46.774.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>12.04.2020</td>
+        <td>Kapitalherabsetzung durchgeführt (988 Stk., 170.331.200&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>08.04.2020</td>
+        <td>Kapitalherabsetzung durchgeführt (898 Stk., 164.494.122&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>07.04.2020</td>
+        <td>Kapitalherabsetzung durchgeführt (764 Stk., 135.992.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>03.04.2020</td>
+        <td>Kapitalherabsetzung durchgeführt (272 Stk., 51.408.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>01.04.2020</td>
+        <td>Kapitalherabsetzung durchgeführt (661 Stk., 113.575.657&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>31.03.2020</td>
+        <td>Kapitalherabsetzung durchgeführt (8 Stk., 1.280.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>15.03.2020</td>
+        <td>Kapitalherabsetzung durchgeführt (830 Stk., 132.800.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>13.03.2020</td>
+        <td>Kapitalherabsetzung durchgeführt (88 Stk., 13.088.916&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>12.03.2020</td>
+        <td>Kapitalherabsetzung durchgeführt (221 Stk., 32.708.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>09.03.2020</td>
+        <td>Kapitalherabsetzung durchgeführt (1.575 Stk., 230.737.500&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>05.02.2020</td>
+        <td>Kapitalherabsetzung durchgeführt (895 Stk., 117.758.077&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>21.01.2020</td>
+        <td>Kapitalherabsetzung durchgeführt (1.493 Stk., 197.076.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>20.01.2020</td>
+        <td>Name wurde von <i>MLM Micro System AG</i> in <i>Kapitalkrake AG</i> geändert.</td>
+            </tr>
+
+<tr>
+        <td>17.01.2020</td>
+        <td>Kapitalherabsetzung durchgeführt (897 Stk., 118.303.536&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>06.01.2020</td>
+        <td>Kapitalherabsetzung durchgeführt (343 Stk., 46.270.700&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>05.01.2020</td>
+        <td>Kapitalherabsetzung durchgeführt (603 Stk., 81.344.097&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>27.12.2019</td>
+        <td>Kapitalherabsetzung durchgeführt (647 Stk., 76.269.007&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>24.12.2019</td>
+        <td>Kapitalherabsetzung durchgeführt (6.150 Stk., 659.280.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>23.12.2019</td>
+        <td>Kapitalherabsetzung durchgeführt (6.453 Stk., 693.084.465&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>20.12.2019</td>
+        <td>Kapitalherabsetzung durchgeführt (6.792 Stk., 679.200.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>19.12.2019</td>
+        <td>Kapitalherabsetzung durchgeführt (7.150 Stk., 715.000.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>30.11.2019</td>
+        <td>Kapitalherabsetzung durchgeführt (945 Stk., 84.577.500&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>24.11.2019</td>
+        <td>Kapitalherabsetzung durchgeführt (159 Stk., 13.594.500&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>23.11.2019</td>
+        <td>AG hat WKN <a class='wkn' href="index.php?section=profil&aktie=174057">#174057</a> &uuml;bernommen und dadurch die Anzahl der Aktien seiner AG um 0 Stk. reduziert.</td>
+            </tr>
+
+<tr>
+        <td>23.11.2019</td>
+        <td>Kapitalherabsetzung durchgeführt (857 Stk., 77.130.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>20.10.2019</td>
+        <td>AG hat WKN <a class='wkn' href="index.php?section=profil&aktie=154796">#154796</a> &uuml;bernommen und dadurch die Anzahl der Aktien seiner AG um 253 Stk. reduziert.</td>
+            </tr>
+
+<tr>
+        <td>20.10.2019</td>
+        <td>AG hat WKN <a class='wkn' href="index.php?section=profil&aktie=127017">#127017</a> &uuml;bernommen und dadurch die Anzahl der Aktien seiner AG um 0 Stk. reduziert.</td>
+            </tr>
+
+<tr>
+        <td>08.09.2019</td>
+        <td>Kapitalerhöhung wurde durchgeführt (67.000 junge Aktien verkauft im Gesamtwert von 6.324.800.000,00&euro;).</td>
+            </tr>
+
+<tr>
+        <td>28.08.2019</td>
+        <td>Kapitalherabsetzung durchgeführt (229 Stk., 21.754.995&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>27.08.2019</td>
+        <td>Kapitalherabsetzung durchgeführt (84 Stk., 7.728.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>18.08.2019</td>
+        <td>Kapitalherabsetzung durchgeführt (400 Stk., 36.399.600&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>16.08.2019</td>
+        <td>Kapitalherabsetzung durchgeführt (200 Stk., 17.759.969&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>07.08.2019</td>
+        <td>Kapitalherabsetzung durchgeführt (167 Stk., 14.695.998&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>05.08.2019</td>
+        <td>Kapitalherabsetzung durchgeführt (304 Stk., 25.992.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>23.07.2019</td>
+        <td>Kapitalherabsetzung durchgeführt (549 Stk., 47.214.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>07.07.2019</td>
+        <td>Kapitalherabsetzung durchgeführt (326 Stk., 28.036.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>17.06.2019</td>
+        <td>Kapitalherabsetzung durchgeführt (212 Stk., 15.900.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>16.06.2019</td>
+        <td>Kapitalherabsetzung durchgeführt (432 Stk., 31.320.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>14.06.2019</td>
+        <td>Kapitalherabsetzung durchgeführt (225 Stk., 16.265.862&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>13.06.2019</td>
+        <td>Kapitalherabsetzung durchgeführt (220 Stk., 15.185.969&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>11.06.2019</td>
+        <td>Kapitalherabsetzung durchgeführt (271 Stk., 17.615.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>08.06.2019</td>
+        <td>Kapitalherabsetzung durchgeführt (233 Stk., 13.248.380&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>24.05.2019</td>
+        <td>Kapitalherabsetzung durchgeführt (5.000 Stk., 249.000.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>23.05.2019</td>
+        <td>Kapitalherabsetzung durchgeführt (4.200 Stk., 210.000.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>22.05.2019</td>
+        <td>Kapitalherabsetzung durchgeführt (5.000 Stk., 251.997.700&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>20.05.2019</td>
+        <td>Kapitalherabsetzung durchgeführt (5.000 Stk., 248.000.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>18.05.2019</td>
+        <td>Kapitalherabsetzung durchgeführt (4.124 Stk., 200.014.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>17.05.2019</td>
+        <td>Kapitalherabsetzung durchgeführt (3.079 Stk., 149.438.010&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>16.05.2019</td>
+        <td>Kapitalherabsetzung durchgeführt (3.766 Stk., 188.300.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>14.05.2019</td>
+        <td>Kapitalherabsetzung durchgeführt (679 Stk., 32.939.125&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>03.04.2019</td>
+        <td>Kapitalherabsetzung durchgeführt (257 Stk., 12.343.163&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>17.02.2019</td>
+        <td>Kapitalherabsetzung durchgeführt (2.259 Stk., 90.360.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>16.02.2019</td>
+        <td>Kapitalherabsetzung durchgeführt (2.373 Stk., 90.575.227&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>15.02.2019</td>
+        <td>Kapitalherabsetzung durchgeführt (2.055 Stk., 78.090.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>12.02.2019</td>
+        <td>Kapitalherabsetzung durchgeführt (1.340 Stk., 50.250.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>11.02.2019</td>
+        <td>Kapitalherabsetzung durchgeführt (162 Stk., 5.670.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>10.02.2019</td>
+        <td>Kapitalherabsetzung durchgeführt (159 Stk., 5.284.079&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>30.01.2019</td>
+        <td>Kapitalherabsetzung durchgeführt (1.996 Stk., 81.434.385&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>28.01.2019</td>
+        <td>Kapitalherabsetzung durchgeführt (6.300 Stk., 215.873.910&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>26.01.2019</td>
+        <td>Kapitalherabsetzung durchgeführt (700 Stk., 24.150.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>25.01.2019</td>
+        <td>Kapitalherabsetzung durchgeführt (34 Stk., 1.037.519&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>24.01.2019</td>
+        <td>Kapitalherabsetzung durchgeführt (2.682 Stk., 81.065.481&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>23.01.2019</td>
+        <td>Kapitalherabsetzung durchgeführt (7.000 Stk., 197.960.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>22.01.2019</td>
+        <td>Kapitalherabsetzung durchgeführt (7.380 Stk., 202.972.140&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>21.01.2019</td>
+        <td>Kapitalherabsetzung durchgeführt (7.768 Stk., 213.635.536&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>28.12.2018</td>
+        <td>Kapitalherabsetzung durchgeführt (143 Stk., 5.005.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>23.12.2018</td>
+        <td>Kapitalherabsetzung durchgeführt (170 Stk., 6.162.500&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>21.12.2018</td>
+        <td>Kapitalherabsetzung durchgeführt (1.036 Stk., 34.188.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>20.12.2018</td>
+        <td>Kapitalherabsetzung durchgeführt (1.048 Stk., 33.290.380&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>12.11.2018</td>
+        <td>Kapitalherabsetzung durchgeführt (2.385 Stk., 78.519.089&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>11.11.2018</td>
+        <td>Kapitalherabsetzung durchgeführt (5.404 Stk., 177.910.488&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>24.07.2018</td>
+        <td>Kapitalherabsetzung durchgeführt (1.204 Stk., 43.344.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>15.07.2018</td>
+        <td>Kapitalherabsetzung durchgeführt (2.012 Stk., 50.300.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>30.06.2018</td>
+        <td>AG hat WKN <a class='wkn' href="index.php?section=profil&aktie=164914">#164914</a> &uuml;bernommen und dadurch die Anzahl der Aktien seiner AG um 0 Stk. reduziert.</td>
+            </tr>
+
+<tr>
+        <td>27.06.2018</td>
+        <td>Kapitalerhöhung wurde durchgeführt (55.196 junge Aktien verkauft im Gesamtwert von 1.987.056.000,00&euro;).</td>
+            </tr>
+
+<tr>
+        <td>20.06.2018</td>
+        <td>Kapitalherabsetzung durchgeführt (908 Stk., 31.427.024&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>19.06.2018</td>
+        <td>Kapitalherabsetzung durchgeführt (6.026 Stk., 208.567.453&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>04.06.2018</td>
+        <td>AG hat WKN <a class='wkn' href="index.php?section=profil&aktie=101339">#101339</a> &uuml;bernommen und dadurch die Anzahl der Aktien seiner AG um 2913 Stk. reduziert.</td>
+            </tr>
+
+<tr>
+        <td>04.06.2018</td>
+        <td>Kapitalherabsetzung durchgeführt (1.520 Stk., 45.600.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>04.06.2018</td>
+        <td>Name wurde von <i>MLM System AG</i> in <i>MLM Micro System AG</i> geändert.</td>
+            </tr>
+
+<tr>
+        <td>31.03.2018</td>
+        <td>Kapitalherabsetzung durchgeführt (1.663 Stk., 32.345.350&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>30.03.2018</td>
+        <td>Kapitalherabsetzung durchgeführt (1.528 Stk., 29.414.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>23.03.2018</td>
+        <td>Kapitalherabsetzung durchgeführt (4.012 Stk., 73.018.400&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>21.03.2018</td>
+        <td>Kapitalherabsetzung durchgeführt (6.955 Stk., 126.956.435&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>20.03.2018</td>
+        <td>Kapitalherabsetzung durchgeführt (7.320 Stk., 133.224.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>11.03.2018</td>
+        <td>Kapitalherabsetzung durchgeführt (6.632 Stk., 120.039.200&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>10.03.2018</td>
+        <td>Kapitalherabsetzung durchgeführt (4.997 Stk., 89.946.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>08.03.2018</td>
+        <td>Kapitalherabsetzung durchgeführt (8.300 Stk., 149.400.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>07.03.2018</td>
+        <td>Kapitalherabsetzung durchgeführt (3.555 Stk., 63.989.929&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>02.03.2018</td>
+        <td>Kapitalherabsetzung durchgeführt (5.606 Stk., 100.902.394&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>01.03.2018</td>
+        <td>Kapitalherabsetzung durchgeführt (9.440 Stk., 169.920.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>28.02.2018</td>
+        <td>Kapitalherabsetzung durchgeführt (5.555 Stk., 99.989.944&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>24.02.2018</td>
+        <td>Kapitalherabsetzung durchgeführt (8.489 Stk., 152.802.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>21.02.2018</td>
+        <td>Kapitalherabsetzung durchgeführt (10.470 Stk., 183.129.894&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>20.02.2018</td>
+        <td>Kapitalherabsetzung durchgeführt (5.002 Stk., 86.034.469&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>16.02.2018</td>
+        <td>Kapitalherabsetzung durchgeführt (10.435 Stk., 184.699.500&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>15.02.2018</td>
+        <td>Kapitalherabsetzung durchgeführt (11.000 Stk., 183.700.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>10.02.2018</td>
+        <td>Kapitalherabsetzung durchgeführt (1.790 Stk., 30.492.650&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>29.11.2017</td>
+        <td>AG hat WKN <a class='wkn' href="index.php?section=profil&aktie=152667">#152667</a> &uuml;bernommen und dadurch die Anzahl der Aktien seiner AG um 345 Stk. reduziert.</td>
+            </tr>
+
+<tr>
+        <td>25.10.2017</td>
+        <td>AG hat WKN <a class='wkn' href="index.php?section=profil&aktie=154577">#154577</a> &uuml;bernommen und dadurch die Anzahl der Aktien seiner AG um 0 Stk. reduziert.</td>
+            </tr>
+
+<tr>
+        <td>23.10.2017</td>
+        <td>Kapitalerhöhung wurde durchgeführt (76.836 junge Aktien verkauft im Gesamtwert von 1.355.592.960,48&euro;).</td>
+            </tr>
+
+<tr>
+        <td>03.10.2017</td>
+        <td>Kapitalherabsetzung durchgeführt (681 Stk., 12.666.600&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>02.10.2017</td>
+        <td>Kapitalherabsetzung durchgeführt (2.132 Stk., 37.391.016&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>01.10.2017</td>
+        <td>Kapitalherabsetzung durchgeführt (17 Stk., 299.581&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>09.09.2017</td>
+        <td>Kapitalherabsetzung durchgeführt (5.035 Stk., 80.560.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>05.09.2017</td>
+        <td>Kapitalherabsetzung durchgeführt (4.000 Stk., 51.200.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>27.08.2017</td>
+        <td>Kapitalherabsetzung durchgeführt (9.100 Stk., 117.390.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>23.08.2017</td>
+        <td>Kapitalherabsetzung durchgeführt (5.469 Stk., 66.174.900&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>29.07.2017</td>
+        <td>Kapitalherabsetzung durchgeführt (230 Stk., 3.312.460&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>28.07.2017</td>
+        <td>Name wurde von <i>MLM KE AG</i> in <i>MLM System AG</i> geändert.</td>
+            </tr>
+
+<tr>
+        <td>13.07.2017</td>
+        <td>Name wurde von <i>MLM Übernahme AG</i> in <i>MLM KE AG</i> geändert.</td>
+            </tr>
+
+<tr>
+        <td>13.07.2017</td>
+        <td>Kapitalherabsetzung durchgeführt (584 Stk., 5.314.400&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>12.07.2017</td>
+        <td>Kapitalherabsetzung durchgeführt (1.563 Stk., 14.067.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>09.07.2017</td>
+        <td>Kapitalherabsetzung durchgeführt (508 Stk., 4.753.901&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>08.07.2017</td>
+        <td>Kapitalherabsetzung durchgeführt (10.000 Stk., 92.390.900&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>07.07.2017</td>
+        <td>Kapitalherabsetzung durchgeführt (1.328 Stk., 12.350.400&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>06.07.2017</td>
+        <td>Kapitalherabsetzung durchgeführt (1.361 Stk., 12.121.673&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>05.07.2017</td>
+        <td>Kapitalherabsetzung durchgeführt (6.806 Stk., 59.696.923&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>04.07.2017</td>
+        <td>Kapitalherabsetzung durchgeführt (1.982 Stk., 16.717.792&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>03.07.2017</td>
+        <td>Kapitalherabsetzung durchgeführt (2.883 Stk., 24.073.050&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>20.06.2017</td>
+        <td>Kapitalherabsetzung durchgeführt (11.200 Stk., 89.600.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>07.05.2017</td>
+        <td>Name wurde von <i>MLM System AG</i> in <i>MLM Übernahme AG</i> geändert.</td>
+            </tr>
+
+<tr>
+        <td>04.04.2017</td>
+        <td>Name wurde von <i>Lustlos AG</i> in <i>MLM System AG</i> geändert.</td>
+            </tr>
+
+<tr>
+        <td>03.04.2017</td>
+        <td>Name wurde von <i>Kapitalkrake AG</i> in <i>Lustlos AG</i> geändert.</td>
+            </tr>
+
+<tr>
+        <td>12.03.2017</td>
+        <td>Kapitalherabsetzung durchgeführt (9.519 Stk., 75.818.835&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>07.03.2017</td>
+        <td>Kapitalherabsetzung durchgeführt (11.000 Stk., 87.439.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>03.03.2017</td>
+        <td>Kapitalherabsetzung durchgeführt (522 Stk., 4.149.895&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>01.03.2017</td>
+        <td>Name wurde von <i>SW Steigerungs AG</i> in <i>Kapitalkrake AG</i> geändert.</td>
+            </tr>
+
+<tr>
+        <td>25.02.2017</td>
+        <td>Kapitalherabsetzung durchgeführt (1.854 Stk., 14.090.400&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>22.02.2017</td>
+        <td>Kapitalherabsetzung durchgeführt (4.445 Stk., 32.870.775&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>30.01.2017</td>
+        <td>Name wurde von <i>Kapitalkrake AG</i> in <i>SW Steigerungs AG</i> geändert.</td>
+            </tr>
+
+<tr>
+        <td>25.12.2016</td>
+        <td>AG hat WKN <a class='wkn' href="index.php?section=profil&aktie=153473">#153473</a> &uuml;bernommen und dadurch die Anzahl der Aktien seiner AG um 43148 Stk. reduziert.</td>
+            </tr>
+
+<tr>
+        <td>19.12.2016</td>
+        <td>Kapitalerhöhung wurde durchgeführt (104.502 junge Aktien verkauft im Gesamtwert von 852.318.312,00&euro;).</td>
+            </tr>
+
+<tr>
+        <td>08.12.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (405 Stk., 2.936.250&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>01.12.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (1 Stk., 7.200&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>28.11.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (9.500 Stk., 67.925.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>27.11.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (2.055 Stk., 14.385.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>26.11.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (2 Stk., 12.800&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>25.11.2016</td>
+        <td>Name wurde von <i>MLM Investment AG </i> in <i>Kapitalkrake AG</i> geändert.</td>
+            </tr>
+
+<tr>
+        <td>20.11.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (7.173 Stk., 43.038.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>10.11.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (4.006 Stk., 31.046.500&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>09.11.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (1.735 Stk., 12.492.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>08.11.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (2.192 Stk., 15.344.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>01.11.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (2.018 Stk., 12.315.491&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>30.10.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (920 Stk., 5.520.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>29.10.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (2.394 Stk., 13.885.200&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>28.10.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (11.800 Stk., 66.248.103&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>27.10.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (7.139 Stk., 38.550.600&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>25.10.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (5.192 Stk., 27.258.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>11.10.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (2.939 Stk., 14.527.859&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>10.10.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (665 Stk., 3.325.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>06.09.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (2.500 Stk., 11.000.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>05.09.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (1.799 Stk., 7.735.700&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>02.09.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (13.300 Stk., 48.694.664&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>28.08.2016</td>
+        <td>Name wurde von <i>Alles muss raus AG </i> in <i>MLM Investment AG </i> geändert.</td>
+            </tr>
+
+<tr>
+        <td>22.08.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (9.920 Stk., 36.704.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>18.08.2016</td>
+        <td>AG hat WKN <a class='wkn' href="index.php?section=profil&aktie=101991">#101991</a> &uuml;bernommen und dadurch die Anzahl der Aktien seiner AG um 22000 Stk. reduziert.</td>
+            </tr>
+
+<tr>
+        <td>08.08.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (7.557 Stk., 25.537.748&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>04.08.2016</td>
+        <td>AG hat WKN <a class='wkn' href="index.php?section=profil&aktie=153599">#153599</a> &uuml;bernommen und dadurch die Anzahl der Aktien seiner AG um 0 Stk. reduziert.</td>
+            </tr>
+
+<tr>
+        <td>04.08.2016</td>
+        <td>AG hat WKN <a class='wkn' href="index.php?section=profil&aktie=117157">#117157</a> &uuml;bernommen und dadurch die Anzahl der Aktien seiner AG um 0 Stk. reduziert.</td>
+            </tr>
+
+<tr>
+        <td>04.08.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (2.479 Stk., 8.552.550&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>01.08.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (8.641 Stk., 29.350.021&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>31.07.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (14.954 Stk., 48.895.692&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>29.07.2016</td>
+        <td>Name wurde von <i>MLM System AG</i> in <i>Alles muss raus AG </i> geändert.</td>
+            </tr>
+
+<tr>
+        <td>29.07.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (2.904 Stk., 9.292.800&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>21.07.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (1.197 Stk., 4.030.574&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>11.07.2016</td>
+        <td>AG hat WKN <a class='wkn' href="index.php?section=profil&aktie=107167">#107167</a> &uuml;bernommen und dadurch die Anzahl der Aktien seiner AG um 10000 Stk. reduziert.</td>
+            </tr>
+
+<tr>
+        <td>11.07.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (13.500 Stk., 50.490.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>01.07.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (12.000 Stk., 45.600.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>30.06.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (15.029 Stk., 57.110.200&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>22.06.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (10.000 Stk., 41.000.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>20.06.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (9.127 Stk., 37.429.827&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>18.06.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (5.000 Stk., 20.500.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>16.06.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (6.000 Stk., 24.120.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>02.06.2016</td>
+        <td>AG hat WKN <a class='wkn' href="index.php?section=profil&aktie=152717">#152717</a> &uuml;bernommen und dadurch die Anzahl der Aktien seiner AG um 0 Stk. reduziert.</td>
+            </tr>
+
+<tr>
+        <td>18.05.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (11.295 Stk., 34.336.800&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>15.05.2016</td>
+        <td>AG hat WKN <a class='wkn' href="index.php?section=profil&aktie=152532">#152532</a> &uuml;bernommen und dadurch die Anzahl der Aktien seiner AG um 0 Stk. reduziert.</td>
+            </tr>
+
+<tr>
+        <td>10.05.2016</td>
+        <td>AG hat WKN <a class='wkn' href="index.php?section=profil&aktie=144445">#144445</a> &uuml;bernommen und dadurch die Anzahl der Aktien seiner AG um 0 Stk. reduziert.</td>
+            </tr>
+
+<tr>
+        <td>09.05.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (16.325 Stk., 46.293.619&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>05.05.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (8.346 Stk., 22.409.010&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>21.04.2016</td>
+        <td>Kapitalerhöhung wurde durchgeführt (228.000 junge Aktien verkauft im Gesamtwert von 779.274.360,00&euro;).</td>
+            </tr>
+
+<tr>
+        <td>09.04.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (4.811 Stk., 8.659.800&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>06.04.2016</td>
+        <td>AG hat WKN <a class='wkn' href="index.php?section=profil&aktie=114366">#114366</a> &uuml;bernommen und dadurch die Anzahl der Aktien seiner AG um 11740 Stk. reduziert.</td>
+            </tr>
+
+<tr>
+        <td>30.03.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (7.010 Stk., 10.725.300&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>29.03.2016</td>
+        <td>AG hat WKN <a class='wkn' href="index.php?section=profil&aktie=141797">#141797</a> &uuml;bernommen und dadurch die Anzahl der Aktien seiner AG um 0 Stk. reduziert.</td>
+            </tr>
+
+<tr>
+        <td>28.03.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (4.610 Stk., 6.956.859&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>26.03.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (2.631 Stk., 3.558.932&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>25.03.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (3.475 Stk., 4.656.500&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>15.02.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (9.849 Stk., 10.095.127&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>13.02.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (14.327 Stk., 14.599.213&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>12.02.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (15.081 Stk., 15.081.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>07.02.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (858 Stk., 938.652&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>04.02.2016</td>
+        <td>AG hat WKN <a class='wkn' href="index.php?section=profil&aktie=132034">#132034</a> &uuml;bernommen und dadurch die Anzahl der Aktien seiner AG um 145 Stk. reduziert.</td>
+            </tr>
+
+<tr>
+        <td>31.01.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (500 Stk., 555.555&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>30.01.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (4.870 Stk., 4.942.904&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>29.01.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (5.269 Stk., 5.632.561&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>26.01.2016</td>
+        <td>AG hat WKN <a class='wkn' href="index.php?section=profil&aktie=138179">#138179</a> &uuml;bernommen und dadurch die Anzahl der Aktien seiner AG um 0 Stk. reduziert.</td>
+            </tr>
+
+<tr>
+        <td>26.01.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (332 Stk., 355.240&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>23.01.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (1.151 Stk., 1.191.285&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>21.01.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (3.748 Stk., 3.748.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>15.01.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (8.072 Stk., 7.741.048&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>06.01.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (17.000 Stk., 14.365.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>03.01.2016</td>
+        <td>Kapitalherabsetzung durchgeführt (2.192 Stk., 1.678.809&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>30.12.2015</td>
+        <td>Kapitalherabsetzung durchgeführt (18.086 Stk., 12.931.490&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>27.12.2015</td>
+        <td>Kapitalherabsetzung durchgeführt (19.150 Stk., 11.873.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>25.12.2015</td>
+        <td>Kapitalherabsetzung durchgeführt (11.250 Stk., 9.562.500&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>17.12.2015</td>
+        <td>Kapitalherabsetzung durchgeführt (20.750 Stk., 16.081.250&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>03.12.2015</td>
+        <td>Kapitalherabsetzung durchgeführt (4.400 Stk., 3.476.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>14.11.2015</td>
+        <td>Kapitalherabsetzung durchgeführt (10.000 Stk., 9.697.450&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>13.11.2015</td>
+        <td>Kapitalherabsetzung durchgeführt (22.600 Stk., 18.018.302&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>03.11.2015</td>
+        <td>Kapitalherabsetzung durchgeführt (23.000 Stk., 26.450.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>30.10.2015</td>
+        <td>Kapitalherabsetzung durchgeführt (25.000 Stk., 26.375.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>29.10.2015</td>
+        <td>Kapitalherabsetzung durchgeführt (24.078 Stk., 32.529.378&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>15.09.2015</td>
+        <td>Kapitalherabsetzung durchgeführt (27.500 Stk., 22.962.500&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>14.09.2015</td>
+        <td>Kapitalherabsetzung durchgeführt (29.000 Stk., 23.780.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>07.09.2015</td>
+        <td>Kapitalerhöhung wurde durchgeführt (6.202 junge Aktien verkauft im Gesamtwert von 19.846.400,00&euro;).</td>
+            </tr>
+
+<tr>
+        <td>28.08.2015</td>
+        <td>Kapitalherabsetzung durchgeführt (28.124 Stk., 23.483.540&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>13.08.2015</td>
+        <td>Kapitalherabsetzung durchgeführt (106.000 Stk., 106.106.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>06.08.2015</td>
+        <td>AG hat WKN <a class='wkn' href="index.php?section=profil&aktie=105199">#105199</a> &uuml;bernommen und dadurch die Anzahl der Aktien seiner AG um 31000 Stk. reduziert.</td>
+            </tr>
+
+<tr>
+        <td>05.08.2015</td>
+        <td>Kapitalherabsetzung durchgeführt (130.500 Stk., 123.975.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>29.07.2015</td>
+        <td>Kapitalherabsetzung durchgeführt (130.000 Stk., 117.000.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>20.07.2015</td>
+        <td>Kapitalherabsetzung durchgeführt (47.824 Stk., 43.998.080&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>09.07.2015</td>
+        <td>Kapitalherabsetzung durchgeführt (17.490 Stk., 13.642.200&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>27.06.2015</td>
+        <td>Kapitalherabsetzung durchgeführt (100.000 Stk., 80.100.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>14.06.2015</td>
+        <td>Kapitalherabsetzung durchgeführt (132.984 Stk., 112.238.496&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>07.06.2015</td>
+        <td>Kapitalherabsetzung durchgeführt (110.791 Stk., 87.524.890&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>30.05.2015</td>
+        <td>Kapitalherabsetzung durchgeführt (190.911 Stk., 105.001.050&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>14.05.2015</td>
+        <td>Kapitalerhöhung wurde durchgeführt (200.000 junge Aktien verkauft im Gesamtwert von 159.800.000,00&euro;).</td>
+            </tr>
+
+<tr>
+        <td>27.04.2015</td>
+        <td>Kapitalherabsetzung durchgeführt (100.000 Stk., 36.000.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>18.04.2015</td>
+        <td>Kapitalherabsetzung durchgeführt (150.000 Stk., 69.600.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>10.04.2015</td>
+        <td>Kapitalherabsetzung durchgeführt (150.000 Stk., 81.000.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>03.04.2015</td>
+        <td>Kapitalherabsetzung durchgeführt (150.000 Stk., 79.835.545&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>23.03.2015</td>
+        <td>Kapitalherabsetzung durchgeführt (50.000 Stk., 24.500.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>06.03.2015</td>
+        <td>Kapitalherabsetzung durchgeführt (330.441 Stk., 151.005.031&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>27.02.2015</td>
+        <td>Kapitalherabsetzung durchgeführt (169.559 Stk., 72.910.370&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>19.02.2015</td>
+        <td>Kapitalherabsetzung durchgeführt (159.780 Stk., 61.515.300&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>15.02.2015</td>
+        <td>Name wurde von <i>KapitalvernichterAG</i> in <i>MLM System AG</i> geändert.</td>
+            </tr>
+
+<tr>
+        <td>11.02.2015</td>
+        <td>Kapitalherabsetzung durchgeführt (272.720 Stk., 92.904.795&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>03.02.2015</td>
+        <td>Kapitalherabsetzung durchgeführt (517.500 Stk., 166.800.136&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>26.01.2015</td>
+        <td>Kapitalherabsetzung durchgeführt (600.000 Stk., 174.000.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>14.01.2015</td>
+        <td>Kapitalherabsetzung durchgeführt (200.000 Stk., 67.000.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>06.01.2015</td>
+        <td>Kapitalherabsetzung durchgeführt (750.000 Stk., 247.500.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>06.01.2015</td>
+        <td>Name wurde von <i>Kapitalkrake AG </i> in <i>KapitalvernichterAG</i> geändert.</td>
+            </tr>
+
+<tr>
+        <td>30.12.2014</td>
+        <td>Kapitalherabsetzung durchgeführt (225.000 Stk., 79.791.750&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>23.12.2014</td>
+        <td>Kapitalherabsetzung durchgeführt (275.000 Stk., 103.801.500&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>16.12.2014</td>
+        <td>Kapitalherabsetzung durchgeführt (500.000 Stk., 212.500.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>07.12.2014</td>
+        <td>Kapitalherabsetzung durchgeführt (500.000 Stk., 222.500.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>22.11.2014</td>
+        <td>Name wurde von <i>MLM System AG </i> in <i>Kapitalkrake AG </i> geändert.</td>
+            </tr>
+
+<tr>
+        <td>19.11.2014</td>
+        <td>Kapitalherabsetzung durchgeführt (325.806 Stk., 88.032.781&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>15.11.2014</td>
+        <td>Kapitalerhöhung wurde durchgeführt (325.806 junge Aktien verkauft im Gesamtwert von 91.642.711,68&euro;).</td>
+            </tr>
+
+<tr>
+        <td>06.11.2014</td>
+        <td>Kapitalherabsetzung durchgeführt (993.275 Stk., 290.234.955&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>30.10.2014</td>
+        <td>AG hat WKN <a class='wkn' href="index.php?section=profil&aktie=105966">#105966</a> &uuml;bernommen und dadurch die Anzahl der Aktien seiner AG um 6725 Stk. reduziert.</td>
+            </tr>
+
+<tr>
+        <td>23.10.2014</td>
+        <td>Kapitalherabsetzung durchgeführt (500.000 Stk., 54.050.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>15.10.2014</td>
+        <td>Kapitalherabsetzung durchgeführt (500.000 Stk., 83.500.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>07.10.2014</td>
+        <td>Kapitalherabsetzung durchgeführt (1.232.357 Stk., 193.504.696&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>30.09.2014</td>
+        <td>Kapitalherabsetzung durchgeführt (1.222.643 Stk., 193.177.594&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>27.09.2014</td>
+        <td>AG hat WKN <a class='wkn' href="index.php?section=profil&aktie=108916">#108916</a> &uuml;bernommen und dadurch die Anzahl der Aktien seiner AG um 45000 Stk. reduziert.</td>
+            </tr>
+
+<tr>
+        <td>21.09.2014</td>
+        <td>Kapitalherabsetzung durchgeführt (500.000 Stk., 83.550.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>14.09.2014</td>
+        <td>Kapitalherabsetzung durchgeführt (500.000 Stk., 80.255.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>07.09.2014</td>
+        <td>AG hat WKN <a class='wkn' href="index.php?section=profil&aktie=108261">#108261</a> &uuml;bernommen und dadurch die Anzahl der Aktien seiner AG um 0 Stk. reduziert.</td>
+            </tr>
+
+<tr>
+        <td>05.09.2014</td>
+        <td>Kapitalherabsetzung durchgeführt (1.225.869 Stk., 186.577.262&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>24.08.2014</td>
+        <td>AG hat WKN <a class='wkn' href="index.php?section=profil&aktie=109355">#109355</a> &uuml;bernommen und dadurch die Anzahl der Aktien seiner AG um 0 Stk. reduziert.</td>
+            </tr>
+
+<tr>
+        <td>23.08.2014</td>
+        <td>Kapitalerhöhung wurde durchgeführt (2.028.669 junge Aktien verkauft im Gesamtwert von 298.214.343,00&euro;).</td>
+            </tr>
+
+<tr>
+        <td>15.08.2014</td>
+        <td>AG hat WKN <a class='wkn' href="index.php?section=profil&aktie=112426">#112426</a> &uuml;bernommen und dadurch die Anzahl der Aktien seiner AG um 2800 Stk. reduziert.</td>
+            </tr>
+
+<tr>
+        <td>13.08.2014</td>
+        <td>Kapitalherabsetzung durchgeführt (200.000 Stk., 25.600.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>30.07.2014</td>
+        <td>Kapitalherabsetzung durchgeführt (100.000 Stk., 12.212.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>02.07.2014</td>
+        <td>Name wurde von <i>Liquidations AG</i> in <i>MLM System AG </i> geändert.</td>
+            </tr>
+
+<tr>
+        <td>01.07.2014</td>
+        <td>AG hat WKN <a class='wkn' href="index.php?section=profil&aktie=105384">#105384</a> &uuml;bernommen und dadurch die Anzahl der Aktien seiner AG um 1000000 Stk. reduziert.</td>
+            </tr>
+
+<tr>
+        <td>22.06.2014</td>
+        <td>Kapitalherabsetzung durchgeführt (2.500.000 Stk., 212.500.000&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>21.06.2014</td>
+        <td>Name wurde von <i>MLM System AG</i> in <i>Liquidations AG</i> geändert.</td>
+            </tr>
+
+<tr>
+        <td>07.06.2014</td>
+        <td>Kapitalherabsetzung durchgeführt (550.000 Stk., 63.838.500&euro; Volumen)</td>
+            </tr>
+
+<tr>
+        <td>18.05.2014</td>
+        <td>Kapitalerhöhung wurde durchgeführt (550.000 junge Aktien verkauft im Gesamtwert von 62.694.500,00&euro;).</td>
+            </tr>
+
+<tr>
+        <td>08.04.2014</td>
+        <td>AG hat WKN 108938 &uuml;bernommen und dadurch die Anzahl der Aktien seiner AG um 0 Stk. reduziert.</td>
+            </tr>
+
+<tr>
+        <td>26.03.2014</td>
+        <td>AG hat WKN 105659 &uuml;bernommen und dadurch die Anzahl der Aktien seiner AG um 0 Stk. reduziert.</td>
+            </tr>
+
+<tr>
+        <td>19.03.2014</td>
+        <td>AG hat WKN 102504 &uuml;bernommen und dadurch die Anzahl der Aktien seiner AG um 0 Stk. reduziert.</td>
+            </tr>
+
+<tr>
+        <td>10.02.2014</td>
+        <td>Kapitalerhöhung wurde durchgeführt (1.000.000 junge Aktien verkauft im Gesamtwert von 43.000.000,00&euro;).</td>
+            </tr>
+
+<tr>
+        <td>09.02.2014</td>
+        <td>AG hat WKN 100403 &uuml;bernommen und dadurch die Anzahl der Aktien seiner AG um 6000000 Stk. reduziert.</td>
+            </tr>
+
+<tr>
+        <td>26.10.2013</td>
+        <td>AG hat WKN <a class='wkn' href="index.php?section=profil&aktie=106034">#106034</a> &uuml;bernommen und dadurch die Anzahl der Aktien seiner AG um 0 Stk. reduziert.</td>
+            </tr>
+
+<tr>
+        <td>11.10.2013</td>
+        <td>AG hat WKN <a class='wkn' href="index.php?section=profil&aktie=107277">#107277</a> &uuml;bernommen und dadurch die Anzahl der Aktien seiner AG um 0 Stk. reduziert.</td>
+            </tr>
+
+<tr>
+        <td>10.10.2013</td>
+        <td>Kapitalerhöhung wurde durchgeführt (131.047 junge Aktien verkauft im Gesamtwert von 4.608.922,99&euro;).</td>
+            </tr>
+
+<tr>
+        <td>08.10.2013</td>
+        <td>AG hat WKN <a class='wkn' href="index.php?section=profil&aktie=104294">#104294</a> &uuml;bernommen und dadurch die Anzahl der Aktien seiner AG um 131047 Stk. reduziert.</td>
+            </tr>
+
+<tr>
+        <td>07.03.2013</td>
+        <td>AG hat WKN <a class='wkn' href="index.php?section=profil&aktie=104279">#104279</a> übernommen und dadurch die Anzahl der Aktien seiner AG um 0 Stk. reduziert.</td>
+            </tr>
+
+<tr>
+        <td>21.02.2013</td>
+        <td>AG hat WKN <a class='wkn' href="index.php?section=profil&aktie=104484">#104484</a> übernommen und dadurch die Anzahl der Aktien seiner AG um 0 Stk. reduziert.</td>
+            </tr>
+
+<tr>
+        <td>12.02.2013</td>
+        <td>AG hat WKN <a class='wkn' href="index.php?section=profil&aktie=104455">#104455</a> übernommen und dadurch die Anzahl der Aktien seiner AG um 0 Stk. reduziert.</td>
+            </tr>
+
+<tr>
+        <td>02.10.2012</td>
+        <td>Kapitalerhöhung wurde durchgeführt (95.128 junge Aktien verkauft im Gesamtwert von 1.489.704,48&euro;).</td>
+            </tr>
+
+<tr>
+        <td>30.09.2012</td>
+        <td>AG hat WKN <a class='wkn' href="index.php?section=profil&aktie=102788">#102788</a> übernommen und dadurch die Anzahl der Aktien seiner AG um 4943942 Stk. reduziert.</td>
+            </tr>
+
+<tr>
+        <td>28.09.2012</td>
+        <td>AG hat WKN <a class='wkn' href="index.php?section=profil&aktie=103530">#103530</a> übernommen und dadurch die Anzahl der Aktien seiner AG um 95128 Stk. reduziert.</td>
+            </tr>
+
+<tr>
+        <td>14.09.2012</td>
+        <td>AG hat WKN <a class='wkn' href="index.php?section=profil&aktie=102970">#102970</a> übernommen und dadurch die Anzahl der Aktien seiner AG um  Stk. reduziert.</td>
+            </tr>
+
+<tr>
+        <td>15.08.2012</td>
+        <td>AG hat WKN <a class='wkn' href="index.php?section=profil&aktie=103312">#103312</a> übernommen.</td>
+            </tr>
+
+<tr>
+        <td>09.06.2012</td>
+        <td>AG hat WKN <a class='wkn' href="index.php?section=profil&aktie=102605">#102605</a> übernommen.</td>
+            </tr>
+
+<tr>
+        <td>21.05.2012</td>
+        <td>AG hat WKN <a class='wkn' href="index.php?section=profil&aktie=100827">#100827</a> übernommen.</td>
+            </tr>
+
+<tr>
+        <td>06.05.2012</td>
+        <td>AG hat WKN <a class='wkn' href="index.php?section=profil&aktie=101247">#101247</a> übernommen.</td>
+            </tr>
+
+<tr>
+        <td>01.05.2012</td>
+        <td>Kapitalerhöhung wurde durchgeführt (11 junge Aktien verkauft im Gesamtwert von 165,11&euro;).</td>
+            </tr>
+
+<tr>
+        <td>27.04.2012</td>
+        <td>AG hat WKN <a class='wkn' href="index.php?section=profil&aktie=100951">#100951</a> übernommen.</td>
+            </tr>
+
+<tr>
+        <td>14.04.2012</td>
+        <td>Name wurde von <i>MLM System AG </i> in <i>MLM System AG i.L</i> geändert.</td>
+            </tr>
+
+<tr>
+        <td>04.04.2012</td>
+        <td>Kapitalerhöhung wurde durchgeführt (2.405.296 junge Aktien verkauft im Gesamtwert von 31.870.172,00&euro;).</td>
+            </tr>
+
+<tr>
+        <td>31.03.2012</td>
+        <td>AG hat WKN <a class='wkn' href="index.php?section=profil&aktie=100576">#100576</a> übernommen.</td>
+            </tr>
+
+<tr>
+        <td>19.03.2012</td>
+        <td>Kapitalerhöhung wurde durchgeführt (2.594.704 junge Aktien verkauft im Gesamtwert von 31.551.600,64&euro;).</td>
+            </tr>
+
+<tr>
+        <td>15.02.2012</td>
+        <td>Diese AG wurde vor Einführung der Chronik gegründet: Die meisten Ereignisse vor diesem Datum werden daher nicht aufgelistet.</td>
+            </tr>
+
+<tr>
+        <td>10.01.2012</td>
+        <td>Kapitalerhöhung wurde durchgeführt (5.000.000 junge Aktien zu 9,06&euro; wurden angeboten, wie viele davon verkauft wurden, ist nicht dokumentiert).</td>
+            </tr>
+    </table><h2>Statistik über Kapitalerhöhungen</h2><p>Statistiken liegen für alle KEs <b>seit 22.03.2014</b> vor.</p><br>
+<table id='kes'  class='display cell-border compact'>
+<thead>
+<tr>
+	<th>Datum</th>
+        <th>Stückzahl</th>
+        <th>Kurs</th>
+        <th>Summe</th>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+        <td>12.05.2020</td>
+        <td>96.000</td>
+        <td>180.600,00 &euro;</td>
+        <td>17.337.600.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>08.09.2019</td>
+        <td>67.000</td>
+        <td>94.400,00 &euro;</td>
+        <td>6.324.800.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>27.06.2018</td>
+        <td>55.196</td>
+        <td>36.000,00 &euro;</td>
+        <td>1.987.056.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>23.10.2017</td>
+        <td>76.836</td>
+        <td>17.642,68 &euro;</td>
+        <td>1.355.592.960,48 &euro;</td>
+            </tr>
+
+<tr>
+        <td>19.12.2016</td>
+        <td>104.502</td>
+        <td>8.156,00 &euro;</td>
+        <td>852.318.312,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>21.04.2016</td>
+        <td>228.000</td>
+        <td>3.417,87 &euro;</td>
+        <td>779.274.360,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>07.09.2015</td>
+        <td>6.202</td>
+        <td>3.200,00 &euro;</td>
+        <td>19.846.400,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>14.05.2015</td>
+        <td>200.000</td>
+        <td>799,00 &euro;</td>
+        <td>159.800.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>15.11.2014</td>
+        <td>325.806</td>
+        <td>281,28 &euro;</td>
+        <td>91.642.711,68 &euro;</td>
+            </tr>
+
+<tr>
+        <td>23.08.2014</td>
+        <td>2.028.669</td>
+        <td>147,00 &euro;</td>
+        <td>298.214.343,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>18.05.2014</td>
+        <td>550.000</td>
+        <td>113,99 &euro;</td>
+        <td>62.694.500,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td><b>Gesamt</b></td>
+        <td><b>3.738.211</b></td>
+        <td>-</td>
+        <td><b>29.268.839.587,16 &euro;</b></td>
+            </tr>
+    </table><h2>Statistik über Kapitalherabsetzungen</h2>
+<table id='khs'  class='display cell-border compact'>
+<thead>
+<tr>
+	<th>Datum</th>
+        <th>Stückzahl</th>
+        <th>Kurs</th>
+        <th>Summe</th>
+
+</tr>
+</thead>
+<tbody>
+
+<tr>
+        <td>11.04.2021</td>
+        <td>1.473</td>
+        <td>173.130,00 &euro;</td>
+        <td>255.020.490,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>07.04.2021</td>
+        <td>1.000</td>
+        <td>172.900,00 &euro;</td>
+        <td>172.900.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>06.04.2021</td>
+        <td>25</td>
+        <td>169.000,00 &euro;</td>
+        <td>4.225.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>04.04.2021</td>
+        <td>450</td>
+        <td>169.320,00 &euro;</td>
+        <td>76.194.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>21.03.2021</td>
+        <td>320</td>
+        <td>169.995,38 &euro;</td>
+        <td>54.398.521,20 &euro;</td>
+            </tr>
+
+<tr>
+        <td>19.03.2021</td>
+        <td>200</td>
+        <td>165.740,74 &euro;</td>
+        <td>33.148.148,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>15.03.2021</td>
+        <td>167</td>
+        <td>160.000,00 &euro;</td>
+        <td>26.720.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>12.03.2021</td>
+        <td>234</td>
+        <td>154.767,60 &euro;</td>
+        <td>36.215.618,40 &euro;</td>
+            </tr>
+
+<tr>
+        <td>10.03.2021</td>
+        <td>843</td>
+        <td>151.923,18 &euro;</td>
+        <td>128.071.240,74 &euro;</td>
+            </tr>
+
+<tr>
+        <td>02.03.2021</td>
+        <td>69</td>
+        <td>149.655,70 &euro;</td>
+        <td>10.326.243,30 &euro;</td>
+            </tr>
+
+<tr>
+        <td>23.02.2021</td>
+        <td>82</td>
+        <td>160.937,67 &euro;</td>
+        <td>13.196.888,94 &euro;</td>
+            </tr>
+
+<tr>
+        <td>21.02.2021</td>
+        <td>396</td>
+        <td>158.617,40 &euro;</td>
+        <td>62.812.490,40 &euro;</td>
+            </tr>
+
+<tr>
+        <td>19.02.2021</td>
+        <td>39</td>
+        <td>161.000,00 &euro;</td>
+        <td>6.279.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>12.02.2021</td>
+        <td>1.898</td>
+        <td>158.599,99 &euro;</td>
+        <td>301.022.781,02 &euro;</td>
+            </tr>
+
+<tr>
+        <td>05.02.2021</td>
+        <td>160</td>
+        <td>160.000,00 &euro;</td>
+        <td>25.600.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>30.01.2021</td>
+        <td>600</td>
+        <td>164.000,00 &euro;</td>
+        <td>98.400.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>29.01.2021</td>
+        <td>458</td>
+        <td>157.000,00 &euro;</td>
+        <td>71.906.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>27.01.2021</td>
+        <td>421</td>
+        <td>148.000,00 &euro;</td>
+        <td>62.308.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>26.01.2021</td>
+        <td>980</td>
+        <td>140.161,38 &euro;</td>
+        <td>137.358.152,40 &euro;</td>
+            </tr>
+
+<tr>
+        <td>23.01.2021</td>
+        <td>515</td>
+        <td>147.999,99 &euro;</td>
+        <td>76.219.994,85 &euro;</td>
+            </tr>
+
+<tr>
+        <td>12.01.2021</td>
+        <td>1.563</td>
+        <td>145.000,00 &euro;</td>
+        <td>226.635.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>11.01.2021</td>
+        <td>96</td>
+        <td>144.099,30 &euro;</td>
+        <td>13.833.532,80 &euro;</td>
+            </tr>
+
+<tr>
+        <td>10.01.2021</td>
+        <td>539</td>
+        <td>142.000,00 &euro;</td>
+        <td>76.538.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>08.01.2021</td>
+        <td>200</td>
+        <td>140.499,00 &euro;</td>
+        <td>28.099.800,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>31.12.2020</td>
+        <td>432</td>
+        <td>137.909,50 &euro;</td>
+        <td>59.576.904,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>21.12.2020</td>
+        <td>39</td>
+        <td>142.400,00 &euro;</td>
+        <td>5.553.600,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>20.12.2020</td>
+        <td>425</td>
+        <td>140.000,00 &euro;</td>
+        <td>59.500.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>17.12.2020</td>
+        <td>4.196</td>
+        <td>131.995,00 &euro;</td>
+        <td>553.851.020,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>31.10.2020</td>
+        <td>86</td>
+        <td>169.900,00 &euro;</td>
+        <td>14.611.400,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>23.09.2020</td>
+        <td>3.778</td>
+        <td>150.000,00 &euro;</td>
+        <td>566.700.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>22.09.2020</td>
+        <td>6.400</td>
+        <td>150.000,00 &euro;</td>
+        <td>960.000.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>21.09.2020</td>
+        <td>6.740</td>
+        <td>150.000,00 &euro;</td>
+        <td>1.011.000.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>18.09.2020</td>
+        <td>6.874</td>
+        <td>150.000,00 &euro;</td>
+        <td>1.031.100.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>17.09.2020</td>
+        <td>7.455</td>
+        <td>150.000,00 &euro;</td>
+        <td>1.118.250.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>16.09.2020</td>
+        <td>7.849</td>
+        <td>150.000,00 &euro;</td>
+        <td>1.177.350.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>15.09.2020</td>
+        <td>8.250</td>
+        <td>150.000,00 &euro;</td>
+        <td>1.237.500.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>14.09.2020</td>
+        <td>8.600</td>
+        <td>150.000,00 &euro;</td>
+        <td>1.290.000.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>13.09.2020</td>
+        <td>5.000</td>
+        <td>140.000,00 &euro;</td>
+        <td>700.000.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>13.08.2020</td>
+        <td>3.713</td>
+        <td>122.000,00 &euro;</td>
+        <td>452.986.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>21.07.2020</td>
+        <td>5.002</td>
+        <td>150.000,00 &euro;</td>
+        <td>750.300.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>16.07.2020</td>
+        <td>2.423</td>
+        <td>141.432,56 &euro;</td>
+        <td>342.691.092,88 &euro;</td>
+            </tr>
+
+<tr>
+        <td>26.06.2020</td>
+        <td>1.793</td>
+        <td>158.000,00 &euro;</td>
+        <td>283.294.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>14.06.2020</td>
+        <td>670</td>
+        <td>156.945,71 &euro;</td>
+        <td>105.153.625,70 &euro;</td>
+            </tr>
+
+<tr>
+        <td>03.05.2020</td>
+        <td>1.887</td>
+        <td>181.000,00 &euro;</td>
+        <td>341.547.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>02.05.2020</td>
+        <td>5.100</td>
+        <td>190.000,00 &euro;</td>
+        <td>969.000.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>28.04.2020</td>
+        <td>1.584</td>
+        <td>190.000,00 &euro;</td>
+        <td>300.960.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>20.04.2020</td>
+        <td>257</td>
+        <td>182.000,00 &euro;</td>
+        <td>46.774.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>12.04.2020</td>
+        <td>988</td>
+        <td>172.400,00 &euro;</td>
+        <td>170.331.200,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>08.04.2020</td>
+        <td>898</td>
+        <td>183.178,31 &euro;</td>
+        <td>164.494.122,38 &euro;</td>
+            </tr>
+
+<tr>
+        <td>07.04.2020</td>
+        <td>764</td>
+        <td>178.000,00 &euro;</td>
+        <td>135.992.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>03.04.2020</td>
+        <td>272</td>
+        <td>189.000,00 &euro;</td>
+        <td>51.408.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>01.04.2020</td>
+        <td>661</td>
+        <td>171.823,99 &euro;</td>
+        <td>113.575.657,39 &euro;</td>
+            </tr>
+
+<tr>
+        <td>31.03.2020</td>
+        <td>8</td>
+        <td>160.000,00 &euro;</td>
+        <td>1.280.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>15.03.2020</td>
+        <td>830</td>
+        <td>160.000,00 &euro;</td>
+        <td>132.800.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>13.03.2020</td>
+        <td>88</td>
+        <td>148.737,68 &euro;</td>
+        <td>13.088.915,84 &euro;</td>
+            </tr>
+
+<tr>
+        <td>12.03.2020</td>
+        <td>221</td>
+        <td>148.000,00 &euro;</td>
+        <td>32.708.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>09.03.2020</td>
+        <td>1.575</td>
+        <td>146.500,00 &euro;</td>
+        <td>230.737.500,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>05.02.2020</td>
+        <td>895</td>
+        <td>131.573,27 &euro;</td>
+        <td>117.758.076,65 &euro;</td>
+            </tr>
+
+<tr>
+        <td>21.01.2020</td>
+        <td>1.493</td>
+        <td>132.000,00 &euro;</td>
+        <td>197.076.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>17.01.2020</td>
+        <td>897</td>
+        <td>131.888,00 &euro;</td>
+        <td>118.303.536,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>06.01.2020</td>
+        <td>343</td>
+        <td>134.900,00 &euro;</td>
+        <td>46.270.700,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>05.01.2020</td>
+        <td>603</td>
+        <td>134.899,00 &euro;</td>
+        <td>81.344.097,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>27.12.2019</td>
+        <td>647</td>
+        <td>117.881,00 &euro;</td>
+        <td>76.269.007,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>24.12.2019</td>
+        <td>6.150</td>
+        <td>107.200,00 &euro;</td>
+        <td>659.280.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>23.12.2019</td>
+        <td>6.453</td>
+        <td>107.405,00 &euro;</td>
+        <td>693.084.465,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>20.12.2019</td>
+        <td>6.792</td>
+        <td>100.000,00 &euro;</td>
+        <td>679.200.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>19.12.2019</td>
+        <td>7.150</td>
+        <td>100.000,00 &euro;</td>
+        <td>715.000.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>30.11.2019</td>
+        <td>945</td>
+        <td>89.500,00 &euro;</td>
+        <td>84.577.500,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>24.11.2019</td>
+        <td>159</td>
+        <td>85.500,00 &euro;</td>
+        <td>13.594.500,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>23.11.2019</td>
+        <td>857</td>
+        <td>90.000,00 &euro;</td>
+        <td>77.130.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>28.08.2019</td>
+        <td>229</td>
+        <td>94.999,98 &euro;</td>
+        <td>21.754.995,42 &euro;</td>
+            </tr>
+
+<tr>
+        <td>27.08.2019</td>
+        <td>84</td>
+        <td>92.000,00 &euro;</td>
+        <td>7.728.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>18.08.2019</td>
+        <td>400</td>
+        <td>90.999,00 &euro;</td>
+        <td>36.399.600,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>16.08.2019</td>
+        <td>200</td>
+        <td>88.799,85 &euro;</td>
+        <td>17.759.969,40 &euro;</td>
+            </tr>
+
+<tr>
+        <td>07.08.2019</td>
+        <td>167</td>
+        <td>87.999,99 &euro;</td>
+        <td>14.695.998,33 &euro;</td>
+            </tr>
+
+<tr>
+        <td>05.08.2019</td>
+        <td>304</td>
+        <td>85.500,00 &euro;</td>
+        <td>25.992.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>23.07.2019</td>
+        <td>549</td>
+        <td>86.000,00 &euro;</td>
+        <td>47.214.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>07.07.2019</td>
+        <td>326</td>
+        <td>86.000,00 &euro;</td>
+        <td>28.036.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>17.06.2019</td>
+        <td>212</td>
+        <td>75.000,00 &euro;</td>
+        <td>15.900.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>16.06.2019</td>
+        <td>432</td>
+        <td>72.500,00 &euro;</td>
+        <td>31.320.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>14.06.2019</td>
+        <td>225</td>
+        <td>72.292,72 &euro;</td>
+        <td>16.265.862,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>13.06.2019</td>
+        <td>220</td>
+        <td>69.027,13 &euro;</td>
+        <td>15.185.968,60 &euro;</td>
+            </tr>
+
+<tr>
+        <td>11.06.2019</td>
+        <td>271</td>
+        <td>65.000,00 &euro;</td>
+        <td>17.615.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>08.06.2019</td>
+        <td>233</td>
+        <td>56.860,00 &euro;</td>
+        <td>13.248.380,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>24.05.2019</td>
+        <td>5.000</td>
+        <td>49.800,00 &euro;</td>
+        <td>249.000.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>23.05.2019</td>
+        <td>4.200</td>
+        <td>50.000,00 &euro;</td>
+        <td>210.000.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>22.05.2019</td>
+        <td>5.000</td>
+        <td>50.399,54 &euro;</td>
+        <td>251.997.700,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>20.05.2019</td>
+        <td>5.000</td>
+        <td>49.600,00 &euro;</td>
+        <td>248.000.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>18.05.2019</td>
+        <td>4.124</td>
+        <td>48.500,00 &euro;</td>
+        <td>200.014.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>17.05.2019</td>
+        <td>3.079</td>
+        <td>48.534,59 &euro;</td>
+        <td>149.438.009,67 &euro;</td>
+            </tr>
+
+<tr>
+        <td>16.05.2019</td>
+        <td>3.766</td>
+        <td>50.000,00 &euro;</td>
+        <td>188.300.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>14.05.2019</td>
+        <td>679</td>
+        <td>48.511,23 &euro;</td>
+        <td>32.939.125,17 &euro;</td>
+            </tr>
+
+<tr>
+        <td>03.04.2019</td>
+        <td>257</td>
+        <td>48.027,87 &euro;</td>
+        <td>12.343.162,59 &euro;</td>
+            </tr>
+
+<tr>
+        <td>17.02.2019</td>
+        <td>2.259</td>
+        <td>40.000,00 &euro;</td>
+        <td>90.360.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>16.02.2019</td>
+        <td>2.373</td>
+        <td>38.169,08 &euro;</td>
+        <td>90.575.226,84 &euro;</td>
+            </tr>
+
+<tr>
+        <td>15.02.2019</td>
+        <td>2.055</td>
+        <td>38.000,00 &euro;</td>
+        <td>78.090.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>12.02.2019</td>
+        <td>1.340</td>
+        <td>37.500,00 &euro;</td>
+        <td>50.250.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>11.02.2019</td>
+        <td>162</td>
+        <td>35.000,00 &euro;</td>
+        <td>5.670.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>10.02.2019</td>
+        <td>159</td>
+        <td>33.233,20 &euro;</td>
+        <td>5.284.078,80 &euro;</td>
+            </tr>
+
+<tr>
+        <td>30.01.2019</td>
+        <td>1.996</td>
+        <td>40.798,79 &euro;</td>
+        <td>81.434.384,84 &euro;</td>
+            </tr>
+
+<tr>
+        <td>28.01.2019</td>
+        <td>6.300</td>
+        <td>34.265,70 &euro;</td>
+        <td>215.873.910,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>26.01.2019</td>
+        <td>700</td>
+        <td>34.500,00 &euro;</td>
+        <td>24.150.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>25.01.2019</td>
+        <td>34</td>
+        <td>30.515,25 &euro;</td>
+        <td>1.037.518,50 &euro;</td>
+            </tr>
+
+<tr>
+        <td>24.01.2019</td>
+        <td>2.682</td>
+        <td>30.225,76 &euro;</td>
+        <td>81.065.481,14 &euro;</td>
+            </tr>
+
+<tr>
+        <td>23.01.2019</td>
+        <td>7.000</td>
+        <td>28.280,00 &euro;</td>
+        <td>197.960.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>22.01.2019</td>
+        <td>7.380</td>
+        <td>27.503,00 &euro;</td>
+        <td>202.972.140,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>21.01.2019</td>
+        <td>7.768</td>
+        <td>27.502,00 &euro;</td>
+        <td>213.635.536,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>28.12.2018</td>
+        <td>143</td>
+        <td>35.000,00 &euro;</td>
+        <td>5.005.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>23.12.2018</td>
+        <td>170</td>
+        <td>36.250,00 &euro;</td>
+        <td>6.162.500,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>21.12.2018</td>
+        <td>1.036</td>
+        <td>33.000,00 &euro;</td>
+        <td>34.188.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>20.12.2018</td>
+        <td>1.048</td>
+        <td>31.765,63 &euro;</td>
+        <td>33.290.380,24 &euro;</td>
+            </tr>
+
+<tr>
+        <td>12.11.2018</td>
+        <td>2.385</td>
+        <td>32.922,05 &euro;</td>
+        <td>78.519.089,25 &euro;</td>
+            </tr>
+
+<tr>
+        <td>11.11.2018</td>
+        <td>5.404</td>
+        <td>32.922,00 &euro;</td>
+        <td>177.910.488,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>24.07.2018</td>
+        <td>1.204</td>
+        <td>36.000,00 &euro;</td>
+        <td>43.344.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>15.07.2018</td>
+        <td>2.012</td>
+        <td>25.000,00 &euro;</td>
+        <td>50.300.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>20.06.2018</td>
+        <td>908</td>
+        <td>34.611,26 &euro;</td>
+        <td>31.427.024,08 &euro;</td>
+            </tr>
+
+<tr>
+        <td>19.06.2018</td>
+        <td>6.026</td>
+        <td>34.611,26 &euro;</td>
+        <td>208.567.452,76 &euro;</td>
+            </tr>
+
+<tr>
+        <td>04.06.2018</td>
+        <td>1.520</td>
+        <td>30.000,00 &euro;</td>
+        <td>45.600.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>31.03.2018</td>
+        <td>1.663</td>
+        <td>19.450,00 &euro;</td>
+        <td>32.345.350,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>30.03.2018</td>
+        <td>1.528</td>
+        <td>19.250,00 &euro;</td>
+        <td>29.414.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>23.03.2018</td>
+        <td>4.012</td>
+        <td>18.200,00 &euro;</td>
+        <td>73.018.400,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>21.03.2018</td>
+        <td>6.955</td>
+        <td>18.253,98 &euro;</td>
+        <td>126.956.435,10 &euro;</td>
+            </tr>
+
+<tr>
+        <td>20.03.2018</td>
+        <td>7.320</td>
+        <td>18.200,00 &euro;</td>
+        <td>133.224.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>11.03.2018</td>
+        <td>6.632</td>
+        <td>18.100,00 &euro;</td>
+        <td>120.039.200,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>10.03.2018</td>
+        <td>4.997</td>
+        <td>18.000,00 &euro;</td>
+        <td>89.946.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>08.03.2018</td>
+        <td>8.300</td>
+        <td>18.000,00 &euro;</td>
+        <td>149.400.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>07.03.2018</td>
+        <td>3.555</td>
+        <td>17.999,98 &euro;</td>
+        <td>63.989.928,90 &euro;</td>
+            </tr>
+
+<tr>
+        <td>02.03.2018</td>
+        <td>5.606</td>
+        <td>17.999,00 &euro;</td>
+        <td>100.902.394,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>01.03.2018</td>
+        <td>9.440</td>
+        <td>18.000,00 &euro;</td>
+        <td>169.920.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>28.02.2018</td>
+        <td>5.555</td>
+        <td>17.999,99 &euro;</td>
+        <td>99.989.944,45 &euro;</td>
+            </tr>
+
+<tr>
+        <td>24.02.2018</td>
+        <td>8.489</td>
+        <td>18.000,00 &euro;</td>
+        <td>152.802.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>21.02.2018</td>
+        <td>10.470</td>
+        <td>17.490,92 &euro;</td>
+        <td>183.129.894,16 &euro;</td>
+            </tr>
+
+<tr>
+        <td>20.02.2018</td>
+        <td>5.002</td>
+        <td>17.200,01 &euro;</td>
+        <td>86.034.468,80 &euro;</td>
+            </tr>
+
+<tr>
+        <td>16.02.2018</td>
+        <td>10.435</td>
+        <td>17.700,00 &euro;</td>
+        <td>184.699.500,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>15.02.2018</td>
+        <td>11.000</td>
+        <td>16.700,00 &euro;</td>
+        <td>183.700.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>10.02.2018</td>
+        <td>1.790</td>
+        <td>17.035,00 &euro;</td>
+        <td>30.492.650,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>03.10.2017</td>
+        <td>681</td>
+        <td>18.600,00 &euro;</td>
+        <td>12.666.600,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>02.10.2017</td>
+        <td>2.132</td>
+        <td>17.538,00 &euro;</td>
+        <td>37.391.016,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>01.10.2017</td>
+        <td>17</td>
+        <td>17.622,44 &euro;</td>
+        <td>299.581,48 &euro;</td>
+            </tr>
+
+<tr>
+        <td>09.09.2017</td>
+        <td>5.035</td>
+        <td>16.000,00 &euro;</td>
+        <td>80.560.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>05.09.2017</td>
+        <td>4.000</td>
+        <td>12.800,00 &euro;</td>
+        <td>51.200.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>27.08.2017</td>
+        <td>9.100</td>
+        <td>12.900,00 &euro;</td>
+        <td>117.390.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>23.08.2017</td>
+        <td>5.469</td>
+        <td>12.100,00 &euro;</td>
+        <td>66.174.900,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>29.07.2017</td>
+        <td>230</td>
+        <td>14.402,00 &euro;</td>
+        <td>3.312.460,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>13.07.2017</td>
+        <td>584</td>
+        <td>9.100,00 &euro;</td>
+        <td>5.314.400,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>12.07.2017</td>
+        <td>1.563</td>
+        <td>9.000,00 &euro;</td>
+        <td>14.067.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>09.07.2017</td>
+        <td>508</td>
+        <td>9.358,07 &euro;</td>
+        <td>4.753.901,06 &euro;</td>
+            </tr>
+
+<tr>
+        <td>08.07.2017</td>
+        <td>10.000</td>
+        <td>9.239,09 &euro;</td>
+        <td>92.390.900,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>07.07.2017</td>
+        <td>1.328</td>
+        <td>9.300,00 &euro;</td>
+        <td>12.350.400,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>06.07.2017</td>
+        <td>1.361</td>
+        <td>8.906,45 &euro;</td>
+        <td>12.121.673,39 &euro;</td>
+            </tr>
+
+<tr>
+        <td>05.07.2017</td>
+        <td>6.806</td>
+        <td>8.771,22 &euro;</td>
+        <td>59.696.923,32 &euro;</td>
+            </tr>
+
+<tr>
+        <td>04.07.2017</td>
+        <td>1.982</td>
+        <td>8.434,81 &euro;</td>
+        <td>16.717.792,34 &euro;</td>
+            </tr>
+
+<tr>
+        <td>03.07.2017</td>
+        <td>2.883</td>
+        <td>8.350,00 &euro;</td>
+        <td>24.073.050,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>20.06.2017</td>
+        <td>11.200</td>
+        <td>8.000,00 &euro;</td>
+        <td>89.600.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>12.03.2017</td>
+        <td>9.519</td>
+        <td>7.965,00 &euro;</td>
+        <td>75.818.835,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>07.03.2017</td>
+        <td>11.000</td>
+        <td>7.949,00 &euro;</td>
+        <td>87.439.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>03.03.2017</td>
+        <td>522</td>
+        <td>7.949,99 &euro;</td>
+        <td>4.149.894,78 &euro;</td>
+            </tr>
+
+<tr>
+        <td>25.02.2017</td>
+        <td>1.854</td>
+        <td>7.600,00 &euro;</td>
+        <td>14.090.400,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>22.02.2017</td>
+        <td>4.445</td>
+        <td>7.395,00 &euro;</td>
+        <td>32.870.775,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>08.12.2016</td>
+        <td>405</td>
+        <td>7.250,00 &euro;</td>
+        <td>2.936.250,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>01.12.2016</td>
+        <td>1</td>
+        <td>7.200,00 &euro;</td>
+        <td>7.200,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>28.11.2016</td>
+        <td>9.500</td>
+        <td>7.150,00 &euro;</td>
+        <td>67.925.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>27.11.2016</td>
+        <td>2.055</td>
+        <td>7.000,00 &euro;</td>
+        <td>14.385.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>26.11.2016</td>
+        <td>2</td>
+        <td>6.400,00 &euro;</td>
+        <td>12.800,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>20.11.2016</td>
+        <td>7.173</td>
+        <td>6.000,00 &euro;</td>
+        <td>43.038.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>10.11.2016</td>
+        <td>4.006</td>
+        <td>7.750,00 &euro;</td>
+        <td>31.046.500,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>09.11.2016</td>
+        <td>1.735</td>
+        <td>7.200,00 &euro;</td>
+        <td>12.492.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>08.11.2016</td>
+        <td>2.192</td>
+        <td>7.000,00 &euro;</td>
+        <td>15.344.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>01.11.2016</td>
+        <td>2.018</td>
+        <td>6.102,82 &euro;</td>
+        <td>12.315.490,76 &euro;</td>
+            </tr>
+
+<tr>
+        <td>30.10.2016</td>
+        <td>920</td>
+        <td>6.000,00 &euro;</td>
+        <td>5.520.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>29.10.2016</td>
+        <td>2.394</td>
+        <td>5.800,00 &euro;</td>
+        <td>13.885.200,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>28.10.2016</td>
+        <td>11.800</td>
+        <td>5.614,25 &euro;</td>
+        <td>66.248.103,13 &euro;</td>
+            </tr>
+
+<tr>
+        <td>27.10.2016</td>
+        <td>7.139</td>
+        <td>5.400,00 &euro;</td>
+        <td>38.550.600,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>25.10.2016</td>
+        <td>5.192</td>
+        <td>5.250,00 &euro;</td>
+        <td>27.258.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>11.10.2016</td>
+        <td>2.939</td>
+        <td>4.943,13 &euro;</td>
+        <td>14.527.859,07 &euro;</td>
+            </tr>
+
+<tr>
+        <td>10.10.2016</td>
+        <td>665</td>
+        <td>5.000,00 &euro;</td>
+        <td>3.325.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>06.09.2016</td>
+        <td>2.500</td>
+        <td>4.400,00 &euro;</td>
+        <td>11.000.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>05.09.2016</td>
+        <td>1.799</td>
+        <td>4.300,00 &euro;</td>
+        <td>7.735.700,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>02.09.2016</td>
+        <td>13.300</td>
+        <td>3.661,25 &euro;</td>
+        <td>48.694.663,73 &euro;</td>
+            </tr>
+
+<tr>
+        <td>22.08.2016</td>
+        <td>9.920</td>
+        <td>3.700,00 &euro;</td>
+        <td>36.704.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>08.08.2016</td>
+        <td>7.557</td>
+        <td>3.379,35 &euro;</td>
+        <td>25.537.747,95 &euro;</td>
+            </tr>
+
+<tr>
+        <td>04.08.2016</td>
+        <td>2.479</td>
+        <td>3.450,00 &euro;</td>
+        <td>8.552.550,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>01.08.2016</td>
+        <td>8.641</td>
+        <td>3.396,60 &euro;</td>
+        <td>29.350.020,60 &euro;</td>
+            </tr>
+
+<tr>
+        <td>31.07.2016</td>
+        <td>14.954</td>
+        <td>3.269,74 &euro;</td>
+        <td>48.895.691,96 &euro;</td>
+            </tr>
+
+<tr>
+        <td>29.07.2016</td>
+        <td>2.904</td>
+        <td>3.200,00 &euro;</td>
+        <td>9.292.800,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>21.07.2016</td>
+        <td>1.197</td>
+        <td>3.367,23 &euro;</td>
+        <td>4.030.574,31 &euro;</td>
+            </tr>
+
+<tr>
+        <td>11.07.2016</td>
+        <td>13.500</td>
+        <td>3.740,00 &euro;</td>
+        <td>50.490.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>01.07.2016</td>
+        <td>12.000</td>
+        <td>3.800,00 &euro;</td>
+        <td>45.600.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>30.06.2016</td>
+        <td>15.029</td>
+        <td>3.800,00 &euro;</td>
+        <td>57.110.200,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>22.06.2016</td>
+        <td>10.000</td>
+        <td>4.100,00 &euro;</td>
+        <td>41.000.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>20.06.2016</td>
+        <td>9.127</td>
+        <td>4.101,00 &euro;</td>
+        <td>37.429.827,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>18.06.2016</td>
+        <td>5.000</td>
+        <td>4.100,00 &euro;</td>
+        <td>20.500.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>16.06.2016</td>
+        <td>6.000</td>
+        <td>4.020,00 &euro;</td>
+        <td>24.120.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>18.05.2016</td>
+        <td>11.295</td>
+        <td>3.040,00 &euro;</td>
+        <td>34.336.800,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>09.05.2016</td>
+        <td>16.325</td>
+        <td>2.835,75 &euro;</td>
+        <td>46.293.618,75 &euro;</td>
+            </tr>
+
+<tr>
+        <td>05.05.2016</td>
+        <td>8.346</td>
+        <td>2.685,00 &euro;</td>
+        <td>22.409.010,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>09.04.2016</td>
+        <td>4.811</td>
+        <td>1.800,00 &euro;</td>
+        <td>8.659.800,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>30.03.2016</td>
+        <td>7.010</td>
+        <td>1.530,00 &euro;</td>
+        <td>10.725.300,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>28.03.2016</td>
+        <td>4.610</td>
+        <td>1.509,08 &euro;</td>
+        <td>6.956.858,80 &euro;</td>
+            </tr>
+
+<tr>
+        <td>26.03.2016</td>
+        <td>2.631</td>
+        <td>1.352,69 &euro;</td>
+        <td>3.558.932,40 &euro;</td>
+            </tr>
+
+<tr>
+        <td>25.03.2016</td>
+        <td>3.475</td>
+        <td>1.340,00 &euro;</td>
+        <td>4.656.500,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>15.02.2016</td>
+        <td>9.849</td>
+        <td>1.024,99 &euro;</td>
+        <td>10.095.126,51 &euro;</td>
+            </tr>
+
+<tr>
+        <td>13.02.2016</td>
+        <td>14.327</td>
+        <td>1.019,00 &euro;</td>
+        <td>14.599.213,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>12.02.2016</td>
+        <td>15.081</td>
+        <td>1.000,00 &euro;</td>
+        <td>15.081.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>07.02.2016</td>
+        <td>858</td>
+        <td>1.094,00 &euro;</td>
+        <td>938.652,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>31.01.2016</td>
+        <td>500</td>
+        <td>1.111,11 &euro;</td>
+        <td>555.555,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>30.01.2016</td>
+        <td>4.870</td>
+        <td>1.014,97 &euro;</td>
+        <td>4.942.903,90 &euro;</td>
+            </tr>
+
+<tr>
+        <td>29.01.2016</td>
+        <td>5.269</td>
+        <td>1.069,00 &euro;</td>
+        <td>5.632.561,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>26.01.2016</td>
+        <td>332</td>
+        <td>1.070,00 &euro;</td>
+        <td>355.240,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>23.01.2016</td>
+        <td>1.151</td>
+        <td>1.035,00 &euro;</td>
+        <td>1.191.285,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>21.01.2016</td>
+        <td>3.748</td>
+        <td>1.000,00 &euro;</td>
+        <td>3.748.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>15.01.2016</td>
+        <td>8.072</td>
+        <td>959,00 &euro;</td>
+        <td>7.741.048,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>06.01.2016</td>
+        <td>17.000</td>
+        <td>845,00 &euro;</td>
+        <td>14.365.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>03.01.2016</td>
+        <td>2.192</td>
+        <td>765,88 &euro;</td>
+        <td>1.678.808,96 &euro;</td>
+            </tr>
+
+<tr>
+        <td>30.12.2015</td>
+        <td>18.086</td>
+        <td>715,00 &euro;</td>
+        <td>12.931.490,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>27.12.2015</td>
+        <td>19.150</td>
+        <td>620,00 &euro;</td>
+        <td>11.873.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>25.12.2015</td>
+        <td>11.250</td>
+        <td>850,00 &euro;</td>
+        <td>9.562.500,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>17.12.2015</td>
+        <td>20.750</td>
+        <td>775,00 &euro;</td>
+        <td>16.081.250,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>03.12.2015</td>
+        <td>4.400</td>
+        <td>790,00 &euro;</td>
+        <td>3.476.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>14.11.2015</td>
+        <td>10.000</td>
+        <td>969,74 &euro;</td>
+        <td>9.697.449,59 &euro;</td>
+            </tr>
+
+<tr>
+        <td>13.11.2015</td>
+        <td>22.600</td>
+        <td>797,27 &euro;</td>
+        <td>18.018.302,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>03.11.2015</td>
+        <td>23.000</td>
+        <td>1.150,00 &euro;</td>
+        <td>26.450.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>30.10.2015</td>
+        <td>25.000</td>
+        <td>1.055,00 &euro;</td>
+        <td>26.375.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>29.10.2015</td>
+        <td>24.078</td>
+        <td>1.351,00 &euro;</td>
+        <td>32.529.378,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>15.09.2015</td>
+        <td>27.500</td>
+        <td>835,00 &euro;</td>
+        <td>22.962.500,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>14.09.2015</td>
+        <td>29.000</td>
+        <td>820,00 &euro;</td>
+        <td>23.780.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>28.08.2015</td>
+        <td>28.124</td>
+        <td>835,00 &euro;</td>
+        <td>23.483.540,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>13.08.2015</td>
+        <td>106.000</td>
+        <td>1.001,00 &euro;</td>
+        <td>106.106.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>05.08.2015</td>
+        <td>130.500</td>
+        <td>950,00 &euro;</td>
+        <td>123.975.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>29.07.2015</td>
+        <td>130.000</td>
+        <td>900,00 &euro;</td>
+        <td>117.000.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>20.07.2015</td>
+        <td>47.824</td>
+        <td>920,00 &euro;</td>
+        <td>43.998.080,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>09.07.2015</td>
+        <td>17.490</td>
+        <td>780,00 &euro;</td>
+        <td>13.642.200,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>27.06.2015</td>
+        <td>100.000</td>
+        <td>801,00 &euro;</td>
+        <td>80.100.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>14.06.2015</td>
+        <td>132.984</td>
+        <td>844,00 &euro;</td>
+        <td>112.238.496,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>07.06.2015</td>
+        <td>110.791</td>
+        <td>790,00 &euro;</td>
+        <td>87.524.890,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>30.05.2015</td>
+        <td>190.911</td>
+        <td>550,00 &euro;</td>
+        <td>105.001.050,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>27.04.2015</td>
+        <td>100.000</td>
+        <td>360,00 &euro;</td>
+        <td>36.000.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>18.04.2015</td>
+        <td>150.000</td>
+        <td>464,00 &euro;</td>
+        <td>69.600.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>10.04.2015</td>
+        <td>150.000</td>
+        <td>540,00 &euro;</td>
+        <td>81.000.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>03.04.2015</td>
+        <td>150.000</td>
+        <td>532,24 &euro;</td>
+        <td>79.835.544,93 &euro;</td>
+            </tr>
+
+<tr>
+        <td>23.03.2015</td>
+        <td>50.000</td>
+        <td>490,00 &euro;</td>
+        <td>24.500.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>06.03.2015</td>
+        <td>330.441</td>
+        <td>456,98 &euro;</td>
+        <td>151.005.031,45 &euro;</td>
+            </tr>
+
+<tr>
+        <td>27.02.2015</td>
+        <td>169.559</td>
+        <td>430,00 &euro;</td>
+        <td>72.910.370,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>19.02.2015</td>
+        <td>159.780</td>
+        <td>385,00 &euro;</td>
+        <td>61.515.300,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>11.02.2015</td>
+        <td>272.720</td>
+        <td>340,66 &euro;</td>
+        <td>92.904.795,20 &euro;</td>
+            </tr>
+
+<tr>
+        <td>03.02.2015</td>
+        <td>517.500</td>
+        <td>322,32 &euro;</td>
+        <td>166.800.135,85 &euro;</td>
+            </tr>
+
+<tr>
+        <td>26.01.2015</td>
+        <td>600.000</td>
+        <td>290,00 &euro;</td>
+        <td>174.000.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>14.01.2015</td>
+        <td>200.000</td>
+        <td>335,00 &euro;</td>
+        <td>67.000.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>06.01.2015</td>
+        <td>750.000</td>
+        <td>330,00 &euro;</td>
+        <td>247.500.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>30.12.2014</td>
+        <td>225.000</td>
+        <td>354,63 &euro;</td>
+        <td>79.791.750,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>23.12.2014</td>
+        <td>275.000</td>
+        <td>377,46 &euro;</td>
+        <td>103.801.500,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>16.12.2014</td>
+        <td>500.000</td>
+        <td>425,00 &euro;</td>
+        <td>212.500.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>07.12.2014</td>
+        <td>500.000</td>
+        <td>445,00 &euro;</td>
+        <td>222.500.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>19.11.2014</td>
+        <td>325.806</td>
+        <td>270,20 &euro;</td>
+        <td>88.032.781,20 &euro;</td>
+            </tr>
+
+<tr>
+        <td>06.11.2014</td>
+        <td>993.275</td>
+        <td>292,20 &euro;</td>
+        <td>290.234.955,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>23.10.2014</td>
+        <td>500.000</td>
+        <td>108,10 &euro;</td>
+        <td>54.050.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>15.10.2014</td>
+        <td>500.000</td>
+        <td>167,00 &euro;</td>
+        <td>83.500.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>07.10.2014</td>
+        <td>1.232.357</td>
+        <td>157,02 &euro;</td>
+        <td>193.504.696,14 &euro;</td>
+            </tr>
+
+<tr>
+        <td>30.09.2014</td>
+        <td>1.222.643</td>
+        <td>158,00 &euro;</td>
+        <td>193.177.594,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>21.09.2014</td>
+        <td>500.000</td>
+        <td>167,10 &euro;</td>
+        <td>83.550.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>14.09.2014</td>
+        <td>500.000</td>
+        <td>160,51 &euro;</td>
+        <td>80.255.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>05.09.2014</td>
+        <td>1.225.869</td>
+        <td>152,20 &euro;</td>
+        <td>186.577.261,80 &euro;</td>
+            </tr>
+
+<tr>
+        <td>13.08.2014</td>
+        <td>200.000</td>
+        <td>128,00 &euro;</td>
+        <td>25.600.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>30.07.2014</td>
+        <td>100.000</td>
+        <td>122,12 &euro;</td>
+        <td>12.212.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>22.06.2014</td>
+        <td>2.500.000</td>
+        <td>85,00 &euro;</td>
+        <td>212.500.000,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td>07.06.2014</td>
+        <td>550.000</td>
+        <td>116,07 &euro;</td>
+        <td>63.838.500,00 &euro;</td>
+            </tr>
+
+<tr>
+        <td><b>Gesamt</b></td>
+        <td><b>17.462.142</b></td>
+        <td>-</td>
+        <td><b>32.439.089.804,29 &euro;</b></td>
+            </tr>
+    </table><br><a class='arrowleft button' href='index.php?section=profil&aktie=100352'>zurück Profil der AG</a>
+
+
+<script>
+    $(document).ready(function() {
+        $('#chronik').dataTable({
+            "aaSorting": [],
+            "aoColumnDefs": [
+                {'bSortable': false, 'aTargets': [0, 1]}
+            ],
+            "oLanguage": {
+                "sUrl": "js/txt/dataTables.german.txt"
+            },
+            "iDisplayLength": 10
+        });
+    });
+    $(document).ready(function() {
+        $('#kes, #khs').dataTable({
+            "aaSorting": [],
+            "aoColumnDefs": [
+                {'bSortable': false, 'aTargets': [0, 1]}
+            ],
+            "oLanguage": {
+                "sUrl": "js/txt/dataTables.german.txt"
+            },
+            "iDisplayLength": 20
+        });
+    });
+
+</script>        </div>
+        <div id="sidebar"
+        >
+
+                <style type='text/css'>
+                        #content{
+                            width: 920px;
+                        }
+                    </style>
+
+<table class='menu2'>
+
+<tr><td class='menu2' colspan='2'>
+<div id="holder" style='width:auto;'>
+<img src='ico/zoom.png' style='vertical-align:middle; margin-bottom: 4px; margin-right: 4px;'><input onKeyDown="sub(event)" type="text" id="keyword" size='26' placeholder='Suche (WKN/AG/Spieler)' >
+</div>
+<div id="ajax_response"></div>
+</td></tr><tr><td class='menu2'>Serverzeit</td><td class='menu2' style='text-align:right'><div id="uhr"></div></td></tr><tr><td class='menu2'>Bargeld</td><td class='menu2' style='text-align:right'>17,2&nbsp;Mio.&nbsp;&euro;</td></tr>
+<tr>
+        <th  class='menu2' colspan='2'>Order-Liveticker</th>
+    </tr>
+<tr><td class='menu2' colspan='2'><div id='liveTickerContainer'></div></td></tr>
+
+
+    <tr>
+        <th  class='menu2' colspan='2'>Favoriten</th>
+    </tr>
+
+            <tr>
+        <td align='left' class='menu2'><a href='index.php?section=profil&aktie=176477'>Mozzarella Cartel</a></td><td align='right' class='menu2'><span class='green'>4,43</span>%</td>
+            </tr>
+
+            <tr>
+        <td align='left' class='menu2'><a href='index.php?section=profil&aktie=106505'>Argo</a></td><td align='right' class='menu2'><span>0,00</span>%</td>
+            </tr>
+
+            <tr>
+        <td align='left' class='menu2'><a href='index.php?section=profil&aktie=175076'>GZEHZ AG</a></td><td align='right' class='menu2'><span>0,00</span>%</td>
+            </tr>
+
+    <tr>
+        <th  class='menu2' colspan='2'>Gewinner & Verlierer FP</th>
+    </tr>
+
+        <tr>
+    <td align='left' class='menu2'><a href='index.php?section=profil&aktie=177207'>Risk-Capital</a></td><td align='right' class='menu2'><span class='green'>632,33</span>%</td>
+        </tr>
+
+        <tr>
+    <td align='left' class='menu2'><a href='index.php?section=profil&aktie=177192'>XXL Transport AG</a></td><td align='right' class='menu2'><span class='green'>86,73</span>%</td>
+        </tr>
+
+        <tr>
+    <td align='left' class='menu2'><a href='index.php?section=profil&aktie=175807'>PurpleParadies</a></td><td align='right' class='menu2'><span class='green'>59,56</span>%</td>
+        </tr>
+
+        <tr>
+    <td align='left' class='menu2'><a href='index.php?section=profil&aktie=177013'>G-MAN-S-INVEST</a></td><td align='right' class='menu2'><span class='red'>-34,16</span>%</td>
+        </tr>
+
+        <tr>
+    <td align='left' class='menu2'><a href='index.php?section=profil&aktie=177160'>Carbon Group Inc</a></td><td align='right' class='menu2'><span class='red'>-12,68</span>%</td>
+        </tr>
+
+        <tr>
+    <td align='left' class='menu2'><a href='index.php?section=profil&aktie=172756'>Dividenden Picker</a></td><td align='right' class='menu2'><span class='red'>-12,40</span>%</td>
+        </tr>
+
+    <tr>
+        <th  class='menu2' colspan='2'>neue Aktien</th>
+    </tr>
+
+        <tr>
+    <td align='left' class='menu2'><a href='index.php?section=profil&aktie=177289'>Bike AG </a></td><td align='right' class='menu2'><span class='green'>72,80</span>%</td>
+        </tr>
+
+        <tr>
+    <td align='left' class='menu2'><a href='index.php?section=profil&aktie=177288'>Dampf AG </a></td><td align='right' class='menu2'><span class='green'>30,17</span>%</td>
+        </tr>
+
+        <tr>
+    <td align='left' class='menu2'><a href='index.php?section=profil&aktie=177287'>Iba AG</a></td><td align='right' class='menu2'><span class='green'>1.214,50</span>%</td>
+        </tr>
+
+        <tr>
+    <td align='left' class='menu2'><a href='index.php?section=profil&aktie=177286'>Amecke</a></td><td align='right' class='menu2'><span class='green'>2,20</span>%</td>
+        </tr>
+
+        <tr>
+    <td align='left' class='menu2'><a href='index.php?section=profil&aktie=177285'>Cookie AG</a></td><td align='right' class='menu2'><span class='green'>15,00</span>%</td>
+        </tr>
+
+    <tr>
+        <th  class='menu2' colspan='2'>Top Tagesvolumen</th>
+    </tr>
+
+        <tr>
+    <td align='left' class='menu2'><a href='index.php?section=profil&aktie=104955'>DarkRock</a></td><td align='right' class='menu2'>240 Mio. &euro;</td>
+        </tr>
+
+        <tr>
+    <td align='left' class='menu2'><a href='index.php?section=profil&aktie=160000'>Marten Group SE</a></td><td align='right' class='menu2'>135 Mio. &euro;</td>
+        </tr>
+
+        <tr>
+    <td align='left' class='menu2'><a href='index.php?section=profil&aktie=176582'>I. T. A.</a></td><td align='right' class='menu2'>68 Mio. &euro;</td>
+        </tr>
+
+        <tr>
+    <td align='left' class='menu2'><a href='index.php?section=profil&aktie=164382'>Jelena AG</a></td><td align='right' class='menu2'>62 Mio. &euro;</td>
+        </tr>
+
+        <tr>
+    <td align='left' class='menu2'><a href='index.php?section=profil&aktie=176324'>JO Productions</a></td><td align='right' class='menu2'>53 Mio. &euro;</td>
+        </tr>
+    <tr>
+        <th  class='menu2' colspan='2'>AGSX & Anleihen</th>
+    </tr>
+    <tr>
+    <td align='left' class='menu2'>Punktestand</td>
+    <td align='right' class='menu2'>23.499</td>
+    </tr>
+    <tr>
+    <td align='left' class='menu2'>Änderung</td>
+    <td align='right' class='menu2'><img style='vertical-align:bottom' src='images/arrow_up.png'></img> 9</td>
+    </tr>
+    <tr>
+    <td align='left' class='menu2'>Put / Call</td>
+    <td align='right' class='menu2'><span class='red'>1.08</span> / <span class='green'>1.07</span></td>
+    </tr>
+    <tr>
+    <td align='left' class='menu2'>Anleihezins</td>
+    <td align='right' class='menu2'>2.22%</td>
+    </tr>
+    <tr>
+        <th  class='menu2' colspan='2'>Statistiken</th>
+    </tr>
+    <tr>
+    <td align='left' class='menu2'>AGs am Markt</td>
+    <td align='right' class='menu2'>725</td>
+    </tr>
+    <tr>
+    <td align='left' class='menu2'>24 Std. neue AGs</td>
+    <td align='right' class='menu2'>2</td>
+    </tr>
+    <tr>
+    <td align='left' class='menu2'>24 Std. online</td>
+    <td align='right' class='menu2'>575</td>
+    </tr>
+    <tr>
+    <td align='left' class='menu2'>10 Min. online</td>
+    <td align='right' class='menu2'>95</td>
+    </tr>
+
+
+</table>
+
+        </div>
+    </div>
+    <div id="footer">
+
+        <br><a class='menu' href='index.php?section=regeln'>Regelwerk</a>  | <a class='menu' href='index.php?section=agb'>AGB</a>  | <a class='menu' href='index.php?section=datenschutz'>Datenschutz</a> | <a class='menu' href='index.php?section=impressum'>Impressum</a>
+
+
+
+    </div>
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+

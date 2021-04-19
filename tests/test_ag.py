@@ -2,11 +2,12 @@
 
 import json
 from unittest import TestCase
-from datetime import datetime
+from datetime import datetime, date
 from agspiel.api.ag import Ag
 from agspiel.api.data import Data
 from agspiel.api.ceo import Ceo
 from agspiel.api.aktie import Aktie, Aktionaer
+from agspiel.api.kapitalmassnahme import Kapitalerhoehung, Kapitalherabsetzung
 from agspiel.api.anleihe import Anleihe, Kredit
 from agspiel.api.zertifikat import Zertifikat
 from agspiel.api.order import Order
@@ -21,7 +22,10 @@ class TestAg(TestCase):
         f = open("testapi.txt", "r")
         api_data = Data(data=json.loads(f.read()), update=lambda: self.data)
         f.close()
-        self.ag = Ag(wkn=175353, api_data=api_data, web_data=web_data)
+        f = open("testchronik.txt", "rb")
+        chronik_data = Data(data=BeautifulSoup(f.read(), "html.parser"), update=lambda: self.data) # FIXME Chronik Data not from 175353
+        f.close()
+        self.ag = Ag(wkn=175353, api_data=api_data, web_data=web_data, chronik_data=chronik_data)
 
     def test_wkn(self):
         self.assertEqual(self.ag.wkn, 175353)
@@ -239,6 +243,62 @@ class TestAg(TestCase):
         self.assertIsInstance(temp[0].wkn, int)
         self.assertEqual(temp[0].stueckzahl, 121495)
         self.assertIsInstance(temp[0].stueckzahl, int)
+
+    def test_kes(self):
+        kes = self.ag.kes
+        for ke in kes:
+            self.assertIsInstance(ke, Kapitalerhoehung)
+
+        self.assertEqual(len(kes), 11)
+
+        # lastest ke
+        self.assertEqual(kes[0].datum, date(year=2020, month=5, day=12))
+        self.assertIsInstance(kes[0].datum, date)
+        self.assertEqual(kes[0].stueckzahl, 96000)
+        self.assertIsInstance(kes[0].stueckzahl, int)
+        self.assertEqual(kes[0].kurs, 180600.00)
+        self.assertIsInstance(kes[0].kurs, float)
+        self.assertEqual(kes[0].summe, 17337600000.00)
+        self.assertIsInstance(kes[0].summe, float)
+
+        # first ke
+        last = len(kes) - 1
+        self.assertEqual(kes[last].datum, date(year=2014, month=5, day=18))
+        self.assertIsInstance(kes[last].datum, date)
+        self.assertEqual(kes[last].stueckzahl, 550000)
+        self.assertIsInstance(kes[last].stueckzahl, int)
+        self.assertEqual(kes[last].kurs, 113.99)
+        self.assertIsInstance(kes[last].kurs, float)
+        self.assertEqual(kes[last].summe, 62694500.00)
+        self.assertIsInstance(kes[last].summe, float)
+
+    def test_khs(self):
+        khs = self.ag.khs
+        for kh in khs:
+            self.assertIsInstance(kh, Kapitalherabsetzung)
+
+        self.assertEqual(len(khs), 266)
+
+        # lastest kh
+        self.assertEqual(khs[0].datum, date(year=2021, month=4, day=11))
+        self.assertIsInstance(khs[0].datum, date)
+        self.assertEqual(khs[0].stueckzahl, 1473)
+        self.assertIsInstance(khs[0].stueckzahl, int)
+        self.assertEqual(khs[0].kurs, 173130.00)
+        self.assertIsInstance(khs[0].kurs, float)
+        self.assertEqual(khs[0].summe, 255020490.00)
+        self.assertIsInstance(khs[0].summe, float)
+
+        # first kh
+        last = len(khs) - 1
+        self.assertEqual(khs[last].datum, date(year=2014, month=6, day=7))
+        self.assertIsInstance(khs[last].datum, date)
+        self.assertEqual(khs[last].stueckzahl, 550000)
+        self.assertIsInstance(khs[last].stueckzahl, int)
+        self.assertEqual(khs[last].kurs, 116.07)
+        self.assertIsInstance(khs[last].kurs, float)
+        self.assertEqual(khs[last].summe, 63838500.00)
+        self.assertIsInstance(khs[last].summe, float)
 
     def test_dividende(self):
         self.assertEqual(self.ag.dividende, 0)

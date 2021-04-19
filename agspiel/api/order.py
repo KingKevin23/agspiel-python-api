@@ -1,22 +1,23 @@
-#  Copyright (c) 2020 | KingKevin23 (@kingkevin023)
+#  Copyright (c) 2021 | KingKevin23 (@kingkevin023)
 
 from datetime import datetime
 
+
 class Order:
-    def __init__(self, typ:str, limit:float, stueckzahl:int, orderregel:bool, systembank:bool, datum:datetime):
-        self.typ:str = typ
-        self.limit:float = limit
-        self.stueckzahl:int = stueckzahl
-        self.orderregel:bool = orderregel
-        self.systembank:bool = systembank
-        self.datum:datetime = datum
+    def __init__(self, typ: str, limit: float, stueckzahl: int, orderregel: bool, systembank: bool, datum: datetime):
+        self.typ: str = typ
+        self.limit: float = limit
+        self.stueckzahl: int = stueckzahl
+        self.orderregel: bool = orderregel
+        self.systembank: bool = systembank
+        self.datum: datetime = datum
 
     @property
     def typ(self) -> str:
         return self._typ
 
     @typ.setter
-    def typ(self, value:str):
+    def typ(self, value: str):
         self._typ = value
 
     @property
@@ -24,7 +25,7 @@ class Order:
         return self._limit
 
     @limit.setter
-    def limit(self, value:float):
+    def limit(self, value: float):
         self._limit = value
 
     @property
@@ -32,7 +33,7 @@ class Order:
         return self._stueckzahl
 
     @stueckzahl.setter
-    def stueckzahl(self, value:int):
+    def stueckzahl(self, value: int):
         self._stueckzahl = value
 
     @property
@@ -40,7 +41,7 @@ class Order:
         return self._orderregel
 
     @orderregel.setter
-    def orderregel(self, value:bool):
+    def orderregel(self, value: bool):
         self._orderregel = value
 
     @property
@@ -48,7 +49,7 @@ class Order:
         return self._systembank
 
     @systembank.setter
-    def systembank(self, value:bool):
+    def systembank(self, value: bool):
         self._systembank = value
 
     @property
@@ -56,5 +57,5 @@ class Order:
         return self._datum
 
     @datum.setter
-    def datum(self, value:datetime):
+    def datum(self, value: datetime):
         self._datum = value
