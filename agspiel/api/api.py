@@ -35,7 +35,7 @@ class Api:
                                                           .format(str(wkn)), cookies={"PHPSESSID": self._phpsessid})
                                              .content, "html.parser"))
             chronik_data = Data(
-                update=lambda: BeautifulSoup(requests.get("https://www.ag-spiel.de/index.php?section=chronik&aktie={}"
+                update=lambda: BeautifulSoup(requests.get("https://www.ag-spiel.de/index.php?section=chronik&wkn={}"
                                                           .format(str(wkn)), cookies={"PHPSESSID": self._phpsessid})
                                              .content, "html.parser"))
             return Ag(wkn=wkn, api_data=self._api_data, web_data=web_data, chronik_data=chronik_data)
