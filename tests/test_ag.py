@@ -252,7 +252,7 @@ class TestAg(TestCase):
         self.assertEqual(len(kes), 11)
 
         # lastest ke
-        self.assertEqual(kes[0].datum, date(year=2020, month=5, day=10))
+        self.assertEqual(kes[0].datum, date(year=2020, month=5, day=12))
         self.assertIsInstance(kes[0].datum, date)
         self.assertEqual(kes[0].stueckzahl, 96000)
         self.assertIsInstance(kes[0].stueckzahl, int)
