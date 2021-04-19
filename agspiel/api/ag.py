@@ -2,20 +2,22 @@
 
 import re
 from bs4 import BeautifulSoup
-from datetime import datetime
+from datetime import datetime, date
 from .ceo import Ceo
 from .aktie import Aktie, Aktionaer
 from .anleihe import Anleihe, Kredit
+from .kapitalmassnahme import Kapitalerhoehung, Kapitalherabsetzung
 from .zertifikat import Zertifikat
 from .order import Order
 from .data import Data
 from .index import Index
 
 class Ag:
-    def __init__(self, wkn:int, api_data:Data, web_data:Data):
+    def __init__(self, wkn:int, api_data:Data, web_data:Data, chronik_data:Data):
         self._wkn:int = wkn
         self._api_data:Data = api_data
         self._web_data:Data = web_data
+        self._chronik_data:Data = chronik_data
         self._ag_data = lambda: self._api_data().get("ags").get(str(self.wkn))
 
     @property
@@ -230,6 +232,38 @@ class Ag:
                     aktionaere.append(Aktionaer(wkn=ag.get("wkn"), stueckzahl=aktie.get("stueckzahl")))
 
         return aktionaere
+
+    @property
+    def kes(self) -> list:
+        kes = []
+        rows = self._chronik_data().find("table", attrs={"id": "kes"}).find_all("tr")
+        for row in rows:
+            cols = row.find_all("td")
+            if len(cols) > 0:
+                if cols[0].text != "Gesamt":
+                    datum: date = datetime.strptime(cols[0].text, "%d.%m.%Y").date()
+                    anzahl = int(cols[1].text.replace(".", ""))
+                    preis = float(cols[2].text.replace(".", "").replace(",", ".").replace("€", "").strip())
+                    gesamt = float(cols[3].text.replace(".", "").replace(",", ".").replace("€", "").strip())
+                    kes.append(Kapitalerhoehung(datum, anzahl, preis, gesamt))
+
+        return kes
+
+    @property
+    def khs(self) -> list:
+        khs = []
+        rows = self._chronik_data().find("table", attrs={"id": "khs"}).find_all("tr")
+        for row in rows:
+            cols = row.find_all("td")
+            if len(cols) > 0:
+                if cols[0].text != "Gesamt":
+                    datum: date = datetime.strptime(cols[0].text, "%d.%m.%Y").date()
+                    anzahl = int(cols[1].text.replace(".", ""))
+                    preis = float(cols[2].text.replace(".", "").replace(",", ".").replace("€", "").strip())
+                    gesamt = float(cols[3].text.replace(".", "").replace(",", ".").replace("€", "").strip())
+                    khs.append(Kapitalherabsetzung(datum, anzahl, preis, gesamt))
+
+        return khs
 
     @property
     def dividende(self) -> float:
