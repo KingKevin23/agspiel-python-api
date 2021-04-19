@@ -1,20 +1,20 @@
 #  Copyright (c) 2021 | KingKevin23 (@kingkevin023)
 
-from datetime import datetime
+from datetime import date
 
 class _Kapitalmassnahme:
-    def __init__(self, datum:datetime, stueckzahl:int, kurs:float, summe:float):
-        self._datum:datetime = datum
+    def __init__(self, datum:date, stueckzahl:int, kurs:float, summe:float):
+        self._datum:date = datum
         self._stueckzahl:int = stueckzahl
         self._kurs:float = kurs
         self._summe:float = summe
 
     @property
-    def datum(self) -> datetime:
+    def datum(self) -> date:
         return self._datum
 
     @datum.setter
-    def datum(self, datum:datetime):
+    def datum(self, datum:date):
         self._datum = datum
 
     @property
