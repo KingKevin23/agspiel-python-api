@@ -1,23 +1,28 @@
-#  Copyright (c) 2020 | KingKevin23 (@kingkevin023)
+#  Copyright (c) 2021 | KingKevin23 (@kingkevin023)
 
-import requests, json
-from .ag import Ag
-from .markt import Markt
 from datetime import datetime
+
+import json
+import requests
 from bs4 import BeautifulSoup
+
+from .ag import Ag
 from .data import Data
+from .markt import Markt
+
 
 class AgNotFoundError(Exception): pass
+
 
 class Api:
     _api_url = "https://www.ag-spiel.de/api/get/data.php?version=5"
 
-    def __init__(self, phpsessid:str="", premium:bool=True):
+    def __init__(self, phpsessid: str = "", premium: bool = True):
         self._phpsessid = phpsessid
         self.premium = premium
         self._api_data = Data(update=lambda: json.loads(requests.get(Api._api_url).content))
 
-    def get_ag(self, wkn:int) -> Ag:
+    def get_ag(self, wkn: int) -> Ag:
         """
         Diese Methode gibt ein Objekt der Klasse Ag mit der übergebenen WKN aus.
 
@@ -25,10 +30,12 @@ class Api:
         :return: Ein Objekt der Klasse Ag
         """
         if str(wkn) in self._api_data().get("ags"):
-            web_data = Data(update=lambda: BeautifulSoup(requests.get("https://www.ag-spiel.de/index.php?section=profil&aktie={}"
+            web_data = Data(
+                update=lambda: BeautifulSoup(requests.get("https://www.ag-spiel.de/index.php?section=profil&aktie={}"
                                                           .format(str(wkn)), cookies={"PHPSESSID": self._phpsessid})
                                              .content, "html.parser"))
-            chronik_data = Data(update=lambda: BeautifulSoup(requests.get("https://www.ag-spiel.de/index.php?section=chronik&aktie={}"
+            chronik_data = Data(
+                update=lambda: BeautifulSoup(requests.get("https://www.ag-spiel.de/index.php?section=chronik&aktie={}"
                                                           .format(str(wkn)), cookies={"PHPSESSID": self._phpsessid})
                                              .content, "html.parser"))
             return Ag(wkn=wkn, api_data=self._api_data, web_data=web_data, chronik_data=chronik_data)
@@ -48,8 +55,9 @@ class Api:
         return ergebnis
 
     def get_markt(self) -> Markt:
-        web_data = Data(update=lambda: BeautifulSoup(requests.get("https://www.ag-spiel.de/index.php?section=statistiken",
-                                                                  cookies={"PHPSESSID": self._phpsessid}).content, "html.parser"))
+        web_data = Data(
+            update=lambda: BeautifulSoup(requests.get("https://www.ag-spiel.de/index.php?section=statistiken",
+                                                      cookies={"PHPSESSID": self._phpsessid}).content, "html.parser"))
         return Markt(api_data=self._api_data, web_data=web_data)
 
     @property

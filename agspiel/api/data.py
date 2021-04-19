@@ -1,11 +1,12 @@
-#  Copyright (c) 2020 | KingKevin23 (@kingkevin023)
+#  Copyright (c) 2021 | KingKevin23 (@kingkevin023)
 
 from datetime import datetime
+
 
 class Data:
     def __init__(self, update, data=None):
         self.data = data
-        self.update = update # type(update) -> function
+        self.update = update  # type(update) -> function
         self.timestamp = datetime.now()
 
     def _update_data(self):
@@ -42,7 +43,7 @@ class Data:
         return self._timestamp
 
     @timestamp.setter
-    def timestamp(self, value:datetime):
+    def timestamp(self, value: datetime):
         self._timestamp = value
 
     def __call__(self, *args, **kwargs):

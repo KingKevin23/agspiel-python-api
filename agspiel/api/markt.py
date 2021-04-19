@@ -1,10 +1,12 @@
-#  Copyright (c) 2020 | KingKevin23 (@kingkevin023)
+#  Copyright (c) 2021 | KingKevin23 (@kingkevin023)
 
 import re
+
 from .data import Data
 
+
 class Markt:
-    def __init__(self, api_data:Data, web_data:Data):
+    def __init__(self, api_data: Data, web_data: Data):
         self._api_data = api_data
         self._web_data = web_data
         self._markt_data = lambda: self._api_data().get("allgemein")

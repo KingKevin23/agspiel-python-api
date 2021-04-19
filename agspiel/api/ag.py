@@ -1,23 +1,24 @@
-#  Copyright (c) 2020 | KingKevin23 (@kingkevin023)
+#  Copyright (c) 2021 | KingKevin23 (@kingkevin023)
 
 import re
-from bs4 import BeautifulSoup
 from datetime import datetime, date
-from .ceo import Ceo
+
 from .aktie import Aktie, Aktionaer
 from .anleihe import Anleihe, Kredit
-from .kapitalmassnahme import Kapitalerhoehung, Kapitalherabsetzung
-from .zertifikat import Zertifikat
-from .order import Order
+from .ceo import Ceo
 from .data import Data
 from .index import Index
+from .kapitalmassnahme import Kapitalerhoehung, Kapitalherabsetzung
+from .order import Order
+from .zertifikat import Zertifikat
+
 
 class Ag:
-    def __init__(self, wkn:int, api_data:Data, web_data:Data, chronik_data:Data):
-        self._wkn:int = wkn
-        self._api_data:Data = api_data
-        self._web_data:Data = web_data
-        self._chronik_data:Data = chronik_data
+    def __init__(self, wkn: int, api_data: Data, web_data: Data, chronik_data: Data):
+        self._wkn: int = wkn
+        self._api_data: Data = api_data
+        self._web_data: Data = web_data
+        self._chronik_data: Data = chronik_data
         self._ag_data = lambda: self._api_data().get("ags").get(str(self.wkn))
 
     @property
@@ -62,18 +63,21 @@ class Ag:
 
     @property
     def sw_aktie(self) -> float:
-        return float(re.compile("-?\d*[.]?\d*[,]\d{2}").findall(self._web_data().find("div", attrs={"id":"sw"}).text)[0]
-                            .replace(".", "").replace(",", "."))
+        return float(
+            re.compile("-?\d*[.]?\d*[,]\d{2}").findall(self._web_data().find("div", attrs={"id": "sw"}).text)[0]
+            .replace(".", "").replace(",", "."))
 
     @property
     def bbw_aktie(self) -> float:
-        return float(re.compile("-?\d*[.]?\d*[,]\d{2}").findall(self._web_data().find("div", attrs={"id": "bbw"}).text)[0]
-                             .replace(".", "").replace(",", "."))
+        return float(
+            re.compile("-?\d*[.]?\d*[,]\d{2}").findall(self._web_data().find("div", attrs={"id": "bbw"}).text)[0]
+            .replace(".", "").replace(",", "."))
 
     @property
     def fp_aktie(self) -> float:
-        return float(re.compile("-?\d*[.]?\d*[,]\d{2}").findall(self._web_data().find("div", attrs={"id": "fp"}).text)[0]
-                            .replace(".", "").replace(",", "."))
+        return float(
+            re.compile("-?\d*[.]?\d*[,]\d{2}").findall(self._web_data().find("div", attrs={"id": "fp"}).text)[0]
+            .replace(".", "").replace(",", "."))
 
     @property
     def bw_aktie(self) -> float:
@@ -81,8 +85,8 @@ class Ag:
 
     @property
     def kgv(self) -> float:
-        return float(re.compile("\d*[,]\d*").findall(self._web_data().find("div", attrs={"id":"kgv"}).text)[0].
-                       replace(",", "."))
+        return float(re.compile("\d*[,]\d*").findall(self._web_data().find("div", attrs={"id": "kgv"}).text)[0].
+                     replace(",", "."))
 
     @property
     def spread(self) -> float:
@@ -97,7 +101,7 @@ class Ag:
 
     @property
     def tagesvolumen(self) -> float:
-        return Ag._convert_number(self._web_data().find("div", attrs={"id":"tagesvolumen"}).text)
+        return Ag._convert_number(self._web_data().find("div", attrs={"id": "tagesvolumen"}).text)
 
     @property
     def boersenwert(self) -> float:
@@ -157,13 +161,14 @@ class Ag:
             index_gruendung = datetime.strptime(index_data.get("gruendung_datum"), "%Y-%m-%d %H:%M:%S")
             index = Index(nummer=index_id, name=index_name, highscore=index_highscore, punkte=index_punkte,
                           gruendung_datum=index_gruendung)
-        except TypeError: # Wenn Spieler in keinem Index
+        except TypeError:  # Wenn Spieler in keinem Index
             index = None
 
-        registrierung_datum = datetime.strptime(self._ag_data().get("ceo").get("registrierung_datum"), "%Y-%m-%d %H:%M:%S")
+        registrierung_datum = datetime.strptime(self._ag_data().get("ceo").get("registrierung_datum"),
+                                                "%Y-%m-%d %H:%M:%S")
         gesperrt = self._ag_data().get("ceo").get("gesperrt") == "true"
         userprojekt = self._ag_data().get("ceo").get("ist_userprojekt_account") == "true"
-        return Ceo(name=name, index=index, registrierung_datum=registrierung_datum, gesperrt=gesperrt, 
+        return Ceo(name=name, index=index, registrierung_datum=registrierung_datum, gesperrt=gesperrt,
                    userprojekt=userprojekt)
 
     @property
@@ -203,7 +208,7 @@ class Ag:
         for i in self._ag_data().get("zertifikate"):
             try:
                 hebel = float(i.get("hebel"))
-            except TypeError: # falls hebel noch nicht bekannt
+            except TypeError:  # falls hebel noch nicht bekannt
                 hebel = 0
             typ = i.get("typ")
             temp = Zertifikat(betrag=float(i.get("betrag")), typ=typ, hebel=hebel, punkte=int(i.get("punkte")),
@@ -294,7 +299,7 @@ class Ag:
             table_data[cols[0].text] = cols[1].text
 
         return float(re.compile("\d*\.?\d*,?\d*").findall(table_data.get("Tageshoch"))[0].replace(".", "").
-                              replace(",", "."))
+                     replace(",", "."))
 
     @property
     def tages_tief(self) -> float:
@@ -305,7 +310,7 @@ class Ag:
             table_data[cols[0].text] = cols[1].text
 
         return float(re.compile("\d*\.?\d*,?\d*").findall(table_data.get("Tagestief"))[0].replace(".", "").
-                              replace(",", "."))
+                     replace(",", "."))
 
     @property
     def kurs_14d(self) -> float:
@@ -562,24 +567,27 @@ class Ag:
     @property
     def ordner(self) -> str:
         try:
-            return re.compile("Ordner:\s(.*)Deine\sNotiz:").findall(self._web_data().find("div", attrs={"class":"nodisplay profil-depotcomment"})
-                                                                    .text)[0]
+            return re.compile("Ordner:\s(.*)Deine\sNotiz:").findall(
+                self._web_data().find("div", attrs={"class": "nodisplay profil-depotcomment"})
+                .text)[0]
         except AttributeError:
             return "Allgemein"
 
     @property
     def kauf_kurs(self) -> float:
         try:
-            return float(re.compile("Kauf:\s((?:\d*[.,]?)*)\s€").findall(self._web_data().find("div", attrs={"id":"imdepot"})
-                                                                        .text)[0].replace(".", "").replace(",", "."))
+            return float(
+                re.compile("Kauf:\s((?:\d*[.,]?)*)\s€").findall(self._web_data().find("div", attrs={"id": "imdepot"})
+                                                                .text)[0].replace(".", "").replace(",", "."))
         except AttributeError:
             return None
 
     @property
     def kauf_anzahl(self) -> int:
         try:
-            return int(re.compile("In\sdeinem\sDepot:((?:\d*\.?)*)\sStk\.").findall(self._web_data().find("div", attrs={"id": "imdepot"})
-                                                                                    .text)[0].replace(".", ""))
+            return int(re.compile("In\sdeinem\sDepot:((?:\d*\.?)*)\sStk\.").findall(
+                self._web_data().find("div", attrs={"id": "imdepot"})
+                .text)[0].replace(".", ""))
         except AttributeError:
             return 0
 

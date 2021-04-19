@@ -1,14 +1,15 @@
-#  Copyright (c) 2020 | KingKevin23 (@kingkevin023)
+#  Copyright (c) 2021 | KingKevin23 (@kingkevin023)
 
 from datetime import datetime
 
+
 class Index:
-    def __init__(self, nummer:int, name:str, highscore:int, punkte:int, gruendung_datum:datetime):
-        self._id:int = nummer
-        self._name:str = name
-        self._highscore:int = highscore
-        self._punkte:int = punkte
-        self._gruendung_datum:datetime = gruendung_datum
+    def __init__(self, nummer: int, name: str, highscore: int, punkte: int, gruendung_datum: datetime):
+        self._id: int = nummer
+        self._name: str = name
+        self._highscore: int = highscore
+        self._punkte: int = punkte
+        self._gruendung_datum: datetime = gruendung_datum
 
     @property
     def id(self) -> int:

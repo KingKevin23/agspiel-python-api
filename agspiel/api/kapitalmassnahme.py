@@ -2,19 +2,20 @@
 
 from datetime import date
 
+
 class _Kapitalmassnahme:
-    def __init__(self, datum:date, stueckzahl:int, kurs:float, summe:float):
-        self._datum:date = datum
-        self._stueckzahl:int = stueckzahl
-        self._kurs:float = kurs
-        self._summe:float = summe
+    def __init__(self, datum: date, stueckzahl: int, kurs: float, summe: float):
+        self._datum: date = datum
+        self._stueckzahl: int = stueckzahl
+        self._kurs: float = kurs
+        self._summe: float = summe
 
     @property
     def datum(self) -> date:
         return self._datum
 
     @datum.setter
-    def datum(self, datum:date):
+    def datum(self, datum: date):
         self._datum = datum
 
     @property
@@ -41,8 +42,10 @@ class _Kapitalmassnahme:
     def summe(self, summe: float):
         self._summe = summe
 
+
 class Kapitalerhoehung(_Kapitalmassnahme):
     pass
+
 
 class Kapitalherabsetzung(_Kapitalmassnahme):
     pass
