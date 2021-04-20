@@ -261,6 +261,15 @@ class TestAg(TestCase):
         self.assertEqual(kes[0].summe, 17337600000.00)
         self.assertIsInstance(kes[0].summe, float)
 
+        # special ke with n/a values
+        self.assertEqual(kes[2].datum, date(year=2018, month=6, day=27))
+        self.assertIsInstance(kes[2].datum, date)
+        self.assertEqual(kes[2].stueckzahl, 0)
+        self.assertIsInstance(kes[2].stueckzahl, int)
+        self.assertIsNone(kes[2].kurs)
+        self.assertEqual(kes[2].summe, 0)
+        self.assertIsInstance(kes[2].summe, float)
+
         # first ke
         last = len(kes) - 1
         self.assertEqual(kes[last].datum, date(year=2014, month=5, day=18))
@@ -288,6 +297,15 @@ class TestAg(TestCase):
         self.assertIsInstance(khs[0].kurs, float)
         self.assertEqual(khs[0].summe, 255020490.00)
         self.assertIsInstance(khs[0].summe, float)
+
+        # special kh with n/a values
+        self.assertEqual(khs[2].datum, date(year=2021, month=4, day=6))
+        self.assertIsInstance(khs[2].datum, date)
+        self.assertEqual(khs[2].stueckzahl, 0)
+        self.assertIsInstance(khs[2].stueckzahl, int)
+        self.assertIsNone(khs[2].kurs)
+        self.assertEqual(khs[2].summe, 0)
+        self.assertIsInstance(khs[2].summe, float)
 
         # first kh
         last = len(khs) - 1
