@@ -247,9 +247,15 @@ class Ag:
             if len(cols) > 0:
                 if cols[0].text != "Gesamt":
                     datum: date = datetime.strptime(cols[0].text, "%d.%m.%Y").date()
-                    anzahl = int(cols[1].text.replace(".", ""))
-                    preis = float(cols[2].text.replace(".", "").replace(",", ".").replace("€", "").strip())
-                    gesamt = float(cols[3].text.replace(".", "").replace(",", ".").replace("€", "").strip())
+                    anzahl, preis, gesamt = None, None, None
+                    if cols[1].text != "n/a":
+                        anzahl = int(cols[1].text.replace(".", ""))
+
+                    if cols[2].text != "n/a":
+                        preis = float(cols[2].text.replace(".", "").replace(",", ".").replace("€", "").strip())
+
+                    if cols[3].text != "n/a":
+                        gesamt = float(cols[3].text.replace(".", "").replace(",", ".").replace("€", "").strip())
                     kes.append(Kapitalerhoehung(datum, anzahl, preis, gesamt))
 
         return kes
@@ -263,9 +269,15 @@ class Ag:
             if len(cols) > 0:
                 if cols[0].text != "Gesamt":
                     datum: date = datetime.strptime(cols[0].text, "%d.%m.%Y").date()
-                    anzahl = int(cols[1].text.replace(".", ""))
-                    preis = float(cols[2].text.replace(".", "").replace(",", ".").replace("€", "").strip())
-                    gesamt = float(cols[3].text.replace(".", "").replace(",", ".").replace("€", "").strip())
+                    anzahl, preis, gesamt = None, None, None
+                    if cols[1].text != "n/a":
+                        anzahl = int(cols[1].text.replace(".", ""))
+
+                    if cols[2].text != "n/a":
+                        preis = float(cols[2].text.replace(".", "").replace(",", ".").replace("€", "").strip())
+
+                    if cols[3].text != "n/a":
+                        gesamt = float(cols[3].text.replace(".", "").replace(",", ".").replace("€", "").strip())
                     khs.append(Kapitalherabsetzung(datum, anzahl, preis, gesamt))
 
         return khs

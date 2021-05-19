@@ -2165,9 +2165,9 @@ if(document.getElementsByTagName('title')&&document.getElementsByTagName('title'
 
 <tr>
         <td>27.06.2018</td>
-        <td>55.196</td>
-        <td>36.000,00 &euro;</td>
-        <td>1.987.056.000,00 &euro;</td>
+        <td>0</td>
+        <td>n/a</td>
+        <td>0,00 &euro;</td>
             </tr>
 
 <tr>
@@ -2261,9 +2261,9 @@ if(document.getElementsByTagName('title')&&document.getElementsByTagName('title'
 
 <tr>
         <td>06.04.2021</td>
-        <td>25</td>
-        <td>169.000,00 &euro;</td>
-        <td>4.225.000,00 &euro;</td>
+        <td>0</td>
+        <td>n/a</td>
+        <td>0,00 &euro;</td>
             </tr>
 
 <tr>
