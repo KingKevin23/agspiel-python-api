@@ -359,8 +359,8 @@ class TestAg(TestCase):
         self.assertIsInstance(self.ag.bw_30d, float)
 
     def test_bw_60d(self):
-        self.assertEqual(self.ag.bw_60d, 28.03)
-        self.assertIsInstance(self.ag.bw_60d, float)
+        self.assertIsNone(self.ag.bw_60d)
+        self.assertIsInstance(self.ag.bw_60d, type(None))
 
     def test_bw_90d(self):
         self.assertEqual(self.ag.bw_90d, 68.96)
@@ -375,12 +375,12 @@ class TestAg(TestCase):
         self.assertIsInstance(self.ag.fp_30d, float)
 
     def test_fp_60d(self):
-        self.assertEqual(self.ag.fp_60d, 11.74)
+        self.assertEqual(self.ag.fp_60d, 0.00)
         self.assertIsInstance(self.ag.fp_60d, float)
 
     def test_fp_90d(self):
-        self.assertEqual(self.ag.fp_90d, 16.59)
-        self.assertIsInstance(self.ag.fp_90d, float)
+        self.assertIsNone(self.ag.fp_90d)
+        self.assertIsInstance(self.ag.fp_90d, type(None))
 
     def test_ordner(self):
         self.assertEqual(self.ag.ordner, "Allgemein")

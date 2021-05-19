@@ -1099,7 +1099,7 @@ if(document.getElementsByTagName('title')&&document.getElementsByTagName('title'
 </tr>
 <tr>
     <td>60 Tage</td>
-    <td><span class='green'>28,03</span>%</td>
+    <td>-%</td>
 </tr>
 <tr>
     <td>90 Tage</td>
@@ -1118,11 +1118,11 @@ if(document.getElementsByTagName('title')&&document.getElementsByTagName('title'
 </tr>
 <tr>
     <td>60 Tage</td>
-    <td><span class='green'>11,74</span>%</td>
+    <td><span class='green'>0,00</span>%</td>
 </tr>
 <tr>
     <td>90 Tage</td>
-    <td><span class='green'>16,59</span>%</td>
+    <td>n.a.%</td>
 </tr>
 </table><div style='position: absolute;    top: 136px;    left: 482px; text-align: center;'>
     <h2 style='font-size:10px'>Eigenkapitalanteil</h2>
