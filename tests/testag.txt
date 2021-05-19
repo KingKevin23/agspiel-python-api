@@ -1099,7 +1099,7 @@ if(document.getElementsByTagName('title')&&document.getElementsByTagName('title'
 </tr>
 <tr>
     <td>60 Tage</td>
-    <td><span class='green'>28,03</span>%</td>
+    <td>-%</td>
 </tr>
 <tr>
     <td>90 Tage</td>

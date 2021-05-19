@@ -359,8 +359,8 @@ class TestAg(TestCase):
         self.assertIsInstance(self.ag.bw_30d, float)
 
     def test_bw_60d(self):
-        self.assertEqual(self.ag.bw_60d, 28.03)
-        self.assertIsInstance(self.ag.bw_60d, float)
+        self.assertIsNone(self.ag.bw_60d)
+        self.assertIsInstance(self.ag.bw_60d, type(None))
 
     def test_bw_90d(self):
         self.assertEqual(self.ag.bw_90d, 68.96)
