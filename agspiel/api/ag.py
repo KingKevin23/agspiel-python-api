@@ -326,255 +326,51 @@ class Ag:
 
     @property
     def kurs_14d(self) -> float:
-        table_data = []
-        rows = self._web_data().find('table', attrs={'class': 'normalborder'}).find_all('tr')
-        for row in rows:
-            cols = row.find_all("td")
-            for col in cols:
-                inhalt = col.find_all("span")
-                try:
-                    table_data.append(float(inhalt[0].text.replace(".", "").replace(",", ".")))
-                except IndexError:
-                    pass
-
-        offset = int(len(table_data) / 3) - 1
-        if len(table_data) >= 3:
-            kurs_14d = table_data[0]
-        else:
-            kurs_14d = None
-
-        return kurs_14d
+        return self._get_table_data()[0]
 
     @property
     def kurs_30d(self) -> float:
-        table_data = []
-        rows = self._web_data().find('table', attrs={'class': 'normalborder'}).find_all('tr')
-        for row in rows:
-            cols = row.find_all("td")
-            for col in cols:
-                inhalt = col.find_all("span")
-                try:
-                    table_data.append(float(inhalt[0].text.replace(".", "").replace(",", ".")))
-                except IndexError:
-                    pass
-
-        offset = int(len(table_data) / 3) - 1
-        if len(table_data) >= 6:
-            kurs_30d = table_data[1]
-        else:
-            kurs_30d = None
-
-        return kurs_30d
+        return self._get_table_data()[1]
 
     @property
     def kurs_60d(self) -> float:
-        table_data = []
-        rows = self._web_data().find('table', attrs={'class': 'normalborder'}).find_all('tr')
-        for row in rows:
-            cols = row.find_all("td")
-            for col in cols:
-                inhalt = col.find_all("span")
-                try:
-                    table_data.append(float(inhalt[0].text.replace(".", "").replace(",", ".")))
-                except IndexError:
-                    pass
-
-        offset = int(len(table_data) / 3) - 1
-        if len(table_data) >= 9:
-            kurs_60d = table_data[2]
-        else:
-            kurs_60d = None
-
-        return kurs_60d
+        return self._get_table_data()[2]
 
     @property
     def kurs_90d(self) -> float:
-        table_data = []
-        rows = self._web_data().find('table', attrs={'class': 'normalborder'}).find_all('tr')
-        for row in rows:
-            cols = row.find_all("td")
-            for col in cols:
-                inhalt = col.find_all("span")
-                try:
-                    table_data.append(float(inhalt[0].text.replace(".", "").replace(",", ".")))
-                except IndexError:
-                    pass
-
-        offset = int(len(table_data) / 3) - 1
-        if len(table_data) >= 12:
-            kurs_90d = table_data[3]
-        else:
-            kurs_90d = None
-
-        return kurs_90d
+        return self._get_table_data()[3]
 
     @property
     def bw_14d(self) -> float:
-        table_data = []
-        rows = self._web_data().find('table', attrs={'class': 'normalborder'}).find_all('tr')
-        for row in rows:
-            cols = row.find_all("td")
-            for col in cols:
-                inhalt = col.find_all("span")
-                try:
-                    table_data.append(float(inhalt[0].text.replace(".", "").replace(",", ".")))
-                except IndexError:
-                    pass
-
-        offset = int(len(table_data) / 3) - 1
-        if len(table_data) >= 3:
-            bw_14d = table_data[1 + offset]
-        else:
-            bw_14d = None
-
-        return bw_14d
+        return self._get_table_data()[4]
 
     @property
     def bw_30d(self) -> float:
-        table_data = []
-        rows = self._web_data().find('table', attrs={'class': 'normalborder'}).find_all('tr')
-        for row in rows:
-            cols = row.find_all("td")
-            for col in cols:
-                inhalt = col.find_all("span")
-                try:
-                    table_data.append(float(inhalt[0].text.replace(".", "").replace(",", ".")))
-                except IndexError:
-                    pass
-
-        offset = int(len(table_data) / 3) - 1
-        if len(table_data) >= 6:
-            bw_30d = table_data[2 + offset]
-        else:
-            bw_30d = None
-
-        return bw_30d
+        return self._get_table_data()[5]
 
     @property
     def bw_60d(self) -> float:
-        table_data = []
-        rows = self._web_data().find('table', attrs={'class': 'normalborder'}).find_all('tr')
-        for row in rows:
-            cols = row.find_all("td")
-            for col in cols:
-                inhalt = col.find_all("span")
-                try:
-                    table_data.append(float(inhalt[0].text.replace(".", "").replace(",", ".")))
-                except IndexError:
-                    pass
-
-        offset = int(len(table_data) / 3) - 1
-        if len(table_data) >= 9:
-            bw_60d = table_data[3 + offset]
-        else:
-            bw_60d = None
-
-        return bw_60d
+        return self._get_table_data()[6]
 
     @property
     def bw_90d(self) -> float:
-        table_data = []
-        rows = self._web_data().find('table', attrs={'class': 'normalborder'}).find_all('tr')
-        for row in rows:
-            cols = row.find_all("td")
-            for col in cols:
-                inhalt = col.find_all("span")
-                try:
-                    table_data.append(float(inhalt[0].text.replace(".", "").replace(",", ".")))
-                except IndexError:
-                    pass
-
-        offset = int(len(table_data) / 3) - 1
-        if len(table_data) >= 12:
-            bw_90d = table_data[4 + offset]
-        else:
-            bw_90d = None
-
-        return bw_90d
+        return self._get_table_data()[7]
 
     @property
     def fp_14d(self) -> float:
-        table_data = []
-        rows = self._web_data().find('table', attrs={'class': 'normalborder'}).find_all('tr')
-        for row in rows:
-            cols = row.find_all("td")
-            for col in cols:
-                inhalt = col.find_all("span")
-                try:
-                    table_data.append(float(inhalt[0].text.replace(".", "").replace(",", ".")))
-                except IndexError:
-                    pass
-
-        offset = int(len(table_data) / 3) - 1
-        if len(table_data) >= 3:
-            fp_14d = table_data[2 + offset * 2]
-        else:
-            fp_14d = None
-
-        return fp_14d
+        return self._get_table_data()[8]
 
     @property
     def fp_30d(self) -> float:
-        table_data = []
-        rows = self._web_data().find('table', attrs={'class': 'normalborder'}).find_all('tr')
-        for row in rows:
-            cols = row.find_all("td")
-            for col in cols:
-                inhalt = col.find_all("span")
-                try:
-                    table_data.append(float(inhalt[0].text.replace(".", "").replace(",", ".")))
-                except IndexError:
-                    pass
-
-        offset = int(len(table_data) / 3) - 1
-        if len(table_data) >= 6:
-            fp_30d = table_data[3 + offset * 2]
-        else:
-            fp_30d = None
-
-        return fp_30d
+        return self._get_table_data()[9]
 
     @property
     def fp_60d(self) -> float:
-        table_data = []
-        rows = self._web_data().find('table', attrs={'class': 'normalborder'}).find_all('tr')
-        for row in rows:
-            cols = row.find_all("td")
-            for col in cols:
-                inhalt = col.find_all("span")
-                try:
-                    table_data.append(float(inhalt[0].text.replace(".", "").replace(",", ".")))
-                except IndexError:
-                    pass
-
-        offset = int(len(table_data) / 3) - 1
-        if len(table_data) >= 9:
-            fp_60d = table_data[4 + offset * 2]
-        else:
-            fp_60d = None
-
-        return fp_60d
+        return self._get_table_data()[10]
 
     @property
     def fp_90d(self) -> float:
-        table_data = []
-        rows = self._web_data().find('table', attrs={'class': 'normalborder'}).find_all('tr')
-        for row in rows:
-            cols = row.find_all("td")
-            for col in cols:
-                inhalt = col.find_all("span")
-                try:
-                    table_data.append(float(inhalt[0].text.replace(".", "").replace(",", ".")))
-                except IndexError:
-                    pass
-
-        offset = int(len(table_data) / 3) - 1
-        if len(table_data) >= 12:
-            fp_90d = table_data[5 + offset * 2]
-        else:
-            fp_90d = None
-
-        return fp_90d
+        return self._get_table_data()[11]
 
     @property
     def ordner(self) -> str:
@@ -602,6 +398,22 @@ class Ag:
                 .text)[0].replace(".", ""))
         except AttributeError:
             return 0
+
+    def _get_table_data(self):
+        table_data = []
+        rows = self._web_data().find('table', attrs={'class': 'normalborder'}).find_all('tr')
+        for row in rows:
+            cols = row.find_all("td")
+            if len(cols) >= 2:
+                # Nur hier stehen Werte
+                last_col = str(cols[len(cols) - 1])
+                regex = re.findall(">-?\d*,\d*<", last_col)
+                try:
+                    table_data.append(float(regex[0][1:-1].replace(".", "").replace(",", ".")))
+                except IndexError:
+                    table_data.append(None)
+
+        return table_data
 
     @staticmethod
     def _convert_number(number: str) -> float:
