@@ -23,7 +23,6 @@ setuptools.setup(
     ],
     python_requires='>=3.8',
     install_requires=[
-        "webbot>=0.33",
         "requests>=2.24.0",
         "beautifulsoup4>=4.9.1"
     ],
