@@ -407,7 +407,7 @@ class Ag:
             if len(cols) >= 2:
                 # Nur hier stehen Werte
                 last_col = str(cols[len(cols) - 1])
-                regex = re.findall(">-?\d*,\d*<", last_col)
+                regex = re.findall(">-?\d*.?\d*,\d*<", last_col)
                 try:
                     table_data.append(float(regex[0][1:-1].replace(".", "").replace(",", ".")))
                 except IndexError:
