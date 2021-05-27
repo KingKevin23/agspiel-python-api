@@ -1110,7 +1110,7 @@ if(document.getElementsByTagName('title')&&document.getElementsByTagName('title'
 <tr>
     <td rowspan='4'>FP/Aktie</td>
     <td>14 Tage</td>
-    <td><span class='green'>3,89</span>%</td>
+    <td><span class='green'>3.585,06</span>%</td>
 </tr>
 <tr>
     <td>30 Tage</td>

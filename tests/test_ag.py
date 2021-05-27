@@ -367,7 +367,7 @@ class TestAg(TestCase):
         self.assertIsInstance(self.ag.bw_90d, float)
 
     def test_fp_14d(self):
-        self.assertEqual(self.ag.fp_14d, 3.89)
+        self.assertEqual(self.ag.fp_14d, 3585.06)
         self.assertIsInstance(self.ag.fp_14d, float)
 
     def test_fp_30d(self):
