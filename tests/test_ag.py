@@ -76,7 +76,7 @@ class TestAg(TestCase):
         self.assertIsInstance(self.ag.bbw_aktie, float)
 
     def test_fp_aktie(self):
-        self.assertEqual(self.ag.fp_aktie, 56.14)
+        self.assertEqual(self.ag.fp_aktie,  4038629.29)
         self.assertIsInstance(self.ag.fp_aktie, float)
 
     def test_bw_aktie(self):
