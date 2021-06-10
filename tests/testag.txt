@@ -502,7 +502,7 @@ if(document.getElementsByTagName('title')&&document.getElementsByTagName('title'
                        <b>BBW</b><a href = 'wiki/index.php?title=Buchwert_(BW)#BBW' target = '_blank'>(?)</a><br>59,01 &euro;
                     </div>
                      <div id='fp'>
-                        <b>FP/Aktie</b><a href = 'wiki/index.php?title=Fairer_Preis_(FP)' target = '_blank'>(?)</a><br > 56,14 &euro;
+                        <b>FP/Aktie</b><a href = 'wiki/index.php?title=Fairer_Preis_(FP)' target = '_blank'>(?)</a><br >  4.038.629,29 &euro;
                     </div>
                      <div id='bwproaktie'>
                         <b>BW/Aktie</b><a href = 'https://www.ag-spiel.de/wiki/index.php?title=Buchwert_(BW)' target = '_blank'>(?)</a><br > 88,52 &euro;

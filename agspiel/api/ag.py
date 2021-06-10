@@ -64,19 +64,19 @@ class Ag:
     @property
     def sw_aktie(self) -> float:
         return float(
-            re.compile("-?\d*[.]?\d*[,]\d{2}").findall(self._web_data().find("div", attrs={"id": "sw"}).text)[0]
+            re.compile("-?(?:\d{,3}[.])*\d{,3}[,]\d{2}").findall(self._web_data().find("div", attrs={"id": "sw"}).text)[0]
             .replace(".", "").replace(",", "."))
 
     @property
     def bbw_aktie(self) -> float:
         return float(
-            re.compile("-?\d*[.]?\d*[,]\d{2}").findall(self._web_data().find("div", attrs={"id": "bbw"}).text)[0]
+            re.compile("-?(?:\d{,3}[.])*\d{,3}[,]\d{2}").findall(self._web_data().find("div", attrs={"id": "bbw"}).text)[0]
             .replace(".", "").replace(",", "."))
 
     @property
     def fp_aktie(self) -> float:
         return float(
-            re.compile("-?\d*[.]?\d*[,]\d{2}").findall(self._web_data().find("div", attrs={"id": "fp"}).text)[0]
+            re.compile("-?(?:\d{,3}[.])*\d{,3}[,]\d{2}").findall(self._web_data().find("div", attrs={"id": "fp"}).text)[0]
             .replace(".", "").replace(",", "."))
 
     @property
