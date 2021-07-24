@@ -32,9 +32,9 @@ class HistorischeAg:
     def aktienanzahl(self) -> int:
         return self._api_data.get("Aktienanzahl")
 
-    @property
-    def in_liquidation(self) -> bool:
-        raise NotImplementedError()
+#   @property
+#   def in_liquidation(self) -> bool:
+#       pass
 
     @property
     def kurs(self) -> float:
@@ -72,9 +72,9 @@ class HistorischeAg:
     def bw_aktie(self) -> float:
         return self._api_data.get("BW_Wert")
 
-    @property
-    def kgv(self) -> float:
-        raise NotImplementedError()
+#   @property
+#   def kgv(self) -> float:
+#       pass
 
     @property
     def spread(self) -> float:
@@ -87,9 +87,9 @@ class HistorischeAg:
     def alter(self) -> int:
         return (datetime.now() - self.gruendung).days
 
-    @property
-    def tagesvolumen(self) -> float:
-        raise NotImplementedError()
+#   @property
+#   def tagesvolumen(self) -> float:
+#       pass
 
     @property
     def boersenwert(self) -> float:
@@ -101,7 +101,7 @@ class HistorischeAg:
 
     @property
     def depotwert(self) -> float:
-        return self._api_data.get("Aktienbuchwert_Wert") * self._api_data.get("Anleihen_Wert") * self._api_data.get("Zertifikate_Wert")
+        return self._api_data.get("Aktienbuchwert_Wert") + self._api_data.get("Anleihen_Wert") + self._api_data.get("Zertifikate_Wert")
 
     @property
     def bargeld(self) -> float:
@@ -119,9 +119,9 @@ class HistorischeAg:
     def highscore_wachstum(self) -> int:
         return self._api_data.get("Wachstumsplatz")
 
-    @property
-    def highscore_newcomer(self) -> int:
-        raise NotImplementedError()
+#   @property
+#   def highscore_newcomer(self) -> int:
+#       pass
 
     @property
     def agsx_punkte(self) -> int:
@@ -135,102 +135,102 @@ class HistorischeAg:
     def handelsaktivitaet(self) -> int:
         return int(self._api_data.get("Aktivitaet"))
 
-    @property
-    def ceo(self):
-        raise NotImplementedError()
-
-    @property
-    def aktien(self):
-        raise NotImplementedError()
-
-    @property
-    def anleihen(self):
-        raise NotImplementedError()
-
-    @property
-    def kredite(self):
-        raise NotImplementedError()
-
-    @property
-    def zertifikate(self):
-        raise NotImplementedError()
-
-    @property
-    def orders(self):
-        raise NotImplementedError()
-
-    @property
-    def aktionaere(self):
-        raise NotImplementedError()
-
-    @property
-    def kes(self):
-        raise NotImplementedError()
-
-    @property
-    def khs(self):
-        raise NotImplementedError()
-
-    @property
-    def dividende(self) -> float:
-        raise NotImplementedError()
-
-    @property
-    def max_zertis(self) -> int:
-        raise NotImplementedError()
-
-    @property
-    def tages_hoch(self) -> float:
-        raise NotImplementedError()
-
-    @property
-    def tages_tief(self) -> float:
-        raise NotImplementedError()
-
-    @property
-    def kurs_14d(self) -> float:
-        pass
-
-    @property
-    def kurs_30d(self) -> float:
-        pass
-
-    @property
-    def kurs_60d(self) -> float:
-        pass
-
-    @property
-    def kurs_90d(self) -> float:
-        pass
-
-    @property
-    def bw_14d(self) -> float:
-        pass
-
-    @property
-    def bw_30d(self) -> float:
-        pass
-
-    @property
-    def bw_60d(self) -> float:
-        pass
-
-    @property
-    def bw_90d(self) -> float:
-        pass
-
-    @property
-    def fp_14d(self) -> float:
-        pass
-
-    @property
-    def fp_30d(self) -> float:
-        pass
-
-    @property
-    def fp_60d(self) -> float:
-        pass
-
-    @property
-    def fp_90d(self) -> float:
-        pass
+#   @property
+#   def ceo(self):
+#       pass
+#
+#   @property
+#   def aktien(self):
+#       pass
+#
+#   @property
+#   def anleihen(self): #todo This could be possible via the historic bond drawer and historic bond zins
+#       pass
+#
+#   @property
+#   def kredite(self):
+#       pass
+#
+#   @property
+#   def zertifikate(self):
+#       pass
+#
+#   @property
+#   def orders(self):
+#       pass
+#
+#   @property
+#   def aktionaere(self):
+#       pass
+#
+#   @property
+#   def kes(self):
+#       pass
+#
+#   @property
+#   def khs(self):
+#       pass
+#
+#   @property
+#   def dividende(self) -> float:
+#       pass
+#
+#   @property
+#   def max_zertis(self) -> int:
+#       pass
+#
+#   @property
+#   def tages_hoch(self) -> float:
+#       pass
+#
+#   @property
+#   def tages_tief(self) -> float:
+#       pass
+#
+#   @property
+#   def kurs_14d(self) -> float:
+#       pass
+#
+#   @property
+#   def kurs_30d(self) -> float:
+#       pass
+#
+#   @property
+#   def kurs_60d(self) -> float:
+#       pass
+#
+#   @property
+#   def kurs_90d(self) -> float:
+#       pass
+#
+#   @property
+#   def bw_14d(self) -> float:
+#       pass
+#
+#   @property
+#   def bw_30d(self) -> float:
+#       pass
+#
+#   @property
+#   def bw_60d(self) -> float:
+#       pass
+#
+#   @property
+#   def bw_90d(self) -> float:
+#       pass
+#
+#   @property
+#   def fp_14d(self) -> float:
+#       pass
+#
+#   @property
+#   def fp_30d(self) -> float:
+#       pass
+#
+#   @property
+#   def fp_60d(self) -> float:
+#       pass
+#
+#   @property
+#   def fp_90d(self) -> float:
+#       pass
