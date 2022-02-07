@@ -30,6 +30,10 @@ class Ag:
         return self._ag_data().get("name")
 
     @property
+    def logo(self) -> str:
+        return "https://www.ag-spiel.de/" + self._web_data().find(id="logocontainer").img.attrs["src"]
+
+    @property
     def gruendung(self) -> datetime:
         return datetime.strptime(self._ag_data().get("gruendung"), "%Y-%m-%d %H:%M:%S")
 

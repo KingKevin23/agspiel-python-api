@@ -24,6 +24,10 @@ class HistorischeAg:
     def name(self) -> str:
         return self._api_data.get("AGName")
 
+    # @property
+    # def logo(self) -> str:
+    #     pass
+
     @property
     def gruendung(self) -> datetime:
         return datetime.strptime(self._api_data.get("Gruendungsdatum"), "%Y-%m-%d")

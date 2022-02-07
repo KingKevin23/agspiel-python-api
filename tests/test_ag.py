@@ -35,6 +35,10 @@ class TestAg(TestCase):
         self.assertEqual(self.ag.name, "King Kompany")
         self.assertIsInstance(self.ag.name, str)
 
+    def test_logo(self):
+        self.assertEqual(self.ag.logo, "https://www.ag-spiel.de/uploads/83275.jpg?t=1594897")
+        self.assertIsInstance(self.ag.name, str)
+
     def test_gruendung(self):
         self.assertEqual(self.ag.gruendung, datetime(year=2020, month=2, day=4, hour=16, minute=25, second=5))
         self.assertIsInstance(self.ag.gruendung, datetime)
