@@ -25,6 +25,9 @@ class TestHistorischeAg(TestCase):
         self.assertEqual(self.ag.name, "King Kompany")
         self.assertIsInstance(self.ag.name, str)
 
+    # def test_logo(self):
+    #     self.fail()
+
     def test_gruendung(self):
         self.assertEqual(self.ag.gruendung, datetime(year=2020, month=2, day=4))
         self.assertIsInstance(self.ag.gruendung, datetime)
