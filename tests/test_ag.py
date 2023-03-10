@@ -330,6 +330,10 @@ class TestAg(TestCase):
         self.assertEqual(self.ag.max_zertis, 5)
         self.assertIsInstance(self.ag.max_zertis, int)
 
+    def test_uebernahmeschutz(self):
+        self.assertEqual(self.ag.uebernahmeschutz, False)
+        self.assertIsInstance(self.ag.uebernahmeschutz, bool)
+
     def test_tages_hoch(self):
         self.assertEqual(self.ag.tages_hoch, 423.35)
         self.assertIsInstance(self.ag.tages_hoch, float)

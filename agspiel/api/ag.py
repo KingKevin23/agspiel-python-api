@@ -307,6 +307,16 @@ class Ag:
         return int(re.compile("(\d{1,2})%").findall(table_data.get("Max. Zertifikatevol."))[0])
 
     @property
+    def uebernahmeschutz(self) -> bool:
+        table_data = {}
+        rows = self._web_data().find('table', attrs={'class': 'padding5'}).find_all('tr')
+        for row in rows:
+            cols = row.find_all("td")
+            table_data[cols[0].text] = cols[1].text
+
+        return table_data.get("Hat Übernahmeschutz?").strip() == "ja"
+
+    @property
     def tages_hoch(self) -> float:
         table_data = {}
         rows = self._web_data().find('table', attrs={'class': 'padding5'}).find_all('tr')

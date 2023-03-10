@@ -165,6 +165,9 @@ class TestHistorischeAg(TestCase):
 #   def test_max_zertis(self):
 #       self.fail()
 #
+#   def test_uebernahmeschutz(self):
+#       self.fail()
+#
 #   def test_tages_hoch(self):
 #       self.fail()
 #

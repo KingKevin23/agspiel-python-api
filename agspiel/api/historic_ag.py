@@ -184,6 +184,10 @@ class HistorischeAg:
 #       pass
 #
 #   @property
+#   def uebernahmeschutz(self) -> bool:
+#       pass
+#
+#   @property
 #   def tages_hoch(self) -> float:
 #       pass
 #
