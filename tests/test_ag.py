@@ -51,6 +51,10 @@ class TestAg(TestCase):
         self.assertEqual(self.ag.in_liquidation, False)
         self.assertIsInstance(self.ag.in_liquidation, bool)
 
+    def test_in_kapitalerhoehung(self):
+        self.assertEqual(self.ag.in_kapitalerhoehung, True)
+        self.assertIsInstance(self.ag.in_kapitalerhoehung, bool)
+
     def test_kurs(self):
         self.assertEqual(self.ag.kurs, 262)
         self.assertIsInstance(self.ag.kurs, float)

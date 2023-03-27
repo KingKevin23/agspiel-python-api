@@ -7,7 +7,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="agspiel-python-api",
-    version="0.5.2",
+    version="0.5.3",
     author="KingKevin23",
     author_email="code@kingkevin.de",
     description="Python API für das AG-Spiel",

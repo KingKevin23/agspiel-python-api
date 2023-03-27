@@ -2,6 +2,7 @@
 
 import re
 from datetime import datetime, date
+from bs4 import BeautifulSoup
 
 from .aktie import Aktie, Aktionaer
 from .anleihe import Anleihe, Kredit
@@ -44,6 +45,10 @@ class Ag:
     @property
     def in_liquidation(self) -> bool:
         return self._ag_data().get("in_liquidation") == "true"
+
+    @property
+    def in_kapitalerhoehung(self) -> bool:
+        return "Diese AG befindet sich in einer Kapitalerhöhung" in str(self._web_data())
 
     @property
     def kurs(self) -> float:
