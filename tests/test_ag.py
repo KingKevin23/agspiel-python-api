@@ -144,7 +144,7 @@ class TestAg(TestCase):
         self.assertIsInstance(self.ag.agsx_punkte, int)
 
     def test_in_agsx(self):
-        self.assertEqual(self.ag.in_agsx, False)
+        self.assertEqual(self.ag.in_agsx, True)
         self.assertIsInstance(self.ag.in_agsx, bool)
 
     def test_handelsaktivitaet(self):
@@ -173,7 +173,7 @@ class TestAg(TestCase):
         self.assertIsInstance(self.ag.ceo.registrierung_datum, datetime)
         self.assertEqual(self.ag.ceo.gesperrt, False)
         self.assertIsInstance(self.ag.ceo.gesperrt, bool)
-        self.assertEqual(self.ag.ceo.userprojekt, False)
+        self.assertEqual(self.ag.ceo.userprojekt, True)
         self.assertIsInstance(self.ag.ceo.userprojekt, bool)
 
     def test_aktien(self):
