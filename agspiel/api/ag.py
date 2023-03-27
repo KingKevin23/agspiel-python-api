@@ -44,7 +44,7 @@ class Ag:
 
     @property
     def in_liquidation(self) -> bool:
-        return self._ag_data().get("in_liquidation") == "true"
+        return self._ag_data().get("in_liquidation")
 
     @property
     def in_kapitalerhoehung(self) -> bool:
@@ -150,7 +150,7 @@ class Ag:
 
     @property
     def in_agsx(self) -> bool:
-        return self._ag_data().get("in_agsx") == "true"
+        return self._ag_data().get("in_agsx")
 
     @property
     def handelsaktivitaet(self) -> int:
@@ -175,8 +175,8 @@ class Ag:
 
         registrierung_datum = datetime.strptime(self._ag_data().get("ceo").get("registrierung_datum"),
                                                 "%Y-%m-%d %H:%M:%S")
-        gesperrt = self._ag_data().get("ceo").get("gesperrt") == "true"
-        userprojekt = self._ag_data().get("ceo").get("ist_userprojekt_account") == "true"
+        gesperrt = self._ag_data().get("ceo").get("gesperrt")
+        userprojekt = self._ag_data().get("ceo").get("ist_userprojekt_account")
         return Ceo(name=name, index=index, registrierung_datum=registrierung_datum, gesperrt=gesperrt,
                    userprojekt=userprojekt)
 
@@ -231,7 +231,7 @@ class Ag:
         orders = []
         for i in self._ag_data().get("orders"):
             temp = Order(typ=i.get("typ"), limit=float(i.get("limit")), stueckzahl=int(i.get("stueckzahl")),
-                         orderregel=i.get("orderregel") == "true", systembank=i.get("systembank_order") == "true",
+                         orderregel=i.get("orderregel"), systembank=i.get("systembank_order"),
                          datum=datetime.strptime(i.get("datum"), "%Y-%m-%d %H:%M:%S"))
             orders.append(temp)
 
