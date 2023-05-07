@@ -6,11 +6,12 @@ from .index import Index
 
 
 class Ceo:
-    def __init__(self, name: str, index: Index, registrierung_datum: datetime, gesperrt: bool, userprojekt: bool):
+    def __init__(self, name: str, index: Index, registrierung_datum: datetime, gesperrt: bool, premium: bool, userprojekt: bool):
         self._name: str = name
         self._index: Index = index
         self._registrierung_datum: datetime = registrierung_datum
         self._gesperrt: bool = gesperrt
+        self._premium: bool = premium
         self._userprojekt: bool = userprojekt
 
     @property
@@ -28,6 +29,10 @@ class Ceo:
     @property
     def gesperrt(self) -> bool:
         return self._gesperrt
+
+    @property
+    def premium(self) -> bool:
+        return self._premium
 
     @property
     def userprojekt(self) -> bool:

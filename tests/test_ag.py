@@ -173,6 +173,8 @@ class TestAg(TestCase):
         self.assertIsInstance(self.ag.ceo.registrierung_datum, datetime)
         self.assertEqual(self.ag.ceo.gesperrt, False)
         self.assertIsInstance(self.ag.ceo.gesperrt, bool)
+        self.assertEqual(self.ag.ceo.premium, True)
+        self.assertIsInstance(self.ag.ceo.premium, bool)
         self.assertEqual(self.ag.ceo.userprojekt, True)
         self.assertIsInstance(self.ag.ceo.userprojekt, bool)
 
@@ -333,6 +335,10 @@ class TestAg(TestCase):
     def test_max_zertis(self):
         self.assertEqual(self.ag.max_zertis, 5)
         self.assertIsInstance(self.ag.max_zertis, int)
+
+    def test_max_zertis_aenderbar(self):
+        self.assertEqual(self.ag.max_zertis_aenderbar, True)
+        self.assertIsInstance(self.ag.max_zertis_aenderbar, bool)
 
     def test_uebernahmeschutz(self):
         self.assertEqual(self.ag.uebernahmeschutz, False)
