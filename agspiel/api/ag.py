@@ -48,7 +48,7 @@ class Ag:
 
     @property
     def in_kapitalerhoehung(self) -> bool:
-        return "Diese AG befindet sich in einer Kapitalerhöhung" in str(self._web_data())
+        return self._ag_data().get("laufende_ke")
 
     @property
     def kurs(self) -> float:
@@ -176,9 +176,10 @@ class Ag:
         registrierung_datum = datetime.strptime(self._ag_data().get("ceo").get("registrierung_datum"),
                                                 "%Y-%m-%d %H:%M:%S")
         gesperrt = self._ag_data().get("ceo").get("gesperrt")
+        premium = self._ag_data().get("ceo").get("premium")
         userprojekt = self._ag_data().get("ceo").get("ist_userprojekt_account")
         return Ceo(name=name, index=index, registrierung_datum=registrierung_datum, gesperrt=gesperrt,
-                   userprojekt=userprojekt)
+                   premium=premium, userprojekt=userprojekt)
 
     @property
     def aktien(self) -> list:
@@ -293,33 +294,19 @@ class Ag:
 
     @property
     def dividende(self) -> float:
-        table_data = {}
-        rows = self._web_data().find('table', attrs={'class': 'padding5'}).find_all('tr')
-        for row in rows:
-            cols = row.find_all("td")
-            table_data[cols[0].text] = cols[1].text
-
-        return float(re.compile("(0\.?\d{0,2})%").findall(table_data.get("Dividende"))[0])
+        return float(self._ag_data().get("dividende"))
 
     @property
     def max_zertis(self) -> int:
-        table_data = {}
-        rows = self._web_data().find('table', attrs={'class': 'padding5'}).find_all('tr')
-        for row in rows:
-            cols = row.find_all("td")
-            table_data[cols[0].text] = cols[1].text
+        return int(float(self._ag_data().get("max_zertifikate_anteil")) * 100)
 
-        return int(re.compile("(\d{1,2})%").findall(table_data.get("Max. Zertifikatevol."))[0])
+    @property
+    def max_zertis_aenderbar(self) -> bool:
+        return self._ag_data().get("max_zertifikate_anteil_aenderbar")
 
     @property
     def uebernahmeschutz(self) -> bool:
-        table_data = {}
-        rows = self._web_data().find('table', attrs={'class': 'padding5'}).find_all('tr')
-        for row in rows:
-            cols = row.find_all("td")
-            table_data[cols[0].text] = cols[1].text
-
-        return table_data.get("Hat Übernahmeschutz?").strip() == "ja"
+        return self._ag_data().get("uebernahmeschutz")
 
     @property
     def tages_hoch(self) -> float:
