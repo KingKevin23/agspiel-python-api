@@ -33,6 +33,10 @@ class Api:
         Diese Methode erstellt ein Objekt der Klasse Api mit den übergebenen Nutzerdaten und holt sich die PHPSESSID
         automatisch.
 
+        Example:
+            >>> from agspiel.api import Api
+            >>> api = Api.from_user_credentials("YOUR_EMAIL", "YOUR_PASSWORD")
+
         :param email: Die Email des Nutzers
         :param password: Das Passwort des Nutzers
         :param premium: Ob der Nutzer Premium hat
