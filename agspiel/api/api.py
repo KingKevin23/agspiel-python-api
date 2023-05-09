@@ -5,7 +5,7 @@ from datetime import datetime, date, timedelta
 import json
 from typing import Union
 
-from requests import get
+from requests import get, post
 from bs4 import BeautifulSoup
 
 from .ag import Ag
@@ -26,6 +26,33 @@ class Api:
         self._api_key = api_key
         self.premium = premium
         self._api_data = Data(update=lambda: json.loads(get(Api._api_url).content))
+
+    @staticmethod
+    def from_user_credentials(email: str, password: str, premium: bool = True) -> "Api":
+        """
+        Diese Methode erstellt ein Objekt der Klasse Api mit den übergebenen Nutzerdaten und holt sich die PHPSESSID
+        automatisch.
+
+        :param email: Die Email des Nutzers
+        :param password: Das Passwort des Nutzers
+        :param premium: Ob der Nutzer Premium hat
+        :return: Ein Objekt der Klasse Api
+        """
+        login_url = "https://www.ag-spiel.de/index.php?section=login"
+        login_data = {
+            'email': email,
+            'userpass': password,
+            'permanent': '1',
+            'login': 'Einloggen',
+        }
+        response = post(login_url, data=login_data)
+
+        if "Einloggen" in response.text:
+            raise Exception("Login failed.")
+
+        php_session_id = response.cookies.get('PHPSESSID')
+
+        return Api(phpsessid=php_session_id, premium=premium)
 
     def get_ag(self, wkn: int, datum:date=None) -> Union[Ag, HistorischeAg]:
         """
