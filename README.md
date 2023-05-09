@@ -35,7 +35,7 @@ print(ag.ceo.name)
 > KingKevin23
 ```
 
-Weitere Beispiele und Hilfestellungen findest du im [Wiki](https://github.com/KingKevin23/agspiel-python-api/wiki).
+Weitere Beispiele und Hilfestellungen findest du in der [Dokumentation](https://agspiel-python-api.gitbook.io/documentation/).
 
 ### Hinweise:
 
