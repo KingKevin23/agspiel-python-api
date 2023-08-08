@@ -100,7 +100,7 @@ class Ag:
     @property
     def live_kurs_14d(self)-> float:
         return float(re.compile("\d*[,]\d*").findall(self._web_data().find("div", attrs={"id": "kurs14d"}).text)[0].
-                     replace(",", "."))
+                     replace(",", ".").replace("n/a","0"))
 
     @property
     def spread(self) -> float:
