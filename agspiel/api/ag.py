@@ -93,14 +93,18 @@ class Ag:
         return round(self.buchwert / self.aktienanzahl, 2)
 
     @property
+    def kurs_14d_live(self) -> float:
+        try:
+            return float(
+                re.compile("-?(?:\d{,3}[.])*\d{,3}[,]\d{2}|n/a").findall(self._web_data().find("div", attrs={"id": "kurs14d"}).text)[0]
+                .replace(".", "").replace(",", "."))
+        except ValueError:
+            return None
+
+    @property
     def kgv(self) -> float:
         return float(re.compile("\d*[,]\d*").findall(self._web_data().find("div", attrs={"id": "kgv"}).text)[0].
                      replace(",", "."))
-    
-    @property
-    def live_kurs_14d(self)-> float:
-        return float(re.compile("(-\d*[,]\d*|\d*[,]\d*|n/a)").findall(self._web_data().find("div", attrs={"id": "kurs14d"}).text)[0].
-                     replace(",", ".").replace("n/a","0"))
 
     @property
     def spread(self) -> float:

@@ -91,13 +91,13 @@ class TestAg(TestCase):
         self.assertEqual(self.ag.bw_aktie, 114.47)
         self.assertIsInstance(self.ag.bw_aktie, float)
 
+    def test_kurs_14d_live(self):
+        self.assertEqual(self.ag.kurs_14d_live, 38.24)
+        self.assertIsInstance(self.ag.kurs_14d_live, float)
+
     def test_kgv(self):
         self.assertEqual(self.ag.kgv, 115.59)
         self.assertIsInstance(self.ag.kgv, float)
-    
-    def test_live_kurs_14d(self):
-        self.assertEqual(self.ag.live_kurs_14d, 38.24)
-        self.assertIsInstance(self.ag.live_kurs_14d, float)
 
     def test_spread(self):
         self.assertEqual(self.ag.spread, 0)
