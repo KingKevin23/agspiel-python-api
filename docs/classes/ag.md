@@ -18,6 +18,7 @@ Von einem Objekt der Klasse Ag lassen sich die folgenden Attribute abfragen:
 * `bbw_aktie` -> Bereinigter Buchwert je Aktie (`float`)
 * `fp_aktie` -> Fairer Preis je Aktie (`float`)
 * `bw_aktie` -> Buchwert je Aktie (`float`)
+* `kurs_14d_live` -> Entwicklung des Kurses in den letzten 14 Tagen nach aktuellem Kurs (`float`)
 * `kgv` -> Kurs-Gewinn-Verhältnis der AG (`float`)
 * `spread` -> Verhältnis zwischen Brief- und Geldkurs (`float`)
 * `alter` -> Alter der AG in Tagen (`int`)
